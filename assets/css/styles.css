@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 1px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #2d2e31;
+  overflow: hidden;
+  height: 900vh;
+}
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #25262a;
+}
+@media screen and (min-width: 75rem) {
+  .header {
+    box-shadow: 0 4px 4px #25262a;
+  }
+}
+.header__container {
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 75rem) {
+  .header__container {
+    padding: 1.5rem 0;
+    justify-content: space-around;
+  }
+}
+.header__title h1 > a {
+  transition: color 0.2s;
+}
+.header__title h1 > a:hover {
+  color: #f2542d;
+}
+@media screen and (min-width: 75rem) {
+  .header__title {
+    padding: 0;
+    font-size: 1.65rem;
+  }
+}
+.header__menu {
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+@media screen and (min-width: 75rem) {
+  .header__menu {
+    display: none;
+  }
+}
+.header__mobile {
+  height: 100vh;
+  width: 60vw;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  transition: 0.5s ease;
+  transform: translateX(100%);
+  background-color: #25262a;
+}
+@media screen and (min-width: 75rem) {
+  .header__mobile {
+    display: none;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .header__mobile {
+    width: 35vw;
+  }
+}
+.header__mobile .mobile__navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.header__mobile .mobile__navigation a {
+  padding-top: 0.5rem;
+  padding-bottom: calc(0.5rem - 2px);
+  font-size: 1.15rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-bottom 0.4s;
+}
+.header__mobile .mobile__navigation a:hover {
+  color: #f2542d;
+  border-bottom: 2px solid #f2542d;
+}
+.header__mobile .mobile__contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.header__mobile .mobile__contacts div {
+  display: flex;
+  gap: 1.25rem;
+}
+.header__mobile .mobile__contacts div i {
+  font-size: 1.5rem;
+}
+.header__mobile .mobile__contacts div i:hover {
+  animation: expand 0.5s linear infinite alternate;
+}
+@keyframes expand {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+.header__mobile .mobile__contacts div .fa-linkedin,
+.header__mobile .mobile__contacts div .fa-envelope,
+.header__mobile .mobile__contacts div .fa-whatsapp {
+  transition: color 0.2s;
+}
+.header__mobile .mobile__contacts div .fa-linkedin:hover {
+  color: #0e76a8;
+}
+.header__mobile .mobile__contacts div .fa-envelope:hover {
+  color: #f2542d;
+}
+.header__mobile .mobile__contacts div .fa-whatsapp:hover {
+  color: #25d366;
+}
+.header .is-active {
+  visibility: initial;
+  transform: translateX(0);
+}
+.header__navigation {
+  display: none;
+}
+@media screen and (min-width: 75rem) {
+  .header__navigation {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .header__navigation a {
+    padding-top: 0.5rem;
+    padding-bottom: calc(0.5rem - 2px);
+    font-size: 1.15rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-bottom 0.4s;
+  }
+  .header__navigation a:hover {
+    color: #f2542d;
+    border-bottom: 2px solid #f2542d;
+  }
+}
+.header__contacts {
+  display: none;
+}
+@media screen and (min-width: 75rem) {
+  .header__contacts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .header__contacts div {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .header__contacts div i {
+    font-size: 1.5rem;
+  }
+  .header__contacts div i:hover {
+    animation: expand 0.5s linear infinite alternate;
+  }
+  @keyframes expand {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.15);
+    }
+  }
+  .header__contacts div .fa-linkedin,
+  .header__contacts div .fa-envelope,
+  .header__contacts div .fa-whatsapp {
+    transition: color 0.2s;
+  }
+  .header__contacts div .fa-linkedin:hover {
+    color: #0e76a8;
+  }
+  .header__contacts div .fa-envelope:hover {
+    color: #f2542d;
+  }
+  .header__contacts div .fa-whatsapp:hover {
+    color: #25d366;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

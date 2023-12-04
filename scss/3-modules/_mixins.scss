@@ -1,0 +1,25 @@
+@use '../1-base/variables';
+
+@mixin xl {
+  @media screen and (min-width: variables.$xl) {
+    @content;
+  }
+}
+
+@mixin xl- {
+  @media screen and (min-width: variables.$xl-) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: variables.$lg) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: variables.$md) {
+    @content;
+  }
+}
