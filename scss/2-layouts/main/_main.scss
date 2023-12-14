@@ -1,0 +1,189 @@
+@use 'sass:color';
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+@use '../../3-modules/plugins';
+
+.main {
+    $self: &;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5.5rem;
+    @extend %container;
+    @include mixins.lg {
+        margin-top: 7rem;
+    }
+
+    &__apresentation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        @include mixins.lg {
+            gap: 3rem;
+            flex-direction: row;
+        }
+
+        .main__content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+
+            h1 {
+                font-size: 1.75rem;
+
+                strong {
+                    color: variables.$color-link;
+                }
+            }
+
+            a {
+                width: 80%;
+                padding: 0.75rem 0;
+                background-color: variables.$color-link;
+                border-radius: 8px;
+                transition: background-color 0.4s;
+                &:hover {
+                    background-color: color.adjust(
+                        variables.$color-link,
+                        $lightness: -15%
+                    );
+                }
+                @include mixins.lg {
+                    width: 60%;
+                    padding: 1rem 0;
+                }
+            }
+        }
+
+        .main__code {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2rem;
+            letter-spacing: 2px;
+            background-color: #23272e;
+            border: 2px solid black;
+            border-radius: 16px;
+
+            .code__header {
+                display: flex;
+                gap: 1rem;
+                padding: 1rem;
+                border-bottom: 1px solid black;
+
+                div {
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    border-radius: 50%;
+                }
+
+                div:nth-child(1) {
+                    background: #ff5f5a;
+                }
+
+                div:nth-child(2) {
+                    background-color: #ffbe2e;
+                }
+
+                div:nth-child(3) {
+                    background-color: #2aca44;
+                }
+            }
+
+            .code__body {
+                display: flex;
+                gap: 0.75rem;
+                padding: 0.75rem;
+
+                .code__lines {
+                    display: none;
+
+                    @include mixins.lg {
+                        display: flex;
+                        flex-direction: column;
+                        text-align: right;
+
+                        span {
+                            color: gray;
+
+                            &:nth-child(22) {
+                                @include mixins.xl2 {
+                                    display: none;
+                                }
+                            }
+
+                            &:nth-child(23) {
+                                @include mixins.xl2 {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .code__content {
+                    .code__declaration {
+                        color: #b770cd;
+                    }
+
+                    .code__title {
+                        display: inline;
+                        font-size: 1rem;
+                        color: #d5b375;
+                    }
+
+                    .code__assignment {
+                        color: #4a95a1;
+                    }
+
+                    .code__keys {
+                        color: #9ba2ae;
+                    }
+
+                    .code__properties {
+                        margin-left: 1.5rem;
+                        color: #db6a73;
+                    }
+
+                    .code__values {
+                        color: #98c379;
+
+                        &--noString {
+                            color: #b2865c;
+                        }
+
+                        &--block {
+                            color: #98c379;
+                            display: block;
+                            margin-left: 3rem;
+                        }
+                    }
+
+                    .code__commas {
+                        color: #9ba2ae;
+                    }
+
+                    .code__brackets {
+                        color: #9ba2ae;
+
+                        &:last-child {
+                            margin-left: 1.5rem;
+                        }
+                    }
+
+                    .code__valueArray {
+                        display: block;
+                        margin-left: 3rem;
+                    }
+                }
+            }
+        }
+    }
+}
