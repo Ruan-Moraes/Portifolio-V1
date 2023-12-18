@@ -7,15 +7,51 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    letter-spacing: 1px;
     color: variables.$white;
     text-decoration: none;
+    letter-spacing: 1px;
     @include mixins.sm {
         letter-spacing: 2px;
     }
 }
 
-.body {
+body {
     background-color: variables.$primary-color;
-    height: 900vh;
+}
+
+.settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    font-size: 2rem;
+    background-color: #444444;
+    border-radius: 8px;
+
+    i {
+        color: #949494;
+        transition: 0.6s ease;
+        cursor: pointer;
+    }
+}
+
+.teste {
+    display: flex;
+    width: 40rem;
+    height: 40rem;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    background-color: red;
+}
+
+.settings_fade {
+    display: none;
+    height: 100%;
+    width: 100%;
 }

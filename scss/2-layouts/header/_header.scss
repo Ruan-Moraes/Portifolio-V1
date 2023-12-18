@@ -3,6 +3,7 @@
 @use '../../3-modules/plugins';
 
 .header {
+    $header: &;
     width: 100%;
     position: fixed;
     top: 0;
@@ -23,161 +24,182 @@
             justify-content: space-around;
             padding: 1.5rem 0;
         }
-    }
 
-    &__title {
-        @include mixins.xl {
-            padding: 0;
-            font-size: 1.65rem;
-        }
-
-        h1 > a {
-            transition: color 0.2s;
-            &:hover {
-                color: variables.$color-link;
-            }
-        }
-    }
-
-    &__menu {
-        font-size: 1.75rem;
-        cursor: pointer;
-        @include mixins.xl {
-            display: none;
-        }
-    }
-
-    &__links {
-        height: calc(100vh - 5.05rem);
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 5.05rem;
-        padding: 0 1rem;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: -1;
-        background-color: variables.$secondary-color;
-        border-top: 1px solid red;
-        transform: translateX(100%);
-        transition: 0.5s ease;
-        @include mixins.md {
-            width: 50vw;
-            border-top: none;
-            border-left: 1px solid red;
-        }
-        @include mixins.xl {
-            height: auto;
-            width: calc(271.938px * 3);
-            flex-direction: row;
-            justify-content: space-between;
-            margin: 0;
-            padding: 0;
-            position: static;
-            z-index: auto;
-            transform: translate(0);
-        }
-
-        h2 {
-            font-size: 1.75rem;
-        }
-
-        .header__navigation {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            margin: 5rem 0;
-
+        #{$header}__title {
             @include mixins.xl {
-                flex-direction: row;
-                margin: 0;
-
-                h2 {
-                    display: none;
-                }
+                padding: 0;
+                font-size: 1.65rem;
             }
 
-            a {
-                padding-top: 0.5rem;
-                padding-bottom: calc(0.5rem - 2px);
-                font-size: 1.15rem;
-                border-bottom: 2px solid transparent;
-                transition: color 0.2s, border-bottom 0.4s;
+            h1 > a {
+                transition: color 0.2s;
                 &:hover {
                     color: variables.$color-link;
-                    border-bottom: 2px solid variables.$color-link;
                 }
             }
         }
 
-        .header__contacts {
+        #{$header}__menu {
+            font-size: 1.75rem;
+            cursor: pointer;
+            @include mixins.xl {
+                display: none;
+            }
+        }
+
+        #{$header}__links {
+            height: calc(100vh - 5.05rem);
+            width: 100vw;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            gap: 1rem;
+            margin-top: 5.05rem;
+            padding: 0 1rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: -1;
+            background-color: variables.$secondary-color;
+            border-top: 1px solid gray;
+            transform: translateX(100%);
+            transition: 0.5s ease;
+            @include mixins.lg {
+                width: 50vw;
+                border-top: none;
+                border-left: 1px solid gray;
+            }
             @include mixins.xl {
+                height: auto;
+                width: calc(16.996125rem * 3);
                 flex-direction: row;
+                justify-content: space-between;
+                margin: 0;
+                padding: 0;
+                position: static;
+                z-index: auto;
+                border-left: none;
+                transform: translate(0);
             }
 
-            div {
+            h2 {
+                font-size: 1.75rem;
+                @include mixins.md {
+                    font-size: 2.25rem;
+                }
+                @include mixins.xl {
+                    font-size: 1.75rem;
+                }
+            }
+
+            #{$header}__navigation {
                 display: flex;
-                gap: 1.25rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
+                margin: 5rem 0;
+                @include mixins.xl {
+                    flex-direction: row;
+                    margin: 0;
 
-                i {
-                    font-size: 1.5rem;
-                    &:hover {
-                        animation: expand 0.5s linear infinite alternate;
-                    }
-
-                    @keyframes expand {
-                        0% {
-                            transform: scale(1);
-                        }
-                        100% {
-                            transform: scale(1.15);
-                        }
+                    h2 {
+                        display: none;
                     }
                 }
 
-                .fa-linkedin,
-                .fa-envelope,
-                .fa-whatsapp {
-                    transition: color 0.2s;
-                }
-
-                .fa-linkedin {
-                    &:hover {
-                        color: #0e76a8;
-                    }
-                }
-
-                .fa-envelope {
+                a {
+                    padding-top: 0.5rem;
+                    padding-bottom: calc(0.5rem - 2px);
+                    font-size: 1.15rem;
+                    border-bottom: 2px solid transparent;
+                    transition: color 0.2s, border-bottom 0.4s;
                     &:hover {
                         color: variables.$color-link;
+                        border-bottom: 2px solid variables.$color-link;
+                    }
+                    @include mixins.md {
+                        font-size: 1.3rem;
+                    }
+                    @include mixins.xl {
+                        font-size: 1.15rem;
+                    }
+                }
+            }
+
+            #{$header}__contacts {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                @include mixins.xl {
+                    flex-direction: row;
+                }
+
+                span {
+                    display: none;
+                    @include mixins.xl {
+                        display: inline;
                     }
                 }
 
-                .fa-whatsapp {
-                    &:hover {
-                        color: #25d366;
+                div {
+                    display: flex;
+                    gap: 1.25rem;
+
+                    i {
+                        font-size: 1.5rem;
+                        @include mixins.md {
+                            font-size: 1.75rem;
+                        }
+                        @include mixins.xl {
+                            font-size: 1.5rem;
+                        }
+                        &:hover {
+                            animation: expand 0.5s linear infinite alternate;
+                        }
+
+                        @keyframes expand {
+                            0% {
+                                transform: scale(1);
+                            }
+                            100% {
+                                transform: scale(1.15);
+                            }
+                        }
+                    }
+
+                    .fa-linkedin,
+                    .fa-envelope,
+                    .fa-whatsapp {
+                        transition: color 0.2s;
+                    }
+
+                    .fa-linkedin {
+                        &:hover {
+                            color: #0e76a8;
+                        }
+                    }
+
+                    .fa-envelope {
+                        &:hover {
+                            color: variables.$color-link;
+                        }
+                    }
+
+                    .fa-whatsapp {
+                        &:hover {
+                            color: #25d366;
+                        }
                     }
                 }
             }
         }
-    }
 
-    // JS
+        // JS
 
-    .menuIsActivated {
-        transform: translateX(0);
-
-        .header__container & {
-            border-bottom: 1px solid red;
+        .menuIsActivated {
+            transform: translateX(0);
         }
     }
 }
