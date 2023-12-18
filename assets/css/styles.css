@@ -404,6 +404,11 @@ body {
   }
 }
 @media screen and (min-width: 64rem) and (min-width: 96rem) {
+  .main__container .main__apresentation .main__code .code__body .code__lines span:nth-child(21) {
+    display: none;
+  }
+}
+@media screen and (min-width: 64rem) and (min-width: 96rem) {
   .main__container .main__apresentation .main__code .code__body .code__lines span:nth-child(22) {
     display: none;
   }

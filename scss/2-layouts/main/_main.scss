@@ -123,6 +123,12 @@
                             span {
                                 color: gray;
 
+                                &:nth-child(21) {
+                                    @include mixins.xl2 {
+                                        display: none;
+                                    }
+                                }
+
                                 &:nth-child(22) {
                                     @include mixins.xl2 {
                                         display: none;
