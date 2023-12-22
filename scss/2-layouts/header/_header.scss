@@ -10,9 +10,6 @@
     left: 0;
     background-color: variables.$secondary-color;
     border-bottom: 1px solid gray;
-    @include mixins.xl {
-        box-shadow: 0 4px 4px variables.$secondary-color;
-    }
 
     &__container {
         display: flex;
