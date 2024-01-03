@@ -75,12 +75,17 @@ body {
   padding: 1.5rem;
 }
 .settings__body .select {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+.settings__body .select div:nth-child(1) {
   height: 3rem;
   display: flex;
-  align-items: center;
   border: 2px solid black;
 }
-.settings__body .select label {
+.settings__body .select div:nth-child(1) label {
   background-color: #f2542d;
   display: flex;
   align-items: center;
@@ -90,9 +95,12 @@ body {
   background-color: #f2542d;
   border-right: 1px solid black;
 }
+.settings__body .select div:nth-child(2) {
+  text-align: center;
+}
 .settings__body .separate {
   height: 0.25rem;
-  margin: 0 2rem;
+  margin: 0 1rem;
   border-bottom: 1px solid gray;
 }
 

@@ -75,26 +75,36 @@ body {
     padding: 1.5rem;
 
     .select {
-        height: 3rem;
         display: flex;
-        align-items: center;
-        border: 2px solid black;
+        flex-direction: column;
+        gap: 0.5rem;
+        overflow: hidden;
 
-        label {
-            background-color: variables.$color-link;
+        div:nth-child(1) {
+            height: 3rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width: 30%;
-            background-color: variables.$color-link;
-            border-right: 1px solid black;
+            border: 2px solid black;
+
+            label {
+                background-color: variables.$color-link;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                width: 30%;
+                background-color: variables.$color-link;
+                border-right: 1px solid black;
+            }
+        }
+
+        div:nth-child(2) {
+            text-align: center;
         }
     }
 
     .separate {
         height: 0.25rem;
-        margin: 0 2rem;
+        margin: 0 1rem;
         border-bottom: 1px solid gray;
     }
 }
