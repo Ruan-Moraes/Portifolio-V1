@@ -1,202 +1,236 @@
-@use '../../1-base/variables';
-@use '../../3-modules/mixins';
-@use '../../3-modules/plugins';
+@use "../../1-base/variables";
+@use "../../3-modules/mixins";
+@use "../../3-modules/plugins";
 
 .header {
-    $header: &;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: variables.$secondary-color;
-    border-bottom: 1px solid gray;
+  $header: &;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: variables.$secondary-color;
+  border-bottom: 1px solid gray;
 
-    &__container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem 1.25rem;
-        @extend %container;
-        @include mixins.xl {
-            justify-content: space-around;
-            padding: 1.5rem 0;
-        }
-
-        #{$header}__title {
-            @include mixins.xl {
-                padding: 0;
-                font-size: 1.65rem;
-            }
-
-            h1 > a {
-                transition: color 0.2s;
-                &:hover {
-                    color: variables.$color-link;
-                }
-            }
-        }
-
-        #{$header}__menu {
-            font-size: 1.75rem;
-            cursor: pointer;
-            @include mixins.xl {
-                display: none;
-            }
-        }
-
-        #{$header}__links {
-            height: calc(100vh - 5.05rem);
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 5.05rem;
-            padding: 0 1rem;
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: -1;
-            background-color: variables.$secondary-color;
-            border-top: 1px solid gray;
-            transform: translateX(100%);
-            transition: 0.5s ease;
-            @include mixins.lg {
-                width: 50vw;
-                border-top: none;
-                border-left: 1px solid gray;
-            }
-            @include mixins.xl {
-                height: auto;
-                width: calc(16.996125rem * 3);
-                flex-direction: row;
-                justify-content: space-between;
-                margin: 0;
-                padding: 0;
-                position: static;
-                z-index: auto;
-                border-left: none;
-                transform: translate(0);
-            }
-
-            h2 {
-                font-size: 1.75rem;
-                @include mixins.md {
-                    font-size: 2.25rem;
-                }
-                @include mixins.xl {
-                    font-size: 1.75rem;
-                }
-            }
-
-            #{$header}__navigation {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 1.5rem;
-                margin: 5rem 0;
-                @include mixins.xl {
-                    flex-direction: row;
-                    margin: 0;
-
-                    h2 {
-                        display: none;
-                    }
-                }
-
-                a {
-                    padding-top: 0.5rem;
-                    padding-bottom: calc(0.5rem - 2px);
-                    font-size: 1.15rem;
-                    border-bottom: 2px solid transparent;
-                    transition: color 0.2s, border-bottom 0.4s;
-                    &:hover {
-                        color: variables.$color-link;
-                        border-bottom: 2px solid variables.$color-link;
-                    }
-                    @include mixins.md {
-                        font-size: 1.3rem;
-                    }
-                    @include mixins.xl {
-                        font-size: 1.15rem;
-                    }
-                }
-            }
-
-            #{$header}__contacts {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 1rem;
-                @include mixins.xl {
-                    flex-direction: row;
-                }
-
-                span {
-                    display: none;
-                    @include mixins.xl {
-                        display: inline;
-                    }
-                }
-
-                div {
-                    display: flex;
-                    gap: 1.25rem;
-
-                    i {
-                        font-size: 1.5rem;
-                        @include mixins.md {
-                            font-size: 1.75rem;
-                        }
-                        @include mixins.xl {
-                            font-size: 1.5rem;
-                        }
-                        &:hover {
-                            animation: expand 0.5s linear infinite alternate;
-                        }
-
-                        @keyframes expand {
-                            0% {
-                                transform: scale(1);
-                            }
-                            100% {
-                                transform: scale(1.15);
-                            }
-                        }
-                    }
-
-                    .fa-linkedin,
-                    .fa-envelope,
-                    .fa-whatsapp {
-                        transition: color 0.2s;
-                    }
-
-                    .fa-linkedin {
-                        &:hover {
-                            color: #0e76a8;
-                        }
-                    }
-
-                    .fa-envelope {
-                        &:hover {
-                            color: variables.$color-link;
-                        }
-                    }
-
-                    .fa-whatsapp {
-                        &:hover {
-                            color: #25d366;
-                        }
-                    }
-                }
-            }
-        }
-
-        // JS
-
-        .menuIsActivated {
-            transform: translateX(0);
-        }
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.25rem;
+    @extend %container;
+    @include mixins.xl {
+      justify-content: space-around;
+      padding: 1.5rem 0;
     }
+
+    #{$header}__title {
+      @include mixins.xl {
+        padding: 0;
+        font-size: 1.65rem;
+      }
+
+      h1 > a {
+        transition: color 0.2s;
+        &:hover {
+          color: variables.$color-link;
+        }
+      }
+    }
+
+    #{$header}__menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      cursor: pointer;
+      @include mixins.xl {
+        display: none;
+      }
+
+      &:active {
+        .header__lineOne,
+        .header__lineTwo,
+        .header__lineThree {
+          background-color: variables.$color-link;
+        }
+      }
+
+      .header__lineOne,
+      .header__lineTwo,
+      .header__lineThree {
+        border-radius: 0.5rem;
+        background-color: white;
+        transition: 0.25s ease;
+
+        &::before {
+          content: "";
+          display: block;
+          width: 2rem;
+          height: 0.125rem;
+        }
+      }
+    }
+
+    #{$header}__links {
+      height: calc(100vh - 5.05rem);
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 4.85rem;
+      padding: 0 1rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+      background-color: variables.$secondary-color;
+      transform: translateX(100%);
+      transition: 0.5s ease;
+      @include mixins.lg {
+        width: 50%;
+      }
+      @include mixins.xl {
+        margin: 0;
+        padding: 0;
+        position: static;
+        z-index: auto;
+        height: auto;
+        width: calc(16.996125rem * 3);
+        flex-direction: row;
+        justify-content: space-between;
+        transform: translate(0);
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        @include mixins.md {
+          font-size: 2.25rem;
+        }
+        @include mixins.xl {
+          font-size: 1.75rem;
+        }
+      }
+
+      #{$header}__navigation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        margin: 5rem 0;
+        @include mixins.xl {
+          flex-direction: row;
+          margin: 0;
+
+          h2 {
+            display: none;
+          }
+        }
+
+        a {
+          padding-top: 0.5rem;
+          padding-bottom: calc(0.5rem - 2px);
+          font-size: 1.15rem;
+          border-bottom: 2px solid transparent;
+          transition: color 0.2s, border-bottom 0.4s;
+          &:hover {
+            color: variables.$color-link;
+            border-bottom: 2px solid variables.$color-link;
+          }
+          @include mixins.md {
+            font-size: 1.3rem;
+          }
+          @include mixins.xl {
+            font-size: 1.15rem;
+          }
+        }
+      }
+
+      #{$header}__contacts {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        @include mixins.xl {
+          flex-direction: row;
+        }
+
+        span {
+          display: none;
+          @include mixins.xl {
+            display: inline;
+          }
+        }
+
+        div {
+          display: flex;
+          gap: 1.25rem;
+
+          i {
+            font-size: 1.5rem;
+            @include mixins.md {
+              font-size: 1.75rem;
+            }
+            @include mixins.xl {
+              font-size: 1.5rem;
+            }
+            &:hover {
+              animation: expand 0.5s linear infinite alternate;
+            }
+
+            @keyframes expand {
+              0% {
+                transform: scale(1);
+              }
+              100% {
+                transform: scale(1.15);
+              }
+            }
+          }
+
+          .fa-linkedin,
+          .fa-envelope,
+          .fa-whatsapp {
+            transition: color 0.2s;
+          }
+
+          .fa-linkedin {
+            &:hover {
+              color: #0e76a8;
+            }
+          }
+
+          .fa-envelope {
+            &:hover {
+              color: variables.$color-link;
+            }
+          }
+
+          .fa-whatsapp {
+            &:hover {
+              color: #25d366;
+            }
+          }
+        }
+      }
+    }
+
+    // JS
+
+    .menuIsActivated {
+      transform: translateX(0);
+    }
+
+    .lineOneIsActivated {
+      transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
+    }
+
+    .lineTwoIsActivated {
+      opacity: 0;
+    }
+
+    .lineThreeIsActivated {
+      transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
+    }
+  }
 }
