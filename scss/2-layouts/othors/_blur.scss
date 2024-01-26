@@ -1,0 +1,48 @@
+@use "../../3-modules/mixins";
+
+.BlurOnBody,
+.BlurOnMain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.BlurOnBody {
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.BlurOnMain {
+  height: 100%;
+  width: 50%;
+  margin-top: 4.8rem;
+  display: none;
+  border-right: 1px solid gray;
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  transition: 0.5s ease;
+
+  @include mixins.lg {
+    display: block;
+  }
+}
+
+.BlurOnMainIsActivated {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+

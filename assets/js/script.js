@@ -8,27 +8,37 @@ const menu = document.querySelector(".header__menu");
 
 menu.addEventListener("click", () => {
   animationMenu();
+  activateMenu();
   showBlurMenu();
+  changePageScrollingState();
+});
 
+function activateMenu() {
   const showMenu = document.querySelector(".header__links");
 
   showMenu.classList.toggle("menuIsActivated");
-});
+}
 
 function animationMenu() {
-  const lineOne = document.querySelector(".header__lineOne");
-  const lineTwo = document.querySelector(".header__lineTwo");
-  const lineThree = document.querySelector(".header__lineThree");
-
-  lineOne.classList.toggle("lineOneIsActivated");
-  lineTwo.classList.toggle("lineTwoIsActivated");
-  lineThree.classList.toggle("lineThreeIsActivated");
+  ["lineOne", "lineTwo", "lineThree"].forEach((lineClass) => {
+    const line = document.querySelector(`.header__${lineClass}`);
+    line.classList.toggle(`${lineClass}IsActivated`);
+  });
 }
 
 function showBlurMenu() {
-  const fade = document.querySelector(".fadeInMain");
+  const blurOnMain = document.querySelector(".BlurOnMain");
+  blurOnMain.classList.toggle("BlurOnMainIsActivated");
+}
 
-  fade.classList.toggle("fadeIsActivated");
+function changePageScrollingState() {
+  const bodyHTML = document.querySelector("body");
+  const cssProperties = getComputedStyle(bodyHTML);
+  const overflowProperty = cssProperties.getPropertyValue("overflow");
+
+  overflowProperty === "visible"
+    ? (bodyHTML.style.overflow = "hidden")
+    : (bodyHTML.style.overflow = "visible");
 }
 
 // Settings
@@ -38,5 +48,5 @@ const settings = document.querySelector(".settings");
 settings.addEventListener("click", () => {
   const gear = document.querySelector(".settings > .fa-gear");
 
-  gear.style.transform = "rotate(360deg)";
+  gear.style.transform = gear.style.transform ? "" : "rotate(360deg)";
 });
