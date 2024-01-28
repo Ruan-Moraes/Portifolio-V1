@@ -1,12 +1,12 @@
-@use "../../3-modules/mixins";
+@use '../../3-modules/mixins';
 
 .BlurOnBody,
 .BlurOnMain {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
-  display: block;
+  z-index: 1002;
+  display: none;
   background: rgba(0, 0, 0, 0.6);
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -17,16 +17,14 @@
 .BlurOnBody {
   height: 100vh;
   width: 100vw;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
+  display: block;
+
 }
 
 .BlurOnMain {
-  height: 100%;
+  height: 100vh;
   width: 50%;
-  margin-top: 4.8rem;
-  display: none;
+  margin-top: 4.825rem;
   border-right: 1px solid gray;
   -webkit-transform: translateX(-100%);
   -ms-transform: translateX(-100%);
@@ -38,6 +36,10 @@
   @include mixins.lg {
     display: block;
   }
+
+  @include mixins.xl {
+    display: none;
+  }
 }
 
 .BlurOnMainIsActivated {
@@ -45,4 +47,3 @@
   -ms-transform: translateX(0);
   transform: translateX(0);
 }
-

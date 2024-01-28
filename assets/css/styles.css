@@ -22,6 +22,18 @@ body {
   background-color: #2d2e31;
 }
 
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: gray;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(60, 60, 60);
+}
+
 .main__container, .header__container {
   margin: 0 auto;
   padding: 0 0.75rem;
@@ -55,7 +67,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 1001;
   border-bottom: 1px solid gray;
   background-color: #25262a;
 }
@@ -136,8 +148,8 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: -1;
-  margin-top: 4.8rem;
+  z-index: 1001;
+  margin-top: 4.825rem;
   padding: 0 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -161,6 +173,8 @@ body {
   .header__container .header__links {
     width: 50%;
     border-left: 1px solid gray;
+    -webkit-box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
+    box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
   }
 }
 @media screen and (min-width: 96rem) {
@@ -168,16 +182,17 @@ body {
     height: auto;
     width: 50.988375rem;
     position: static;
-    z-index: auto;
     margin: 0;
     padding: 0;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
+    justify-content: space-between;
+    border-left: none;
+    box-shadow: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
     -webkit-transform: translate(0);
     -ms-transform: translate(0);
     transform: translate(0);
@@ -582,13 +597,62 @@ body {
   display: block;
 }
 
+.BlurOnBody,
+.BlurOnMain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1002;
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.BlurOnBody {
+  height: 100vh;
+  width: 100vw;
+  display: block;
+}
+
+.BlurOnMain {
+  height: 100vh;
+  width: 50%;
+  margin-top: 4.825rem;
+  border-right: 1px solid gray;
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+@media screen and (min-width: 64rem) {
+  .BlurOnMain {
+    display: block;
+  }
+}
+@media screen and (min-width: 96rem) {
+  .BlurOnMain {
+    display: none;
+  }
+}
+
+.BlurOnMainIsActivated {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
 .settings {
   height: 3rem;
   width: 3rem;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 1000;
+  z-index: 1002;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -617,8 +681,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 1000;
-  display: none;
+  z-index: 1002;
+  display: block;
   -ms-flex-direction: column;
   flex-direction: column;
   justify-content: space-between;
@@ -745,53 +809,6 @@ select {
 }
 .select::after:hover {
   color: #f2542d;
-}
-
-.BlurOnBody,
-.BlurOnMain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  display: block;
-  background: rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-}
-
-.BlurOnBody {
-  height: 100vh;
-  width: 100vw;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.BlurOnMain {
-  height: 100%;
-  width: 50%;
-  margin-top: 4.8rem;
-  display: none;
-  border-right: 1px solid gray;
-  -webkit-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-  -webkit-transition: 0.5s ease;
-  -o-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-@media screen and (min-width: 64rem) {
-  .BlurOnMain {
-    display: block;
-  }
-}
-
-.BlurOnMainIsActivated {
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
 }
 
 /*# sourceMappingURL=styles.css.map */

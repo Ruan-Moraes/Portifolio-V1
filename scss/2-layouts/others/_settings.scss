@@ -1,5 +1,5 @@
-@use "../../1-base/variables";
-@use "../../3-modules/mixins";
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
 
 .settings {
   height: 3rem;
@@ -7,7 +7,7 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 1000;
+  z-index: 1002;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,8 +37,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 1000;
-  display: none;
+  z-index: 1002;
+  display: block; // aqui
   -ms-flex-direction: column;
   flex-direction: column;
   justify-content: space-between;
@@ -163,7 +163,7 @@ select {
   padding: 1rem;
   border-left: 1px solid black;
   background-color: #34495e;
-  content: "\25BC";
+  content: '\25BC';
   pointer-events: none;
   -webkit-transition: 0.25s ease;
   -o-transition: 0.25s ease;
