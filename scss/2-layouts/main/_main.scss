@@ -1,12 +1,12 @@
-@use "sass:color";
-@use "../../1-base/variables";
-@use "../../3-modules/mixins";
-@use "../../3-modules/plugins";
+@use 'sass:color';
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+@use '../../3-modules/plugins';
 
 .main {
   $main: &;
   height: 40rem;
-  margin-top: 12.75rem;
+  margin-top: 17rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20,6 +20,9 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  @include mixins.mbm {
+    margin-top: 13.25rem;
+  }
   @include mixins.md {
     margin-top: 7.75rem;
   }
@@ -88,7 +91,7 @@
         a {
           width: 80%;
           padding: 0.75rem 0;
-          border-radius: 8px;
+          border-radius: 0.5rem;
           background-color: variables.$color-link;
           -webkit-transition: background-color 0.4s;
           -o-transition: background-color 0.4s;
@@ -111,15 +114,15 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
-        letter-spacing: 2px;
-        border-radius: 16px;
-        border: 2px solid black;
-        background-color: #23272e;
         line-height: 1.2rem;
+        letter-spacing: 0.125rem;
+        border-radius: 1rem;
+        border: 0.125rem solid black;
+        background-color: #23272e;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
 
         .code__header {
           padding: 1rem;
@@ -127,7 +130,7 @@
           display: -ms-flexbox;
           display: flex;
           gap: 1rem;
-          border-bottom: 1px solid black;
+          border-bottom: 0.0625rem solid black;
 
           div {
             height: 1.5rem;

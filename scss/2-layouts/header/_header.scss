@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   z-index: 1001;
-  border-bottom: 1px solid gray;
+  border-bottom: 0.0625rem solid gray;
   background-color: variables.$secondary-color;
 
   &__container {
@@ -59,7 +59,6 @@
       @include mixins.xl {
         display: none;
       }
-
       &:active {
         .header__lineOne,
         .header__lineTwo,
@@ -76,12 +75,27 @@
         -webkit-transition: 0.25s ease;
         -o-transition: 0.25s ease;
         transition: 0.25s ease;
-
         &::before {
           height: 0.125rem;
           width: 2rem;
           display: block;
           content: '';
+        }
+
+        &.lineOneIsActivated {
+          -webkit-transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
+          -ms-transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
+          transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
+        }
+
+        &.lineTwoIsActivated {
+          opacity: 0;
+        }
+
+        &.lineThreeIsActivated {
+          -webkit-transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
+          -ms-transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
+          transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
         }
       }
     }
@@ -93,7 +107,7 @@
       top: 0;
       right: 0;
       z-index: 1001;
-      margin-top: 4.825rem;
+      margin-top: 4.425rem;
       padding: 0 1rem;
       display: -webkit-box;
       display: -ms-flexbox;
@@ -114,7 +128,6 @@
       transition: 0.5s ease;
       @include mixins.lg {
         width: 50%;
-        border-left: 1px solid gray;
         -webkit-box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
         box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
       }
@@ -136,6 +149,12 @@
         -webkit-transform: translate(0);
         -ms-transform: translate(0);
         transform: translate(0);
+      }
+
+      &.menuIsActivated {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
       }
 
       h2 {
@@ -178,15 +197,15 @@
 
         a {
           padding-top: 0.5rem;
-          padding-bottom: calc(0.5rem - 2px);
+          padding-bottom: calc(0.5rem - 0.125rem);
           font-size: 1.15rem;
-          border-bottom: 2px solid transparent;
+          border-bottom: 0.125rem solid transparent;
           -webkit-transition: color 0.2s, border-bottom 0.4s;
           -o-transition: color 0.2s, border-bottom 0.4s;
           transition: color 0.2s, border-bottom 0.4s;
           &:hover {
             color: variables.$color-link;
-            border-bottom: 2px solid variables.$color-link;
+            border-bottom: 0.125rem solid variables.$color-link;
           }
           @include mixins.md {
             font-size: 1.3rem;
@@ -295,30 +314,6 @@
           }
         }
       }
-    }
-
-    // JS
-
-    .menuIsActivated {
-      -webkit-transform: translateX(0);
-      -ms-transform: translateX(0);
-      transform: translateX(0);
-    }
-
-    .lineOneIsActivated {
-      -webkit-transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
-      -ms-transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
-      transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
-    }
-
-    .lineTwoIsActivated {
-      opacity: 0;
-    }
-
-    .lineThreeIsActivated {
-      -webkit-transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
-      -ms-transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
-      transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
     }
   }
 }

@@ -1,31 +1,43 @@
 @use '../1-base/variables';
 
 @mixin xl2 {
-    @media screen and (min-width: variables.$xl2) {
-        @content;
-    }
+  @media screen and (min-width: variables.$xl2) {
+    @content;
+  }
 }
 
 @mixin xl {
-    @media screen and (min-width: variables.$xl2) {
-        @content;
-    }
+  @media screen and (min-width: variables.$xl2) {
+    @content;
+  }
 }
 
 @mixin lg {
-    @media screen and (min-width: variables.$lg) {
-        @content;
-    }
+  @media screen and (min-width: variables.$lg) {
+    @content;
+  }
 }
 
 @mixin md {
-    @media screen and (min-width: variables.$md) {
-        @content;
-    }
+  @media screen and (min-width: variables.$md) {
+    @content;
+  }
 }
 
 @mixin sm {
-    @media screen and (min-width: variables.$sm) {
-        @content;
-    }
+  @media screen and (min-width: variables.$sm) {
+    @content;
+  }
+}
+
+@mixin mbm {
+  @media screen and (min-width: variables.$mbm) {
+    @content;
+  }
+}
+
+@mixin mbs {
+  @media screen and (min-width: variables.$mbs) {
+    @content;
+  }
 }
