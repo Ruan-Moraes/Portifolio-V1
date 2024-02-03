@@ -24,14 +24,15 @@
     -ms-flex-align: center;
     align-items: center;
     @extend %container;
-    @include mixins.xl {
+    @include mixins.xl2 {
       padding: 1.5rem 0;
       -ms-flex-pack: distribute;
       justify-content: space-around;
     }
 
     #{$header}__title {
-      @include mixins.xl {
+      font-size: 1.5rem;
+      @include mixins.md {
         padding: 0;
         font-size: 1.65rem;
       }
@@ -56,31 +57,20 @@
       flex-direction: column;
       gap: 0.5rem;
       cursor: pointer;
-      @include mixins.xl {
+      @include mixins.xl2 {
         display: none;
-      }
-      &:active {
-        .header__lineOne,
-        .header__lineTwo,
-        .header__lineThree {
-          background-color: variables.$color-link;
-        }
       }
 
       .header__lineOne,
       .header__lineTwo,
       .header__lineThree {
+        height: 0.125rem;
+        width: 2rem;
         border-radius: 0.5rem;
         background-color: white;
         -webkit-transition: 0.25s ease;
         -o-transition: 0.25s ease;
         transition: 0.25s ease;
-        &::before {
-          height: 0.125rem;
-          width: 2rem;
-          display: block;
-          content: '';
-        }
 
         &.lineOneIsActivated {
           -webkit-transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
@@ -98,6 +88,23 @@
           transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
         }
       }
+
+      &:active {
+        .header__lineOne,
+        .header__lineTwo,
+        .header__lineThree {
+          background-color: variables.$color-link;
+        }
+      }
+      @include mixins.min-desktop {
+        &:hover {
+          .header__lineOne,
+          .header__lineTwo,
+          .header__lineThree {
+            background-color: variables.$color-link;
+          }
+        }
+      }
     }
 
     #{$header}__links {
@@ -107,7 +114,7 @@
       top: 0;
       right: 0;
       z-index: 1001;
-      margin-top: 4.425rem;
+      margin-top: 4.85rem;
       padding: 0 1rem;
       display: -webkit-box;
       display: -ms-flexbox;
@@ -126,14 +133,16 @@
       -webkit-transition: 0.5s ease;
       -o-transition: 0.5s ease;
       transition: 0.5s ease;
+      @include mixins.md {
+        margin-top: 5.05rem;
+      }
       @include mixins.lg {
         width: 50%;
         -webkit-box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
         box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
       }
-      @include mixins.xl {
+      @include mixins.xl2 {
         height: auto;
-        width: calc(16.996125rem * 3);
         position: static;
         margin: 0;
         padding: 0;
@@ -141,6 +150,7 @@
         flex-direction: row;
         justify-content: space-between;
         border-left: none;
+        -webkit-box-shadow: none;
         box-shadow: none;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
@@ -151,20 +161,20 @@
         transform: translate(0);
       }
 
-      &.menuIsActivated {
-        -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
-        transform: translateX(0);
-      }
-
       h2 {
         font-size: 1.75rem;
         @include mixins.md {
           font-size: 2.25rem;
         }
-        @include mixins.xl {
+        @include mixins.xl2 {
           font-size: 1.75rem;
         }
+      }
+
+      &.menuIsActivated {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
       }
 
       #{$header}__navigation {
@@ -183,7 +193,7 @@
         -ms-flex-align: center;
         align-items: center;
         gap: 1.5rem;
-        @include mixins.xl {
+        @include mixins.xl2 {
           margin: 0;
           -webkit-box-orient: horizontal;
           -webkit-box-direction: normal;
@@ -196,8 +206,7 @@
         }
 
         a {
-          padding-top: 0.5rem;
-          padding-bottom: calc(0.5rem - 0.125rem);
+          padding: 0.5rem 0;
           font-size: 1.15rem;
           border-bottom: 0.125rem solid transparent;
           -webkit-transition: color 0.2s, border-bottom 0.4s;
@@ -210,7 +219,7 @@
           @include mixins.md {
             font-size: 1.3rem;
           }
-          @include mixins.xl {
+          @include mixins.xl2 {
             font-size: 1.15rem;
           }
         }
@@ -231,7 +240,7 @@
         -ms-flex-align: center;
         align-items: center;
         gap: 1rem;
-        @include mixins.xl {
+        @include mixins.xl2 {
           -webkit-box-orient: horizontal;
           -webkit-box-direction: normal;
           -ms-flex-direction: row;
@@ -240,7 +249,7 @@
 
         span {
           display: none;
-          @include mixins.xl {
+          @include mixins.xl2 {
             display: inline;
           }
         }
@@ -256,7 +265,7 @@
             @include mixins.md {
               font-size: 1.75rem;
             }
-            @include mixins.xl {
+            @include mixins.xl2 {
               font-size: 1.5rem;
             }
             &:hover {

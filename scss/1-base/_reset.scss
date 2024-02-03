@@ -107,7 +107,7 @@ video {
 
 body {
   padding: 0 0 200rem;
-  line-height: 1;
+  line-height: 1.2;
   background-color: variables.$primary-color;
 }
 
@@ -127,10 +127,12 @@ ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -138,6 +140,7 @@ q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
