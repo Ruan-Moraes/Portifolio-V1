@@ -1,0 +1,13 @@
+@use 'sass:color';
+@use '../../../1-base/variables';
+@use '../../../3-modules/plugins';
+
+.main__projects {
+  margin-top: 5rem;
+  width: 100%;
+  background-color: variables.$tertiary-color;
+}
+
+.main__projects .container {
+  @extend %container;
+}
