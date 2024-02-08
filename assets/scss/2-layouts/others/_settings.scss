@@ -1,0 +1,68 @@
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+
+.container__gear {
+  height: 3rem;
+  width: 3rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1002;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  background-color: #444444;
+  cursor: pointer;
+
+  i {
+    color: #949494;
+    transition: 1s ease;
+  }
+}
+
+.settings__modal {
+  max-width: 40rem;
+  height: 30rem;
+  width: 95%;
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  z-index: 1002;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  border-radius: 1rem;
+  border: 0.125rem solid black;
+  background-color: #23272e;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  transform: translate(-50%, -35%);
+
+  &.settingActivated {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.settings__header {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.0625rem solid black;
+
+  i {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
+
+.settings__body {
+  display: flex;
+}
+
+.settings__footer {
+  display: flex;
+}

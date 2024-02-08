@@ -1,0 +1,57 @@
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+
+.header__menu {
+  $self: '.menu';
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  &:active {
+    #{$self}__lineOne,
+    #{$self}__lineTwo,
+    #{$self}__lineThree {
+      background-color: variables.$color-link;
+    }
+  }
+  @include mixins.min-desktop {
+    &:hover {
+      .header__lineOne,
+      .header__lineTwo,
+      .header__lineThree {
+        background-color: variables.$color-link;
+      }
+    }
+  }
+  @include mixins.xl2 {
+    display: none;
+  }
+
+  #{$self}__lineOne,
+  #{$self}__lineTwo,
+  #{$self}__lineThree {
+    height: 0.125rem;
+    width: 2rem;
+    border-radius: 0.5rem;
+    background-color: variables.$white;
+    transition: 0.25s ease;
+  }
+
+  #{$self}__lineOne {
+    &.lineOneIsActivated {
+      transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
+    }
+  }
+
+  #{$self}__lineTwo {
+    &.lineTwoIsActivated {
+      opacity: 0;
+    }
+  }
+
+  #{$self}__lineThree {
+    &.lineThreeIsActivated {
+      transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
+    }
+  }
+}
