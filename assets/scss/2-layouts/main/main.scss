@@ -1,4 +1,18 @@
-@use 'main-container';
+@use '../../3-modules/mixins';
+@use '../../3-modules/plugins';
+
+@use 'secOne/containerSecOne';
 @use 'secOne/apresentation';
 @use 'secOne/code';
-@use 'secTwo/projects';
+@use 'secTwo/containerSecTwo';
+@use 'secTwo/projects__sectionTitle';
+
+.main {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include mixins.lg {
+    margin-top: 10rem;
+  }
+}
