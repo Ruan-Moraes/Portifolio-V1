@@ -21,7 +21,7 @@ function activateMenu() {
 
 function animationMenu() {
   ['lineOne', 'lineTwo', 'lineThree'].forEach((lineClass) => {
-    const line = document.querySelector(`.header__${lineClass}`);
+    const line = document.querySelector(`.menu__${lineClass}`);
 
     line.classList.toggle(`${lineClass}IsActivated`);
   });
