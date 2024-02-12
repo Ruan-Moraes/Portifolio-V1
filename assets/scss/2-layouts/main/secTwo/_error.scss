@@ -1,0 +1,16 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  i {
+    font-size: 5rem;
+    color: red;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+}

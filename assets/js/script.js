@@ -102,3 +102,39 @@ function disableTextSelection() {
     }
   );
 }
+
+// API GITHUB
+
+(async function fetchGitHubAPI() {
+  try {
+    const TOKEN = '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';
+    const ruanMoraesRepositories = await fetch(
+      'https://api.github.com/users/ruan-moraes/repos?type=owner',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      }
+    );
+    const ruanMoraesRepositoriesJson = await ruanMoraesRepositories.json();
+
+    const repositoriesThatHavePages = ruanMoraesRepositoriesJson.filter(repo => repo.has_pages === true);
+
+  } catch (error) {
+    errorGitHubAPI();
+
+    console.error(
+      `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
+    );
+  }
+})();
+
+function errorGitHubAPI() {
+  const errorMessage = '<h2>Erro ao buscar os repositórios do GitHub</h2>';
+  const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
+  const projectsItems = document.querySelector('.projects__items');
+
+  projectsItems.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
+  projectsItems.parentElement.style.minHeight = '50vh';
+}
