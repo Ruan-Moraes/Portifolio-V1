@@ -2,11 +2,9 @@ import { repos } from './repositoriesJson.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   // Initialize AOS
-
   AOS.init();
 
   // Menu
-
   const menu = document.querySelector('.header__menu');
 
   menu.addEventListener('click', () => {
@@ -47,7 +45,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Settings
-
   const gear = document.querySelector('.container__gear');
   const blurOnBody = document.querySelector('.BlurOnBody');
   const exitSettingsButton = document.querySelector(
@@ -108,12 +105,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // API GITHUB
+  const projectsPerPage = 6;
+  let currentPage = 1;
 
   (async function fetchGitHubAPI() {
     try {
-      // 
       // const ruanMoraesRepositories = await fetch(
-      //   'https://api.github.com/users/ruan-moraes/repos?type=owner',
+      //   'https://api.github.com/users/ruan-moraes/repos?type=owner'
       // );
       const ruanMoraesRepositoriesJson = repos;
 
@@ -121,7 +119,11 @@ window.addEventListener('DOMContentLoaded', () => {
         (repo) => repo.has_pages === true
       );
 
-      addProjectsToHTML(repositoriesThatHavePages);
+      addProjectsToHTML(
+        repositoriesThatHavePages,
+        projectsPerPage,
+        currentPage
+      );
     } catch (error) {
       errorGitHubAPI();
 
@@ -140,41 +142,52 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsItems.parentElement.style.minHeight = '50vh';
   }
 
-  function addProjectsToHTML(RepositorysArray) {
+  function addPagesToProjects() {
     const projectsItems = document.querySelector('.projects__items');
-
-    RepositorysArray.forEach((repository) => {
-      const projectItem = document.createElement('div');
-      // projectItem.classList.add('project__item');
-      // projectItem.innerHTML = `
-      //   <a href="${repository.homepage}" target="_blank">
-      //     <img src="assets/img/${repository.name}.png" alt="${repository.name}" />
-      //     <h3>${repository.name}</h3>
-      //   </a>
-      // `;
-
-      // projectsItems.appendChild(projectItem);
-
-      const images = getReadmeImages('ruan-moraes', repository.name);
-    });
+    const pagination = document.createElement('div');
+    
+    projectsItems.appendChild(pagination);
+    pagination.classList.add('pagination');
   }
 
-  async function getReadmeImages(user, repo) {
-    const readmeResponse = await fetch(
-      `https://api.github.com/repos/${user}/${repo}/readme`
-    );
+  function addProjectsToHTML(repositories, limit, page) {
+    const projectsItems = document.querySelector('.projects__items');
+    projectsItems.innerHTML = '';
 
-    const data = await readmeResponse.json();
-    const readmeContent = atob(data.content); // Decode o conteúdo do arquivo README
+    for (let i = 0; i < limit; i++) {
+      const repo = repositories[i];
 
-    const imageUrls = readmeContent.match(/!\[.*?\]\((.*?)\)/g);
+      const project = document.createElement('div');
+      project.classList.add('project');
 
-    imageUrls.forEach((url) => {
-      const imageUrl = url.match(/\((.*?)\)/)[1].replace(' ', ''); // Obtém a URL da imagem
-      const img = document.createElement('img');
-      img.src = imageUrl;
-      img.alt = 'Imagem do Portfólio';
-      imageContainer.appendChild(img);
-    });
+      project.innerHTML = `
+        <div class="project__header">
+          <h3>${repo.name}</h3>
+        </div>
+        <div class="project__body">
+          <div class="project__image">
+            <img src="assets/images/${repo.name}.png" alt="${repo.name}" />
+          </div>
+          <div class="project__description">
+            <p>${repo.description}</p>
+          </div>
+        </div>
+        <div class="project__footer">
+          <a href="https://ruan-moraes.github.io/${repo.name}/" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-eye"></i> Visualizar Projeto
+          </a>
+          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i> Ver no GitHub
+          </a>
+        </div>
+      `;
+
+      projectsItems.appendChild(project);
+    }
   }
+
+  addPagesToProjects();
+  checkWhichPageIs(page);
 });
+
+function checkWhichPageIs(page) {}

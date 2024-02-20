@@ -1,0 +1,15 @@
+.projects__items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #262626;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.1);
+
+  .project {
+    max-width: 28rem;
+  }
+}
