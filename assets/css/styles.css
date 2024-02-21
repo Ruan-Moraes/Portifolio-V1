@@ -656,28 +656,31 @@ table {
 .main__projects {
   width: 100%;
   margin-top: 6rem;
-  padding: 2rem;
+  padding: 2rem 0;
+  background-color: #1b1b1d;
+}
+
+.main__projects .container {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  background-color: #1b1b1d;
-  min-height: 100vh;
+  gap: 2rem;
 }
 
 .projects__sectionTitle {
   font-size: 2.5rem;
+  text-align: center;
 }
 
 .projects__items {
+  padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  background-color: #262626;
+  gap: 2rem;
   border-radius: 1rem;
+  background-color: #262626;
   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.1);
+  grid-template-columns: 1fr 1fr;
 }
 .projects__items .project {
   max-width: 28rem;
@@ -696,6 +699,7 @@ table {
 }
 .error h2 {
   font-size: 2rem;
+  text-align: center;
 }
 
 .main {
@@ -821,13 +825,13 @@ table {
 }
 
 .pagination {
-  grid-column-start: 1;
-  grid-column-end: 3;
+  height: 2rem;
+  width: 32rem;
   margin: 0 auto;
   display: flex;
-  width: 32rem;
-  height: 2rem;
   background-color: wheat;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 /*# sourceMappingURL=styles.css.map */

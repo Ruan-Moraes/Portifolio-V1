@@ -4,7 +4,14 @@ window.addEventListener('DOMContentLoaded', () => {
   // Initialize AOS
   AOS.init();
 
-  // Menu
+  // Close menu and settings when click key 'ESC'
+  window.addEventListener('keyup', (event) => {
+    if (event.key === 'Escape') {
+      console.log('esc');
+    }
+  });
+
+  // All logic of menu
   const menu = document.querySelector('.header__menu');
 
   menu.addEventListener('click', () => {
@@ -44,7 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
       : (bodyHTML.style.overflowY = 'visible');
   }
 
-  // Settings
+  // All logic of settings
   const gear = document.querySelector('.container__gear');
   const blurOnBody = document.querySelector('.BlurOnBody');
   const exitSettingsButton = document.querySelector(
@@ -104,9 +111,8 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // API GITHUB
+  // Fetch my data through the GitHub API and render it on the page
   const projectsPerPage = 6;
-  let currentPage = 1;
 
   (async function fetchGitHubAPI() {
     try {
@@ -119,11 +125,7 @@ window.addEventListener('DOMContentLoaded', () => {
         (repo) => repo.has_pages === true
       );
 
-      addProjectsToHTML(
-        repositoriesThatHavePages,
-        projectsPerPage,
-        currentPage
-      );
+      addProjectsToHTML(repositoriesThatHavePages, projectsPerPage);
     } catch (error) {
       errorGitHubAPI();
 
@@ -136,18 +138,11 @@ window.addEventListener('DOMContentLoaded', () => {
   function errorGitHubAPI() {
     const errorMessage = '<h2>Erro ao buscar os repositórios do GitHub</h2>';
     const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
+
     const projectsItems = document.querySelector('.projects__items');
 
+    projectsItems.style.display = 'block';
     projectsItems.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
-    projectsItems.parentElement.style.minHeight = '50vh';
-  }
-
-  function addPagesToProjects() {
-    const projectsItems = document.querySelector('.projects__items');
-    const pagination = document.createElement('div');
-    
-    projectsItems.appendChild(pagination);
-    pagination.classList.add('pagination');
   }
 
   function addProjectsToHTML(repositories, limit, page) {
@@ -186,7 +181,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  addPagesToProjects();
   checkWhichPageIs(page);
 });
 

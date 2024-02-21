@@ -5,6 +5,8 @@ module.exports = {
     'order/properties-order': [
       'max-height',
       'max-width',
+      'min-height',
+      'min-width',
       'height',
       'width',
       'position',

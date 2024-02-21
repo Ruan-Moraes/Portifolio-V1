@@ -1,13 +1,13 @@
 .projects__items {
+  padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  background-color: #262626;
+  gap: 2rem;
   border-radius: 1rem;
+  background-color: #262626;
   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.1);
+  grid-template-columns: 1fr 1fr;
 
   .project {
     max-width: 28rem;
