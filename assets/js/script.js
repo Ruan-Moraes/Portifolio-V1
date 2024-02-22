@@ -7,7 +7,12 @@ window.addEventListener('DOMContentLoaded', () => {
   // Close menu and settings when click key 'ESC'
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
-      console.log('esc');
+      const IsMenuActive = document
+        .querySelector('.header__links')
+        .classList.contains('menuIsActivated');
+      const IsSettingsActive = document.querySelector('.settings__modal').classList.contains('settingActivated');
+
+      console.log(IsMenuActive, IsSettingsActive);
     }
   });
 
@@ -116,6 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   (async function fetchGitHubAPI() {
     try {
+      // ! This is the fetch that I would use if I was using the GitHub API
       // const ruanMoraesRepositories = await fetch(
       //   'https://api.github.com/users/ruan-moraes/repos?type=owner'
       // );
@@ -132,11 +138,14 @@ window.addEventListener('DOMContentLoaded', () => {
       console.error(
         `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
       );
+
+      throw new Error(error);
     }
   })();
 
   function errorGitHubAPI() {
-    const errorMessage = '<h2>Erro ao buscar os repositórios do GitHub</h2>';
+    const errorMessage =
+      '<h3>Erro ao buscar os repositórios no GitHub! Tente mais tarde.</h3>';
     const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
 
     const projectsItems = document.querySelector('.projects__items');

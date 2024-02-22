@@ -691,14 +691,14 @@ table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .error i {
   font-size: 5rem;
-  color: red;
+  color: #f2542d;
 }
-.error h2 {
-  font-size: 2rem;
+.error h3 {
+  font-size: 1.75rem;
   text-align: center;
 }
 
