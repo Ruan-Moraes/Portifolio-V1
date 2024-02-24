@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -11,20 +10,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"
-      integrity="sha512-tjg8I2d6Fi0OBGz1csmr7RfI4uupYaCfL/RqhVRTS42RMGwfBsjwBGmhzhI+e2dPmyew8cFkoxnVkGvADDLvbg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-      defer
-    ></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
     <script type="module" src="assets/js/script.js" defer></script>
     <title>Ruan Moraes | Portifólio</title>
   </head>
   <body>
     <div class="BlurOnBody"></div>
+
     <header class="header" data-aos="fade-down" data-aos-duration="750">
       <nav class="container">
         <div class="header__title">
@@ -38,15 +32,22 @@
           <div class="menu__lineThree"></div>
         </div>
         <div class="header__links">
-          <div class="links__navigation">
-            <h2>Mais sobre mim</h2>
-            <a href="#">História</a>
-            <a href="#">Habilidades</a>
-            <a href="#">Projetos</a>
+          <div class="header__navigation">
+            <div class="header__navigationTitle">
+              <h2>Mais sobre mim</h2>
+            </div>
+            <div class="header__navigationLinks">
+              <a href="#">História</a>
+              <a href="#">Habilidades</a>
+              <a href="#">Projetos</a>
+            </div>
           </div>
-          <div class="links__contacts">
-            <h2>Contatos <span>|</span></h2>
-            <div>
+          <div class="header__contacts">
+            <div class="header__contactTitle">
+              <h2>Contatos</h2>
+              <div></div>
+            </div>
+            <div class="header__contactsLinks">
               <a href="#">
                 <i class="fa-brands fa-linkedin"></i>
               </a>
@@ -72,10 +73,10 @@
               <strong>Full-Stack</strong>
             </h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Dignissimos veniam cumque autem, vero aut perspiciatis,
-              voluptatibus totam, laborum soluta porro tempore maiores velit
-              fuga. Inventore voluptates doloribus quod recusandae maxime!
+              Buscando minha primeira oportunidade como desenvolvedor full-stack
+              ou até mesmo como estagiário, meu foco está em me especializar em
+              desenvolvimento web e mobile, além de adquirir conhecimentos em
+              cibersegurança.
             </p>
             <a href="#">Baixar CV</a>
           </div>
@@ -109,13 +110,14 @@
                 <span>20</span>
                 <span>21</span>
                 <span>22</span>
-                <span>23</span>
               </div>
               <div class="code__content">
-                <span class="code__declaration">const</span>
-                <h2 class="code__title">minhaPessoa</h2>
-                <span class="code__assignment">=</span>
-                <span class="code__keys">{</span>
+                <div>
+                  <span class="code__declaration">const</span>
+                  <h2 class="code__title">minhaPessoa</h2>
+                  <span class="code__assignment">=</span>
+                  <span class="code__keys">{</span>
+                </div>
                 <p>
                   <span class="code__properties">nome:</span>
                   <span class="code__values"
@@ -131,7 +133,13 @@
                   >
                 </p>
                 <p>
-                  <span class="code__properties">habilidades:</span>
+                  <span class="code__properties">disponívelParaTrabalho:</span>
+                  <span class="code__values--noString"
+                    >true<span class="code__commas">,</span></span
+                  >
+                </p>
+                <p>
+                  <span class="code__properties">tecnologias:</span>
                   <span class="code__brackets">[</span>
                   <span class="code__values--block"
                     >'Javascript'<span class="code__commas">,</span></span
@@ -140,22 +148,22 @@
                     >'Java'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
-                    >'MySql'<span class="code__commas">,</span></span
+                    >'MySQL'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
                     >'Bootstrap'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
-                    >'TailwindCss'<span class="code__commas">,</span></span
+                    >'TailwindCSS'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
                     >'SCSS'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
-                    >'Git'<span class="code__commas">,</span></span
+                    >'Git && GitHub'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
-                    >'CSS'<span class="code__commas">,</span></span
+                    >'CSS3'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
                     >'HTML5'<span class="code__commas">,</span></span
@@ -163,21 +171,25 @@
                   <span class="code__brackets">],</span>
                 </p>
                 <p>
-                  <span class="code__properties">disponívelParaTrabalho:</span>
-                  <span class="code__values--noString"
-                    >True<span class="code__commas">,</span></span
+                  <span class="code__properties">atualmenteEstudando:</span>
+                  <span class="code__brackets">[</span>
+                  <span class="code__values--block"
+                    >'Java'<span class="code__commas">,</span></span
                   >
+                  <span class="code__values--block"
+                    >'SpringBot'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'MySQL'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'PostgreSQL'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__brackets">],</span>
                 </p>
-                <p>
-                  <span class="code__properties">objetivo:</span>
-                  <span class="code__values--block">
-                    'Quero aprender mais e adotar boas práticas para me
-                    especializar em desenvolvimento Full-Stack e Inteligência
-                    Artificial. A ideia é unir habilidades sólidas e inovação
-                    nessas áreas em constante evolução.'
-                  </span>
+                <div>
                   <span class="code__keys">}</span>
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -189,18 +201,19 @@
             <h2>Meus Projetos</h2>
           </div>
           <div class="projects__contents">
-            <div class="projects__pagesContainer">
-
-            </div>
-            <div class="projects__pagination">
-
-            </div>
+            <div class="projects__pagesContainer"></div>
+            <div class="projects__pagination"></div>
           </div>
         </div>
       </section>
     </main>
 
-    <div class="container__gear">
+    <div
+      class="container__gear"
+      data-aos="fade-up-left"
+      data-aos-duration="750"
+      data-aos-offset="0"
+    >
       <i class="fa-solid fa-gear"></i>
     </div>
 

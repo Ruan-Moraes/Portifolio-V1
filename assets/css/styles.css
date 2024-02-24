@@ -185,7 +185,8 @@ video {
 }
 
 body {
-  padding: 0 0 200rem;
+  overflow-x: hidden;
+  padding: 0 0 200rem 0;
   line-height: 1.2;
   background-color: #2d2e31;
 }
@@ -225,30 +226,30 @@ table {
   border-spacing: 0;
 }
 
-.main__projects .container, .main__apresentation .container, .header .container:nth-child(1) {
+.main__projects .container, .main__apresentation .container, .header .container {
   margin: 0 auto;
   padding: 0 0.75rem;
 }
 @media screen and (min-width: 48rem) {
-  .main__projects .container, .main__apresentation .container, .header .container:nth-child(1) {
+  .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 48rem;
     padding: 0 0.6rem;
   }
 }
 @media screen and (min-width: 64rem) {
-  .main__projects .container, .main__apresentation .container, .header .container:nth-child(1) {
+  .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 64rem;
     padding: 0 0.45rem;
   }
 }
 @media screen and (min-width: 80rem) {
-  .main__projects .container, .main__apresentation .container, .header .container:nth-child(1) {
+  .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 80rem;
     padding: 0 0.3rem;
   }
 }
 @media screen and (min-width: 96rem) {
-  .main__projects .container, .main__apresentation .container, .header .container:nth-child(1) {
+  .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 96rem;
   }
 }
@@ -262,10 +263,10 @@ table {
     font-size: 1.65rem;
   }
 }
-.header__title h1 > a {
+.header__title a {
   transition: color 0.2s;
 }
-.header__title h1 > a:hover {
+.header__title a:hover {
   color: #f2542d;
 }
 
@@ -274,18 +275,6 @@ table {
   flex-direction: column;
   gap: 0.5rem;
   cursor: pointer;
-}
-.header__menu:active .menu__lineOne,
-.header__menu:active .menu__lineTwo,
-.header__menu:active .menu__lineThree {
-  background-color: #f2542d;
-}
-@media screen and (min-width: 31.25rem) {
-  .header__menu:hover .header__lineOne,
-  .header__menu:hover .header__lineTwo,
-  .header__menu:hover .header__lineThree {
-    background-color: #f2542d;
-  }
 }
 @media screen and (min-width: 96rem) {
   .header__menu {
@@ -309,6 +298,18 @@ table {
 }
 .header__menu .menu__lineThree.lineThreeIsActivated {
   transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
+}
+.header__menu:active .menu__lineOne,
+.header__menu:active .menu__lineTwo,
+.header__menu:active .menu__lineThree {
+  background-color: #f2542d;
+}
+@media screen and (min-width: 31.25rem) {
+  .header__menu:hover .header__lineOne,
+  .header__menu:hover .header__lineTwo,
+  .header__menu:hover .header__lineThree {
+    background-color: #f2542d;
+  }
 }
 
 .header__links {
@@ -354,57 +355,56 @@ table {
     transform: translate(0);
   }
 }
-.header__links h2 {
-  font-size: 1.75rem;
-}
-@media screen and (min-width: 48rem) {
-  .header__links h2 {
-    font-size: 2.25rem;
-  }
-}
-@media screen and (min-width: 96rem) {
-  .header__links h2 {
-    font-size: 1.75rem;
-  }
-}
-.header__links .links__navigation {
+.header__links .header__navigation {
   margin: 5rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 @media screen and (min-width: 96rem) {
-  .header__links .links__navigation {
+  .header__links .header__navigation {
     margin: 0;
-    flex-direction: row;
+    display: block;
   }
-  .header__links .links__navigation h2 {
+}
+@media screen and (min-width: 96rem) {
+  .header__links .header__navigation .header__navigationTitle {
     display: none;
   }
 }
-.header__links .links__navigation a {
-  padding: 0.5rem 0;
-  font-size: 1.15rem;
+.header__links .header__navigation .header__navigationTitle h2 {
+  font-size: 2rem;
+  letter-spacing: 0.125rem;
+}
+.header__links .header__navigation .header__navigationLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+@media screen and (min-width: 96rem) {
+  .header__links .header__navigation .header__navigationLinks {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+.header__links .header__navigation .header__navigationLinks a {
+  font-size: 1.3rem;
   border-bottom: 0.125rem solid transparent;
   transition: color 0.2s, border-bottom 0.4s;
 }
-.header__links .links__navigation a:hover {
+.header__links .header__navigation .header__navigationLinks a:hover {
   color: #f2542d;
   border-bottom: 0.125rem solid #f2542d;
 }
-@media screen and (min-width: 48rem) {
-  .header__links .links__navigation a {
-    font-size: 1.3rem;
-  }
-}
 @media screen and (min-width: 96rem) {
-  .header__links .links__navigation a {
+  .header__links .header__navigation .header__navigationLinks a {
     font-size: 1.15rem;
   }
 }
-.header__links .links__contacts {
+.header__links .header__contacts {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -412,19 +412,29 @@ table {
   gap: 1rem;
 }
 @media screen and (min-width: 96rem) {
-  .header__links .links__contacts {
+  .header__links .header__contacts {
     flex-direction: row;
   }
 }
-.header__links .links__contacts span {
-  display: none;
+.header__links .header__contacts .header__contactTitle {
+  display: block;
 }
 @media screen and (min-width: 96rem) {
-  .header__links .links__contacts span {
-    display: inline;
+  .header__links .header__contacts .header__contactTitle {
+    display: flex;
+    gap: 1rem;
   }
 }
-.header__links .links__contacts div {
+.header__links .header__contacts .header__contactTitle h2 {
+  font-size: 2rem;
+  letter-spacing: 0.125rem;
+}
+.header__links .header__contacts .header__contactTitle div {
+  width: 0.0625rem;
+  display: block;
+  background-color: white;
+}
+.header__links .header__contacts .header__contactsLinks {
   display: flex;
   gap: 1.25rem;
 }
@@ -436,39 +446,39 @@ table {
     transform: scale(1.15);
   }
 }
-.header__links .links__contacts div .fa-linkedin:hover {
-  color: #0e76a8;
-}
-.header__links .links__contacts div .fa-envelope:hover {
-  color: #f2542d;
-}
-.header__links .links__contacts div .fa-whatsapp:hover {
-  color: #25d366;
-}
-.header__links .links__contacts div .fa-linkedin,
-.header__links .links__contacts div .fa-envelope,
-.header__links .links__contacts div .fa-whatsapp {
+.header__links .header__contacts .header__contactsLinks .fa-linkedin,
+.header__links .header__contacts .header__contactsLinks .fa-envelope,
+.header__links .header__contacts .header__contactsLinks .fa-whatsapp {
   font-size: 1.5rem;
   transition: color 0.2s;
 }
-.header__links .links__contacts div .fa-linkedin:hover,
-.header__links .links__contacts div .fa-envelope:hover,
-.header__links .links__contacts div .fa-whatsapp:hover {
+.header__links .header__contacts .header__contactsLinks .fa-linkedin:hover,
+.header__links .header__contacts .header__contactsLinks .fa-envelope:hover,
+.header__links .header__contacts .header__contactsLinks .fa-whatsapp:hover {
   animation: expand 0.5s linear infinite alternate;
 }
 @media screen and (min-width: 48rem) {
-  .header__links .links__contacts div .fa-linkedin,
-  .header__links .links__contacts div .fa-envelope,
-  .header__links .links__contacts div .fa-whatsapp {
+  .header__links .header__contacts .header__contactsLinks .fa-linkedin,
+  .header__links .header__contacts .header__contactsLinks .fa-envelope,
+  .header__links .header__contacts .header__contactsLinks .fa-whatsapp {
     font-size: 1.75rem;
   }
 }
 @media screen and (min-width: 96rem) {
-  .header__links .links__contacts div .fa-linkedin,
-  .header__links .links__contacts div .fa-envelope,
-  .header__links .links__contacts div .fa-whatsapp {
+  .header__links .header__contacts .header__contactsLinks .fa-linkedin,
+  .header__links .header__contacts .header__contactsLinks .fa-envelope,
+  .header__links .header__contacts .header__contactsLinks .fa-whatsapp {
     font-size: 1.5rem;
   }
+}
+.header__links .header__contacts .header__contactsLinks .fa-linkedin:hover {
+  color: #0e76a8;
+}
+.header__links .header__contacts .header__contactsLinks .fa-envelope:hover {
+  color: #f2542d;
+}
+.header__links .header__contacts .header__contactsLinks .fa-whatsapp:hover {
+  color: #25d366;
 }
 
 .header {
@@ -480,14 +490,14 @@ table {
   border-bottom: 0.0625rem solid gray;
   background-color: #25262a;
 }
-.header .container:nth-child(1) {
+.header .container {
   padding: 1.5rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 @media screen and (min-width: 96rem) {
-  .header .container:nth-child(1) {
+  .header .container {
     padding: 1.5rem 0;
     justify-content: space-around;
   }
@@ -596,21 +606,6 @@ table {
     color: gray;
   }
 }
-@media screen and (min-width: 64rem) and (min-width: 80rem) {
-  .apresentation__code .code__lines span:nth-child(23) {
-    display: none;
-  }
-}
-@media screen and (min-width: 64rem) and (min-width: 96rem) {
-  .apresentation__code .code__lines span:nth-child(21) {
-    display: none;
-  }
-}
-@media screen and (min-width: 64rem) and (min-width: 96rem) {
-  .apresentation__code .code__lines span:nth-child(22) {
-    display: none;
-  }
-}
 .apresentation__code .code__content .code__declaration {
   color: #b770cd;
 }
@@ -663,6 +658,7 @@ table {
 .main__projects .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -672,6 +668,8 @@ table {
 }
 
 .projects__contents {
+  max-width: 64rem;
+  width: 100%;
   padding: 1rem;
   border-radius: 1rem;
   background-color: #262626;
@@ -680,6 +678,10 @@ table {
 .projects__contents .projects__page[data-page="1"] {
   height: 100%;
   width: 100%;
+}
+
+h1 {
+  color: red;
 }
 
 .error {
@@ -694,7 +696,7 @@ table {
   color: #f2542d;
 }
 .error h3 {
-  font-size: 1.75rem;
+  font-size: 1.65rem;
   text-align: center;
 }
 

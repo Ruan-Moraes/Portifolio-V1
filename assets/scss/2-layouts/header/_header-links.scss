@@ -2,7 +2,6 @@
 @use '../../3-modules/mixins';
 
 .header__links {
-  $self: '.links';
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -39,51 +38,56 @@
     transform: translate(0);
   }
 
-  h2 {
-    font-size: 1.75rem;
-    @include mixins.md {
-      font-size: 2.25rem;
-    }
-    @include mixins.xl2 {
-      font-size: 1.75rem;
-    }
-  }
-
-  #{$self}__navigation {
+  .header__navigation {
     margin: 5rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     @include mixins.xl2 {
       margin: 0;
-      flex-direction: row;
+      display: block;
+    }
+
+    .header__navigationTitle {
+      @include mixins.xl2 {
+        display: none;
+      }
 
       h2 {
-        display: none;
+        font-size: 2rem;
+        letter-spacing: 0.125rem;
       }
     }
 
-    a {
-      padding: 0.5rem 0;
-      font-size: 1.15rem;
-      border-bottom: 0.125rem solid transparent;
-      transition: color 0.2s, border-bottom 0.4s;
-      &:hover {
-        color: variables.$color-link;
-        border-bottom: 0.125rem solid variables.$color-link;
-      }
-      @include mixins.md {
-        font-size: 1.3rem;
-      }
+    .header__navigationLinks {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+
       @include mixins.xl2 {
-        font-size: 1.15rem;
+        flex-direction: row;
+        gap: 1.5rem;
+      }
+
+      a {
+        font-size: 1.3rem;
+        border-bottom: 0.125rem solid transparent;
+        transition: color 0.2s, border-bottom 0.4s;
+        &:hover {
+          color: variables.$color-link;
+          border-bottom: 0.125rem solid variables.$color-link;
+        }
+        @include mixins.xl2 {
+          font-size: 1.15rem;
+        }
       }
     }
   }
 
-  #{$self}__contacts {
+  .header__contacts {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,14 +97,26 @@
       flex-direction: row;
     }
 
-    span {
-      display: none;
+    .header__contactTitle {
+      display: block;
       @include mixins.xl2 {
-        display: inline;
+        display: flex;
+        gap: 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+        letter-spacing: 0.125rem;
+      }
+
+      div {
+        width: 0.0625rem;
+        display: block;
+        background-color: white;
       }
     }
 
-    div {
+    .header__contactsLinks {
       display: flex;
       gap: 1.25rem;
 
@@ -111,16 +127,6 @@
         100% {
           transform: scale(1.15);
         }
-      }
-
-      .fa-linkedin:hover {
-        color: #0e76a8;
-      }
-      .fa-envelope:hover {
-        color: variables.$color-link;
-      }
-      .fa-whatsapp:hover {
-        color: #25d366;
       }
 
       .fa-linkedin,
@@ -137,6 +143,16 @@
         @include mixins.xl2 {
           font-size: 1.5rem;
         }
+      }
+
+      .fa-linkedin:hover {
+        color: #0e76a8;
+      }
+      .fa-envelope:hover {
+        color: variables.$color-link;
+      }
+      .fa-whatsapp:hover {
+        color: #25d366;
       }
     }
   }

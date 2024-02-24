@@ -143,7 +143,7 @@ window.addEventListener('DOMContentLoaded', () => {
         (repo) => repo.has_pages === true
       );
 
-      createProjectContentInHTML(); // * TODO: Continuar a partir daqui
+      createProjectContentInHTML(repositoriesThatHavePages); // * TODO: Continuar a partir daqui
     } catch (error) {
       errorGitHubAPI();
 
@@ -155,7 +155,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  function createProjectContentInHTML() {
+  function createProjectContentInHTML(repositoriesThatHavePages) {
     const numberPages = Math.ceil(repositoriesThatHavePages.length / 6);
 
     createPagesIndex(numberPages);
@@ -210,13 +210,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function errorGitHubAPI() {
-    const projectsItems = document.querySelector('.projects__items');
-
-    projectsItems.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
-    projectsItems.style.display = 'block';
+    const projectsItems = document.querySelector('.projects__contents');
 
     const errorMessage =
       '<h3>Erro ao buscar os repositórios no GitHub! Tente mais tarde.</h3>';
     const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
+
+    projectsItems.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
+    projectsItems.style.display = 'block';
   }
 });
