@@ -1,0 +1,19 @@
+@use '../../../1-base/variables';
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  i {
+    font-size: 5rem;
+    color: variables.$color-link;
+  }
+
+  h3 {
+    font-size: 1.65rem;
+    text-align: center;
+  }
+}

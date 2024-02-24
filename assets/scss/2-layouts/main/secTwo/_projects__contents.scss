@@ -1,0 +1,17 @@
+.projects__contents {
+  max-width: 64rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #262626;
+  box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.1);
+
+  .projects__page[data-page='1'] {
+    height: 100%;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // justify-content: center;
+    // gap: 1.5rem;
+    width: 100%;
+  }
+}

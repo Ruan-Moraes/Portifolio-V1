@@ -1,0 +1,17 @@
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+
+.header__title {
+  font-size: 1.5rem;
+  @include mixins.md {
+    padding: 0;
+    font-size: 1.65rem;
+  }
+
+  a {
+    transition: color 0.2s;
+    &:hover {
+      color: variables.$color-link;
+    }
+  }
+}

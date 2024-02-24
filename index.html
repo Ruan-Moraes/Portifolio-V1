@@ -1,86 +1,234 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="assets/css/styles.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <link
-            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-            rel="stylesheet"
-        />
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script src="assets/js/script.js" defer></script>
-        <title>Ruan Moraes | Portifólio</title>
-    </head>
-    <body>
-        <header class="header" data-aos="fade-down" data-aos-duration="750">
-            <nav class="header__container">
-                <div class="header__title">
-                    <h1>
-                        <a href="#">&#60; Portifólio /&#62;</a>
-                    </h1>
-                </div>
-                <div class="header__menu">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <div class="header__mobile">
-                    <div class="mobile__navigation">
-                        <h2>Mais sobre mim</h2>
-                        <a href="#">Sobre</a>
-                        <a href="#">Habilidades</a>
-                        <a href="#">Serviços</a>
-                    </div>
-                    <!-- <div style="height: 2px; width: 100%; border: 1px solid white;"></div> -->
-                    <div class="mobile__contacts">
-                        <h2>Contatos</h2>
-                        <div>
-                            <a href="#">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                            <a href="#">
-                                <i class="fa-solid fa-envelope"></i>
-                            </a>
-                            <a href="#">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="header__navigation">
-                    <a href="#">Sobre</a>
-                    <a href="#">Habilidades</a>
-                    <a href="#">Serviços</a>
-                </div>
-                <div class="header__contacts">
-                    <h2>Contatos |</h2>
-                    <div>
-                        <a href="#">
-                            <i class="fa-solid fa-envelope"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <main>
-            <section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
+    <script type="module" src="assets/js/script.js" defer></script>
+    <title>Ruan Moraes | Portifólio</title>
+  </head>
+  <body>
+    <div class="BlurOnBody"></div>
 
-            </section>
-            <section>
+    <header class="header" data-aos="fade-down" data-aos-duration="750">
+      <nav class="container">
+        <div class="header__title">
+          <h1>
+            <a href="#">&#60; Portifólio /&#62;</a>
+          </h1>
+        </div>
+        <div class="header__menu">
+          <div class="menu__lineOne"></div>
+          <div class="menu__lineTwo"></div>
+          <div class="menu__lineThree"></div>
+        </div>
+        <div class="header__links">
+          <div class="header__navigation">
+            <div class="header__navigationTitle">
+              <h2>Mais sobre mim</h2>
+            </div>
+            <div class="header__navigationLinks">
+              <a href="#">História</a>
+              <a href="#">Habilidades</a>
+              <a href="#">Projetos</a>
+            </div>
+          </div>
+          <div class="header__contacts">
+            <div class="header__contactTitle">
+              <h2>Contatos</h2>
+              <div></div>
+            </div>
+            <div class="header__contactsLinks">
+              <a href="#">
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+              <a href="#">
+                <i class="fa-solid fa-envelope"></i>
+              </a>
+              <a href="#">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="BlurOnMain"></div>
 
-            </section>
-        </main>
-    </body>
+      <section class="main__apresentation">
+        <div class="container">
+          <div class="apresentation__content">
+            <h2>
+              Olá, sou um futuro desenvolvedor
+              <strong>Full-Stack</strong>
+            </h2>
+            <p>
+              Buscando minha primeira oportunidade como desenvolvedor full-stack
+              ou até mesmo como estagiário, meu foco está em me especializar em
+              desenvolvimento web e mobile, além de adquirir conhecimentos em
+              cibersegurança.
+            </p>
+            <a href="#">Baixar CV</a>
+          </div>
+          <div class="apresentation__code">
+            <div class="code__header">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="code__body">
+              <div class="code__lines">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+                <span>11</span>
+                <span>12</span>
+                <span>13</span>
+                <span>14</span>
+                <span>15</span>
+                <span>16</span>
+                <span>17</span>
+                <span>18</span>
+                <span>19</span>
+                <span>20</span>
+                <span>21</span>
+                <span>22</span>
+              </div>
+              <div class="code__content">
+                <div>
+                  <span class="code__declaration">const</span>
+                  <h2 class="code__title">minhaPessoa</h2>
+                  <span class="code__assignment">=</span>
+                  <span class="code__keys">{</span>
+                </div>
+                <p>
+                  <span class="code__properties">nome:</span>
+                  <span class="code__values"
+                    >'Ruan Moraes Santos Barbosa'<span class="code__commas"
+                      >,</span
+                    ></span
+                  >
+                </p>
+                <p>
+                  <span class="code__properties">anoDeNascimento:</span>
+                  <span class="code__values--noString"
+                    >2004<span class="code__commas">,</span></span
+                  >
+                </p>
+                <p>
+                  <span class="code__properties">disponívelParaTrabalho:</span>
+                  <span class="code__values--noString"
+                    >true<span class="code__commas">,</span></span
+                  >
+                </p>
+                <p>
+                  <span class="code__properties">tecnologias:</span>
+                  <span class="code__brackets">[</span>
+                  <span class="code__values--block"
+                    >'Javascript'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'Java'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'MySQL'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'Bootstrap'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'TailwindCSS'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'SCSS'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'Git && GitHub'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'CSS3'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'HTML5'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__brackets">],</span>
+                </p>
+                <p>
+                  <span class="code__properties">atualmenteEstudando:</span>
+                  <span class="code__brackets">[</span>
+                  <span class="code__values--block"
+                    >'Java'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'SpringBot'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'MySQL'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'PostgreSQL'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__brackets">],</span>
+                </p>
+                <div>
+                  <span class="code__keys">}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="main__projects">
+        <div class="container">
+          <div class="projects__sectionTitle">
+            <h2>Meus Projetos</h2>
+          </div>
+          <div class="projects__contents">
+            <div class="projects__pagesContainer"></div>
+            <div class="projects__pagination"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="container__gear"
+      data-aos="fade-up-left"
+      data-aos-duration="750"
+      data-aos-offset="0"
+    >
+      <i class="fa-solid fa-gear"></i>
+    </div>
+
+    <div class="settings__modal">
+      <div class="settings__header">
+        <h2>Configurações</h2>
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="settings__body"></div>
+      <div class="settings__footer">
+        <div>
+          <button>Cancelar</button>
+          <button>Aplicar</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

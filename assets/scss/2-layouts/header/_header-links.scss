@@ -1,0 +1,159 @@
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+
+.header__links {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+  margin-top: 4.85rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: variables.$secondary-color;
+  transform: translateX(100%);
+  transition: 0.5s ease;
+  &.menuIsActivated {
+    transform: translateX(0);
+  }
+  @include mixins.md {
+    margin-top: 5.05rem;
+  }
+  @include mixins.lg {
+    width: 50%;
+    box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
+  }
+  @include mixins.xl2 {
+    height: auto;
+    position: static;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    border-left: none;
+    box-shadow: none;
+    transform: translate(0);
+  }
+
+  .header__navigation {
+    margin: 5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    @include mixins.xl2 {
+      margin: 0;
+      display: block;
+    }
+
+    .header__navigationTitle {
+      @include mixins.xl2 {
+        display: none;
+      }
+
+      h2 {
+        font-size: 2rem;
+        letter-spacing: 0.125rem;
+      }
+    }
+
+    .header__navigationLinks {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+
+      @include mixins.xl2 {
+        flex-direction: row;
+        gap: 1.5rem;
+      }
+
+      a {
+        font-size: 1.3rem;
+        border-bottom: 0.125rem solid transparent;
+        transition: color 0.2s, border-bottom 0.4s;
+        &:hover {
+          color: variables.$color-link;
+          border-bottom: 0.125rem solid variables.$color-link;
+        }
+        @include mixins.xl2 {
+          font-size: 1.15rem;
+        }
+      }
+    }
+  }
+
+  .header__contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    @include mixins.xl2 {
+      flex-direction: row;
+    }
+
+    .header__contactTitle {
+      display: block;
+      @include mixins.xl2 {
+        display: flex;
+        gap: 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+        letter-spacing: 0.125rem;
+      }
+
+      div {
+        width: 0.0625rem;
+        display: block;
+        background-color: white;
+      }
+    }
+
+    .header__contactsLinks {
+      display: flex;
+      gap: 1.25rem;
+
+      @keyframes expand {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.15);
+        }
+      }
+
+      .fa-linkedin,
+      .fa-envelope,
+      .fa-whatsapp {
+        font-size: 1.5rem;
+        transition: color 0.2s;
+        &:hover {
+          animation: expand 0.5s linear infinite alternate;
+        }
+        @include mixins.md {
+          font-size: 1.75rem;
+        }
+        @include mixins.xl2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      .fa-linkedin:hover {
+        color: #0e76a8;
+      }
+      .fa-envelope:hover {
+        color: variables.$color-link;
+      }
+      .fa-whatsapp:hover {
+        color: #25d366;
+      }
+    }
+  }
+}

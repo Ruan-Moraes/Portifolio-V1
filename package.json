@@ -1,0 +1,26 @@
+{
+  "name": "portifolio",
+  "version": "1.0.0",
+  "description": "Meu portifólio",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass ./assets/scss/build.scss:./assets/css/styles.css --watch",
+    "buildGulp": "gulp scss",
+    "sortProperties": "stylelint \"**/*.scss\" --fix"
+  },
+  "keywords": [],
+  "author": "Ruan Moraes Santos Barbosa",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^10.0.0",
+    "gulp-sass": "^5.1.0",
+    "postcss": "^8.4.35",
+    "sass": "^1.70.0",
+    "stylelint": "^16.2.0",
+    "stylelint-config-recommended-scss": "^14.0.0",
+    "stylelint-order": "^6.0.4"
+  }
+}

@@ -1,0 +1,19 @@
+@use '../../3-modules/mixins';
+
+@use 'secOne/containerSecOne';
+@use 'secOne/apresentation';
+@use 'secOne/code';
+@use 'secTwo/containerSecTwo';
+@use 'secTwo/projects__sectionTitle';
+@use 'secTwo/projects__contents';
+@use 'secTwo/projects__pagination';
+@use 'secTwo/projects__error';
+
+.main {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  @include mixins.lg {
+    margin-top: 10rem;
+  }
+}

@@ -1,0 +1,16 @@
+@use '../../../3-modules/mixins';
+@use '../../../3-modules/plugins';
+
+.main__apresentation .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.25rem;
+  @extend %container;
+
+  @include mixins.lg {
+    flex-direction: row;
+    gap: 3.25rem;
+  }
+}

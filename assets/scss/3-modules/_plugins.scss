@@ -1,0 +1,23 @@
+@use '../1-base/variables';
+@use '../3-modules/mixins';
+
+%container {
+  margin: 0 auto;
+  padding: 0 0.75rem;
+
+  @include mixins.md {
+    max-width: 48rem;
+    padding: 0 0.6rem;
+  }
+  @include mixins.lg {
+    max-width: 64rem;
+    padding: 0 0.45rem;
+  }
+  @include mixins.xl {
+    max-width: 80rem;
+    padding: 0 0.3rem;
+  }
+  @include mixins.xl2 {
+    max-width: 96rem;
+  }
+}
