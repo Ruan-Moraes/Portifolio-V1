@@ -2,15 +2,14 @@
 @use '../../3-modules/mixins';
 
 .header__menu {
-  $self: '.menu';
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   cursor: pointer;
   &:active {
-    #{$self}__lineOne,
-    #{$self}__lineTwo,
-    #{$self}__lineThree {
+    .menu__lineOne,
+    .menu__lineTwo,
+    .menu__lineThree {
       background-color: variables.$color-link;
     }
   }
@@ -27,9 +26,9 @@
     display: none;
   }
 
-  #{$self}__lineOne,
-  #{$self}__lineTwo,
-  #{$self}__lineThree {
+  .menu__lineOne,
+  .menu__lineTwo,
+  .menu__lineThree {
     height: 0.125rem;
     width: 2rem;
     border-radius: 0.5rem;
@@ -37,19 +36,19 @@
     transition: 0.25s ease;
   }
 
-  #{$self}__lineOne {
+  .menu__lineOne {
     &.lineOneIsActivated {
       transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
     }
   }
 
-  #{$self}__lineTwo {
+  .menu__lineTwo {
     &.lineTwoIsActivated {
       opacity: 0;
     }
   }
 
-  #{$self}__lineThree {
+  .menu__lineThree {
     &.lineThreeIsActivated {
       transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
     }
