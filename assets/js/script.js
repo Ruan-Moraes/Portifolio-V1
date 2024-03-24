@@ -63,12 +63,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function changePageScrollingState() {
     const bodyHTML = document.querySelector('body');
-    const cssProperties = getComputedStyle(bodyHTML);
-    const overflowProperty = cssProperties.getPropertyValue('overflow-y');
+    const bodyOverflow =
+      getComputedStyle(bodyHTML).getPropertyValue('overflow-y');
 
-    overflowProperty === 'visible'
+    bodyOverflow === 'auto'
       ? (bodyHTML.style.overflowY = 'hidden')
-      : (bodyHTML.style.overflowY = 'visible');
+      : (bodyHTML.style.overflowY = 'auto');
   }
 
   // All logic of settings
@@ -136,14 +136,13 @@ window.addEventListener('DOMContentLoaded', () => {
     try {
       // const ruanMoraesRepositories = await fetch(
       //   'https://api.github.com/users/ruan-moraes/repos?type=owner'
-      // );
-      // const ruanMoraesRepositoriesJson = await ruanMoraesRepositories.json();
+      // ).then((response) => response.json());
       const ruanMoraesRepositoriesJson = repos;
       const repositoriesThatHavePages = ruanMoraesRepositoriesJson.filter(
         (repo) => repo.has_pages === true
       );
 
-      createProjectContentInHTML(repositoriesThatHavePages); // * TODO: Continuar a partir daqui
+      insertProjectsIntoDOM(repositoriesThatHavePages); // * TODO: Continuar a partir daqui
     } catch (error) {
       errorGitHubAPI();
 
@@ -155,27 +154,35 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  function createProjectContentInHTML(repositoriesThatHavePages) {
-    const numberPages = Math.ceil(repositoriesThatHavePages.length / 6);
-
-    createPagesIndex(numberPages);
-    enumeratePage(); // TODO: FINALIZA AQUI
+  function insertProjectsIntoDOM(repositoriesThatHavePages) {
+    createPagesIndex(calculateTotalPages(repositoriesThatHavePages));
+    insertProjectsIntoIndex(repositoriesThatHavePages); // TODO: FINALIZA AQUI
     // TODO: addProjectsToHTML(repositoriesThatHavePages)
   }
 
   function createPagesIndex(numberPages) {
     for (let i = 0; i < numberPages; i++) {
       const projectsItems = document.querySelector('.projects__pagesContainer');
-      const page = document.createElement('div');
 
+      const page = document.createElement('div');
       page.classList.add('projects__page');
-      page.setAttribute('data-page', i + 1);
+      page.setAttribute('id', `projectsPage${i + 1}`);
 
       projectsItems.appendChild(page);
     }
   }
 
-  function enumeratePage() {}
+  function calculateTotalPages(repositoriesThatHavePages) {
+    return Math.ceil(repositoriesThatHavePages.length / 6);
+  }
+
+  function insertProjectsIntoIndex(repositoriesThatHavePages) {
+    repositoriesThatHavePages.forEach((repository, index) => {
+      console.log(repository, index)
+
+      
+    });
+  }
 
   function addProjectsToHTML(repositories) {
     const projectsItems = document.querySelector('.projects__container');
@@ -213,7 +220,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const projectsItems = document.querySelector('.projects__contents');
 
     const errorMessage =
-      '<h3>Erro ao buscar os repositórios no GitHub! Tente mais tarde.</h3>';
+      '<h3>Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
     const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
 
     projectsItems.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
