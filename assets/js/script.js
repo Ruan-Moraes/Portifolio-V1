@@ -1,37 +1,13 @@
+'use strict';
+
 import { repos } from './repositoriesJson.js';
 
+// * Garante que o código só será executado após o carregamento do conteúdo da página
 window.addEventListener('DOMContentLoaded', () => {
-  // Initialize AOS
+  // * Inicializar a biblioteca AOS
   AOS.init();
 
-  // Close menu and settings when click key 'ESC'
-  window.addEventListener('keyup', (event) => {
-    if (event.key === 'Escape') {
-      const IsMenuActive = document
-        .querySelector('.header__links')
-        .classList.contains('menuIsActivated');
-      const IsSettingsActive = document
-        .querySelector('.settings__modal')
-        .classList.contains('settingActivated');
-
-      if (IsMenuActive) {
-        animationMenu();
-        activateMenu();
-        showBlurMenu();
-        changePageScrollingState();
-      }
-
-      if (IsSettingsActive) {
-        animationGear();
-        showBlurOnBody();
-        showSettings();
-        disableTextSelection();
-        changePageScrollingState();
-      }
-    }
-  });
-
-  // All logic of menu
+  // * Toda a lógica do menu
   const menu = document.querySelector('.header__menu');
 
   menu.addEventListener('click', () => {
@@ -71,7 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
       : (bodyHTML.style.overflowY = 'auto');
   }
 
-  // All logic of settings
+  // * Toda a lógica das configurações
   const gear = document.querySelector('.container__gear');
   const blurOnBody = document.querySelector('.BlurOnBody');
   const exitSettingsButton = document.querySelector(
@@ -131,12 +107,40 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Fetch my data through the GitHub API and render it on the page
+  // * Lógica para fechar o menu e as configurações ao pressionar a tecla 'ESC'
+  window.addEventListener('keyup', (event) => {
+    if (event.key === 'Escape') {
+      const IsMenuActive = document
+        .querySelector('.header__links')
+        .classList.contains('menuIsActivated');
+      const IsSettingsActive = document
+        .querySelector('.settings__modal')
+        .classList.contains('settingActivated');
+
+      if (IsMenuActive) {
+        animationMenu();
+        activateMenu();
+        showBlurMenu();
+        changePageScrollingState();
+      }
+
+      if (IsSettingsActive) {
+        animationGear();
+        showBlurOnBody();
+        showSettings();
+        disableTextSelection();
+        changePageScrollingState();
+      }
+    }
+  });
+
+  // * Buscar meus projetos no GitHub atráves da API do GitHub
   (async function fetchGitHubAPI() {
     try {
       // const ruanMoraesRepositories = await fetch(
       //   'https://api.github.com/users/ruan-moraes/repos?type=owner'
       // ).then((response) => response.json());
+      // ! Código acima comentado para evitar requisições desnecessárias à API do GitHub
       const ruanMoraesRepositoriesJson = repos;
       const repositoriesThatHavePages = ruanMoraesRepositoriesJson.filter(
         (repo) => repo.has_pages === true
@@ -149,19 +153,35 @@ window.addEventListener('DOMContentLoaded', () => {
       console.error(
         `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
       );
-
-      throw new Error(error);
     }
   })();
 
   function insertProjectsIntoDOM(repositoriesThatHavePages) {
-    createPagesIndex(calculateTotalPages(repositoriesThatHavePages));
-    insertProjectsIntoIndex(repositoriesThatHavePages); // TODO: FINALIZA AQUI
-    // TODO: addProjectsToHTML(repositoriesThatHavePages)
+    const totalProjectsPerPage = 6;
+    const totalPages = calculateTotalPages(
+      totalProjectsPerPage,
+      repositoriesThatHavePages
+    );
+
+    createPagesIndexes(totalPages);
+
+    const projectsGroups = separateProjectsIntoGroups(
+      totalPages,
+      repositoriesThatHavePages
+    );
+
+    insertProjects(projectsGroups); // TODO: Continuar a partir daqui
   }
 
-  function createPagesIndex(numberPages) {
-    for (let i = 0; i < numberPages; i++) {
+  function calculateTotalPages(
+    totalProjectsPerPage,
+    repositoriesThatHavePages
+  ) {
+    return Math.ceil(repositoriesThatHavePages.length / totalProjectsPerPage);
+  }
+
+  function createPagesIndexes(totalPages) {
+    for (let i = 0; i < totalPages; i++) {
       const projectsItems = document.querySelector('.projects__pagesContainer');
 
       const page = document.createElement('div');
@@ -172,49 +192,26 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function calculateTotalPages(repositoriesThatHavePages) {
-    return Math.ceil(repositoriesThatHavePages.length / 6);
-  }
+  function separateProjectsIntoGroups(
+    totalProjectsPerPage,
+    totalPages,
+    repositoriesThatHavePages
+  ) {
+    const projectsGroups = [];
 
-  function insertProjectsIntoIndex(repositoriesThatHavePages) {
-    repositoriesThatHavePages.forEach((repository, index) => {
-      console.log(repository, index)
+    for (let i = 0; i < totalPages; i++) {
+      const listOfProjects = repositoriesThatHavePages.splice(
+        0,
+        totalProjectsPerPage
+      );
 
-      
-    });
-  }
-
-  function addProjectsToHTML(repositories) {
-    const projectsItems = document.querySelector('.projects__container');
-
-    for (let i = 0; i < 6; i++) {
-      const project = document.createElement('div');
-
-      project.classList.add('project');
-      project.innerHTML = `
-        <div class="project__header">
-          <h3>${repositories[i].name}</h3>
-        </div>
-        <div class="project__body">
-          <div class="project__image">
-            <img src="assets/images/${repositories[i].name}.png" alt="${repositories[i].name}" />
-          </div>
-          <div class="project__description">
-            <p>${repositories[i].description}</p>
-          </div>
-        </div>
-        <div class="project__footer">
-          <a href="https://ruan-moraes.github.io/${repositories[i].name}/" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-eye"></i> Visualizar Projeto
-          </a>
-          <a href="${repositories[i].html_url}" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i> Ver no GitHub
-          </a>
-        </div>
-      `;
-      projectsItems.appendChild(project);
+      projectsGroups.push(listOfProjects);
     }
+
+    return projectsGroups;
   }
+
+  function insertProjects(projectsGroups) {}
 
   function errorGitHubAPI() {
     const projectsItems = document.querySelector('.projects__contents');
