@@ -2,7 +2,7 @@
 
 import { repos } from './repositoriesJson.js';
 
-// * Garante que o código só será executado após o carregamento do conteúdo da página
+// * Garante que o código só será266,666666667 executado após o carregamento do conteúdo da página
 window.addEventListener('DOMContentLoaded', () => {
   // * Inicializar a biblioteca AOS
   AOS.init();
@@ -17,18 +17,18 @@ window.addEventListener('DOMContentLoaded', () => {
     changePageScrollingState();
   });
 
-  function activateMenu() {
-    const showMenu = document.querySelector('.header__links');
-
-    showMenu.classList.toggle('menuIsActivated');
-  }
-
   function animationMenu() {
     ['lineOne', 'lineTwo', 'lineThree'].forEach((lineClass) => {
       const line = document.querySelector(`.menu__${lineClass}`);
 
       line.classList.toggle(`${lineClass}IsActivated`);
     });
+  }
+
+  function activateMenu() {
+    const showMenu = document.querySelector('.header__links');
+
+    showMenu.classList.toggle('menuIsActivated');
   }
 
   function showBlurMenu() {
@@ -130,6 +130,12 @@ window.addEventListener('DOMContentLoaded', () => {
         showSettings();
         disableTextSelection();
         changePageScrollingState();
+      } else {
+        animationGear();
+        showBlurOnBody();
+        showSettings();
+        disableTextSelection();
+        changePageScrollingState();
       }
     }
   });
@@ -163,14 +169,17 @@ window.addEventListener('DOMContentLoaded', () => {
       repositoriesThatHavePages
     );
 
+    insertProjectsCounter(repositoriesThatHavePages);
     createPagesIndexes(totalPages);
 
     const projectsGroups = separateProjectsIntoGroups(
+      totalProjectsPerPage,
       totalPages,
       repositoriesThatHavePages
     );
 
-    insertProjects(projectsGroups); // TODO: Continuar a partir daqui
+    insertProjects(projectsGroups);
+    whichPageToDisplay();
   }
 
   function calculateTotalPages(
@@ -178,6 +187,12 @@ window.addEventListener('DOMContentLoaded', () => {
     repositoriesThatHavePages
   ) {
     return Math.ceil(repositoriesThatHavePages.length / totalProjectsPerPage);
+  }
+
+  function insertProjectsCounter(repositoriesThatHavePages) {
+    const projectsCounter = document.querySelector('#projectAccountant');
+
+    projectsCounter.innerHTML = `<p>Total de projetos: <strong>${repositoriesThatHavePages.length}</strong></p>`;
   }
 
   function createPagesIndexes(totalPages) {
@@ -211,13 +226,55 @@ window.addEventListener('DOMContentLoaded', () => {
     return projectsGroups;
   }
 
-  function insertProjects(projectsGroups) {}
+  function insertProjects(projectsGroups) {
+    const projectsPages = document.querySelectorAll('.projects__page');
+
+    for (let i = 0; i < projectsGroups.length; i++) {
+      const projectsPage = projectsPages[i];
+      const projectsGroup = projectsGroups[i];
+
+      projectsGroup.forEach((project) => {
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project__card');
+        projectElement.setAttribute('data-aos', 'fade-up');
+        projectElement.innerHTML = `
+          <div class="project__cardHeader">
+            <h3>${project.name}</h3>
+          </div>
+          <div class="project__cardBody">
+            <div class="project__cardDescription">
+              <p>${project.description}</p>
+            </div>
+          </div> 
+          `;
+
+        projectsPage.appendChild(projectElement);
+      });
+    }
+
+    disablePagesDisplays();
+  }
+
+  function disablePagesDisplays() {
+    const projectsPages = document.querySelectorAll('.projects__page');
+
+    projectsPages.forEach((page) => {
+      page.classList.add('projects__IsNotDisplayed');
+    });
+  }
+
+  function whichPageToDisplay() {
+    const projectsPages = document.querySelectorAll('.projects__page');
+
+    projectsPages[0].classList.remove('projects__IsNotDisplayed');
+    projectsPages[0].classList.add('projects__pageIsDisplayed');
+  }
 
   function errorGitHubAPI() {
     const projectsItems = document.querySelector('.projects__contents');
 
     const errorMessage =
-      '<h3>Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
+      '<h3>Ocorreu um problema ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
     const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
 
     projectsItems.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;

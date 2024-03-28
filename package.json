@@ -6,7 +6,7 @@
   "scripts": {
     "build": "sass ./assets/scss/build.scss:./assets/css/styles.css --watch",
     "buildGulp": "gulp scss",
-    "sortProperties": "stylelint \"**/*.scss\" --fix"
+    "sortProperties": "stylelint \"./assets/scss/*.scss\" --fix"
   },
   "keywords": [],
   "author": "Ruan Moraes Santos Barbosa",
