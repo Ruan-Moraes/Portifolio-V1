@@ -675,13 +675,35 @@ table {
   background-color: #262626;
   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.1);
 }
-.projects__contents .projects__page[data-page="1"] {
-  height: 100%;
-  width: 100%;
+.projects__contents .projects__pagesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-
-h1 {
-  color: red;
+.projects__contents .projects__pagesContainer .projects__projectAccountant {
+  width: max-content;
+  align-self: flex-end;
+  background-color: #1b1b1d;
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+}
+.projects__contents .projects__pagesContainer .projects__projectAccountant strong {
+  color: #f2542d;
+  font-weight: 700;
+}
+.projects__contents .projects__pagesContainer .projects__IsNotDisplayed {
+  display: none;
+}
+.projects__contents .projects__pagesContainer .projects__IsDisplayed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .error {
@@ -698,6 +720,16 @@ h1 {
 .error h3 {
   font-size: 1.65rem;
   text-align: center;
+}
+@media screen and (min-width: 48rem) {
+  .error h3 {
+    width: 75%;
+  }
+}
+@media screen and (min-width: 64rem) {
+  .error h3 {
+    width: 65%;
+  }
 }
 
 .main {
