@@ -2,7 +2,7 @@
 
 import { repos } from './repositoriesJson.js';
 
-// * Garante que o código só será266,666666667 executado após o carregamento do conteúdo da página
+// * Garante que o código só será executado após o carregamento do conteúdo da página
 window.addEventListener('DOMContentLoaded', () => {
   // * Inicializar a biblioteca AOS
   AOS.init();
@@ -140,19 +140,24 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // * Buscar meus projetos no GitHub atráves da API do GitHub
+  // * Buscar meus projetos no GitHub atráves da API do GitHub e inserir no DOM
   (async function fetchGitHubAPI() {
     try {
       // const ruanMoraesRepositories = await fetch(
       //   'https://api.github.com/users/ruan-moraes/repos?type=owner'
-      // ).then((response) => response.json());
+      // )
+      //   .then((response) => response.json())
+      //   .then((response) =>
+      //     response.filter((repository) => repository.has_pages === true)
+      //   );
+
       // ! Código acima comentado para evitar requisições desnecessárias à API do GitHub
       const ruanMoraesRepositoriesJson = repos;
       const repositoriesThatHavePages = ruanMoraesRepositoriesJson.filter(
         (repo) => repo.has_pages === true
       );
 
-      insertProjectsIntoDOM(repositoriesThatHavePages); // * TODO: Continuar a partir daqui
+      insertProjectsIntoDOM(repositoriesThatHavePages); // * Continuar apartir daqui
     } catch (error) {
       errorGitHubAPI();
 
@@ -163,6 +168,8 @@ window.addEventListener('DOMContentLoaded', () => {
   })();
 
   function insertProjectsIntoDOM(repositoriesThatHavePages) {
+    loadingProjects();
+
     const totalProjectsPerPage = 6;
     const totalPages = calculateTotalPages(
       totalProjectsPerPage,
@@ -171,6 +178,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     insertProjectsCounter(repositoriesThatHavePages);
     createPagesIndexes(totalPages);
+    createPagination(totalPages);
 
     const projectsGroups = separateProjectsIntoGroups(
       totalProjectsPerPage,
@@ -178,8 +186,15 @@ window.addEventListener('DOMContentLoaded', () => {
       repositoriesThatHavePages
     );
 
+    loadingProjects(false);
+
     insertProjects(projectsGroups);
     whichPageToDisplay();
+  }
+
+  function loadingProjects(isLoading = true) {
+    // TODO: Implementar um loading enquanto os projetos são carregado/
+    // ! Código não pode sobrescrever o conteúdo do HTML, pois acarretará em um erro no DOM e os projetos não serão inseridos
   }
 
   function calculateTotalPages(
@@ -204,6 +219,19 @@ window.addEventListener('DOMContentLoaded', () => {
       page.setAttribute('id', `projectsPage${i + 1}`);
 
       projectsItems.appendChild(page);
+    }
+  }
+
+  function createPagination(totalPages) {
+    const projectsPagination = document.querySelector('.projects__pagination');
+
+    for (let i = 0; i < totalPages; i++) {
+      const page = document.createElement('div');
+      page.classList.add('projects__paginationItem');
+      page.setAttribute('id', `projectsPage${i + 1}Button`);
+      page.innerHTML = i + 1;
+
+      projectsPagination.appendChild(page);
     }
   }
 
@@ -233,23 +261,25 @@ window.addEventListener('DOMContentLoaded', () => {
       const projectsPage = projectsPages[i];
       const projectsGroup = projectsGroups[i];
 
-      projectsGroup.forEach((project) => {
+      for (let i = 0; i < projectsGroup.length; i++) {
+        const project = projectsGroup[i];
+
         const projectElement = document.createElement('div');
         projectElement.classList.add('project__card');
         projectElement.setAttribute('data-aos', 'fade-up');
         projectElement.innerHTML = `
-          <div class="project__cardHeader">
-            <h3>${project.name}</h3>
+        <div class="project__cardHeader">
+          <h3>${project.name}</h3>
+        </div>
+        <div class="project__cardBody">
+          <div class="project__cardDescription">
+            <p>${project.description}</p>
           </div>
-          <div class="project__cardBody">
-            <div class="project__cardDescription">
-              <p>${project.description}</p>
-            </div>
-          </div> 
-          `;
+        </div> 
+        `;
 
         projectsPage.appendChild(projectElement);
-      });
+      }
     }
 
     disablePagesDisplays();
@@ -258,26 +288,40 @@ window.addEventListener('DOMContentLoaded', () => {
   function disablePagesDisplays() {
     const projectsPages = document.querySelectorAll('.projects__page');
 
-    projectsPages.forEach((page) => {
-      page.classList.add('projects__IsNotDisplayed');
-    });
-  }
-
-  function whichPageToDisplay() {
-    const projectsPages = document.querySelectorAll('.projects__page');
+    for (let i = 1; i < projectsPages.length; i++) {
+      projectsPages[i].classList.add('projects__IsNotDisplayed');
+    }
 
     projectsPages[0].classList.remove('projects__IsNotDisplayed');
     projectsPages[0].classList.add('projects__pageIsDisplayed');
   }
 
+  function whichPageToDisplay() {
+    const projectsPages = document.querySelectorAll('.projects__page');
+    const projectsPagination = document.querySelectorAll(
+      '.projects__paginationItem'
+    );
+
+    for (let i = 0; i < projectsPagination.length; i++) {
+      projectsPagination[i].addEventListener('click', () => {
+        for (let i = 0; i < projectsPages.length; i++) {
+          projectsPages[i].classList.remove('projects__pageIsDisplayed');
+          projectsPages[i].classList.add('projects__IsNotDisplayed');
+        }
+
+        projectsPages[i].classList.remove('projects__IsNotDisplayed');
+        projectsPages[i].classList.add('projects__pageIsDisplayed');
+      });
+    }
+  }
+
   function errorGitHubAPI() {
-    const projectsItems = document.querySelector('.projects__contents');
+    const projectsContents = document.querySelector('.projects__contents');
 
     const errorMessage =
       '<h3>Ocorreu um problema ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
     const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
 
-    projectsItems.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
-    projectsItems.style.display = 'block';
+    projectsContents.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
   }
 });

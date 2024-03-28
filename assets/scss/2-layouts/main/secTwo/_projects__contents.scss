@@ -5,6 +5,9 @@
   max-width: 64rem;
   width: 100%;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   border-radius: 1rem;
   background-color: #262626;
   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.1);
@@ -16,19 +19,19 @@
 
     #{$self}__projectAccountant {
       width: max-content;
-      align-self: flex-end;
-      background-color: variables.$tertiary-color;
       padding: 0.75rem;
       font-size: 0.75rem;
-      border-radius: 1rem;
       -webkit-border-radius: 1rem;
       -moz-border-radius: 1rem;
       -ms-border-radius: 1rem;
       -o-border-radius: 1rem;
+      border-radius: 1rem;
+      background-color: variables.$tertiary-color;
+      align-self: flex-end;
 
       strong {
-        color: variables.$color-link;
         font-weight: 700;
+        color: variables.$color-link;
       }
     }
 
@@ -41,6 +44,34 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 1rem;
+    }
+  }
+
+  .projects__pagination {
+    display: flex;
+    justify-content: center;
+
+    div {
+      padding: 0.35rem 0.65rem;
+      font-weight: 700;
+      color: variables.$color-link;
+      background-color: variables.$tertiary-color;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      &:hover {
+        color: variables.$tertiary-color;
+        background-color: variables.$color-link;
+      }
+
+      &:first-child {
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+      }
+
+      &:last-child {
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+      }
     }
   }
 }
