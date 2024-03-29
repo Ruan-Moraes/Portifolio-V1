@@ -11,8 +11,8 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
     <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
+    <link rel="stylesheet" href="assets/css/styles.css" />
     <script type="module" src="assets/js/script.js" defer></script>
     <title>Ruan Moraes | Portifólio</title>
   </head>
@@ -67,7 +67,11 @@
 
       <section class="main__apresentation">
         <div class="container">
-          <div class="apresentation__content">
+          <div
+            class="apresentation__content"
+            data-aos="fade-in"
+            data-aos-duration="1000"
+          >
             <h2>
               Olá, sou um futuro desenvolvedor
               <strong>Full-Stack</strong>
@@ -80,7 +84,11 @@
             </p>
             <a href="#">Baixar CV</a>
           </div>
-          <div class="apresentation__code">
+          <div
+            class="apresentation__code"
+            data-aos="fade-in"
+            data-aos-duration="1000"
+          >
             <div class="code__header">
               <div></div>
               <div></div>
@@ -217,7 +225,7 @@
       <section class="main__projects">
         <div class="container">
           <div class="projects__sectionTitle">
-            <h2>Meus Projetos</h2>
+            <h2 data-aos="fade-right">Meus Projetos</h2>
           </div>
           <div class="projects__contents">
             <div class="projects__pagesContainer">
@@ -225,12 +233,14 @@
                 id="projectAccountant"
                 class="projects__projectAccountant"
               ></div>
-              <!-- TODO: Criar uma div de projetos -->
+              <div class="projects__projectsItems"></div>
             </div>
             <div class="projects__pagination"></div>
           </div>
         </div>
       </section>
+
+      <!-- <section></section> -->
     </main>
 
     <div

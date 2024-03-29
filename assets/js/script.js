@@ -143,21 +143,23 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Buscar meus projetos no GitHub atráves da API do GitHub e inserir no DOM
   (async function fetchGitHubAPI() {
     try {
-      // const ruanMoraesRepositories = await fetch(
-      //   'https://api.github.com/users/ruan-moraes/repos?type=owner'
-      // )
-      //   .then((response) => response.json())
-      //   .then((response) =>
-      //     response.filter((repository) => repository.has_pages === true)
-      //   );
+      loadingProjects();
+
+      const ruanMoraesRepositories = await fetch(
+        'https://api.github.com/users/ruan-moraes/repos?type=owner'
+      )
+        .then((response) => response.json())
+        .then((response) =>
+          response.filter((repository) => repository.has_pages === true)
+        );
 
       // ! Código acima comentado para evitar requisições desnecessárias à API do GitHub
-      const ruanMoraesRepositoriesJson = repos;
-      const repositoriesThatHavePages = ruanMoraesRepositoriesJson.filter(
-        (repo) => repo.has_pages === true
-      );
+      // const ruanMoraesRepositoriesJson = repos;
+      // const repositoriesThatHavePages = ruanMoraesRepositoriesJson.filter(
+      //   (repo) => repo.has_pages === true
+      // );
 
-      insertProjectsIntoDOM(repositoriesThatHavePages); // * Continuar apartir daqui
+      insertProjectsIntoDOM(ruanMoraesRepositories);
     } catch (error) {
       errorGitHubAPI();
 
@@ -168,8 +170,6 @@ window.addEventListener('DOMContentLoaded', () => {
   })();
 
   function insertProjectsIntoDOM(repositoriesThatHavePages) {
-    loadingProjects();
-
     const totalProjectsPerPage = 6;
     const totalPages = calculateTotalPages(
       totalProjectsPerPage,
@@ -193,8 +193,22 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadingProjects(isLoading = true) {
-    // TODO: Implementar um loading enquanto os projetos são carregado/
-    // ! Código não pode sobrescrever o conteúdo do HTML, pois acarretará em um erro no DOM e os projetos não serão inseridos
+    const projectsContents = document.querySelector('.projects__contents');
+
+    if (!isLoading) {
+      const loadingProjects = document.querySelector(
+        '.projects__loadingProjects'
+      );
+      loadingProjects.remove();
+
+      return;
+    }
+
+    const loadingProjects = document.createElement('div');
+    loadingProjects.classList.add('projects__loadingProjects');
+    loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
+
+    projectsContents.appendChild(loadingProjects);
   }
 
   function calculateTotalPages(
@@ -206,17 +220,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function insertProjectsCounter(repositoriesThatHavePages) {
     const projectsCounter = document.querySelector('#projectAccountant');
+    projectsCounter.setAttribute('data-aos', 'fade-down');
+    projectsCounter.setAttribute('data-aos-duration', '250');
 
     projectsCounter.innerHTML = `<p>Total de projetos: <strong>${repositoriesThatHavePages.length}</strong></p>`;
   }
 
   function createPagesIndexes(totalPages) {
     for (let i = 0; i < totalPages; i++) {
-      const projectsItems = document.querySelector('.projects__pagesContainer');
+      const projectsItems = document.querySelector('.projects__projectsItems');
 
       const page = document.createElement('div');
       page.classList.add('projects__page');
       page.setAttribute('id', `projectsPage${i + 1}`);
+      page.setAttribute('data-aos', 'fade-up');
+      page.setAttribute('data-aos-duration', '250');
 
       projectsItems.appendChild(page);
     }
@@ -229,6 +247,8 @@ window.addEventListener('DOMContentLoaded', () => {
       const page = document.createElement('div');
       page.classList.add('projects__paginationItem');
       page.setAttribute('id', `projectsPage${i + 1}Button`);
+      page.setAttribute('data-aos', 'fade-right');
+      page.setAttribute('data-aos-duration', '250');
       page.innerHTML = i + 1;
 
       projectsPagination.appendChild(page);
@@ -264,15 +284,18 @@ window.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < projectsGroup.length; i++) {
         const project = projectsGroup[i];
 
+        processingRepositoryData(project);
+
         const projectElement = document.createElement('div');
-        projectElement.classList.add('project__card');
-        projectElement.setAttribute('data-aos', 'fade-up');
+        projectElement.classList.add('projects__card');
+        projectElement.setAttribute('data-aos', 'fade-in');
+        projectElement.setAttribute('data-aos-duration', '750');
         projectElement.innerHTML = `
-        <div class="project__cardHeader">
+        <div class="projects__cardHeader">
           <h3>${project.name}</h3>
         </div>
-        <div class="project__cardBody">
-          <div class="project__cardDescription">
+        <div class="projects__cardBody">
+          <div class="projects__cardDescription">
             <p>${project.description}</p>
           </div>
         </div> 
@@ -285,15 +308,30 @@ window.addEventListener('DOMContentLoaded', () => {
     disablePagesDisplays();
   }
 
-  function disablePagesDisplays() {
-    const projectsPages = document.querySelectorAll('.projects__page');
-
-    for (let i = 1; i < projectsPages.length; i++) {
-      projectsPages[i].classList.add('projects__IsNotDisplayed');
+  function processingRepositoryData(project) {
+    if (
+      project.description === null ||
+      project.description === '' ||
+      project.description === undefined
+    ) {
+      project.description = 'Sem descrição.';
     }
 
-    projectsPages[0].classList.remove('projects__IsNotDisplayed');
+    project.name = project.name.replace(/[-\/]/g, ' ').replace(/_/g, ' | ');
+  }
+
+  function disablePagesDisplays() {
+    const projectsPages = document.querySelectorAll('.projects__page');
+    const projectsPagination = document.querySelectorAll(
+      '.projects__paginationItem'
+    );
+
+    projectsPagination[0].classList.add('projects__paginationItemIsSelected');
     projectsPages[0].classList.add('projects__pageIsDisplayed');
+
+    for (let i = 1; i < projectsPages.length; i++) {
+      projectsPages[i].classList.add('projects__pageIsNotDisplayed');
+    }
   }
 
   function whichPageToDisplay() {
@@ -305,12 +343,18 @@ window.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < projectsPagination.length; i++) {
       projectsPagination[i].addEventListener('click', () => {
         for (let i = 0; i < projectsPages.length; i++) {
+          projectsPagination[i].classList.remove(
+            'projects__paginationItemIsSelected'
+          );
           projectsPages[i].classList.remove('projects__pageIsDisplayed');
-          projectsPages[i].classList.add('projects__IsNotDisplayed');
         }
 
-        projectsPages[i].classList.remove('projects__IsNotDisplayed');
+        projectsPagination[i].classList.add(
+          'projects__paginationItemIsSelected'
+        );
         projectsPages[i].classList.add('projects__pageIsDisplayed');
+
+        AOS.refresh();
       });
     }
   }
