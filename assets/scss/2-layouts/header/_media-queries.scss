@@ -1,0 +1,113 @@
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+
+.header {
+  .container {
+    @include mixins.xl2 {
+      padding: 1.5rem 0;
+      justify-content: space-around;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.header__title {
+  a {
+    @include mixins.md {
+      font-size: 1.65rem;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.header__menu {
+  @include mixins.xl2 {
+    display: none;
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.header__links {
+  @include mixins.md {
+    margin-top: 5.05rem;
+  }
+
+  @include mixins.lg {
+    width: 50%;
+    box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
+  }
+
+  @include mixins.xl2 {
+    height: auto;
+    position: static;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    border-left: none;
+    box-shadow: none;
+    transform: translate(0);
+  }
+
+  .header__navigation {
+    @include mixins.xl2 {
+      margin: 0;
+      display: block;
+    }
+
+    .header__navigationTitle {
+      @include mixins.xl2 {
+        display: none;
+      }
+    }
+
+    .header__navigationLinks {
+      @include mixins.xl2 {
+        flex-direction: row;
+        gap: 1.5rem;
+
+        a {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .header__contacts {
+    @include mixins.xl2 {
+      flex-direction: row;
+    }
+
+    .header__contactTitle {
+      @include mixins.xl2 {
+        display: flex;
+        gap: 1rem;
+      }
+
+      h2 {
+        @include mixins.xl2 {
+          font-size: 1.65rem;
+        }
+      }
+    }
+
+    .header__contactsLinks {
+      .fa-linkedin,
+      .fa-envelope,
+      .fa-whatsapp {
+        @include mixins.md {
+          font-size: 1.75rem;
+        }
+
+        @include mixins.xl2 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------- //

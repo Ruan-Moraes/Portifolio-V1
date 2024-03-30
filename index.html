@@ -26,7 +26,7 @@
             <a href="#">&#60; Portifólio /&#62;</a>
           </h1>
         </div>
-        <div class="header__menu">
+        <div tabindex="0" class="header__menu">
           <div class="menu__lineOne"></div>
           <div class="menu__lineTwo"></div>
           <div class="menu__lineThree"></div>
@@ -235,7 +235,12 @@
               ></div>
               <div class="projects__projectsItems"></div>
             </div>
-            <div class="projects__pagination"></div>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="250"
+              data-aos-offset="-250"
+              class="projects__pagination"
+            ></div>
           </div>
         </div>
       </section>
@@ -244,10 +249,11 @@
     </main>
 
     <div
-      class="container__gear"
+      tabindex="0"
       data-aos="fade-up-left"
       data-aos-duration="750"
       data-aos-offset="0"
+      class="container__gear"
     >
       <i class="fa-solid fa-gear"></i>
     </div>

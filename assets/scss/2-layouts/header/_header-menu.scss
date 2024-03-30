@@ -1,13 +1,17 @@
 @use '../../1-base/variables';
-@use '../../3-modules/mixins';
 
 .header__menu {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   cursor: pointer;
-  @include mixins.xl2 {
-    display: none;
+  &:hover,
+  &:active {
+    .menu__lineOne,
+    .menu__lineTwo,
+    .menu__lineThree {
+      background-color: variables.$color-link;
+    }
   }
 
   .menu__lineOne,
@@ -35,24 +39,6 @@
   .menu__lineThree {
     &.lineThreeIsActivated {
       transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
-    }
-  }
-
-  &:active {
-    .menu__lineOne,
-    .menu__lineTwo,
-    .menu__lineThree {
-      background-color: variables.$color-link;
-    }
-  }
-
-  @include mixins.min-desktop {
-    &:hover {
-      .header__lineOne,
-      .header__lineTwo,
-      .header__lineThree {
-        background-color: variables.$color-link;
-      }
     }
   }
 }

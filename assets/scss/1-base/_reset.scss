@@ -1,5 +1,4 @@
 @use 'variables';
-@use '../3-modules/mixins';
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -100,9 +99,6 @@ video {
   vertical-align: baseline;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  @include mixins.sm {
-    letter-spacing: 0.125rem;
-  }
 }
 
 body {

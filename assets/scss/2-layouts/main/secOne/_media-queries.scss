@@ -1,0 +1,45 @@
+@use '../../../3-modules/mixins';
+
+.main__apresentation .container {
+  @include mixins.lg {
+    flex-direction: row;
+    gap: 3.25rem;
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.main__apresentation {
+  .apresentation__content {
+    @include mixins.lg {
+      gap: 1.25rem;
+    }
+
+    @include mixins.xl2 {
+      gap: 1.5rem;
+    }
+
+    a {
+      @include mixins.lg {
+        width: 60%;
+        padding: 1rem 0;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.apresentation__code {
+  .code__lines {
+    @include mixins.lg {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+
+      span {
+        color: gray;
+      }
+    }
+  }
+}

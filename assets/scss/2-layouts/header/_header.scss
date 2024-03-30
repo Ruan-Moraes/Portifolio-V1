@@ -1,10 +1,5 @@
 @use '../../1-base/variables';
-@use '../../3-modules/mixins';
 @use '../../3-modules/plugins';
-
-@use 'header-title';
-@use 'header-menu';
-@use 'header-links';
 
 .header {
   width: 100%;
@@ -16,14 +11,10 @@
   background-color: variables.$secondary-color;
 
   .container {
+    @extend %container;
     padding: 1.5rem 1.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @extend %container;
-    @include mixins.xl2 {
-      padding: 1.5rem 0;
-      justify-content: space-around;
-    }
   }
 }

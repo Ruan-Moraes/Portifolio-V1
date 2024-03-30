@@ -1,0 +1,13 @@
+@use '../../../3-modules/mixins';
+
+.error {
+  h3 {
+    @include mixins.md {
+      width: 75%;
+    }
+
+    @include mixins.lg {
+      width: 65%;
+    }
+  }
+}

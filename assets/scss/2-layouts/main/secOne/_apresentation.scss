@@ -1,6 +1,5 @@
 @use 'sass:color';
 @use '../../../1-base/variables';
-@use '../../../3-modules/mixins';
 
 .main__apresentation {
   .apresentation__content {
@@ -11,12 +10,6 @@
     align-items: center;
     gap: 1rem;
     text-align: center;
-    @include mixins.lg {
-      gap: 1.25rem;
-    }
-    @include mixins.xl2 {
-      gap: 1.5rem;
-    }
 
     h2 {
       font-size: 1.75rem;
@@ -34,10 +27,6 @@
       transition: background-color 0.4s;
       &:hover {
         background-color: color.adjust(variables.$color-link, $lightness: -15%);
-      }
-      @include mixins.lg {
-        width: 60%;
-        padding: 1rem 0;
       }
     }
   }

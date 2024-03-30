@@ -1,5 +1,4 @@
 @use '../../../1-base/variables';
-@use '../../../3-modules/mixins';
 
 .error {
   display: flex;
@@ -16,11 +15,5 @@
   h3 {
     font-size: 1.65rem;
     text-align: center;
-    @include mixins.md {
-      width: 75%;
-    }
-    @include mixins.lg {
-      width: 65%;
-    }
   }
 }

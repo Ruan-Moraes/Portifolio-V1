@@ -36,10 +36,4 @@
   &.BlurOnMainIsActivated {
     transform: translateX(0);
   }
-  @include mixins.lg {
-    display: block;
-  }
-  @include mixins.xl2 {
-    display: none;
-  }
 }

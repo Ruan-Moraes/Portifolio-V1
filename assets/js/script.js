@@ -10,6 +10,15 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Toda a lógica do menu
   const menu = document.querySelector('.header__menu');
 
+  menu.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      animationMenu();
+      activateMenu();
+      showBlurMenu();
+      changePageScrollingState();
+    }
+  });
+
   menu.addEventListener('click', () => {
     animationMenu();
     activateMenu();
@@ -63,6 +72,17 @@ window.addEventListener('DOMContentLoaded', () => {
       disableTextSelection();
       changePageScrollingState();
     });
+
+    element.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        CheckIfMenuIsActive();
+        animationGear();
+        showBlurOnBody();
+        showSettings();
+        disableTextSelection();
+        changePageScrollingState();
+      }
+    });
   });
 
   function CheckIfMenuIsActive() {
@@ -110,27 +130,32 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Lógica para fechar o menu e as configurações ao pressionar a tecla 'ESC'
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
-      const IsMenuActive = document
+      const isMenuActive = document
         .querySelector('.header__links')
         .classList.contains('menuIsActivated');
-      const IsSettingsActive = document
+      const isSettingsActive = document
         .querySelector('.settings__modal')
         .classList.contains('settingActivated');
 
-      if (IsMenuActive) {
+      if (!isMenuActive && !isSettingsActive) {
+        console.log('Nenhum menu ou configuração está ativo.');
+        animationGear();
+        showBlurOnBody();
+        showSettings();
+        disableTextSelection();
+        changePageScrollingState();
+
+        return;
+      }
+
+      if (isMenuActive) {
         animationMenu();
         activateMenu();
         showBlurMenu();
         changePageScrollingState();
       }
 
-      if (IsSettingsActive) {
-        animationGear();
-        showBlurOnBody();
-        showSettings();
-        disableTextSelection();
-        changePageScrollingState();
-      } else {
+      if (isSettingsActive) {
         animationGear();
         showBlurOnBody();
         showSettings();
@@ -155,11 +180,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
       // ! Código acima comentado para evitar requisições desnecessárias à API do GitHub
       // const ruanMoraesRepositoriesJson = repos;
-      // const repositoriesThatHavePages = ruanMoraesRepositoriesJson.filter(
+      // const ruanMoraesRepositories = ruanMoraesRepositoriesJson.filter(
       //   (repo) => repo.has_pages === true
       // );
 
-      insertProjectsIntoDOM(ruanMoraesRepositories);
+      insertProjectsDOM(ruanMoraesRepositories);
     } catch (error) {
       errorGitHubAPI();
 
@@ -169,21 +194,21 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  function insertProjectsIntoDOM(repositoriesThatHavePages) {
+  function insertProjectsDOM(ruanMoraesRepositories) {
     const totalProjectsPerPage = 6;
-    const totalPages = calculateTotalPages(
+    const totalPages = calculateTheTotalNumberOfPages(
       totalProjectsPerPage,
-      repositoriesThatHavePages
+      ruanMoraesRepositories
     );
 
-    insertProjectsCounter(repositoriesThatHavePages);
+    insertTheProjectsCounter(ruanMoraesRepositories);
     createPagesIndexes(totalPages);
     createPagination(totalPages);
 
     const projectsGroups = separateProjectsIntoGroups(
       totalProjectsPerPage,
       totalPages,
-      repositoriesThatHavePages
+      ruanMoraesRepositories
     );
 
     loadingProjects(false);
@@ -211,19 +236,19 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsContents.appendChild(loadingProjects);
   }
 
-  function calculateTotalPages(
+  function calculateTheTotalNumberOfPages(
     totalProjectsPerPage,
-    repositoriesThatHavePages
+    ruanMoraesRepositories
   ) {
-    return Math.ceil(repositoriesThatHavePages.length / totalProjectsPerPage);
+    return Math.ceil(ruanMoraesRepositories.length / totalProjectsPerPage);
   }
 
-  function insertProjectsCounter(repositoriesThatHavePages) {
+  function insertTheProjectsCounter(ruanMoraesRepositories) {
     const projectsCounter = document.querySelector('#projectAccountant');
     projectsCounter.setAttribute('data-aos', 'fade-down');
     projectsCounter.setAttribute('data-aos-duration', '250');
 
-    projectsCounter.innerHTML = `<p>Total de projetos: <strong>${repositoriesThatHavePages.length}</strong></p>`;
+    projectsCounter.innerHTML = `<p>Total de projetos: <strong>${ruanMoraesRepositories.length}</strong></p>`;
   }
 
   function createPagesIndexes(totalPages) {
@@ -246,10 +271,19 @@ window.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < totalPages; i++) {
       const page = document.createElement('div');
       page.classList.add('projects__paginationItem');
-      page.setAttribute('id', `projectsPage${i + 1}Button`);
-      page.setAttribute('data-aos', 'fade-right');
-      page.setAttribute('data-aos-duration', '250');
-      page.innerHTML = i + 1;
+      page.setAttribute('id', `pagination${i + 1}`);
+      page.setAttribute('tabindex', '0');
+      page.innerHTML = `
+      <p>
+        <span class="visually-hidden">Página ${i + 1}</span>
+        ${i + 1}
+      </p>`;
+
+      page.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          whichPageToDisplayAcessibility(page);
+        }
+      });
 
       projectsPagination.appendChild(page);
     }
@@ -258,12 +292,12 @@ window.addEventListener('DOMContentLoaded', () => {
   function separateProjectsIntoGroups(
     totalProjectsPerPage,
     totalPages,
-    repositoriesThatHavePages
+    ruanMoraesRepositories
   ) {
     const projectsGroups = [];
 
     for (let i = 0; i < totalPages; i++) {
-      const listOfProjects = repositoriesThatHavePages.splice(
+      const listOfProjects = ruanMoraesRepositories.splice(
         0,
         totalProjectsPerPage
       );
@@ -326,11 +360,28 @@ window.addEventListener('DOMContentLoaded', () => {
       '.projects__paginationItem'
     );
 
-    projectsPagination[0].classList.add('projects__paginationItemIsSelected');
+    projectsPagination[0].classList.add('projects__paginationIsSelected');
     projectsPages[0].classList.add('projects__pageIsDisplayed');
 
     for (let i = 1; i < projectsPages.length; i++) {
       projectsPages[i].classList.add('projects__pageIsNotDisplayed');
+    }
+  }
+
+  function whichPageToDisplayAcessibility(page) {
+    const projectsPages = document.querySelectorAll('.projects__page');
+    const projectsPagination = document.querySelectorAll(
+      '.projects__paginationItem'
+    );
+
+    for (let i = 0; i < projectsPagination.length; i++) {
+      projectsPagination[i].classList.remove('projects__paginationIsSelected');
+      projectsPages[i].classList.remove('projects__pageIsDisplayed');
+
+      if (projectsPagination[i] === page) {
+        projectsPagination[i].classList.add('projects__paginationIsSelected');
+        projectsPages[i].classList.add('projects__pageIsDisplayed');
+      }
     }
   }
 
@@ -344,14 +395,12 @@ window.addEventListener('DOMContentLoaded', () => {
       projectsPagination[i].addEventListener('click', () => {
         for (let i = 0; i < projectsPages.length; i++) {
           projectsPagination[i].classList.remove(
-            'projects__paginationItemIsSelected'
+            'projects__paginationIsSelected'
           );
           projectsPages[i].classList.remove('projects__pageIsDisplayed');
         }
 
-        projectsPagination[i].classList.add(
-          'projects__paginationItemIsSelected'
-        );
+        projectsPagination[i].classList.add('projects__paginationIsSelected');
         projectsPages[i].classList.add('projects__pageIsDisplayed');
 
         AOS.refresh();
