@@ -32,7 +32,7 @@
 
 .header__links {
   @include mixins.md {
-    margin-top: 5.05rem;
+    margin-top: 4.05rem;
   }
 
   @include mixins.lg {
@@ -97,7 +97,8 @@
     .header__contactsLinks {
       .fa-linkedin,
       .fa-envelope,
-      .fa-whatsapp {
+      .fa-whatsapp,
+      .fa-github {
         @include mixins.md {
           font-size: 1.75rem;
         }

@@ -142,14 +142,14 @@ table {
 }
 
 .visually-hidden {
-  position: absolute;
-  width: 1px;
   height: 1px;
-  padding: 0;
+  width: 1px;
+  position: absolute;
   margin: -1px;
+  padding: 0;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
   border: 0;
+  clip: rect(0, 0, 0, 0);
 }
 
 @media screen and (min-width: 40rem) {
@@ -245,24 +245,29 @@ table {
 @media screen and (min-width: 48rem) {
   .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 48rem;
-    padding: 0 0.6rem;
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
   }
 }
 @media screen and (min-width: 64rem) {
   .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 64rem;
-    padding: 0 0.45rem;
+    padding-right: 0.45rem;
+    padding-left: 0.45rem;
   }
 }
 @media screen and (min-width: 80rem) {
   .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 80rem;
-    padding: 0 0.3rem;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
   }
 }
 @media screen and (min-width: 96rem) {
   .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 96rem;
+    padding-top: 0;
+    padding-left: 0;
   }
 }
 
@@ -276,7 +281,7 @@ table {
   background-color: #25262a;
 }
 .header .container {
-  padding: 1.5rem 1.25rem;
+  padding: 1rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -296,13 +301,6 @@ table {
   gap: 0.5rem;
   cursor: pointer;
 }
-.header__menu:hover .menu__lineOne,
-.header__menu:hover .menu__lineTwo,
-.header__menu:hover .menu__lineThree, .header__menu:active .menu__lineOne,
-.header__menu:active .menu__lineTwo,
-.header__menu:active .menu__lineThree {
-  background-color: #f2542d;
-}
 .header__menu .menu__lineOne,
 .header__menu .menu__lineTwo,
 .header__menu .menu__lineThree {
@@ -321,6 +319,13 @@ table {
 .header__menu .menu__lineThree.lineThreeIsActivated {
   transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
 }
+.header__menu:hover .menu__lineOne,
+.header__menu:hover .menu__lineTwo,
+.header__menu:hover .menu__lineThree, .header__menu:active .menu__lineOne,
+.header__menu:active .menu__lineTwo,
+.header__menu:active .menu__lineThree {
+  background-color: #f2542d;
+}
 
 .header__links {
   height: 100vh;
@@ -329,7 +334,7 @@ table {
   top: 0;
   right: 0;
   z-index: 1001;
-  margin-top: 4.85rem;
+  margin-top: 3.85rem;
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
@@ -380,11 +385,6 @@ table {
   font-size: 2rem;
   letter-spacing: 0.125rem;
 }
-.header__links .header__contacts .header__contactTitle div {
-  width: 0.0625rem;
-  display: block;
-  background-color: white;
-}
 .header__links .header__contacts .header__contactsLinks {
   display: flex;
   gap: 1.25rem;
@@ -399,13 +399,15 @@ table {
 }
 .header__links .header__contacts .header__contactsLinks .fa-linkedin,
 .header__links .header__contacts .header__contactsLinks .fa-envelope,
-.header__links .header__contacts .header__contactsLinks .fa-whatsapp {
-  font-size: 1.5rem;
+.header__links .header__contacts .header__contactsLinks .fa-whatsapp,
+.header__links .header__contacts .header__contactsLinks .fa-github {
+  font-size: 1.75rem;
   transition: color 0.2s;
 }
 .header__links .header__contacts .header__contactsLinks .fa-linkedin:hover,
 .header__links .header__contacts .header__contactsLinks .fa-envelope:hover,
-.header__links .header__contacts .header__contactsLinks .fa-whatsapp:hover {
+.header__links .header__contacts .header__contactsLinks .fa-whatsapp:hover,
+.header__links .header__contacts .header__contactsLinks .fa-github:hover {
   animation: expand 0.5s linear infinite alternate;
 }
 .header__links .header__contacts .header__contactsLinks .fa-linkedin:hover {
@@ -416,6 +418,9 @@ table {
 }
 .header__links .header__contacts .header__contactsLinks .fa-whatsapp:hover {
   color: #25d366;
+}
+.header__links .header__contacts .header__contactsLinks .fa-github:hover {
+  color: #111;
 }
 
 @media screen and (min-width: 96rem) {
@@ -439,7 +444,7 @@ table {
 
 @media screen and (min-width: 48rem) {
   .header__links {
-    margin-top: 5.05rem;
+    margin-top: 4.05rem;
   }
 }
 @media screen and (min-width: 64rem) {
@@ -500,37 +505,49 @@ table {
 @media screen and (min-width: 48rem) {
   .header__links .header__contacts .header__contactsLinks .fa-linkedin,
   .header__links .header__contacts .header__contactsLinks .fa-envelope,
-  .header__links .header__contacts .header__contactsLinks .fa-whatsapp {
+  .header__links .header__contacts .header__contactsLinks .fa-whatsapp,
+  .header__links .header__contacts .header__contactsLinks .fa-github {
     font-size: 1.75rem;
   }
 }
 @media screen and (min-width: 96rem) {
   .header__links .header__contacts .header__contactsLinks .fa-linkedin,
   .header__links .header__contacts .header__contactsLinks .fa-envelope,
-  .header__links .header__contacts .header__contactsLinks .fa-whatsapp {
+  .header__links .header__contacts .header__contactsLinks .fa-whatsapp,
+  .header__links .header__contacts .header__contactsLinks .fa-github {
     font-size: 1.5rem;
   }
 }
 
 .main {
-  margin-top: 7rem;
-  display: flex;
-  flex-direction: column;
-}
-@media screen and (min-width: 64rem) {
-  .main {
-    margin-top: 10rem;
-  }
-}
-
-.main__apresentation .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2.25rem;
 }
 
+@media screen and (min-width: 64rem) {
+  .main {
+    margin-top: 0;
+  }
+}
+
+.main__apresentation .container {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.main__apresentation {
+  margin-top: 3.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
 .main__apresentation .apresentation__content {
   width: 100%;
   display: flex;
@@ -643,7 +660,24 @@ table {
     gap: 3.25rem;
   }
 }
+@media screen and (min-width: 96rem) {
+  .main__apresentation .container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
 
+@media screen and (min-width: 48rem) {
+  .main__apresentation {
+    min-height: 82.5vh;
+    margin-top: 4.05rem;
+  }
+}
+@media screen and (min-width: 96rem) {
+  .main__apresentation {
+    margin-top: 5.043125rem;
+  }
+}
 @media screen and (min-width: 64rem) {
   .main__apresentation .apresentation__content {
     gap: 1.25rem;
@@ -661,7 +695,7 @@ table {
   }
 }
 
-@media screen and (min-width: 64rem) {
+@media screen and (min-width: 31.25rem) {
   .apresentation__code .code__lines {
     display: flex;
     flex-direction: column;
@@ -674,7 +708,6 @@ table {
 
 .main__projects {
   width: 100%;
-  margin-top: 6rem;
   padding: 2rem 0;
   background-color: #1b1b1d;
 }
@@ -683,11 +716,6 @@ table {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-}
-
-.projects__sectionTitle {
-  font-size: 2.5rem;
-  text-align: center;
 }
 
 .projects__contents {
@@ -718,21 +746,13 @@ table {
   font-weight: 700;
   color: #f2542d;
 }
-.projects__contents .projects__pagesContainer .projects__page {
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page {
   display: none;
-  animation: fadeOut 0.5s;
-  animation-fill-mode: forwards;
-}
-.projects__contents .projects__pagesContainer .projects__page.projects__pageIsDisplayed {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
-  animation: fadeIn 0.5s;
+  animation: fadeOut 0.75s;
   animation-fill-mode: forwards;
 }
 @keyframes fadeIn {
   0% {
-    display: flex;
     opacity: 0;
   }
   100% {
@@ -744,15 +764,62 @@ table {
     opacity: 1;
   }
   100% {
-    display: none;
     opacity: 0;
   }
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 1.5rem;
+  animation: fadeIn 0.75s;
+  animation-fill-mode: forwards;
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 2px solid #1b1b1d;
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardHeader h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardBody .projects__cardDescription {
+  font-size: 0.85rem;
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardBody .projects__cardDescription p {
+  height: 100%;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardFooter {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardFooter a {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 0.75rem;
+  background-color: #1b1b1d;
+  transition: background-color 0.3s, color 0.3s;
+}
+.projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardFooter a:hover {
+  color: #1b1b1d;
+  background-color: #c6310c;
 }
 .projects__contents .projects__pagination {
   display: flex;
   justify-content: center;
 }
-.projects__contents .projects__pagination div {
+.projects__contents .projects__pagination a {
   padding: 0.35rem 0.65rem;
   font-weight: 700;
   color: #f2542d;
@@ -760,31 +827,31 @@ table {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-.projects__contents .projects__pagination div:hover {
+.projects__contents .projects__pagination a:hover {
   color: #fff;
   background-color: #c6310c;
 }
-.projects__contents .projects__pagination div.projects__paginationIsSelected {
+.projects__contents .projects__pagination a.projects__paginationIsSelected {
   color: #fff;
   background-color: #f2542d;
 }
-.projects__contents .projects__pagination div.projects__paginationIsSelected:hover {
+.projects__contents .projects__pagination a.projects__paginationIsSelected:hover {
   color: #fff;
   background-color: #f2542d;
 }
-.projects__contents .projects__pagination div:first-child {
+.projects__contents .projects__pagination a:first-child {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }
-.projects__contents .projects__pagination div:last-child {
+.projects__contents .projects__pagination a:last-child {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
 .projects__contents .projects__loadingProjects {
   margin: 0 0 6rem 0;
-  text-align: center;
   font-size: 1.25rem;
   font-weight: 700;
+  text-align: center;
   color: #f2542d;
 }
 
@@ -802,6 +869,54 @@ table {
 .error h3 {
   font-size: 1.65rem;
   text-align: center;
+}
+
+@media screen and (min-width: 48rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 64rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 20.0625rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card {
+    padding: 1rem;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card {
+    min-height: 0;
+    min-width: 0;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardHeader h3 {
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardBody .projects__cardDescription p {
+    text-align: left;
+  }
+}
+@media screen and (min-width: 20.0625rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardFooter a {
+    padding: 0.75rem 1.25rem;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardFooter a {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
 }
 
 @media screen and (min-width: 48rem) {
@@ -844,7 +959,7 @@ table {
   height: 100vh;
   width: 50%;
   z-index: 1000;
-  margin-top: 5.05rem;
+  margin-top: 4.05rem;
   border-right: 0.0625rem solid gray;
   transform: translateX(-100%);
   transition: transform 0.5s ease;
@@ -914,6 +1029,27 @@ table {
 
 .settings__footer {
   display: flex;
+}
+
+.separator {
+  width: 0.0625rem;
+  display: block;
+  background-color: white;
+}
+.separator--page {
+  height: 100%;
+  width: 0.0625rem;
+  display: block;
+  background-color: #fff;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  text-align: center;
+}
+.sectionTitle--90deg {
+  font-size: 2.5rem;
+  transform: rotate(270deg) translateY(-100%);
 }
 
 @media screen and (min-width: 64rem) {

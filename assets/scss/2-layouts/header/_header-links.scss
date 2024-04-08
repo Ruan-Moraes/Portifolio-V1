@@ -7,7 +7,7 @@
   top: 0;
   right: 0;
   z-index: 1001;
-  margin-top: 4.85rem;
+  margin-top: 3.85rem;
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
         font-size: 1.3rem;
         transition: color 0.2s;
         &:hover {
-          color: variables.$color-link;
+          color: variables.$quaternary-color;
         }
       }
     }
@@ -64,12 +64,6 @@
         font-size: 2rem;
         letter-spacing: 0.125rem;
       }
-
-      div {
-        width: 0.0625rem;
-        display: block;
-        background-color: white;
-      }
     }
 
     .header__contactsLinks {
@@ -87,8 +81,9 @@
 
       .fa-linkedin,
       .fa-envelope,
-      .fa-whatsapp {
-        font-size: 1.5rem;
+      .fa-whatsapp,
+      .fa-github {
+        font-size: 1.75rem;
         transition: color 0.2s;
         &:hover {
           animation: expand 0.5s linear infinite alternate;
@@ -100,11 +95,15 @@
       }
 
       .fa-envelope:hover {
-        color: variables.$color-link;
+        color: variables.$quaternary-color;
       }
 
       .fa-whatsapp:hover {
         color: #25d366;
+      }
+
+      .fa-github:hover {
+        color: #111;
       }
     }
   }

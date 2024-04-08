@@ -2,6 +2,11 @@
 @use '../../../1-base/variables';
 
 .main__apresentation {
+  margin-top: 3.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
   .apresentation__content {
     width: 100%;
     display: flex;
@@ -15,7 +20,7 @@
       font-size: 1.75rem;
 
       strong {
-        color: variables.$color-link;
+        color: variables.$quaternary-color;
       }
     }
 
@@ -23,10 +28,13 @@
       width: 80%;
       padding: 0.75rem 0;
       border-radius: 0.5rem;
-      background-color: variables.$color-link;
+      background-color: variables.$quaternary-color;
       transition: background-color 0.4s;
       &:hover {
-        background-color: color.adjust(variables.$color-link, $lightness: -15%);
+        background-color: color.adjust(
+          variables.$quaternary-color,
+          $lightness: -15%
+        );
       }
     }
   }

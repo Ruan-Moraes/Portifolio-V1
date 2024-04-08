@@ -28,41 +28,96 @@
 
       strong {
         font-weight: 700;
-        color: variables.$color-link;
+        color: variables.$quaternary-color;
       }
     }
 
-    #{$self}__page {
-      display: none;
-      animation: fadeOut 0.5s;
-      animation-fill-mode: forwards;
-      &#{$self}__pageIsDisplayed {
-        display: flex;
-        flex-flow: row wrap;
-        gap: 1rem;
-        animation: fadeIn 0.5s;
+    #{$self}__projectsItems {
+      #{$self}__page {
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+          }
+
+          100% {
+            opacity: 1;
+          }
+        }
+
+        @keyframes fadeOut {
+          0% {
+            opacity: 1;
+          }
+
+          100% {
+            opacity: 0;
+          }
+        }
+
+        display: none;
+        animation: fadeOut 0.75s;
         animation-fill-mode: forwards;
-      }
 
-      @keyframes fadeIn {
-        0% {
-          display: flex;
-          opacity: 0;
-        }
+        &#{$self}__pageIsDisplayed {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(6, 1fr);
+          gap: 1.5rem;
+          animation: fadeIn 0.75s;
+          animation-fill-mode: forwards;
 
-        100% {
-          opacity: 1;
-        }
-      }
+          #{$self}__card {
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-radius: 1rem;
+            border: 2px solid variables.$tertiary-color;
 
-      @keyframes fadeOut {
-        0% {
-          opacity: 1;
-        }
+            #{$self}__cardHeader {
+              h3 {
+                font-size: 1.25rem;
+                font-weight: 700;
+                text-align: center;
+              }
+            }
 
-        100% {
-          display: none;
-          opacity: 0;
+            #{$self}__cardBody {
+              #{$self}__cardDescription {
+                font-size: 0.85rem;
+
+                p {
+                  height: 100%;
+                  text-align: center;
+                  overflow-wrap: break-word;
+                }
+              }
+            }
+
+            #{$self}__cardFooter {
+              margin-top: auto;
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+
+              a {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: variables.$white;
+                border-radius: 0.75rem;
+                background-color: variables.$tertiary-color;
+                transition: background-color 0.3s, color 0.3s;
+                &:hover {
+                  color: variables.$tertiary-color;
+                  background-color: color.adjust(
+                    variables.$quaternary-color,
+                    $lightness: -15%
+                  );
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -72,24 +127,27 @@
     display: flex;
     justify-content: center;
 
-    div {
+    a {
       padding: 0.35rem 0.65rem;
       font-weight: 700;
-      color: variables.$color-link;
+      color: variables.$quaternary-color;
       background-color: variables.$tertiary-color;
       cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
       &:hover {
         color: variables.$white;
-        background-color: color.adjust(variables.$color-link, $lightness: -15%);
+        background-color: color.adjust(
+          variables.$quaternary-color,
+          $lightness: -15%
+        );
       }
       &#{$self}__paginationIsSelected {
         color: variables.$white;
-        background-color: variables.$color-link;
+        background-color: variables.$quaternary-color;
 
         &:hover {
           color: variables.$white;
-          background-color: variables.$color-link;
+          background-color: variables.$quaternary-color;
         }
       }
       &:first-child {
@@ -105,9 +163,9 @@
 
   .projects__loadingProjects {
     margin: 0 0 6rem 0;
-    text-align: center;
     font-size: 1.25rem;
     font-weight: 700;
-    color: variables.$color-link;
+    text-align: center;
+    color: variables.$quaternary-color;
   }
 }

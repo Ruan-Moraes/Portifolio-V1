@@ -5,11 +5,25 @@
     flex-direction: row;
     gap: 3.25rem;
   }
+
+  @include mixins.xl2 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 // --------------------------------------------------------------------------- //
 
 .main__apresentation {
+  @include mixins.md {
+    min-height: 82.5vh;
+    margin-top: 4.05rem;
+  }
+
+  @include mixins.xl2 {
+    margin-top: 5.043125rem;
+  }
+
   .apresentation__content {
     @include mixins.lg {
       gap: 1.25rem;
@@ -32,7 +46,7 @@
 
 .apresentation__code {
   .code__lines {
-    @include mixins.lg {
+    @include mixins.min-desktop {
       display: flex;
       flex-direction: column;
       text-align: right;

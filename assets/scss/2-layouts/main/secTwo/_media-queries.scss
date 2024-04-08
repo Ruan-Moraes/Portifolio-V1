@@ -1,4 +1,72 @@
+@use '../../../1-base/variables';
 @use '../../../3-modules/mixins';
+
+.projects__contents {
+  $self: '.projects';
+
+  .projects__pagesContainer {
+    #{$self}__projectsItems {
+      #{$self}__page {
+        &#{$self}__pageIsDisplayed {
+          @include mixins.md {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+          }
+
+          @include mixins.lg {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+          }
+
+          #{$self}__card {
+            @include mixins.mbs {
+              padding: 1rem;
+            }
+
+            @include mixins.md {
+              min-height: 0;
+              min-width: 0;
+            }
+
+            #{$self}__cardHeader {
+              h3 {
+                @include mixins.md {
+                  overflow: hidden;
+                  text-align: left;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+            }
+
+            #{$self}__cardBody {
+              #{$self}__cardDescription {
+                p {
+                  @include mixins.md {
+                    text-align: left;
+                  }
+                }
+              }
+            }
+
+            #{$self}__cardFooter {
+              a {
+                @include mixins.mbs {
+                  padding: 0.75rem 1.25rem;
+                }
+
+                @include mixins.md {
+                  padding: 0.5rem 1rem;
+                  font-size: 0.75rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 .error {
   h3 {

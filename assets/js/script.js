@@ -1,6 +1,6 @@
 'use strict';
 
-import { repos } from './repositoriesJson.js';
+// import { repos } from './repositoriesJson.js';
 
 // * Garante que o código só será executado após o carregamento do conteúdo da página
 window.addEventListener('DOMContentLoaded', () => {
@@ -178,12 +178,6 @@ window.addEventListener('DOMContentLoaded', () => {
           response.filter((repository) => repository.has_pages === true)
         );
 
-      // ! Código acima comentado para evitar requisições desnecessárias à API do GitHub
-      // const ruanMoraesRepositoriesJson = repos;
-      // const ruanMoraesRepositories = ruanMoraesRepositoriesJson.filter(
-      //   (repo) => repo.has_pages === true
-      // );
-
       insertProjectsDOM(ruanMoraesRepositories);
     } catch (error) {
       errorGitHubAPI();
@@ -193,6 +187,25 @@ window.addEventListener('DOMContentLoaded', () => {
       );
     }
   })();
+
+  function loadingProjects(isLoading = true) {
+    const projectsContents = document.querySelector('.projects__contents');
+
+    if (!isLoading) {
+      const loadingProjects = document.querySelector(
+        '.projects__loadingProjects'
+      );
+      loadingProjects.remove();
+
+      return;
+    }
+
+    const loadingProjects = document.createElement('div');
+    loadingProjects.classList.add('projects__loadingProjects');
+    loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
+
+    projectsContents.appendChild(loadingProjects);
+  }
 
   function insertProjectsDOM(ruanMoraesRepositories) {
     const totalProjectsPerPage = 6;
@@ -215,25 +228,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     insertProjects(projectsGroups);
     whichPageToDisplay();
-  }
-
-  function loadingProjects(isLoading = true) {
-    const projectsContents = document.querySelector('.projects__contents');
-
-    if (!isLoading) {
-      const loadingProjects = document.querySelector(
-        '.projects__loadingProjects'
-      );
-      loadingProjects.remove();
-
-      return;
-    }
-
-    const loadingProjects = document.createElement('div');
-    loadingProjects.classList.add('projects__loadingProjects');
-    loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
-
-    projectsContents.appendChild(loadingProjects);
   }
 
   function calculateTheTotalNumberOfPages(
@@ -269,10 +263,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const projectsPagination = document.querySelector('.projects__pagination');
 
     for (let i = 0; i < totalPages; i++) {
-      const page = document.createElement('div');
-      page.classList.add('projects__paginationItem');
+      const page = document.createElement('a');
+      page.setAttribute('role', 'button');
+      page.setAttribute('href', '#projects');
       page.setAttribute('id', `pagination${i + 1}`);
-      page.setAttribute('tabindex', '0');
+      page.classList.add('projects__paginationItem');
       page.innerHTML = `
       <p>
         <span class="visually-hidden">Página ${i + 1}</span>
@@ -318,12 +313,14 @@ window.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < projectsGroup.length; i++) {
         const project = projectsGroup[i];
 
+        const projectUrl = `https://ruan-moraes.github.io/${project.name}`;
         processingRepositoryData(project);
 
         const projectElement = document.createElement('div');
         projectElement.classList.add('projects__card');
         projectElement.setAttribute('data-aos', 'fade-in');
-        projectElement.setAttribute('data-aos-duration', '750');
+        projectElement.setAttribute('data-aos-delay', `${50 * i}`);
+        projectElement.setAttribute('data-aos-duration', `${350 + 150 * i}`);
         projectElement.innerHTML = `
         <div class="projects__cardHeader">
           <h3>${project.name}</h3>
@@ -333,6 +330,17 @@ window.addEventListener('DOMContentLoaded', () => {
             <p>${project.description}</p>
           </div>
         </div> 
+        <div class="projects__cardFooter">
+          <a href="${project.html_url}" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <div class="separator--page"></div>
+          <a href="${projectUrl}" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i>
+            <span>Deploy</span>
+          </a>
+        </div>
         `;
 
         projectsPage.appendChild(projectElement);
@@ -362,10 +370,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     projectsPagination[0].classList.add('projects__paginationIsSelected');
     projectsPages[0].classList.add('projects__pageIsDisplayed');
-
-    for (let i = 1; i < projectsPages.length; i++) {
-      projectsPages[i].classList.add('projects__pageIsNotDisplayed');
-    }
   }
 
   function whichPageToDisplayAcessibility(page) {

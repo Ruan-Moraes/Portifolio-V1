@@ -19,7 +19,7 @@
   <body>
     <div class="BlurOnBody"></div>
 
-    <header class="header" data-aos="fade-down" data-aos-duration="750">
+    <header data-aos="fade-down" data-aos-duration="750" class="header">
       <nav class="container">
         <div class="header__title">
           <h1>
@@ -38,24 +38,43 @@
             </div>
             <div class="header__navigationLinks">
               <a href="#">História</a>
-              <a href="#">Habilidades</a>
-              <a href="#">Projetos</a>
+              <a href="#">Certificados</a>
+              <a href="#projects">Projetos</a>
             </div>
           </div>
           <div class="header__contacts">
             <div class="header__contactTitle">
               <h2>Contatos</h2>
-              <div></div>
+              <div class="separator"></div>
             </div>
             <div class="header__contactsLinks">
-              <a href="#">
+              <a
+                href="https://www.linkedin.com/in/ruan-moraes-santos-barbosa/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i class="fa-brands fa-linkedin"></i>
               </a>
-              <a href="#">
+              <a
+                href="mailto:ruanmoraessantosbarbosa@gmail.com?subject=Oportunidade+de+Trabalho&body=Muito+Obrigado+pela+escolha!"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i class="fa-solid fa-envelope"></i>
               </a>
-              <a href="#">
+              <a
+                href="https://api.whatsapp.com/send/?phone=31993112958&text&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a
+                href="https://github.com/Ruan-Moraes"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fa-brands fa-github"></i>
               </a>
             </div>
           </div>
@@ -68,9 +87,9 @@
       <section class="main__apresentation">
         <div class="container">
           <div
-            class="apresentation__content"
             data-aos="fade-in"
             data-aos-duration="1000"
+            class="apresentation__content"
           >
             <h2>
               Olá, sou um futuro desenvolvedor
@@ -85,9 +104,9 @@
             <a href="#">Baixar CV</a>
           </div>
           <div
-            class="apresentation__code"
             data-aos="fade-in"
             data-aos-duration="1000"
+            class="apresentation__code"
           >
             <div class="code__header">
               <div></div>
@@ -175,14 +194,14 @@
                     >'MySQL'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
-                    >'Tailwind CSS'<span class="code__commas">,</span></span
+                    >'TailwindCSS'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
                     >'Bootstrap'<span class="code__commas">,</span></span
                   >
 
                   <span class="code__values--block"
-                    >'Sass && Scss'<span class="code__commas">,</span></span
+                    >'SASS && SCSS'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
                     >'Git && GitHub'<span class="code__commas">,</span></span
@@ -222,10 +241,16 @@
           </div>
         </div>
       </section>
-      <section class="main__projects">
+      <section id="projects" class="main__projects">
         <div class="container">
-          <div class="projects__sectionTitle">
-            <h2 data-aos="fade-right">Meus Projetos</h2>
+          <div class="sectionTitle">
+            <h2
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-150"
+            >
+              Meus Projetos
+            </h2>
           </div>
           <div class="projects__contents">
             <div class="projects__pagesContainer">
@@ -237,15 +262,143 @@
             </div>
             <div
               data-aos="fade-right"
-              data-aos-duration="250"
-              data-aos-offset="-250"
+              data-aos-duration="350"
+              data-aos-offset="-150"
               class="projects__pagination"
             ></div>
           </div>
         </div>
       </section>
 
-      <!-- <section></section> -->
+      <section class="main__services">
+        <div class="container">
+          <div class="sectionTitle">
+            <h2
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-150"
+            >
+              Meus Serviços
+            </h2>
+          </div>
+          <div class="services__content">
+            <div
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-250"
+              class="services__service"
+            >
+              <div class="service__icon">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <div class="service__title">
+                <h3>Desenvolvimento Web</h3>
+              </div>
+              <div class="service__description">
+                <p>
+                  Desenvolvimento de sites e sistemas web responsivos e
+                  otimizados.
+                </p>
+              </div>
+            </div>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-250"
+              class="services__service"
+            >
+              <div class="service__icon">
+                <i class="fa-solid fa-mobile"></i>
+              </div>
+              <div class="service__title">
+                <h3>Desenvolvimento Mobile</h3>
+              </div>
+              <div class="service__description">
+                <p>
+                  Desenvolvimento de aplicativos mobile para Android e IOS
+                  utilizando React Native.
+                </p>
+              </div>
+            </div>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-250"
+              class="services__service"
+            >
+              <div class="service__icon">
+                <i class="fa-solid fa-laptop"></i>
+              </div>
+              <div class="service__title">
+                <h3>Responsividade</h3>
+              </div>
+              <div class="service__description">
+                <p>
+                  Sites e sistemas web responsivos, adaptáveis a qualquer
+                  dispositivo.
+                </p>
+              </div>
+            </div>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-250"
+              class="services__service"
+            >
+              <div class="service__icon">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <div class="service__title">
+                <h3>Cibersegurança</h3>
+              </div>
+              <div class="service__description">
+                <p>
+                  Análise de vulnerabilidades, testes de invasão e proteção de
+                  dados.
+                </p>
+              </div>
+            </div>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-250"
+              class="services__service"
+            >
+              <div class="service__icon">
+                <i class="fa-solid fa-database"></i>
+              </div>
+              <div class="service__title">
+                <h3>Banco de Dados SQL e NoSQL</h3>
+              </div>
+              <div class="service__description">
+                <p>
+                  Desenvolvimento e manuntenção de Banco de Dados relacionais e
+                  não relacionais.
+                </p>
+              </div>
+            </div>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="350"
+              data-aos-offset="-250"
+              class="services__service"
+            >
+              <div class="service__icon">
+                <i class="fa-solid fa-tools"></i>
+              </div>
+              <div class="service__title">
+                <h3>Manutenção de Sistemas</h3>
+              </div>
+              <div class="service__description">
+                <p>
+                  Manutenção de sistemas web e mobile, correção de bugs e
+                  atualizações.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <div

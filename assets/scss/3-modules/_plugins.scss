@@ -7,17 +7,25 @@
 
   @include mixins.md {
     max-width: 48rem;
-    padding: 0 0.6rem;
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
   }
+
   @include mixins.lg {
     max-width: 64rem;
-    padding: 0 0.45rem;
+    padding-right: 0.45rem;
+    padding-left: 0.45rem;
   }
+
   @include mixins.xl {
     max-width: 80rem;
-    padding: 0 0.3rem;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
   }
+
   @include mixins.xl2 {
     max-width: 96rem;
+    padding-top: 0;
+    padding-left: 0;
   }
 }
