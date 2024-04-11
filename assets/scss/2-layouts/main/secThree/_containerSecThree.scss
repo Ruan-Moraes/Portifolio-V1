@@ -1,10 +1,9 @@
 @use '../../../1-base/variables';
 @use '../../../3-modules/plugins';
 
-.main__projects {
+.main__services {
   width: 100%;
   padding: 2rem 0;
-  background-color: variables.$tertiary-color;
 
   .container {
     @extend %container;

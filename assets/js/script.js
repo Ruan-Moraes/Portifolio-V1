@@ -265,8 +265,6 @@ window.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < totalPages; i++) {
       const page = document.createElement('a');
       page.setAttribute('role', 'button');
-      page.setAttribute('href', '#projects');
-      page.setAttribute('id', `pagination${i + 1}`);
       page.classList.add('projects__paginationItem');
       page.innerHTML = `
       <p>

@@ -1,0 +1,80 @@
+@use '../../../1-base/variables';
+
+.services__contents {
+  // display: grid;
+  // grid-template-columns: repeat(1, 1fr);
+  // grid-template-rows: repeat(6, 1fr);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .services__service {
+    $self: '.service';
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: 1rem;
+    border: 2px solid variables.$tertiary-color;
+
+    #{$self}__header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+
+      #{$self}__icon {
+        i {
+          font-size: 3rem;
+        }
+      }
+
+      #{$self}__title {
+        h3 {
+          font-size: 1.75rem;
+          text-align: center;
+        }
+      }
+    }
+
+    #{$self}__body {
+      #{$self}__description {
+        p {
+          // font-size: 0.9rem;
+          font-size: 1rem;
+          text-align: center;
+        }
+      }
+    }
+
+    #{$self}__footer {
+      // height: 2.5rem;
+      height: 3rem;
+      margin-top: auto;
+      #{$self}__action {
+        height: 100%;
+        a {
+          text-align: center;
+          height: inherit;
+          padding: 0 1.25rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.85rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: variables.$white;
+          border-radius: 0.75rem;
+          background-color: variables.$tertiary-color;
+          transition: background-color 0.3s, color 0.3s;
+          &:hover {
+            background-color: variables.$quaternary-color;
+          }
+        }
+      }
+    }
+  }
+}

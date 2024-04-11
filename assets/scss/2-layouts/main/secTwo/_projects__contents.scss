@@ -109,11 +109,7 @@
                 background-color: variables.$tertiary-color;
                 transition: background-color 0.3s, color 0.3s;
                 &:hover {
-                  color: variables.$tertiary-color;
-                  background-color: color.adjust(
-                    variables.$quaternary-color,
-                    $lightness: -15%
-                  );
+                  background-color: variables.$quaternary-color;
                 }
               }
             }

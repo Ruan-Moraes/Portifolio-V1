@@ -1,17 +1,14 @@
-@use '../../../1-base/variables';
 @use '../../../3-modules/plugins';
 
-.main__projects {
-  width: 100%;
-  padding: 2rem 0;
-  background-color: variables.$tertiary-color;
-
+.main__apresentation {
   .container {
     @extend %container;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }

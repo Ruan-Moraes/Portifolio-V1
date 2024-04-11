@@ -99,6 +99,10 @@ video {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
   padding: 0 0 200rem 0;
@@ -238,33 +242,33 @@ table {
   }
 }
 
-.main__projects .container, .main__apresentation .container, .header .container {
+.main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
   margin: 0 auto;
   padding: 0 0.75rem;
 }
 @media screen and (min-width: 48rem) {
-  .main__projects .container, .main__apresentation .container, .header .container {
+  .main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 48rem;
     padding-right: 0.6rem;
     padding-left: 0.6rem;
   }
 }
 @media screen and (min-width: 64rem) {
-  .main__projects .container, .main__apresentation .container, .header .container {
+  .main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 64rem;
     padding-right: 0.45rem;
     padding-left: 0.45rem;
   }
 }
 @media screen and (min-width: 80rem) {
-  .main__projects .container, .main__apresentation .container, .header .container {
+  .main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 80rem;
     padding-right: 0.3rem;
     padding-left: 0.3rem;
   }
 }
 @media screen and (min-width: 96rem) {
-  .main__projects .container, .main__apresentation .container, .header .container {
+  .main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 96rem;
     padding-top: 0;
     padding-left: 0;
@@ -714,6 +718,7 @@ table {
 .main__projects .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 2rem;
 }
@@ -812,8 +817,7 @@ table {
   transition: background-color 0.3s, color 0.3s;
 }
 .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardFooter a:hover {
-  color: #1b1b1d;
-  background-color: #c6310c;
+  background-color: #f2542d;
 }
 .projects__contents .projects__pagination {
   display: flex;
@@ -928,6 +932,77 @@ table {
   .error h3 {
     width: 65%;
   }
+}
+
+.main__services {
+  width: 100%;
+  padding: 2rem 0;
+}
+.main__services .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.services__contents {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.services__contents .services__service {
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  border: 2px solid #1b1b1d;
+}
+.services__contents .services__service .service__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+.services__contents .services__service .service__header .service__icon i {
+  font-size: 3rem;
+}
+.services__contents .services__service .service__header .service__title h3 {
+  font-size: 1.75rem;
+  text-align: center;
+}
+.services__contents .services__service .service__body .service__description p {
+  font-size: 1rem;
+  text-align: center;
+}
+.services__contents .services__service .service__footer {
+  height: 3rem;
+  margin-top: auto;
+}
+.services__contents .services__service .service__footer .service__action {
+  height: 100%;
+}
+.services__contents .services__service .service__footer .service__action a {
+  text-align: center;
+  height: inherit;
+  padding: 0 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 0.75rem;
+  background-color: #1b1b1d;
+  transition: background-color 0.3s, color 0.3s;
+}
+.services__contents .services__service .service__footer .service__action a:hover {
+  background-color: #f2542d;
 }
 
 .BlurOnBody,
