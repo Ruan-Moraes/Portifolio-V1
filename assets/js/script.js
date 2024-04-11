@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const bodyOverflow =
       getComputedStyle(bodyHTML).getPropertyValue('overflow-y');
 
-    bodyOverflow === 'auto'
+    bodyOverflow === 'auto' || bodyOverflow === 'visible'
       ? (bodyHTML.style.overflowY = 'hidden')
       : (bodyHTML.style.overflowY = 'auto');
   }
@@ -138,7 +138,6 @@ window.addEventListener('DOMContentLoaded', () => {
         .classList.contains('settingActivated');
 
       if (!isMenuActive && !isSettingsActive) {
-        console.log('Nenhum menu ou configuração está ativo.');
         animationGear();
         showBlurOnBody();
         showSettings();
@@ -264,6 +263,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < totalPages; i++) {
       const page = document.createElement('a');
+      page.setAttribute('href', '#myProjects');
       page.setAttribute('role', 'button');
       page.classList.add('projects__paginationItem');
       page.innerHTML = `

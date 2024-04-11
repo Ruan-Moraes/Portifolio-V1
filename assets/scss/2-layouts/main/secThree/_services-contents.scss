@@ -1,9 +1,6 @@
 @use '../../../1-base/variables';
 
 .services__contents {
-  // display: grid;
-  // grid-template-columns: repeat(1, 1fr);
-  // grid-template-rows: repeat(6, 1fr);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -17,7 +14,11 @@
     align-items: center;
     gap: 1.5rem;
     border-radius: 1rem;
-    border: 2px solid variables.$tertiary-color;
+    border: 0.125rem solid variables.$tertiary-color;
+    box-shadow: 0.25rem 0.25rem 2rem rgba(0, 0, 0, 0.4);
+    &:hover {
+      box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.8);
+    }
 
     #{$self}__header {
       display: flex;
@@ -69,7 +70,7 @@
           color: variables.$white;
           border-radius: 0.75rem;
           background-color: variables.$tertiary-color;
-          transition: background-color 0.3s, color 0.3s;
+          transition: background-color 0.3s;
           &:hover {
             background-color: variables.$quaternary-color;
           }

@@ -1,27 +1,29 @@
 @use '../../../1-base/variables';
+@use '../../../3-modules/mixins';
 
 .services__contents {
+  @include mixins.sm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
 
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-template-rows: repeat(2, 1fr);
-
+  @include mixins.lg {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
 
   .services__service {
     $self: '.service';
 
-
     #{$self}__header {
-
-
       #{$self}__icon {
         i {
-         
         }
       }
 
       #{$self}__title {
         h3 {
-      
         }
       }
     }
@@ -29,19 +31,14 @@
     #{$self}__body {
       #{$self}__description {
         p {
-         
         }
       }
     }
 
     #{$self}__footer {
-
       #{$self}__action {
-       
         a {
-
           &:hover {
-            
           }
         }
       }

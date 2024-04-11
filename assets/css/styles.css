@@ -104,8 +104,6 @@ html {
 }
 
 body {
-  overflow-x: hidden;
-  padding: 0 0 200rem 0;
   line-height: 1.2;
   background-color: #2d2e31;
 }
@@ -244,7 +242,8 @@ table {
 
 .main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
   margin: 0 auto;
-  padding: 0 0.75rem;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
 }
 @media screen and (min-width: 48rem) {
   .main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
@@ -270,8 +269,6 @@ table {
 @media screen and (min-width: 96rem) {
   .main__services .container, .main__projects .container, .main__apresentation .container, .header .container {
     max-width: 96rem;
-    padding-top: 0;
-    padding-left: 0;
   }
 }
 
@@ -453,7 +450,7 @@ table {
 }
 @media screen and (min-width: 64rem) {
   .header__links {
-    width: 50%;
+    width: 51.5%;
     box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
   }
 }
@@ -497,8 +494,7 @@ table {
 }
 @media screen and (min-width: 96rem) {
   .header__links .header__contacts .header__contactTitle {
-    display: flex;
-    gap: 1rem;
+    display: none;
   }
 }
 @media screen and (min-width: 96rem) {
@@ -671,7 +667,7 @@ table {
   }
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 64rem) {
   .main__apresentation {
     min-height: 82.5vh;
     margin-top: 4.05rem;
@@ -711,9 +707,16 @@ table {
 }
 
 .main__projects {
+  position: relative;
   width: 100%;
   padding: 2rem 0;
   background-color: #1b1b1d;
+}
+.main__projects #myProjects {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: -10rem;
 }
 .main__projects .container {
   display: flex;
@@ -786,7 +789,7 @@ table {
   flex-direction: column;
   gap: 1rem;
   border-radius: 1rem;
-  border: 2px solid #1b1b1d;
+  border: 0.125rem solid #1b1b1d;
 }
 .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardHeader h3 {
   font-size: 1.25rem;
@@ -875,7 +878,7 @@ table {
   text-align: center;
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 40rem) {
   .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -892,7 +895,7 @@ table {
     padding: 1rem;
   }
 }
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 40rem) {
   .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card {
     min-height: 0;
     min-width: 0;
@@ -916,7 +919,7 @@ table {
     padding: 0.75rem 1.25rem;
   }
 }
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 40rem) {
   .projects__contents .projects__pagesContainer .projects__projectsItems .projects__page.projects__pageIsDisplayed .projects__card .projects__cardFooter a {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
@@ -959,7 +962,11 @@ table {
   align-items: center;
   gap: 1.5rem;
   border-radius: 1rem;
-  border: 2px solid #1b1b1d;
+  border: 0.125rem solid #1b1b1d;
+  box-shadow: 0.25rem 0.25rem 2rem rgba(0, 0, 0, 0.4);
+}
+.services__contents .services__service:hover {
+  box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.8);
 }
 .services__contents .services__service .service__header {
   display: flex;
@@ -999,12 +1006,25 @@ table {
   color: #fff;
   border-radius: 0.75rem;
   background-color: #1b1b1d;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s;
 }
 .services__contents .services__service .service__footer .service__action a:hover {
   background-color: #f2542d;
 }
 
+@media screen and (min-width: 40rem) {
+  .services__contents {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 64rem) {
+  .services__contents {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
 .BlurOnBody,
 .BlurOnMain {
   position: fixed;

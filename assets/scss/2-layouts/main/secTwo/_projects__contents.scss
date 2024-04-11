@@ -72,7 +72,7 @@
             flex-direction: column;
             gap: 1rem;
             border-radius: 1rem;
-            border: 2px solid variables.$tertiary-color;
+            border: 0.125rem solid variables.$tertiary-color;
 
             #{$self}__cardHeader {
               h3 {

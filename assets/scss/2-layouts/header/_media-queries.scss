@@ -36,7 +36,7 @@
   }
 
   @include mixins.lg {
-    width: 50%;
+    width: 51.5%;
     box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
   }
 
@@ -83,8 +83,7 @@
 
     .header__contactTitle {
       @include mixins.xl2 {
-        display: flex;
-        gap: 1rem;
+        display: none;
       }
 
       h2 {
