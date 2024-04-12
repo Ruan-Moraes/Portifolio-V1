@@ -5,7 +5,7 @@
   height: 3rem;
   width: 3rem;
   position: fixed;
-  bottom: 2rem;
+  bottom: 2.5rem;
   right: 2rem;
   z-index: 1002;
   display: flex;
@@ -13,11 +13,11 @@
   align-items: center;
   font-size: 2rem;
   border-radius: 0.5rem;
-  background-color: #444444;
+  background-color: variables.$gear-background-color;
   cursor: pointer;
 
   i {
-    color: #949494;
+    color: variables.$gear-color;
     transition: 1s ease;
   }
 }
@@ -34,8 +34,8 @@
   justify-content: space-between;
   opacity: 0;
   border-radius: 1rem;
-  border: 0.125rem solid black;
-  background-color: #23272e;
+  border: 0.125rem solid variables.$black;
+  background-color: variables.$codeAndSettings-backgroundColor;
   pointer-events: none;
   transition: opacity 0.5s ease;
   transform: translate(-50%, -35%);
@@ -44,25 +44,25 @@
     opacity: 1;
     pointer-events: all;
   }
-}
 
-.settings__header {
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 0.0625rem solid black;
+  .settings__header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.0625rem solid variables.$black;
 
-  i {
-    font-size: 2rem;
-    cursor: pointer;
+    i {
+      font-size: 2rem;
+      cursor: pointer;
+    }
   }
-}
 
-.settings__body {
-  display: flex;
-}
+  .settings__body {
+    display: flex;
+  }
 
-.settings__footer {
-  display: flex;
+  .settings__footer {
+    display: flex;
+  }
 }

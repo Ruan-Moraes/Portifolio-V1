@@ -36,12 +36,13 @@
   }
 
   @include mixins.lg {
-    width: 51.5%;
-    box-shadow: inset 2rem 0 4rem rgba(0, 0, 0, 0.4);
+    width: 50%;
+    box-shadow: inset variables.$shadow-dark;
   }
 
   @include mixins.xl2 {
     height: auto;
+    width: 51.5%;
     position: static;
     margin: 0;
     padding: 0;

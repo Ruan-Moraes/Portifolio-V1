@@ -14,33 +14,9 @@
   }
 
   .services__service {
-    $self: '.service';
-
-    #{$self}__header {
-      #{$self}__icon {
-        i {
-        }
-      }
-
-      #{$self}__title {
-        h3 {
-        }
-      }
-    }
-
-    #{$self}__body {
-      #{$self}__description {
-        p {
-        }
-      }
-    }
-
-    #{$self}__footer {
-      #{$self}__action {
-        a {
-          &:hover {
-          }
-        }
+    @include mixins.min-desktop {
+      &:hover {
+        box-shadow: variables.$shadow-dark;
       }
     }
   }

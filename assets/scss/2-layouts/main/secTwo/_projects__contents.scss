@@ -10,25 +10,26 @@
   flex-direction: column;
   gap: 2rem;
   border-radius: 1rem;
-  background-color: #262626;
-  box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.1);
+  background-color: variables.$secondary-color;
+  box-shadow: variables.$shadow-medium;
 
   .projects__pagesContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
 
     #{$self}__projectAccountant {
       width: max-content;
       padding: 0.75rem;
+      align-self: flex-end;
       font-size: 0.75rem;
       border-radius: 1rem;
       background-color: variables.$tertiary-color;
-      align-self: flex-end;
 
       strong {
         font-weight: 700;
-        color: variables.$quaternary-color;
       }
     }
 
@@ -55,7 +56,7 @@
         }
 
         display: none;
-        animation: fadeOut 0.75s;
+        animation: fadeOut variables.$transition-medium;
         animation-fill-mode: forwards;
 
         &#{$self}__pageIsDisplayed {
@@ -63,7 +64,7 @@
           grid-template-columns: 1fr;
           grid-template-rows: repeat(6, 1fr);
           gap: 1.5rem;
-          animation: fadeIn 0.75s;
+          animation: fadeIn variables.$transition-medium;
           animation-fill-mode: forwards;
 
           #{$self}__card {
@@ -107,10 +108,8 @@
                 color: variables.$white;
                 border-radius: 0.75rem;
                 background-color: variables.$tertiary-color;
-                transition: background-color 0.3s, color 0.3s;
-                &:hover {
-                  background-color: variables.$quaternary-color;
-                }
+                transition: background-color variables.$transition-fast,
+                  color variables.$transition-fast;
               }
             }
           }
@@ -122,30 +121,14 @@
   .projects__pagination {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     a {
-      padding: 0.35rem 0.65rem;
+      padding: 0.35rem 0.7rem;
       font-weight: 700;
-      color: variables.$quaternary-color;
       background-color: variables.$tertiary-color;
       cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      &:hover {
-        color: variables.$white;
-        background-color: color.adjust(
-          variables.$quaternary-color,
-          $lightness: -15%
-        );
-      }
-      &#{$self}__paginationIsSelected {
-        color: variables.$white;
-        background-color: variables.$quaternary-color;
-
-        &:hover {
-          color: variables.$white;
-          background-color: variables.$quaternary-color;
-        }
-      }
+      transition: background-color variables.$transition-fast;
       &:first-child {
         border-top-left-radius: 1rem;
         border-bottom-left-radius: 1rem;
@@ -162,6 +145,5 @@
     font-size: 1.25rem;
     font-weight: 700;
     text-align: center;
-    color: variables.$quaternary-color;
   }
 }

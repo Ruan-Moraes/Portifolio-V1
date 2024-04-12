@@ -1,4 +1,7 @@
+@use 'sass:color';
+
 // Medias queries
+
 $xl2: 96rem;
 $xl: 80rem;
 $lg: 64rem;
@@ -10,9 +13,47 @@ $mbm: 23.4375rem;
 $mbs: 20.0625rem;
 
 // Colors
+
 $white: #fff;
 $black: #000;
+$gray: #ccc;
 $primary-color: #2d2e31;
 $secondary-color: #25262a;
 $tertiary-color: #1b1b1d;
-$quaternary-color: #f2542d;
+$quaternary-color: #ff5f5a;
+$quinary-color: #ffbe2e;
+$senary-color: #2aca44;
+$septenary-color: #2e60f2;
+$octonary-color: #662ef2;
+
+// Colors less light
+
+$primary-color-less-light: color.adjust($quaternary-color, $lightness: -15%);
+$quinary-color-less-light: color.adjust($quinary-color, $lightness: -15%);
+$senary-color-less-light: color.adjust($senary-color, $lightness: -15%);
+$septenary-color-less-light: color.adjust($septenary-color, $lightness: -15%);
+$octonary-color-less-light: color.adjust($octonary-color, $lightness: -15%);
+
+// Colors opacity
+
+$black-opacity: rgba($black, 0.6);
+
+// Outhors Colors
+
+$gear-color: #949494;
+$gear-background-color: #444444;
+$codeAndSettings-backgroundColor: #23272e;
+
+// Blur
+
+$blur: blur(0.5rem);
+
+// Shadows
+
+$shadow-medium: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
+$shadow-dark: 2rem 2rem 4rem rgba(0, 0, 0, 0.4);
+
+// Transitions
+
+$transition-fast: 0.3s;
+$transition-medium: 0.5s;

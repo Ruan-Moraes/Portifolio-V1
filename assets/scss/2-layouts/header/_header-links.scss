@@ -14,7 +14,7 @@
   align-items: center;
   background-color: variables.$secondary-color;
   transform: translateX(100%);
-  transition: 0.5s ease;
+  transition: transform variables.$transition-medium;
   &.menuIsActivated {
     transform: translateX(0);
   }
@@ -42,10 +42,8 @@
 
       a {
         font-size: 1.3rem;
-        transition: color 0.2s;
-        &:hover {
-          color: variables.$quaternary-color;
-        }
+        text-align: center;
+        transition: color variables.$transition-fast;
       }
     }
   }
@@ -79,14 +77,24 @@
         }
       }
 
+      @keyframes noExpand {
+        0% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
       .fa-linkedin,
       .fa-envelope,
       .fa-whatsapp,
       .fa-github {
         font-size: 1.75rem;
-        transition: color 0.2s;
+        transition: color variables.$transition-medium;
         &:hover {
-          animation: expand 0.5s linear infinite alternate;
+          animation: expand variables.$transition-medium linear infinite
+            alternate;
         }
       }
 
@@ -95,7 +103,7 @@
       }
 
       .fa-envelope:hover {
-        color: variables.$quaternary-color;
+        color: #ee3c36;
       }
 
       .fa-whatsapp:hover {
@@ -103,7 +111,7 @@
       }
 
       .fa-github:hover {
-        color: #111;
+        color: #101010;
       }
     }
   }

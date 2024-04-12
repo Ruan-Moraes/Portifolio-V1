@@ -1,3 +1,4 @@
+@use '../../1-base/variables';
 @use '../../3-modules/mixins';
 
 .BlurOnBody,
@@ -6,9 +7,8 @@
   top: 0;
   left: 0;
   display: none;
-  background: rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(0.5rem);
+  background: variables.$black-opacity;
+  backdrop-filter: variables.$blur;
 }
 
 .BlurOnBody {
@@ -18,7 +18,7 @@
   display: block;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s;
+  transition: opacity variables.$transition-fast;
   &.BlurOnBodyIsActivated {
     opacity: 1;
     pointer-events: all;
@@ -30,7 +30,7 @@
   width: 50%;
   z-index: 1000;
   margin-top: 4.05rem;
-  border-right: 0.0625rem solid gray;
+  border-right: 0.0625rem solid variables.$gray;
   transform: translateX(-100%);
   transition: transform 0.5s ease;
   &.BlurOnMainIsActivated {

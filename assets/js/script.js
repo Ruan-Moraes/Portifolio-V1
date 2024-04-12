@@ -177,7 +177,9 @@ window.addEventListener('DOMContentLoaded', () => {
           response.filter((repository) => repository.has_pages === true)
         );
 
-      insertProjectsDOM(ruanMoraesRepositories);
+      setTimeout(() => {
+        insertProjectsDOM(ruanMoraesRepositories);
+      }, 1.5 * 1000);
     } catch (error) {
       errorGitHubAPI();
 
@@ -201,6 +203,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const loadingProjects = document.createElement('div');
     loadingProjects.classList.add('projects__loadingProjects');
+    loadingProjects.classList.add('primary__color');
     loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
 
     projectsContents.appendChild(loadingProjects);
@@ -241,7 +244,7 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsCounter.setAttribute('data-aos', 'fade-down');
     projectsCounter.setAttribute('data-aos-duration', '250');
 
-    projectsCounter.innerHTML = `<p>Total de projetos: <strong>${ruanMoraesRepositories.length}</strong></p>`;
+    projectsCounter.innerHTML = `<p>Total de projetos: <strong class="primary__color">${ruanMoraesRepositories.length}</strong></p>`;
   }
 
   function createPagesIndexes(totalPages) {
@@ -266,6 +269,7 @@ window.addEventListener('DOMContentLoaded', () => {
       page.setAttribute('href', '#myProjects');
       page.setAttribute('role', 'button');
       page.classList.add('projects__paginationItem');
+      page.classList.add('primary__backgroundColor--lessLightHover');
       page.innerHTML = `
       <p>
         <span class="visually-hidden">Página ${i + 1}</span>
@@ -329,12 +333,12 @@ window.addEventListener('DOMContentLoaded', () => {
           </div>
         </div> 
         <div class="projects__cardFooter">
-          <a href="${project.html_url}" target="_blank" rel="noopener noreferrer">
+          <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" class="primary__backgroundColor--hover">
             <i class="fab fa-github"></i>
             <span>GitHub</span>
           </a>
           <div class="separator--page"></div>
-          <a href="${projectUrl}" target="_blank" rel="noopener noreferrer">
+          <a href="${projectUrl}" target="_blank" rel="noopener noreferrer" class="primary__backgroundColor--hover">
             <i class="fas fa-external-link-alt"></i>
             <span>Deploy</span>
           </a>
@@ -366,7 +370,7 @@ window.addEventListener('DOMContentLoaded', () => {
       '.projects__paginationItem'
     );
 
-    projectsPagination[0].classList.add('projects__paginationIsSelected');
+    projectsPagination[0].classList.add('primary__backgroundColor--selected');
     projectsPages[0].classList.add('projects__pageIsDisplayed');
   }
 
@@ -377,11 +381,15 @@ window.addEventListener('DOMContentLoaded', () => {
     );
 
     for (let i = 0; i < projectsPagination.length; i++) {
-      projectsPagination[i].classList.remove('projects__paginationIsSelected');
+      projectsPagination[i].classList.remove(
+        'primary__backgroundColor--selected'
+      );
       projectsPages[i].classList.remove('projects__pageIsDisplayed');
 
       if (projectsPagination[i] === page) {
-        projectsPagination[i].classList.add('projects__paginationIsSelected');
+        projectsPagination[i].classList.add(
+          'primary__backgroundColor--selected'
+        );
         projectsPages[i].classList.add('projects__pageIsDisplayed');
       }
     }
@@ -397,12 +405,14 @@ window.addEventListener('DOMContentLoaded', () => {
       projectsPagination[i].addEventListener('click', () => {
         for (let i = 0; i < projectsPages.length; i++) {
           projectsPagination[i].classList.remove(
-            'projects__paginationIsSelected'
+            'primary__backgroundColor--selected'
           );
           projectsPages[i].classList.remove('projects__pageIsDisplayed');
         }
 
-        projectsPagination[i].classList.add('projects__paginationIsSelected');
+        projectsPagination[i].classList.add(
+          'primary__backgroundColor--selected'
+        );
         projectsPages[i].classList.add('projects__pageIsDisplayed');
 
         AOS.refresh();
@@ -415,7 +425,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const errorMessage =
       '<h3>Ocorreu um problema ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
-    const errorIcon = '<i class="fas fa-exclamation-triangle"></i>';
+    const errorIcon =
+      '<i class="fas fa-exclamation-triangle primary__color"></i>';
 
     projectsContents.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
   }

@@ -3,7 +3,7 @@
 .separator {
   width: 0.0625rem;
   display: block;
-  background-color: white;
+  background-color: variables.$white;
 
   &--page {
     height: 100%;

@@ -3,6 +3,8 @@
 .header__menu {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   cursor: pointer;
 
@@ -13,7 +15,9 @@
     width: 2rem;
     border-radius: 0.5rem;
     background-color: variables.$white;
-    transition: 0.25s ease;
+    transition: transform variables.$transition-fast,
+      opacity variables.$transition-fast,
+      background-color variables.$transition-fast;
   }
 
   .menu__lineOne {
@@ -31,15 +35,6 @@
   .menu__lineThree {
     &.lineThreeIsActivated {
       transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
-    }
-  }
-
-  &:hover,
-  &:active {
-    .menu__lineOne,
-    .menu__lineTwo,
-    .menu__lineThree {
-      background-color: variables.$quaternary-color;
     }
   }
 }

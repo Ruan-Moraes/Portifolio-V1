@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   z-index: 1001;
-  border-bottom: 0.0625rem solid gray;
+  border-bottom: 0.0625rem solid variables.$gray;
   background-color: variables.$secondary-color;
 
   .container {

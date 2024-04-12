@@ -15,10 +15,7 @@
     gap: 1.5rem;
     border-radius: 1rem;
     border: 0.125rem solid variables.$tertiary-color;
-    box-shadow: 0.25rem 0.25rem 2rem rgba(0, 0, 0, 0.4);
-    &:hover {
-      box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.8);
-    }
+    box-shadow: variables.$shadow-medium;
 
     #{$self}__header {
       display: flex;
@@ -44,7 +41,6 @@
     #{$self}__body {
       #{$self}__description {
         p {
-          // font-size: 0.9rem;
           font-size: 1rem;
           text-align: center;
         }
@@ -52,13 +48,12 @@
     }
 
     #{$self}__footer {
-      // height: 2.5rem;
       height: 3rem;
       margin-top: auto;
       #{$self}__action {
         height: 100%;
+
         a {
-          text-align: center;
           height: inherit;
           padding: 0 1.25rem;
           display: flex;
@@ -66,14 +61,11 @@
           align-items: center;
           font-size: 0.85rem;
           font-weight: 700;
+          text-align: center;
           text-transform: uppercase;
-          color: variables.$white;
-          border-radius: 0.75rem;
+          border-radius: 1rem;
           background-color: variables.$tertiary-color;
-          transition: background-color 0.3s;
-          &:hover {
-            background-color: variables.$quaternary-color;
-          }
+          transition: background-color variables.$transition-fast;
         }
       }
     }
