@@ -31,7 +31,7 @@
   </head>
   <body>
     <div class="BlurOnBody"></div>
-    <header data-aos="fade-down" data-aos-duration="750" class="header">
+    <header data-aos="fade-down" data-aos-duration="500" class="header">
       <nav class="container">
         <div class="header__title">
           <h1>
@@ -104,7 +104,7 @@
         <div class="container">
           <div
             data-aos="fade-in"
-            data-aos-duration="1500"
+            data-aos-duration="500"
             class="apresentation__content"
           >
             <h2>
@@ -130,7 +130,7 @@
           </div>
           <div
             data-aos="fade-in"
-            data-aos-duration="1500"
+            data-aos-duration="500"
             class="apresentation__code"
           >
             <div class="code__header">
@@ -244,6 +244,10 @@
                   <span class="visually-hidden">Linha</span>
                   26
                 </span>
+                <span>
+                  <span class="visually-hidden">Linha</span>
+                  27
+                </span>
               </div>
               <div class="code__content">
                 <div>
@@ -289,6 +293,9 @@
                   >
                   <span class="code__values--block"
                     >'SpringBot'<span class="code__commas">,</span></span
+                  >
+                  <span class="code__values--block"
+                    >'Flutter'<span class="code__commas">,</span></span
                   >
                   <span class="code__values--block"
                     >'PostgreSQL'<span class="code__commas">,</span></span
@@ -350,7 +357,7 @@
           <div class="sectionTitle">
             <h2
               data-aos="fade-right"
-              data-aos-duration="350"
+              data-aos-duration="500"
               data-aos-offset="-150"
             >
               Meus Projetos
@@ -366,7 +373,7 @@
             </div>
             <div
               data-aos="fade-right"
-              data-aos-duration="350"
+              data-aos-duration="500"
               data-aos-offset="-150"
               class="projects__pagination"
             ></div>
@@ -378,7 +385,7 @@
           <div class="sectionTitle">
             <h2
               data-aos="fade-in"
-              data-aos-duration="1500"
+              data-aos-duration="500"
               data-aos-offset="-100"
             >
               Meus Serviços
@@ -387,7 +394,7 @@
           <div class="services__contents">
             <div
               data-aos="fade-in"
-              data-aos-duration="1500"
+              data-aos-duration="500"
               data-aos-offset="-100"
               class="services__service"
             >
@@ -422,7 +429,7 @@
             </div>
             <div
               data-aos="fade-in"
-              data-aos-duration="1500"
+              data-aos-duration="500"
               data-aos-offset="-100"
               class="services__service"
             >
@@ -457,7 +464,7 @@
             </div>
             <div
               data-aos="fade-in"
-              data-aos-duration="1500"
+              data-aos-duration="500"
               data-aos-offset="-100"
               class="services__service"
             >
@@ -492,7 +499,7 @@
             </div>
             <div
               data-aos="fade-in"
-              data-aos-duration="1500"
+              data-aos-duration="500"
               data-aos-offset="-100"
               class="services__service"
             >
@@ -527,7 +534,7 @@
             </div>
             <div
               data-aos="fade-in"
-              data-aos-duration="1500"
+              data-aos-duration="500"
               data-aos-offset="-100"
               class="services__service"
             >
@@ -562,7 +569,7 @@
             </div>
             <div
               data-aos="fade-in"
-              data-aos-duration="1500"
+              data-aos-duration="500"
               data-aos-offset="-100"
               class="services__service"
             >
@@ -606,17 +613,9 @@
             <h2>Links de Navegação</h2>
           </div>
           <div class="footer__links">
-            <a href="#" class="primary__color--hover primary__color--active"
-              >História</a
-            >
-            <a href="#" class="primary__color--hover primary__color--active"
-              >Certificados</a
-            >
-            <a
-              href="#myProjects"
-              class="primary__color--hover primary__color--active"
-              >Projetos</a
-            >
+            <a href="#" class="primary__color--hover">História</a>
+            <a href="#" class="primary__color--hover">Certificados</a>
+            <a href="#myProjects" class="primary__color--hover">Projetos</a>
           </div>
         </div>
         <div class="footer__contactsDetails">
@@ -628,7 +627,7 @@
             <p>
               <a
                 href="mailto:ruanmoraessantosbarbosa@gmail.com?subject=Oportunidade+de+Trabalho&body=Muito+Obrigado+pela+escolha!"
-                class="primary__color--hover primary__color--active"
+                class="primary__color--hover"
                 >ruanmoraessantosbarbosa@gmail.com</a
               >
             </p>
@@ -638,7 +637,7 @@
             <p>
               <a
                 href="https://api.whatsapp.com/send/?phone=31993112958&text&type=phone_number&app_absent=0"
-                class="primary__color--hover primary__color--active"
+                class="primary__color--hover"
                 >(55) 31 99311-2958</a
               >
             </p>
@@ -661,7 +660,7 @@
     <div
       tabindex="0"
       data-aos="fade-up-left"
-      data-aos-duration="750"
+      data-aos-duration="500"
       data-aos-offset="0"
       class="container__gear"
     >
@@ -673,7 +672,43 @@
         <h2>Configurações</h2>
         <i class="fa-solid fa-xmark"></i>
       </div>
-      <div class="settings__body"></div>
+      <div class="settings__body">
+        <div>
+          <h3>Alterar Tema</h3>
+          <select name="theme" id="theme">
+            <option value="default">Tema do Sistema</option>
+            <option value="dark">Tema Escuro</option>
+            <option value="light">Tema Claro</option>
+          </select>
+        </div>
+        <div>
+          <h3>Alterar Cores</h3>
+          <select name="colors" id="colors">
+            <option value="#" class="colors__item">
+              <div>Cor: #FF5F5A</div>
+            </option>
+            <option value="#" class="colors__item">
+              <div>Cor: #FFBE2E</div>
+            </option>
+            <option value="#" class="colors__item">
+              <div>Cor: #2ACA44</div>
+            </option>
+            <option value="#" class="colors__item">
+              <div>Cor: #2E60F2</div>
+            </option>
+            <option value="#" class="colors__item">
+              <div>Cor: #662EF2</div>
+            </option>
+          </select>
+        </div>
+        <div>
+          <h3>Idioma - Andamento</h3>
+          <select name="language" id="language">
+            <option value="pt-br">Português</option>
+            <option value="en">Inglês</option>
+          </select>
+        </div>
+      </div>
       <div class="settings__footer">
         <div>
           <button>Cancelar</button>

@@ -81,7 +81,7 @@ time,
 mark,
 audio,
 video {
-  @include mixins.sm {
+  @include mixins.min-desktop {
     letter-spacing: 0.125rem;
   }
 }

@@ -1,11 +1,10 @@
 @use '../../1-base/variables';
-@use '../../3-modules/mixins';
 
 .container__gear {
   height: 3rem;
   width: 3rem;
   position: fixed;
-  bottom: 2.5rem;
+  bottom: 2rem;
   right: 2rem;
   z-index: 1002;
   display: flex;

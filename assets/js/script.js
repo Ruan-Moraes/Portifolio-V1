@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
   currentYearDOM.innerHTML = currentYear;
 
   // * Toda a lógica do menu
+
   const menu = document.querySelector('.header__menu');
 
   menu.addEventListener('keydown', (event) => {
@@ -62,6 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // * Toda a lógica das configurações
+
   const gear = document.querySelector('.container__gear');
   const blurOnBody = document.querySelector('.BlurOnBody');
   const exitSettingsButton = document.querySelector(
@@ -132,7 +134,68 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // * Lógica para mudar as cores do site
+
+  const colors = {
+    primary__color: {
+      base: '.primary__color',
+      hover: '.primary__color--hover',
+    },
+    secondary__color: {
+      base: '.secondary__color',
+      hover: '.secondary__color--hover',
+    },
+    tertiary__color: {
+      base: '.tertiary__color',
+      hover: '.tertiary__color--hover',
+    },
+    quaternary__color: {
+      base: '.quaternary__color',
+      hover: '.quaternary__color--hover',
+    },
+    quinary__color: {
+      base: '.quinary__color',
+      hover: '.quinary__color--hover',
+    },
+  };
+
+  const colorsBackground = {
+    primary__backgroundColor: {
+      base: '.primary__backgroundColor',
+      lessLightHover: '.primary__backgroundColor--lessLightHover',
+      selected: '.primary__backgroundColor--selected',
+      menuHover: '.primary__backgroundColor--menuHover',
+    },
+    secondary__backgroundColor: {
+      base: '.secondary__backgroundColor',
+      lessLightHover: '.secondary__backgroundColor--lessLightHover',
+      selected: '.secondary__backgroundColor--selected',
+      menuHover: '.secondary__backgroundColor--menuHover',
+    },
+    tertiary__backgroundColor: {
+      base: '.tertiary__backgroundColor',
+      lessLightHover: '.tertiary__backgroundColor--lessLightHover',
+      selected: '.tertiary__backgroundColor--selected',
+      menuHover: '.tertiary__backgroundColor--menuHover',
+    },
+    quaternary__backgroundColor: {
+      base: '.quaternary__backgroundColor',
+      lessLightHover: '.quaternary__backgroundColor--lessLightHover',
+      selected: '.quaternary__backgroundColor--selected',
+      menuHover: '.quaternary__backgroundColor--menuHover',
+    },
+    quinary__backgroundColor: {
+      base: '.quinary__backgroundColor',
+      lessLightHover: '.quinary__backgroundColor--lessLightHover',
+      selected: '.quinary__backgroundColor--selected',
+      menuHover: '.quinary__backgroundColor--menuHover',
+    },
+  };
+
+  console.log(colors.primary__color.base, colors.primary__color.hover);
+
   // * Lógica para fechar o menu e as configurações ao pressionar a tecla 'ESC'
+
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
       const isMenuActive = document
@@ -170,6 +233,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // * Buscar meus projetos no GitHub atráves da API do GitHub e inserir no DOM
+
   (async function fetchGitHubAPI() {
     try {
       loadingProjects();
@@ -184,7 +248,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         insertProjectsDOM(ruanMoraesRepositories);
-      }, 1.5 * 1000);
+      }, 1 * 1000);
     } catch (error) {
       errorGitHubAPI();
 
@@ -436,13 +500,3 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsContents.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
   }
 });
-
-// setTimeout(() => {
-//   const stylesColor = document.querySelectorAll('.primary__color');
-//   const stylesBackgroundColor = document.querySelectorAll(
-//     '.primary__backgroundColor'
-//   );
-
-//   console.log(stylesColor);
-//   console.log(stylesBackgroundColor);
-// }, 8000);

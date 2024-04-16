@@ -5,6 +5,8 @@
    License: none (public domain)
 */
 
+$scrollbar-color: #3c3c3c;
+
 html,
 body,
 div,
@@ -115,11 +117,11 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background-color: gray;
+  background-color: variables.$gray;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(60, 60, 60);
+  background-color: $scrollbar-color;
 }
 
 ol,

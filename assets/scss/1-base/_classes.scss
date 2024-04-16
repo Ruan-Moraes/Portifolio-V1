@@ -8,12 +8,6 @@
       color: variables.$quaternary-color !important;
     }
   }
-
-  &--active {
-    &:active {
-      color: variables.$quaternary-color !important;
-    }
-  }
 }
 
 .secondary__color {
@@ -21,12 +15,6 @@
 
   &--hover {
     &:hover {
-      color: variables.$quinary-color !important;
-    }
-  }
-
-  &--active {
-    &:active {
       color: variables.$quinary-color !important;
     }
   }
@@ -40,12 +28,6 @@
       color: variables.$senary-color !important;
     }
   }
-
-  &--active {
-    &:active {
-      color: variables.$senary-color !important;
-    }
-  }
 }
 
 .quaternary__color {
@@ -56,12 +38,6 @@
       color: variables.$septenary-color !important;
     }
   }
-
-  &--active {
-    &:active {
-      color: variables.$septenary-color !important;
-    }
-  }
 }
 
 .quinary__color {
@@ -69,12 +45,6 @@
 
   &--hover {
     &:hover {
-      color: variables.$octonary-color !important;
-    }
-  }
-
-  &--active {
-    &:active {
       color: variables.$octonary-color !important;
     }
   }

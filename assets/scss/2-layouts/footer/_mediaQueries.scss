@@ -1,6 +1,5 @@
 @use '../../1-base/variables';
 @use '../../3-modules/mixins';
-@use '../../3-modules/plugins';
 
 .footer {
   .container {
@@ -22,6 +21,8 @@
   }
 }
 
+// --------------------------------------------------------------------------- //
+
 .footer__navigation {
   @include mixins.md {
     height: 100%;
@@ -39,6 +40,8 @@
     background-color: transparent;
   }
 }
+
+// --------------------------------------------------------------------------- //
 
 .footer__contactsDetails {
   @include mixins.md {
@@ -58,6 +61,8 @@
     background-color: transparent;
   }
 }
+
+// --------------------------------------------------------------------------- //
 
 .footer__copy {
   @include mixins.md {
