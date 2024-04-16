@@ -1,0 +1,79 @@
+@use '../../1-base/variables';
+@use '../../3-modules/mixins';
+@use '../../3-modules/plugins';
+
+.footer {
+  .container {
+    @include mixins.md {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      grid-template-areas:
+        'navigation contacts'
+        'copy copy';
+      gap: 1.5rem;
+    }
+
+    @include mixins.xl {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-areas: 'navigation copy contacts';
+    }
+  }
+}
+
+.footer__navigation {
+  @include mixins.md {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    grid-area: navigation;
+    justify-content: start;
+    border-radius: 1rem;
+    background-color: variables.$secondary-color;
+  }
+
+  @include mixins.xl {
+    justify-content: center;
+    border-radius: 0;
+    background-color: transparent;
+  }
+}
+
+.footer__contactsDetails {
+  @include mixins.md {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    grid-area: contacts;
+    justify-content: start;
+    border-radius: 1rem;
+    border: none;
+    background-color: variables.$secondary-color;
+  }
+
+  @include mixins.xl {
+    justify-content: center;
+    border-radius: 0;
+    background-color: transparent;
+  }
+}
+
+.footer__copy {
+  @include mixins.md {
+    padding-top: 1rem;
+    grid-area: copy;
+
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+
+  @include mixins.xl {
+    height: 100%;
+    padding: 1rem;
+    gap: 0.5rem;
+    border-right: 0.125rem solid variables.$primary-color;
+    border-left: 0.125rem solid variables.$primary-color;
+  }
+}

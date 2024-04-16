@@ -2,81 +2,81 @@
 
 .primary__color {
   color: variables.$quaternary-color !important;
-}
 
-.primary__color--hover {
-  &:hover {
-    color: variables.$quaternary-color !important;
+  &--hover {
+    &:hover {
+      color: variables.$quaternary-color !important;
+    }
   }
-}
 
-.primary__color--active {
-  &:active {
-    color: variables.$quaternary-color !important;
+  &--active {
+    &:active {
+      color: variables.$quaternary-color !important;
+    }
   }
 }
 
 .secondary__color {
   color: variables.$quinary-color !important;
-}
 
-.secondary__color--hover {
-  &:hover {
-    color: variables.$quinary-color !important;
+  &--hover {
+    &:hover {
+      color: variables.$quinary-color !important;
+    }
   }
-}
 
-.secondary__color--active {
-  &:active {
-    color: variables.$quinary-color !important;
+  &--active {
+    &:active {
+      color: variables.$quinary-color !important;
+    }
   }
 }
 
 .tertiary__color {
   color: variables.$senary-color !important;
-}
 
-.tertiary__color--hover {
-  &:hover {
-    color: variables.$senary-color !important;
+  &--hover {
+    &:hover {
+      color: variables.$senary-color !important;
+    }
   }
-}
 
-.tertiary__color--active {
-  &:active {
-    color: variables.$senary-color !important;
+  &--active {
+    &:active {
+      color: variables.$senary-color !important;
+    }
   }
 }
 
 .quaternary__color {
   color: variables.$septenary-color !important;
-}
 
-.quaternary__color--hover {
-  &:hover {
-    color: variables.$septenary-color !important;
+  &--hover {
+    &:hover {
+      color: variables.$septenary-color !important;
+    }
   }
-}
 
-.quaternary__color--active {
-  &:active {
-    color: variables.$septenary-color !important;
+  &--active {
+    &:active {
+      color: variables.$septenary-color !important;
+    }
   }
 }
 
 .quinary__color {
   color: variables.$octonary-color !important;
-}
 
-.quinary__color--hover {
-  &:hover {
-    color: variables.$octonary-color !important;
+  &--hover {
+    &:hover {
+      color: variables.$octonary-color !important;
+    }
   }
-}
 
-.quinary__color--active {
-  &:active {
-    color: variables.$octonary-color !important;
+  &--active {
+    &:active {
+      color: variables.$octonary-color !important;
+    }
   }
 }
 

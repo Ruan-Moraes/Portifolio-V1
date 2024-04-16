@@ -1,0 +1,29 @@
+@use '../../1-base/variables';
+
+.footer__navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+
+  .footer__title {
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .footer__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    a {
+      transition: color variables.$transition-fast;
+    }
+  }
+}

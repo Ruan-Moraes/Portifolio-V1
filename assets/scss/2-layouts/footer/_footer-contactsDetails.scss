@@ -1,0 +1,39 @@
+@use '../../1-base/variables';
+
+.footer__contactsDetails {
+  width: 100%;
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  border-top: 0.125rem solid variables.$primary-color;
+  border-bottom: 0.125rem solid variables.$primary-color;
+
+  .footer__title {
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    a {
+      font-size: 0.8rem;
+      transition: color variables.$transition-fast;
+    }
+  }
+}

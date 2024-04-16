@@ -1,0 +1,16 @@
+@use '../../1-base/variables';
+@use '../../3-modules/plugins';
+
+.footer {
+  padding: 2rem 0;
+  background-color: variables.$tertiary-color;
+
+  .container {
+    @extend %container;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+  }
+}

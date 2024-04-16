@@ -1,11 +1,16 @@
 'use strict';
 
-// import { repos } from './repositoriesJson.js';
-
 // * Garante que o código só será executado após o carregamento do conteúdo da página
 window.addEventListener('DOMContentLoaded', () => {
   // * Inicializar a biblioteca AOS
   AOS.init();
+
+  // * Ano atual no rodapé
+
+  const currentYear = new Date().getFullYear();
+
+  const currentYearDOM = document.querySelector('#currentYear');
+  currentYearDOM.innerHTML = currentYear;
 
   // * Toda a lógica do menu
   const menu = document.querySelector('.header__menu');
@@ -431,3 +436,13 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsContents.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
   }
 });
+
+// setTimeout(() => {
+//   const stylesColor = document.querySelectorAll('.primary__color');
+//   const stylesBackgroundColor = document.querySelectorAll(
+//     '.primary__backgroundColor'
+//   );
+
+//   console.log(stylesColor);
+//   console.log(stylesBackgroundColor);
+// }, 8000);
