@@ -127,12 +127,95 @@ window.addEventListener('DOMContentLoaded', () => {
     [
       document.querySelector('.header'),
       document.querySelector('.main'),
+      document.querySelector('.footer'),
     ].forEach((element) => {
       element.style.userSelect === 'none'
         ? (element.style.userSelect = 'text')
         : (element.style.userSelect = 'none');
     });
   }
+
+  // * Estilização do select
+
+  const selectionElements = document.querySelectorAll('select');
+
+  selectionElements.forEach((selectionElement) => {
+    hideSelectElement(selectionElement);
+
+    const parentElementOfTheSelection =
+      selectTheParentElement(selectionElement);
+    const ItemSelected = showTheFirstSelectedItem(
+      selectionElement,
+      parentElementOfTheSelection
+    );
+    const listOfOptions = createListOfOptions(parentElementOfTheSelection);
+
+    addOptions(listOfOptions, selectionElement, ItemSelected);
+
+    const allOptions = listOfOptions.querySelectorAll('li');
+
+    addEventShowOrHideOptions(allOptions, listOfOptions, ItemSelected);
+  });
+
+  function hideSelectElement(selectionElement) {
+    selectionElement.classList.add('selectHidden');
+  }
+
+  function selectTheParentElement(selectionElement) {
+    const parentElementOfTheSelectionDOM = selectionElement.parentElement;
+
+    return parentElementOfTheSelectionDOM;
+  }
+
+  function showTheFirstSelectedItem(
+    selectionElement,
+    parentElementOfTheSelection
+  ) {
+    const ItemSelectedDOM = document.createElement('div');
+    ItemSelectedDOM.classList.add('selectedItem');
+    ItemSelectedDOM.textContent = selectionElement.children[0].textContent;
+
+    parentElementOfTheSelection.appendChild(ItemSelectedDOM);
+
+    return ItemSelectedDOM;
+  }
+
+  function createListOfOptions(parentElementOfTheSelection) {
+    const listOfOptionDOM = document.createElement('ul');
+    listOfOptionDOM.classList.add('listOfOptions');
+
+    parentElementOfTheSelection.appendChild(listOfOptionDOM);
+
+    return listOfOptionDOM;
+  }
+
+  function addOptions(listOfOptions, selectionElement, ItemSelected) {
+    const totalNumberOfOptions = selectionElement.children.length;
+
+    for (let i = 0; i < totalNumberOfOptions; i++) {
+      const optionItem = document.createElement('li');
+      optionItem.textContent = selectionElement.children[i].textContent;
+      optionItem.setAttribute('rel', selectionElement.children[i].value);
+
+      listOfOptions.appendChild(optionItem);
+
+      if (selectionElement.children[i].selected) {
+        optionItem.classList.add('selected');
+
+        ItemSelected.textContent = selectionElement.children[i].textContent;
+      }
+    }
+  }
+
+  function addEventShowOrHideOptions(allOptions, listOfOptions, ItemSelected) {
+    ItemSelected.addEventListener('click', (event) => {
+      event.stopPropagation();
+
+      listOfOptions.classList.toggle('listOfOptionsIsActivated');
+    });
+  }
+
+  // * Lógica para mudar o tema do site
 
   // * Lógica para mudar as cores do site
 
@@ -192,8 +275,6 @@ window.addEventListener('DOMContentLoaded', () => {
     },
   };
 
-  console.log(colors.primary__color.base, colors.primary__color.hover);
-
   // * Lógica para fechar o menu e as configurações ao pressionar a tecla 'ESC'
 
   window.addEventListener('keyup', (event) => {
@@ -247,7 +328,7 @@ window.addEventListener('DOMContentLoaded', () => {
         );
 
       setTimeout(() => {
-        insertProjectsDOM(ruanMoraesRepositories);
+        // insertProjectsDOM(ruanMoraesRepositories);
       }, 1 * 1000);
     } catch (error) {
       errorGitHubAPI();
