@@ -137,47 +137,46 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // * Estilização do select
 
-  const selectionElements = document.querySelectorAll('select');
-
-  selectionElements.forEach((selectionElement) => {
-    hideSelectElement(selectionElement);
-
+  document.querySelectorAll('select').forEach((selectionElement) => {
+    hideTheSelectionElement(selectionElement);
+    
     const parentElementOfTheSelection =
       selectTheParentElement(selectionElement);
-    const ItemSelected = showTheFirstSelectedItem(
-      selectionElement,
-      parentElementOfTheSelection
-    );
     const listOfOptions = createListOfOptions(parentElementOfTheSelection);
 
-    addOptions(listOfOptions, selectionElement, ItemSelected);
+    showFirstSelectedOption(selectionElement, parentElementOfTheSelection);
+    addOptions(listOfOptions, selectionElement);
+    addEventShowOrHideOptions(selectionElement);
 
-    const allOptions = listOfOptions.querySelectorAll('li');
+    checkIfNoSelectionIsOpen();
 
-    addEventShowOrHideOptions(allOptions, listOfOptions, ItemSelected);
+    changeTheSelectedOption(listOfOptions);
   });
 
-  function hideSelectElement(selectionElement) {
+  function hideTheSelectionElement(selectionElement) {
     selectionElement.classList.add('selectHidden');
   }
 
   function selectTheParentElement(selectionElement) {
     const parentElementOfTheSelectionDOM = selectionElement.parentElement;
+    parentElementOfTheSelectionDOM.setAttribute('tabindex', '0');
+
+    // TODO - Adicionar a função de acessibilidade para o teclado
 
     return parentElementOfTheSelectionDOM;
   }
 
-  function showTheFirstSelectedItem(
+  function showFirstSelectedOption(
     selectionElement,
     parentElementOfTheSelection
   ) {
-    const ItemSelectedDOM = document.createElement('div');
-    ItemSelectedDOM.classList.add('selectedItem');
-    ItemSelectedDOM.textContent = selectionElement.children[0].textContent;
+    const firstOptionSelected = document.createElement('div');
+    firstOptionSelected.classList.add('selectedItem');
+    firstOptionSelected.textContent = selectionElement.children[0].textContent;
 
-    parentElementOfTheSelection.appendChild(ItemSelectedDOM);
+    parentElementOfTheSelection.appendChild(firstOptionSelected);
 
-    return ItemSelectedDOM;
+    return firstOptionSelected;
   }
 
   function createListOfOptions(parentElementOfTheSelection) {
@@ -189,29 +188,43 @@ window.addEventListener('DOMContentLoaded', () => {
     return listOfOptionDOM;
   }
 
-  function addOptions(listOfOptions, selectionElement, ItemSelected) {
+  function addOptions(listOfOptions, selectionElement) {
     const totalNumberOfOptions = selectionElement.children.length;
 
     for (let i = 0; i < totalNumberOfOptions; i++) {
       const optionItem = document.createElement('li');
       optionItem.textContent = selectionElement.children[i].textContent;
-      optionItem.setAttribute('rel', selectionElement.children[i].value);
 
       listOfOptions.appendChild(optionItem);
 
       if (selectionElement.children[i].selected) {
         optionItem.classList.add('selected');
-
-        ItemSelected.textContent = selectionElement.children[i].textContent;
       }
     }
   }
 
-  function addEventShowOrHideOptions(allOptions, listOfOptions, ItemSelected) {
-    ItemSelected.addEventListener('click', (event) => {
-      event.stopPropagation();
+  function addEventShowOrHideOptions(selectionElement) {
+    selectionElement.parentElement.addEventListener('click', () => {
+      selectionElement.parentElement.children[1].classList.toggle('show');
+    });
 
-      listOfOptions.classList.toggle('listOfOptionsIsActivated');
+    // TODO - Adicionar a função de acessibilidade para o teclado
+  }
+
+  // TODO -  Criar a lógica para fechar o select ao clicar em outro select ou fora do select
+
+  function checkIfNoSelectionIsOpen() {}
+
+  function changeTheSelectedOption() {
+    const options = document.querySelectorAll('.listOfOptions > li');
+
+    options.forEach((option) => {
+      option.addEventListener('click', () => {
+        const selectedOption = option.textContent;
+        const selectedItem = option.parentElement.parentElement.children[2];
+
+        selectedItem.textContent = selectedOption;
+      });
     });
   }
 
@@ -328,7 +341,7 @@ window.addEventListener('DOMContentLoaded', () => {
         );
 
       setTimeout(() => {
-        // insertProjectsDOM(ruanMoraesRepositories);
+        insertProjectsDOM(ruanMoraesRepositories);
       }, 1 * 1000);
     } catch (error) {
       errorGitHubAPI();

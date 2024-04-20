@@ -1376,7 +1376,7 @@ table {
 
 .settings__modal {
   max-width: 40rem;
-  height: 30rem;
+  height: 32rem;
   width: 95%;
   position: fixed;
   top: 35%;
@@ -1427,47 +1427,46 @@ table {
 }
 .settings__modal .settings__body div .selectHidden {
   display: none;
-  visibility: hidden;
-  padding-right: 0.625rem;
 }
-.settings__modal .settings__body div .Selections {
+.settings__modal .settings__body div .elementOfSelections {
   cursor: pointer;
-  display: inline-block;
   position: relative;
-  font-size: 16px;
-  color: #fff;
-  width: 220px;
-  height: 40px;
+  width: 60%;
+  height: 3rem;
 }
 .settings__modal .settings__body div .selectedItem {
   position: absolute;
+  display: flex;
+  justify-content: center;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: #c0392b;
-  padding: 8px 15px;
-  transition: all 0.2s ease-in;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s;
 }
 .settings__modal .settings__body div .selectedItem:hover {
   background-color: #b83729;
 }
-.settings__modal .settings__body div .selectedItem:active, .settings__modal .settings__body div .selectedItem.active:after {
+.settings__modal .settings__body div .selectedItem:active {
   background-color: #ab3326;
 }
-.settings__modal .settings__body div .selectedItem:active:after, .settings__modal .settings__body div .selectedItem.active:after:after {
-  top: 9px;
+.settings__modal .settings__body div .selectedItem:active:after {
+  top: 0.75rem;
   border-color: transparent transparent #fff transparent;
 }
 .settings__modal .settings__body div .selectedItem:after {
   content: "";
   width: 0;
   height: 0;
-  border: 7px solid transparent;
+  border: 0.5rem solid transparent;
   border-color: #fff transparent transparent transparent;
   position: absolute;
-  top: 16px;
-  right: 10px;
+  top: 1.25rem;
+  right: 1rem;
 }
 .settings__modal .settings__body div .listOfOptions {
   display: none;
@@ -1480,6 +1479,12 @@ table {
   padding: 0;
   list-style: none;
   background-color: #ab3326;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  overflow: hidden;
+}
+.settings__modal .settings__body div .listOfOptions.show {
+  display: block;
 }
 .settings__modal .settings__body div .listOfOptions li {
   margin: 0;
@@ -1490,10 +1495,6 @@ table {
 }
 .settings__modal .settings__body div .listOfOptions li:hover {
   background-color: #c0392b;
-  background: #fff;
-}
-.settings__modal .settings__body div .listOfOptions li[rel=hide] {
-  display: none;
 }
 .settings__modal .settings__footer {
   padding: 0 1rem 1rem 1rem;
