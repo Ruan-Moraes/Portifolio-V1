@@ -47,9 +47,9 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function showBlurMenu() {
-    const blurOnMain = document.querySelector('.BlurOnMain');
+    const blurOnMain = document.querySelector('.blurOnMain');
 
-    blurOnMain.classList.toggle('BlurOnMainIsActivated');
+    blurOnMain.classList.toggle('blurOnMainIsActivated');
   }
 
   function changePageScrollingState() {
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Toda a lógica das configurações
 
   const gear = document.querySelector('.container__gear');
-  const blurOnBody = document.querySelector('.BlurOnBody');
+  const blurOnBody = document.querySelector('.blurOnBody');
   const exitSettingsButton = document.querySelector(
     '.settings__header > .fa-xmark'
   );
@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded', () => {
     element.addEventListener('click', () => {
       CheckIfMenuIsActive();
       animationGear();
-      showBlurOnBody();
+      showblurOnBody();
       showSettings();
       disableTextSelection();
       changePageScrollingState();
@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
       if (event.key === 'Enter') {
         CheckIfMenuIsActive();
         animationGear();
-        showBlurOnBody();
+        showblurOnBody();
         showSettings();
         disableTextSelection();
         changePageScrollingState();
@@ -113,8 +113,8 @@ window.addEventListener('DOMContentLoaded', () => {
       : (gear.style.transform = 'rotate(360deg)');
   }
 
-  function showBlurOnBody() {
-    blurOnBody.classList.toggle('BlurOnBodyIsActivated');
+  function showblurOnBody() {
+    blurOnBody.classList.toggle('blurOnBodyIsActivated');
   }
 
   function showSettings() {
@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('select').forEach((selectionElement) => {
     hideTheSelectionElement(selectionElement);
-    
+
     const parentElementOfTheSelection =
       selectTheParentElement(selectionElement);
     const listOfOptions = createListOfOptions(parentElementOfTheSelection);
@@ -147,6 +147,7 @@ window.addEventListener('DOMContentLoaded', () => {
     showFirstSelectedOption(selectionElement, parentElementOfTheSelection);
     addOptions(listOfOptions, selectionElement);
     addEventShowOrHideOptions(selectionElement);
+    addOptionColor();
 
     checkIfNoSelectionIsOpen();
 
@@ -203,7 +204,21 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function addOptionColor() {
+    const options = document.querySelectorAll('.listOfOptions > li');
+
+    options.forEach((option) => {
+      const optionText = option.textContent;
+      const optionColor = optionText.match(/#[0-9A-Fa-f]{6}/g);
+
+      if (optionColor) {
+        option.style.color = optionColor;
+      }
+    });
+  }
+
   function addEventShowOrHideOptions(selectionElement) {
+    console.log(selectionElement.parentElement);
     selectionElement.parentElement.addEventListener('click', () => {
       selectionElement.parentElement.children[1].classList.toggle('show');
     });
@@ -233,18 +248,6 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Lógica para mudar as cores do site
 
   const colors = {
-    primary__color: {
-      base: '.primary__color',
-      hover: '.primary__color--hover',
-    },
-    secondary__color: {
-      base: '.secondary__color',
-      hover: '.secondary__color--hover',
-    },
-    tertiary__color: {
-      base: '.tertiary__color',
-      hover: '.tertiary__color--hover',
-    },
     quaternary__color: {
       base: '.quaternary__color',
       hover: '.quaternary__color--hover',
@@ -253,27 +256,21 @@ window.addEventListener('DOMContentLoaded', () => {
       base: '.quinary__color',
       hover: '.quinary__color--hover',
     },
+    senary__color: {
+      base: '.senary__color',
+      hover: '.senary__color--hover',
+    },
+    septenary__color: {
+      base: '.septenary__color',
+      hover: '.septenary__color--hover',
+    },
+    octonary__color: {
+      base: '.octonary__color',
+      hover: '.octonary__color--hover',
+    },
   };
 
   const colorsBackground = {
-    primary__backgroundColor: {
-      base: '.primary__backgroundColor',
-      lessLightHover: '.primary__backgroundColor--lessLightHover',
-      selected: '.primary__backgroundColor--selected',
-      menuHover: '.primary__backgroundColor--menuHover',
-    },
-    secondary__backgroundColor: {
-      base: '.secondary__backgroundColor',
-      lessLightHover: '.secondary__backgroundColor--lessLightHover',
-      selected: '.secondary__backgroundColor--selected',
-      menuHover: '.secondary__backgroundColor--menuHover',
-    },
-    tertiary__backgroundColor: {
-      base: '.tertiary__backgroundColor',
-      lessLightHover: '.tertiary__backgroundColor--lessLightHover',
-      selected: '.tertiary__backgroundColor--selected',
-      menuHover: '.tertiary__backgroundColor--menuHover',
-    },
     quaternary__backgroundColor: {
       base: '.quaternary__backgroundColor',
       lessLightHover: '.quaternary__backgroundColor--lessLightHover',
@@ -284,7 +281,21 @@ window.addEventListener('DOMContentLoaded', () => {
       base: '.quinary__backgroundColor',
       lessLightHover: '.quinary__backgroundColor--lessLightHover',
       selected: '.quinary__backgroundColor--selected',
-      menuHover: '.quinary__backgroundColor--menuHover',
+    },
+    senary__backgroundColor: {
+      base: '.senary__backgroundColor',
+      lessLightHover: '.senary__backgroundColor--lessLightHover',
+      selected: '.senary__backgroundColor--selected',
+    },
+    septenary__backgroundColor: {
+      base: '.septenary__backgroundColor',
+      lessLightHover: '.septenary__backgroundColor--lessLightHover',
+      selected: '.septenary__backgroundColor--selected',
+    },
+    octonary__backgroundColor: {
+      base: '.octonary__backgroundColor',
+      lessLightHover: '.octonary__backgroundColor--lessLightHover',
+      selected: '.octonary__backgroundColor--selected',
     },
   };
 
@@ -301,7 +312,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       if (!isMenuActive && !isSettingsActive) {
         animationGear();
-        showBlurOnBody();
+        showblurOnBody();
         showSettings();
         disableTextSelection();
         changePageScrollingState();
@@ -318,7 +329,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       if (isSettingsActive) {
         animationGear();
-        showBlurOnBody();
+        showblurOnBody();
         showSettings();
         disableTextSelection();
         changePageScrollingState();
@@ -366,7 +377,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const loadingProjects = document.createElement('div');
     loadingProjects.classList.add('projects__loadingProjects');
-    loadingProjects.classList.add('primary__color');
+    loadingProjects.classList.add('quaternary__color');
     loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
 
     projectsContents.appendChild(loadingProjects);
@@ -407,7 +418,7 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsCounter.setAttribute('data-aos', 'fade-down');
     projectsCounter.setAttribute('data-aos-duration', '250');
 
-    projectsCounter.innerHTML = `<p>Total de projetos: <strong class="primary__color">${ruanMoraesRepositories.length}</strong></p>`;
+    projectsCounter.innerHTML = `<p>Total de projetos: <strong class="quaternary__color">${ruanMoraesRepositories.length}</strong></p>`;
   }
 
   function createPagesIndexes(totalPages) {
@@ -432,7 +443,7 @@ window.addEventListener('DOMContentLoaded', () => {
       page.setAttribute('href', '#myProjects');
       page.setAttribute('role', 'button');
       page.classList.add('projects__paginationItem');
-      page.classList.add('primary__backgroundColor--lessLightHover');
+      page.classList.add('quaternary__backgroundColor--lessLightHover');
       page.innerHTML = `
       <p>
         <span class="visually-hidden">Página ${i + 1}</span>
@@ -496,12 +507,12 @@ window.addEventListener('DOMContentLoaded', () => {
           </div>
         </div> 
         <div class="projects__cardFooter">
-          <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" class="primary__backgroundColor--hover">
+          <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" class="quaternary__backgroundColor--hover">
             <i class="fab fa-github"></i>
             <span>GitHub</span>
           </a>
           <div class="separator--page"></div>
-          <a href="${projectUrl}" target="_blank" rel="noopener noreferrer" class="primary__backgroundColor--hover">
+          <a href="${projectUrl}" target="_blank" rel="noopener noreferrer" class="quaternary__backgroundColor--hover">
             <i class="fas fa-external-link-alt"></i>
             <span>Deploy</span>
           </a>
@@ -533,7 +544,9 @@ window.addEventListener('DOMContentLoaded', () => {
       '.projects__paginationItem'
     );
 
-    projectsPagination[0].classList.add('primary__backgroundColor--selected');
+    projectsPagination[0].classList.add(
+      'quaternary__backgroundColor--selected'
+    );
     projectsPages[0].classList.add('projects__pageIsDisplayed');
   }
 
@@ -545,13 +558,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < projectsPagination.length; i++) {
       projectsPagination[i].classList.remove(
-        'primary__backgroundColor--selected'
+        'quaternary__backgroundColor--selected'
       );
       projectsPages[i].classList.remove('projects__pageIsDisplayed');
 
       if (projectsPagination[i] === page) {
         projectsPagination[i].classList.add(
-          'primary__backgroundColor--selected'
+          'quaternary__backgroundColor--selected'
         );
         projectsPages[i].classList.add('projects__pageIsDisplayed');
       }
@@ -568,13 +581,13 @@ window.addEventListener('DOMContentLoaded', () => {
       projectsPagination[i].addEventListener('click', () => {
         for (let i = 0; i < projectsPages.length; i++) {
           projectsPagination[i].classList.remove(
-            'primary__backgroundColor--selected'
+            'quaternary__backgroundColor--selected'
           );
           projectsPages[i].classList.remove('projects__pageIsDisplayed');
         }
 
         projectsPagination[i].classList.add(
-          'primary__backgroundColor--selected'
+          'quaternary__backgroundColor--selected'
         );
         projectsPages[i].classList.add('projects__pageIsDisplayed');
 
@@ -589,7 +602,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const errorMessage =
       '<h3>Ocorreu um problema ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
     const errorIcon =
-      '<i class="fas fa-exclamation-triangle primary__color"></i>';
+      '<i class="fas fa-exclamation-triangle quaternary__color"></i>';
 
     projectsContents.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
   }

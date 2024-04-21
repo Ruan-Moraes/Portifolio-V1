@@ -82,10 +82,9 @@
       }
 
       .elementOfSelections {
-        cursor: pointer;
-        position: relative;
-        width: 60%;
         height: 3rem;
+        position: relative;
+        cursor: pointer;
       }
 
       .selectedItem {
@@ -96,29 +95,19 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background-color: #c0392b;
-        border-top-right-radius: 0.5rem;
-        border-top-left-radius: 0.5rem;
+        background-color: variables.$tertiary-color;
+        border-radius: 0.5rem;
         padding: 0.5rem 1rem;
+        border: 0.125rem solid variables.$black;
         transition: background-color variables.$transition-fast;
         &:hover {
-          background-color: #b83729;
-        }
-        &:active {
-          background-color: #ab3326;
-
-          &:after {
-            top: 0.75rem;
-            border-color: transparent transparent #fff transparent;
-          }
+          background-color: variables.$tertiary-color-less-light;
         }
 
         &:after {
           content: '';
-          width: 0;
-          height: 0;
           border: 0.5rem solid transparent;
-          border-color: #fff transparent transparent transparent;
+          border-color: variables.$white transparent transparent transparent;
           position: absolute;
           top: 1.25rem;
           right: 1rem;
@@ -131,28 +120,45 @@
         top: 100%;
         right: 0;
         left: 0;
-        z-index: 999;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        background-color: #ab3326;
+        z-index: 1000;
+        background-color: variables.$tertiary-color;
         border-bottom-right-radius: 0.5rem;
         border-bottom-left-radius: 0.5rem;
         overflow: hidden;
 
         &.show {
           display: block;
+
+          & + div {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &:after {
+              top: 0.8rem;
+              border-color: transparent transparent #fff transparent;
+            }
+          }
         }
 
         li {
-          margin: 0;
           padding: 12px 0;
-          text-indent: 15px;
-          border-top: 1px solid #962d22;
-          transition: all 0.15s ease-in;
-
+          text-indent: 1rem;
+          border: 0.125rem solid variables.$black;
           &:hover {
-            background-color: #c0392b;
+            background-color: variables.$tertiary-color-less-light;
+          }
+
+          &:last-child {
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+          }
+
+          &:nth-child(odd) {
+            border-top: none;
+          }
+
+          &:nth-child(4) {
+            border-top: none;
           }
         }
       }

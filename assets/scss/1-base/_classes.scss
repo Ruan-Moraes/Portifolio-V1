@@ -1,6 +1,6 @@
 @use 'variables';
 
-.primary__color {
+.quaternary__color {
   color: variables.$quaternary-color !important;
 
   &--hover {
@@ -10,7 +10,7 @@
   }
 }
 
-.secondary__color {
+.quinary__color {
   color: variables.$quinary-color !important;
 
   &--hover {
@@ -20,7 +20,7 @@
   }
 }
 
-.tertiary__color {
+.senary__color {
   color: variables.$senary-color !important;
 
   &--hover {
@@ -30,7 +30,7 @@
   }
 }
 
-.quaternary__color {
+.septenary__color {
   color: variables.$septenary-color !important;
 
   &--hover {
@@ -40,7 +40,7 @@
   }
 }
 
-.quinary__color {
+.octonary__color {
   color: variables.$octonary-color !important;
 
   &--hover {
@@ -52,12 +52,12 @@
 
 // * Background Colors
 
-.primary__backgroundColor {
+.quaternary__backgroundColor {
   background-color: variables.$quaternary-color !important;
 
   &--lessLightHover {
     &:hover {
-      background-color: variables.$primary-color-less-light !important;
+      background-color: variables.$quaternary-color-less-light !important;
     }
   }
 
@@ -98,7 +98,7 @@
   }
 }
 
-.secondary__backgroundColor {
+.quinary__backgroundColor {
   background-color: variables.$quinary-color !important;
 
   &--lessLightHover {
@@ -144,7 +144,7 @@
   }
 }
 
-.tertiary__backgroundColor {
+.senary__backgroundColor {
   background-color: variables.$senary-color !important;
 
   &--lessLightHover {
@@ -190,7 +190,7 @@
   }
 }
 
-.quaternary__backgroundColor {
+.septenary-color__backgroundColor {
   background-color: variables.$septenary-color !important;
 
   &--lessLightHover {
@@ -236,7 +236,7 @@
   }
 }
 
-.quinary__backgroundColor {
+.octonary-color__backgroundColor {
   background-color: variables.$octonary-color !important;
 
   &--lessLightHover {

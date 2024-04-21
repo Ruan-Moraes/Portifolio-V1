@@ -1,6 +1,6 @@
 @use '../../3-modules/mixins';
 
-.BlurOnMain {
+.blurOnMain {
   @include mixins.lg {
     display: block;
   }

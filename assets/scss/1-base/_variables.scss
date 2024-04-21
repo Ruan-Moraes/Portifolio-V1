@@ -28,7 +28,9 @@ $octonary-color: #662ef2;
 
 // Colors less light
 
-$primary-color-less-light: color.adjust($quaternary-color, $lightness: -15%);
+$tertiary-color-less-light: color.adjust($tertiary-color, $lightness: -2.5%);
+
+$quaternary-color-less-light: color.adjust($quaternary-color, $lightness: -15%);
 $quinary-color-less-light: color.adjust($quinary-color, $lightness: -15%);
 $senary-color-less-light: color.adjust($senary-color, $lightness: -15%);
 $septenary-color-less-light: color.adjust($septenary-color, $lightness: -15%);
