@@ -55,17 +55,19 @@
 .quaternary__backgroundColor {
   background-color: variables.$quaternary-color !important;
 
-  &--lessLightHover {
+  &--hover {
     &:hover {
-      background-color: variables.$quaternary-color-less-light !important;
+      background-color: variables.$quaternary-color !important;
     }
   }
 
   &--selected {
     background-color: variables.$quaternary-color !important;
+  }
 
+  &--lessLightHover {
     &:hover {
-      background-color: variables.$quaternary-color !important;
+      background-color: variables.$quaternary-color-less-light !important;
     }
   }
 
@@ -82,18 +84,6 @@
       div {
         background-color: variables.$quaternary-color !important;
       }
-    }
-  }
-
-  &--hover {
-    &:hover {
-      background-color: variables.$quaternary-color !important;
-    }
-  }
-
-  &--active {
-    &:active {
-      background-color: variables.$quaternary-color !important;
     }
   }
 }
@@ -101,17 +91,19 @@
 .quinary__backgroundColor {
   background-color: variables.$quinary-color !important;
 
-  &--lessLightHover {
+  &--hover {
     &:hover {
-      background-color: variables.$quinary-color-less-light !important;
+      background-color: variables.$quinary-color !important;
     }
   }
 
   &--selected {
     background-color: variables.$quinary-color !important;
+  }
 
+  &--lessLightHover {
     &:hover {
-      background-color: variables.$quinary-color !important;
+      background-color: variables.$quinary-color-less-light !important;
     }
   }
 
@@ -128,18 +120,6 @@
       div {
         background-color: variables.$quinary-color !important;
       }
-    }
-  }
-
-  &--hover {
-    &:hover {
-      background-color: variables.$quinary-color !important;
-    }
-  }
-
-  &--active {
-    &:active {
-      background-color: variables.$quinary-color !important;
     }
   }
 }
@@ -155,10 +135,6 @@
 
   &--selected {
     background-color: variables.$senary-color !important;
-
-    &:hover {
-      background-color: variables.$senary-color !important;
-    }
   }
 
   &--menuHover {
@@ -176,22 +152,20 @@
       }
     }
   }
+}
+
+.septenary__backgroundColor {
+  background-color: variables.$septenary-color !important;
 
   &--hover {
     &:hover {
-      background-color: variables.$senary-color !important;
+      background-color: variables.$septenary-color !important;
     }
   }
 
-  &--active {
-    &:active {
-      background-color: variables.$senary-color !important;
-    }
+  &--selected {
+    background-color: variables.$septenary-color !important;
   }
-}
-
-.septenary-color__backgroundColor {
-  background-color: variables.$septenary-color !important;
 
   &--lessLightHover {
     &:hover {
@@ -199,14 +173,6 @@
     }
   }
 
-  &--selected {
-    background-color: variables.$septenary-color !important;
-
-    &:hover {
-      background-color: variables.$septenary-color !important;
-    }
-  }
-
   &--menuHover {
     &:hover {
       div {
@@ -222,22 +188,20 @@
       }
     }
   }
+}
+
+.octonary__backgroundColor {
+  background-color: variables.$octonary-color !important;
 
   &--hover {
     &:hover {
-      background-color: variables.$septenary-color !important;
+      background-color: variables.$octonary-color !important;
     }
   }
 
-  &--active {
-    &:active {
-      background-color: variables.$septenary-color !important;
-    }
+  &--selected {
+    background-color: variables.$octonary-color !important;
   }
-}
-
-.octonary-color__backgroundColor {
-  background-color: variables.$octonary-color !important;
 
   &--lessLightHover {
     &:hover {
@@ -245,14 +209,6 @@
     }
   }
 
-  &--selected {
-    background-color: variables.$octonary-color !important;
-
-    &:hover {
-      background-color: variables.$octonary-color !important;
-    }
-  }
-
   &--menuHover {
     &:hover {
       div {
@@ -266,18 +222,6 @@
       div {
         background-color: variables.$octonary-color !important;
       }
-    }
-  }
-
-  &--hover {
-    &:hover {
-      background-color: variables.$octonary-color !important;
-    }
-  }
-
-  &--active {
-    &:active {
-      background-color: variables.$octonary-color !important;
     }
   }
 }

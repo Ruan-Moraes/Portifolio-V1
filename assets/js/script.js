@@ -135,24 +135,41 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // * Estilização do select
+  // * Lógica para cancelar as opções de configurações que foram alteradas
 
-  document.querySelectorAll('select').forEach((selectionElement) => {
+  const cancelSettings = document.querySelector('#settingsCancel');
+
+  cancelSettings.addEventListener('click', () => {
+    animationGear();
+    showblurOnBody();
+    showSettings();
+    disableTextSelection();
+    changePageScrollingState();
+  });
+
+  // function reset
+
+  // * Lógica para os selects customizados
+
+  const select = document.querySelectorAll('select');
+
+  select.forEach((selectionElement) => {
     hideTheSelectionElement(selectionElement);
 
     const parentElementOfTheSelection =
       selectTheParentElement(selectionElement);
     const listOfOptions = createListOfOptions(parentElementOfTheSelection);
 
-    showFirstSelectedOption(selectionElement, parentElementOfTheSelection);
     addOptions(listOfOptions, selectionElement);
-    addEventShowOrHideOptions(selectionElement);
-    addOptionColor();
+    AddShowOrHideEventInTheOptions(selectionElement);
 
-    checkIfNoSelectionIsOpen();
+    showFirstSelectedOption(selectionElement, parentElementOfTheSelection);
 
-    changeTheSelectedOption(listOfOptions);
+    addOptionSelectionEvent(listOfOptions);
   });
+
+  addColorsToTheOptions();
+  addEventToCloseSelect();
 
   function hideTheSelectionElement(selectionElement) {
     selectionElement.classList.add('selectHidden');
@@ -167,6 +184,15 @@ window.addEventListener('DOMContentLoaded', () => {
     return parentElementOfTheSelectionDOM;
   }
 
+  function createListOfOptions(parentElementOfTheSelection) {
+    const listOfOption = document.createElement('ul');
+    listOfOption.classList.add('listOfOptions');
+
+    parentElementOfTheSelection.appendChild(listOfOption);
+
+    return listOfOption;
+  }
+
   function showFirstSelectedOption(
     selectionElement,
     parentElementOfTheSelection
@@ -176,17 +202,6 @@ window.addEventListener('DOMContentLoaded', () => {
     firstOptionSelected.textContent = selectionElement.children[0].textContent;
 
     parentElementOfTheSelection.appendChild(firstOptionSelected);
-
-    return firstOptionSelected;
-  }
-
-  function createListOfOptions(parentElementOfTheSelection) {
-    const listOfOptionDOM = document.createElement('ul');
-    listOfOptionDOM.classList.add('listOfOptions');
-
-    parentElementOfTheSelection.appendChild(listOfOptionDOM);
-
-    return listOfOptionDOM;
   }
 
   function addOptions(listOfOptions, selectionElement) {
@@ -195,109 +210,270 @@ window.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < totalNumberOfOptions; i++) {
       const optionItem = document.createElement('li');
       optionItem.textContent = selectionElement.children[i].textContent;
+      optionItem.setAttribute('tabindex', '0');
 
       listOfOptions.appendChild(optionItem);
-
-      if (selectionElement.children[i].selected) {
-        optionItem.classList.add('selected');
-      }
     }
   }
 
-  function addOptionColor() {
+  function AddShowOrHideEventInTheOptions(selectionElement) {
+    selectionElement.parentElement.addEventListener('click', () => {
+      selectionElement.parentElement.children[1].classList.toggle('show');
+    });
+
+    // TODO - Adicionar a função de acessibilidade para o teclado
+
+    selectionElement.parentElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        selectionElement.parentElement.children[1].classList.toggle('show');
+      }
+    });
+  }
+
+  function addOptionSelectionEvent() {
+    const options = document.querySelectorAll('.listOfOptions > li');
+
+    options.forEach((option) => {
+      option.addEventListener('click', () => {
+        const selectedItem = option.parentElement.parentElement.children[2];
+        const selectedOption = option.textContent;
+
+        selectedItem.textContent = selectedOption;
+      });
+    });
+
+    options.forEach((option) => {
+      option.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          const selectedItem = option.parentElement.parentElement.children[2];
+          const selectedOption = option.textContent;
+
+          selectedItem.textContent = selectedOption;
+        }
+      });
+    });
+  }
+
+  function addColorsToTheOptions() {
     const options = document.querySelectorAll('.listOfOptions > li');
 
     options.forEach((option) => {
       const optionText = option.textContent;
       const optionColor = optionText.match(/#[0-9A-Fa-f]{6}/g);
 
-      if (optionColor) {
-        option.style.color = optionColor;
-      }
+      option.style.color = optionColor;
     });
   }
 
-  function addEventShowOrHideOptions(selectionElement) {
-    console.log(selectionElement.parentElement);
-    selectionElement.parentElement.addEventListener('click', () => {
-      selectionElement.parentElement.children[1].classList.toggle('show');
-    });
+  function addEventToCloseSelect() {
+    const selects = document.querySelectorAll('.selectHidden');
 
-    // TODO - Adicionar a função de acessibilidade para o teclado
-  }
+    document.addEventListener('click', (event) => {
+      selects.forEach((select) => {
+        const selectParent = select.parentElement;
+        const selectOptions = selectParent.children[1];
 
-  // TODO -  Criar a lógica para fechar o select ao clicar em outro select ou fora do select
+        if (
+          selectOptions.classList.contains('show') &&
+          !selectParent.contains(event.target)
+        ) {
+          selectOptions.classList.remove('show');
+        }
+      });
 
-  function checkIfNoSelectionIsOpen() {}
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          selects.forEach((select) => {
+            const selectParent = select.parentElement;
+            const selectOptions = selectParent.children[1];
 
-  function changeTheSelectedOption() {
-    const options = document.querySelectorAll('.listOfOptions > li');
-
-    options.forEach((option) => {
-      option.addEventListener('click', () => {
-        const selectedOption = option.textContent;
-        const selectedItem = option.parentElement.parentElement.children[2];
-
-        selectedItem.textContent = selectedOption;
+            if (
+              selectOptions.classList.contains('show') &&
+              !selectParent.contains(event.target)
+            ) {
+              selectOptions.classList.remove('show');
+            }
+          });
+        }
       });
     });
   }
 
+  // * Capturar as configurações do usuário e aplicar no site
+
+  const settingsApply = document.querySelector('#settingsApply');
+
+  settingsApply.addEventListener('click', () => {
+    const selectedOptions = document.querySelectorAll('.selectedItem');
+
+    const selectedTheme = selectedOptions[0];
+    const selectedColor = selectedOptions[1];
+    const selectedLanguage = selectedOptions[2];
+
+    const selectedThemeValue = selectedTheme.textContent;
+    const selectedColorValue = selectedColor.textContent;
+    const selectedLanguageValue = selectedLanguage.textContent;
+
+    applyTheme(selectedThemeValue);
+    applyColor(selectedColorValue);
+    applyLanguage(selectedLanguageValue);
+  });
+
   // * Lógica para mudar o tema do site
+  // TODO - Andamento
+
+  function applyTheme(selectedThemeValue) {}
 
   // * Lógica para mudar as cores do site
 
-  const colors = {
-    quaternary__color: {
-      base: '.quaternary__color',
-      hover: '.quaternary__color--hover',
-    },
-    quinary__color: {
-      base: '.quinary__color',
-      hover: '.quinary__color--hover',
-    },
-    senary__color: {
-      base: '.senary__color',
-      hover: '.senary__color--hover',
-    },
-    septenary__color: {
-      base: '.septenary__color',
-      hover: '.septenary__color--hover',
-    },
-    octonary__color: {
-      base: '.octonary__color',
-      hover: '.octonary__color--hover',
-    },
-  };
+  function applyColor(selectedColorValue) {
+    const selectedColor =
+      whatIsTheHexadecimalColorInTheTable(selectedColorValue);
+    const currentColor = whatIsTheCurrentColor();
 
-  const colorsBackground = {
-    quaternary__backgroundColor: {
-      base: '.quaternary__backgroundColor',
-      lessLightHover: '.quaternary__backgroundColor--lessLightHover',
-      selected: '.quaternary__backgroundColor--selected',
-      menuHover: '.quaternary__backgroundColor--menuHover',
-    },
-    quinary__backgroundColor: {
-      base: '.quinary__backgroundColor',
-      lessLightHover: '.quinary__backgroundColor--lessLightHover',
-      selected: '.quinary__backgroundColor--selected',
-    },
-    senary__backgroundColor: {
-      base: '.senary__backgroundColor',
-      lessLightHover: '.senary__backgroundColor--lessLightHover',
-      selected: '.senary__backgroundColor--selected',
-    },
-    septenary__backgroundColor: {
-      base: '.septenary__backgroundColor',
-      lessLightHover: '.septenary__backgroundColor--lessLightHover',
-      selected: '.septenary__backgroundColor--selected',
-    },
-    octonary__backgroundColor: {
-      base: '.octonary__backgroundColor',
-      lessLightHover: '.octonary__backgroundColor--lessLightHover',
-      selected: '.octonary__backgroundColor--selected',
-    },
-  };
+    if (selectedColor === currentColor) {
+      return;
+    }
+
+    if (selectedColor !== currentColor) {
+      changeColors(selectedColor, currentColor);
+      changeColorsBackground(selectedColor, currentColor);
+    }
+  }
+
+  function whatIsTheHexadecimalColorInTheTable(selectedColorValue) {
+    const colorTable = {
+      '#FF5F5A': 'quaternary',
+      '#FFBE2E': 'quinary',
+      '#2ACA44': 'senary',
+      '#2E60F2': 'septenary',
+      '#662EF2': 'octonary',
+    };
+
+    const colorHexadecimal = treatValueOfSelectedColor(selectedColorValue);
+    const colorName = colorTable[colorHexadecimal];
+
+    return colorName;
+  }
+
+  function treatValueOfSelectedColor(selectedColorValue) {
+    const colorHexadecimal = selectedColorValue.match(/#[0-9A-Fa-f]{6}/g);
+
+    return colorHexadecimal[0];
+  }
+
+  function whatIsTheCurrentColor() {
+    const quaternaryColor = document.querySelector('.quaternary__color')
+      ? true
+      : false;
+    const quinaryColor = document.querySelector('.quinary__color')
+      ? true
+      : false;
+    const senaryColor = document.querySelector('.senary__color') ? true : false;
+    const septenaryColor = document.querySelector('.septenary__color')
+      ? true
+      : false;
+    const octonaryColor = document.querySelector('.octonary__color')
+      ? true
+      : false;
+
+    if (quaternaryColor) {
+      return 'quaternary';
+    }
+
+    if (quinaryColor) {
+      return 'quinary';
+    }
+
+    if (senaryColor) {
+      return 'senary';
+    }
+
+    if (septenaryColor) {
+      return 'septenary';
+    }
+
+    if (octonaryColor) {
+      return 'octonary';
+    }
+  }
+
+  function changeColors(selectedColor, currentColor) {
+    const colorBase = document.querySelectorAll(`.${currentColor}__color`);
+    const colorHover = document.querySelectorAll(
+      `.${currentColor}__color--hover`
+    );
+
+    colorBase.forEach((element) => {
+      element.classList.remove(`${currentColor}__color`);
+      element.classList.add(`${selectedColor}__color`);
+    });
+
+    colorHover.forEach((element) => {
+      element.classList.remove(`${currentColor}__color--hover`);
+      element.classList.add(`${selectedColor}__color--hover`);
+    });
+  }
+
+  function changeColorsBackground(selectedColor, currentColor) {
+    const colorBackgroundBase = document.querySelectorAll(
+      `.${currentColor}__backgroundColor`
+    );
+    const colorBackgroudHover = document.querySelectorAll(
+      `.${currentColor}__backgroundColor--hover`
+    );
+    const colorBackgroundSelected = document.querySelectorAll(
+      `.${currentColor}__backgroundColor--selected`
+    );
+    const colorBackgroundLessLightHover = document.querySelectorAll(
+      `.${currentColor}__backgroundColor--lessLightHover`
+    );
+    const colorBackgroundMenuHover = document.querySelectorAll(
+      `.${currentColor}__backgroundColor--menuHover`
+    );
+    const colorBackgroundMenuActive = document.querySelectorAll(
+      `.${currentColor}__backgroundColor--menuActive`
+    );
+
+    colorBackgroundBase.forEach((element) => {
+      element.classList.remove(`${currentColor}__backgroundColor`);
+      element.classList.add(`${selectedColor}__backgroundColor`);
+    });
+
+    colorBackgroudHover.forEach((element) => {
+      element.classList.remove(`${currentColor}__backgroundColor--hover`);
+      element.classList.add(`${selectedColor}__backgroundColor--hover`);
+    });
+
+    colorBackgroundSelected.forEach((element) => {
+      element.classList.remove(`${currentColor}__backgroundColor--selected`);
+      element.classList.add(`${selectedColor}__backgroundColor--selected`);
+    });
+
+    colorBackgroundLessLightHover.forEach((element) => {
+      element.classList.remove(
+        `${currentColor}__backgroundColor--lessLightHover`
+      );
+      element.classList.add(
+        `${selectedColor}__backgroundColor--lessLightHover`
+      );
+    });
+
+    colorBackgroundMenuHover.forEach((element) => {
+      element.classList.remove(`${currentColor}__backgroundColor--menuHover`);
+      element.classList.add(`${selectedColor}__backgroundColor--menuHover`);
+    });
+
+    colorBackgroundMenuActive.forEach((element) => {
+      element.classList.remove(`${currentColor}__backgroundColor--menuActive`);
+      element.classList.add(`${selectedColor}__backgroundColor--menuActive`);
+    });
+  }
+
+  // * Lógica para mudar o idioma do site
+  // TODO - Andamento
+
+  function applyLanguage(selectedLanguageValue) {}
 
   // * Lógica para fechar o menu e as configurações ao pressionar a tecla 'ESC'
 

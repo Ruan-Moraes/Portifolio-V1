@@ -181,14 +181,14 @@ table {
 .quaternary__backgroundColor {
   background-color: #ff5f5a !important;
 }
-.quaternary__backgroundColor--lessLightHover:hover {
-  background-color: #ff150e !important;
+.quaternary__backgroundColor--hover:hover {
+  background-color: #ff5f5a !important;
 }
 .quaternary__backgroundColor--selected {
   background-color: #ff5f5a !important;
 }
-.quaternary__backgroundColor--selected:hover {
-  background-color: #ff5f5a !important;
+.quaternary__backgroundColor--lessLightHover:hover {
+  background-color: #ff150e !important;
 }
 .quaternary__backgroundColor--menuHover:hover div {
   background-color: #ff5f5a !important;
@@ -196,35 +196,23 @@ table {
 .quaternary__backgroundColor--menuActive:active div {
   background-color: #ff5f5a !important;
 }
-.quaternary__backgroundColor--hover:hover {
-  background-color: #ff5f5a !important;
-}
-.quaternary__backgroundColor--active:active {
-  background-color: #ff5f5a !important;
-}
 
 .quinary__backgroundColor {
-  background-color: #ffbe2e !important;
-}
-.quinary__backgroundColor--lessLightHover:hover {
-  background-color: #e19b00 !important;
-}
-.quinary__backgroundColor--selected {
-  background-color: #ffbe2e !important;
-}
-.quinary__backgroundColor--selected:hover {
-  background-color: #ffbe2e !important;
-}
-.quinary__backgroundColor--menuHover:hover div {
-  background-color: #ffbe2e !important;
-}
-.quinary__backgroundColor--menuActive:active div {
   background-color: #ffbe2e !important;
 }
 .quinary__backgroundColor--hover:hover {
   background-color: #ffbe2e !important;
 }
-.quinary__backgroundColor--active:active {
+.quinary__backgroundColor--selected {
+  background-color: #ffbe2e !important;
+}
+.quinary__backgroundColor--lessLightHover:hover {
+  background-color: #e19b00 !important;
+}
+.quinary__backgroundColor--menuHover:hover div {
+  background-color: #ffbe2e !important;
+}
+.quinary__backgroundColor--menuActive:active div {
   background-color: #ffbe2e !important;
 }
 
@@ -237,69 +225,48 @@ table {
 .senary__backgroundColor--selected {
   background-color: #2aca44 !important;
 }
-.senary__backgroundColor--selected:hover {
-  background-color: #2aca44 !important;
-}
 .senary__backgroundColor--menuHover:hover div {
   background-color: #2aca44 !important;
 }
 .senary__backgroundColor--menuActive:active div {
   background-color: #2aca44 !important;
 }
-.senary__backgroundColor--hover:hover {
-  background-color: #2aca44 !important;
-}
-.senary__backgroundColor--active:active {
-  background-color: #2aca44 !important;
-}
 
-.septenary-color__backgroundColor {
+.septenary__backgroundColor {
   background-color: #2e60f2 !important;
 }
-.septenary-color__backgroundColor--lessLightHover:hover {
+.septenary__backgroundColor--hover:hover {
+  background-color: #2e60f2 !important;
+}
+.septenary__backgroundColor--selected {
+  background-color: #2e60f2 !important;
+}
+.septenary__backgroundColor--lessLightHover:hover {
   background-color: #0c3cc7 !important;
 }
-.septenary-color__backgroundColor--selected {
+.septenary__backgroundColor--menuHover:hover div {
   background-color: #2e60f2 !important;
 }
-.septenary-color__backgroundColor--selected:hover {
-  background-color: #2e60f2 !important;
-}
-.septenary-color__backgroundColor--menuHover:hover div {
-  background-color: #2e60f2 !important;
-}
-.septenary-color__backgroundColor--menuActive:active div {
-  background-color: #2e60f2 !important;
-}
-.septenary-color__backgroundColor--hover:hover {
-  background-color: #2e60f2 !important;
-}
-.septenary-color__backgroundColor--active:active {
+.septenary__backgroundColor--menuActive:active div {
   background-color: #2e60f2 !important;
 }
 
-.octonary-color__backgroundColor {
+.octonary__backgroundColor {
   background-color: #662ef2 !important;
 }
-.octonary-color__backgroundColor--lessLightHover:hover {
+.octonary__backgroundColor--hover:hover {
+  background-color: #662ef2 !important;
+}
+.octonary__backgroundColor--selected {
+  background-color: #662ef2 !important;
+}
+.octonary__backgroundColor--lessLightHover:hover {
   background-color: #420cc7 !important;
 }
-.octonary-color__backgroundColor--selected {
+.octonary__backgroundColor--menuHover:hover div {
   background-color: #662ef2 !important;
 }
-.octonary-color__backgroundColor--selected:hover {
-  background-color: #662ef2 !important;
-}
-.octonary-color__backgroundColor--menuHover:hover div {
-  background-color: #662ef2 !important;
-}
-.octonary-color__backgroundColor--menuActive:active div {
-  background-color: #662ef2 !important;
-}
-.octonary-color__backgroundColor--hover:hover {
-  background-color: #662ef2 !important;
-}
-.octonary-color__backgroundColor--active:active {
+.octonary__backgroundColor--menuActive:active div {
   background-color: #662ef2 !important;
 }
 
