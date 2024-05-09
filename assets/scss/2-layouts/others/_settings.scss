@@ -89,42 +89,42 @@
 
       .selectedItem {
         position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding: 0.5rem 1rem;
         display: flex;
         justify-content: center;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: variables.$tertiary-color;
         border-radius: 0.5rem;
-        padding: 0.5rem 1rem;
         border: 0.125rem solid variables.$black;
+        background-color: variables.$tertiary-color;
         transition: background-color variables.$transition-fast;
         &:hover {
           background-color: variables.$tertiary-color-less-light;
         }
 
         &:after {
-          content: '';
-          border: 0.5rem solid transparent;
-          border-color: variables.$white transparent transparent transparent;
           position: absolute;
           top: 1.25rem;
           right: 1rem;
+          border: 0.5rem solid transparent;
+          content: '';
+          border-color: variables.$white transparent transparent transparent;
         }
       }
 
       .listOfOptions {
-        display: none;
         position: absolute;
         top: 100%;
         right: 0;
         left: 0;
         z-index: 1000;
+        display: none;
+        overflow: hidden;
         background-color: variables.$tertiary-color;
         border-bottom-right-radius: 0.5rem;
         border-bottom-left-radius: 0.5rem;
-        overflow: hidden;
 
         &.show {
           display: block;

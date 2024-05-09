@@ -1,5 +1,7 @@
 @use 'variables';
 
+// * Text Colors
+
 .quaternary__color {
   color: variables.$quaternary-color !important;
 
@@ -126,6 +128,12 @@
 
 .senary__backgroundColor {
   background-color: variables.$senary-color !important;
+
+  &--hover {
+    &:hover {
+      background-color: variables.$senary-color !important;
+    }
+  }
 
   &--lessLightHover {
     &:hover {
