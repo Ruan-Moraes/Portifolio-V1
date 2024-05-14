@@ -1,22 +1,37 @@
 'use strict';
 
-const settingsApply = document.querySelector('#settingsApply');
+import { changePageScrollingState, showBlurOnBody } from './others.mjs';
+import {
+  animationGear,
+  showSettings,
+  disableTextSelection,
+} from './settings.mjs';
 
-settingsApply.addEventListener('click', () => {
-  const selectedOptions = document.querySelectorAll('.selectedItem');
+function applyingSettings() {
+  const settingsApplyDOM = document.querySelector('#settingsApply');
 
-  const selectedTheme = selectedOptions[0];
-  const selectedColor = selectedOptions[1];
-  const selectedLanguage = selectedOptions[2];
+  settingsApplyDOM.addEventListener('click', () => {
+    const selectedOptions = document.querySelectorAll('.selectedItem');
 
-  const selectedThemeValue = selectedTheme.textContent;
-  const selectedColorValue = selectedColor.textContent;
-  const selectedLanguageValue = selectedLanguage.textContent;
+    const selectedTheme = selectedOptions[0];
+    const selectedColor = selectedOptions[1];
+    const selectedLanguage = selectedOptions[2];
 
-  applyTheme(selectedThemeValue);
-  applyColor(selectedColorValue);
-  applyLanguage(selectedLanguageValue);
-});
+    const selectedThemeValue = selectedTheme.textContent;
+    const selectedColorValue = selectedColor.textContent;
+    const selectedLanguageValue = selectedLanguage.textContent;
+
+    applyTheme(selectedThemeValue);
+    applyColor(selectedColorValue);
+    applyLanguage(selectedLanguageValue);
+
+    animationGear();
+    showBlurOnBody();
+    showSettings();
+    disableTextSelection();
+    changePageScrollingState();
+  });
+}
 
 // * Lógica para mudar o tema do site
 
@@ -60,6 +75,8 @@ function treatValueOfSelectedColor(selectedColorValue) {
 }
 
 function whatIsTheCurrentColor() {
+  // * Função necessita de apenas uma váriavel verdadeira, se não, não funcionará a trocar de cor do site. Por isso, foi necessário criar um TAG "div" com a classe "quaternary__color" nos arquivos HTML.
+
   const quaternaryColor = document.querySelector('.quaternary__color')
     ? true
     : false;
@@ -166,3 +183,7 @@ function changeColorsBackground(selectedColor, currentColor) {
 // * Lógica para mudar o idioma do site
 
 function applyLanguage(selectedLanguageValue) {} // TODO - Andamento
+
+// * Exportando a função applySettings
+
+export default applyingSettings;

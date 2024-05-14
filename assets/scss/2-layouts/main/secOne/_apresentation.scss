@@ -1,6 +1,8 @@
 @use '../../../1-base/variables';
 
-.main__apresentation {
+.main__apresentation,
+.main__myHistory,
+.main__certificates {
   margin-top: 3.8rem;
   display: flex;
   justify-content: center;
@@ -29,6 +31,79 @@
       text-align: center;
       border-radius: 0.5rem;
       transition: background-color variables.$transition-fast;
+    }
+  }
+
+  .myHistory__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+      width: 85%;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      text-align: left;
+    }
+
+    p {
+      text-align: left;
+    }
+  }
+
+  .certificates__content {
+    display: grid;
+
+    h2 {
+      font-size: 1.75rem;
+      text-align: center;
+    }
+
+    > div:first-child {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .certificateItem {
+      border: 2px solid variables.$black;
+      padding: 1rem;
+      display: flex;
+      gap: 1rem;
+      width: 50%;
+      border-radius: 1rem;
+
+      .certificateItem__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+
+        h3 {
+          font-size: 1.25rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    h3 {
+      font-size: 1.25rem;
     }
   }
 }

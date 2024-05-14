@@ -1,11 +1,16 @@
 'use strict';
 
 export function changePageScrollingState() {
-  const bodyHTML = document.querySelector('body');
-  const bodyOverflow =
-    getComputedStyle(bodyHTML).getPropertyValue('overflow-y');
+  const bodyDOM = document.querySelector('body');
+  const bodyOverflow = getComputedStyle(bodyDOM).getPropertyValue('overflow-y');
 
   bodyOverflow === 'auto' || bodyOverflow === 'visible'
-    ? (bodyHTML.style.overflowY = 'hidden')
-    : (bodyHTML.style.overflowY = 'auto');
+    ? (bodyDOM.style.overflowY = 'hidden')
+    : (bodyDOM.style.overflowY = 'auto');
+}
+
+export function showBlurOnBody() {
+  const blurOnBodyDOM = document.querySelector('.blurOnBody');
+
+  blurOnBodyDOM.classList.toggle('blurOnBodyIsActivated');
 }

@@ -1,33 +1,38 @@
 'use strict';
 
-const selects = document.querySelectorAll('select');
-
 function customSelect() {
-  selects.forEach((selectionElement) => {
-    hideTheSelectionElement(selectionElement);
+  const selectsDOM = document.querySelectorAll('select');
 
-    const parentElementOfTheSelection =
-      selectTheParentElement(selectionElement);
-    const listOfOptions = createListOfOptions(parentElementOfTheSelection);
+  selectsDOM.forEach((selectionElementDOM) => {
+    hideTheSelectionElement(selectionElementDOM);
 
-    addOptions(listOfOptions, selectionElement);
-    AddShowOrHideEventInTheOptions(selectionElement);
+    const parentElementOfTheSelectionDOM =
+      selectTheParentElement(selectionElementDOM);
+    const listOfOptionsDOM = createListOfOptions(
+      parentElementOfTheSelectionDOM
+    );
 
-    showFirstSelectedOption(selectionElement, parentElementOfTheSelection);
+    addOptions(listOfOptionsDOM, selectionElementDOM);
+    AddShowOrHideEventInTheOptions(selectionElementDOM);
 
-    addOptionSelectionEvent(listOfOptions);
+    showFirstSelectedOption(
+      selectionElementDOM,
+      parentElementOfTheSelectionDOM
+    );
+
+    addOptionSelectionEvent(listOfOptionsDOM);
   });
 
   addColorsToTheOptions();
   addEventToCloseSelect();
 }
 
-function hideTheSelectionElement(selectionElement) {
-  selectionElement.classList.add('selectHidden');
+function hideTheSelectionElement(selectionElementDOM) {
+  selectionElementDOM.classList.add('selectHidden');
 }
 
-function selectTheParentElement(selectionElement) {
-  const parentElementOfTheSelectionDOM = selectionElement.parentElement;
+function selectTheParentElement(selectionElementDOM) {
+  const parentElementOfTheSelectionDOM = selectionElementDOM.parentElement;
   parentElementOfTheSelectionDOM.setAttribute('tabindex', '0');
 
   // TODO - Adicionar a função de acessibilidade para o teclado
@@ -35,56 +40,57 @@ function selectTheParentElement(selectionElement) {
   return parentElementOfTheSelectionDOM;
 }
 
-function createListOfOptions(parentElementOfTheSelection) {
-  const listOfOption = document.createElement('ul');
-  listOfOption.classList.add('listOfOptions');
+function createListOfOptions(parentElementOfTheSelectionDOM) {
+  const listOfOptionDOM = document.createElement('ul');
+  listOfOptionDOM.classList.add('listOfOptions');
 
-  parentElementOfTheSelection.appendChild(listOfOption);
+  parentElementOfTheSelectionDOM.appendChild(listOfOptionDOM);
 
-  return listOfOption;
+  return listOfOptionDOM;
 }
 
 function showFirstSelectedOption(
-  selectionElement,
-  parentElementOfTheSelection
+  selectionElementDOM,
+  parentElementOfTheSelectionDOM
 ) {
-  const firstOptionSelected = document.createElement('div');
-  firstOptionSelected.classList.add('selectedItem');
-  firstOptionSelected.textContent = selectionElement.children[0].textContent;
+  const firstOptionSelectedDOM = document.createElement('div');
+  firstOptionSelectedDOM.classList.add('selectedItem');
+  firstOptionSelectedDOM.textContent =
+    selectionElementDOM.children[0].textContent;
 
-  parentElementOfTheSelection.appendChild(firstOptionSelected);
+  parentElementOfTheSelectionDOM.appendChild(firstOptionSelectedDOM);
 }
 
-function addOptions(listOfOptions, selectionElement) {
-  const totalNumberOfOptions = selectionElement.children.length;
+function addOptions(listOfOptionsDOM, selectionElementDOM) {
+  const totalNumberOfOptions = selectionElementDOM.children.length;
 
   for (let i = 0; i < totalNumberOfOptions; i++) {
-    const optionItem = document.createElement('li');
-    optionItem.textContent = selectionElement.children[i].textContent;
-    optionItem.setAttribute('tabindex', '0');
+    const optionItemDOM = document.createElement('li');
+    optionItemDOM.textContent = selectionElementDOM.children[i].textContent;
+    optionItemDOM.setAttribute('tabindex', '0');
 
-    listOfOptions.appendChild(optionItem);
+    listOfOptionsDOM.appendChild(optionItemDOM);
   }
 }
 
-function AddShowOrHideEventInTheOptions(selectionElement) {
-  selectionElement.parentElement.addEventListener('click', () => {
-    selectionElement.parentElement.children[1].classList.toggle('show');
+function AddShowOrHideEventInTheOptions(selectionElementDOM) {
+  selectionElementDOM.parentElement.addEventListener('click', () => {
+    selectionElementDOM.parentElement.children[1].classList.toggle('show');
   });
 
   // TODO - Adicionar a função de acessibilidade para o teclado
 
-  selectionElement.parentElement.addEventListener('keydown', (event) => {
+  selectionElementDOM.parentElement.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-      selectionElement.parentElement.children[1].classList.toggle('show');
+      selectionElementDOM.parentElement.children[1].classList.toggle('show');
     }
   });
 }
 
 function addOptionSelectionEvent() {
-  const options = document.querySelectorAll('.listOfOptions > li');
+  const optionsDOM = document.querySelectorAll('.listOfOptions > li');
 
-  options.forEach((option) => {
+  optionsDOM.forEach((option) => {
     option.addEventListener('click', () => {
       const selectedItem = option.parentElement.parentElement.children[2];
       const selectedOption = option.textContent;
@@ -93,7 +99,7 @@ function addOptionSelectionEvent() {
     });
   });
 
-  options.forEach((option) => {
+  optionsDOM.forEach((option) => {
     option.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         const selectedItem = option.parentElement.parentElement.children[2];
@@ -106,9 +112,9 @@ function addOptionSelectionEvent() {
 }
 
 function addColorsToTheOptions() {
-  const options = document.querySelectorAll('.listOfOptions > li');
+  const optionsDOM = document.querySelectorAll('.listOfOptions > li');
 
-  options.forEach((option) => {
+  optionsDOM.forEach((option) => {
     const optionText = option.textContent;
     const optionColor = optionText.match(/#[0-9A-Fa-f]{6}/g);
 
@@ -117,10 +123,10 @@ function addColorsToTheOptions() {
 }
 
 function addEventToCloseSelect() {
-  const selects = document.querySelectorAll('.selectHidden');
+  const hiddenSelectionsDOM = document.querySelectorAll('.selectHidden');
 
   document.addEventListener('click', (event) => {
-    selects.forEach((select) => {
+    hiddenSelectionsDOM.forEach((select) => {
       const selectParent = select.parentElement;
       const selectOptions = selectParent.children[1];
 
@@ -134,7 +140,7 @@ function addEventToCloseSelect() {
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
-        selects.forEach((select) => {
+        hiddenSelectionsDOM.forEach((select) => {
           const selectParent = select.parentElement;
           const selectOptions = selectParent.children[1];
 
@@ -149,5 +155,7 @@ function addEventToCloseSelect() {
     });
   });
 }
+
+// * Exportando a função customSelect
 
 export default customSelect;

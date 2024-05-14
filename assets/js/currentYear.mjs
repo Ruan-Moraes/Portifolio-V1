@@ -1,7 +1,7 @@
 'use strict';
 
 async function getTheCurrentYear() {
-  const currentYear = document.querySelector('#currentYear');
+  const currentYearDOM = document.querySelector('#currentYear');
 
   try {
     const currentYearJson = await fetch(
@@ -10,14 +10,13 @@ async function getTheCurrentYear() {
       .then((response) => response.json())
       .then((date) => date.datetime.slice(0, 4));
 
-    currentYear.textContent = currentYearJson;
+    currentYearDOM.textContent = currentYearJson;
   } catch (error) {
-    console.log(
-      `Não foi possivel obter o ano atual através da Internet. Erro: ${error}`
+    console.error(
+      `Ocorreu um erro ao tentar puxar o ano atual através da API do World Time! ERROR: ${error}`
     );
 
-    const currentYear = new Date().getFullYear();
-    currentYear.textContent = currentYear;
+    currentYearDOM.textContent = new Date().getFullYear();
   }
 }
 

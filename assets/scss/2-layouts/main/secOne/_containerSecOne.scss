@@ -1,6 +1,8 @@
 @use '../../../3-modules/plugins';
 
-.main__apresentation {
+.main__apresentation,
+.main__myHistory,
+.main__certificates {
   .container {
     @extend %container;
     padding-top: 1.5rem;

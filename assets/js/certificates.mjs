@@ -5,8 +5,10 @@ import menu from './menu.mjs';
 import settings from './settings.mjs';
 import menuAndSettings from './menuAndSettings.mjs';
 import customSelect from './customSelect.mjs';
+import applyingSettings from './applyingSettings.mjs';
 
 // * Garante que o código só será executado após o carregamento do conteúdo da página
+
 window.addEventListener('DOMContentLoaded', () => {
   // * Inicializar a biblioteca AOS
 
@@ -24,7 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   settings();
 
-  // * Toda a lógica do menu e das configurações quando o usuário pressionar a tecla "Esc"
+  // * Lógica para fechar o menu e as configurações ao pressionar a tecla ESC
 
   menuAndSettings();
 
@@ -33,4 +35,6 @@ window.addEventListener('DOMContentLoaded', () => {
   customSelect();
 
   // * Capturar as configurações do usuário e aplicar no site
+
+  applyingSettings();
 });

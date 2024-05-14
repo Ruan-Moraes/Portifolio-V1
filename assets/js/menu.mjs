@@ -3,9 +3,9 @@
 import { changePageScrollingState } from './others.mjs';
 
 function menu() {
-  const menu = document.querySelector('.header__menu');
+  const menuDOM = document.querySelector('.header__menu');
 
-  menu.addEventListener('keydown', (event) => {
+  menuDOM.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       animationMenu();
       activateMenu();
@@ -14,7 +14,7 @@ function menu() {
     }
   });
 
-  menu.addEventListener('click', () => {
+  menuDOM.addEventListener('click', () => {
     animationMenu();
     activateMenu();
     showBlurMenu();
@@ -24,22 +24,24 @@ function menu() {
 
 export function animationMenu() {
   ['lineOne', 'lineTwo', 'lineThree'].forEach((lineClass) => {
-    const line = document.querySelector(`.menu__${lineClass}`);
+    const lineDOM = document.querySelector(`.menu__${lineClass}`);
 
-    line.classList.toggle(`${lineClass}IsActivated`);
+    lineDOM.classList.toggle(`${lineClass}IsActivated`);
   });
 }
 
 export function activateMenu() {
-  const showMenu = document.querySelector('.header__links');
+  const showMenuDOM = document.querySelector('.header__links');
 
-  showMenu.classList.toggle('menuIsActivated');
+  showMenuDOM.classList.toggle('menuIsActivated');
 }
 
 export function showBlurMenu() {
-  const blurOnMain = document.querySelector('.blurOnMain');
+  const blurOnMainDOM = document.querySelector('.blurOnMain');
 
-  blurOnMain.classList.toggle('blurOnMainIsActivated');
+  blurOnMainDOM.classList.toggle('blurOnMainIsActivated');
 }
+
+// * Exportando a função menu
 
 export default menu;

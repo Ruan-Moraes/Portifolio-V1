@@ -15,7 +15,9 @@
 
 // --------------------------------------------------------------------------- //
 
-.main__apresentation {
+.main__apresentation,
+.main__myHistory,
+.main__certificates {
   @include mixins.lg {
     min-height: 82.5vh;
     margin-top: 4.05rem;
@@ -40,6 +42,13 @@
         padding: 1rem 0;
       }
     }
+  }
+}
+
+.main__myHistory,
+.main__certificates {
+  @include mixins.lg {
+    min-height: auto;
   }
 }
 

@@ -5,8 +5,10 @@ import menu from './menu.mjs';
 import settings from './settings.mjs';
 import menuAndSettings from './menuAndSettings.mjs';
 import customSelect from './customSelect.mjs';
+import applyingSettings from './applyingSettings.mjs';
 
 // * Garante que o código só será executado após o carregamento do conteúdo da página
+
 window.addEventListener('DOMContentLoaded', () => {
   // * Inicializar a biblioteca AOS
 
@@ -31,4 +33,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Lógica para os selects customizados
 
   customSelect();
+
+  // * Capturar as configurações do usuário e aplicar no site
+
+  applyingSettings();
 });

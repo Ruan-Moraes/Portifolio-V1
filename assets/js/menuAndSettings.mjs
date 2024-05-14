@@ -1,19 +1,14 @@
 'use strict';
 
-import { changePageScrollingState } from './others.mjs';
-
+import { changePageScrollingState, showBlurOnBody } from './others.mjs';
 import {
   animationGear,
-  showBlurOnBody,
   showSettings,
   disableTextSelection,
 } from './settings.mjs';
-
 import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
 
 function menuAndSettings() {
-  const blurOnBody = document.querySelector('.blurOnBody');
-
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
       const isSettingsActive = document
@@ -25,7 +20,7 @@ function menuAndSettings() {
 
       if (!isSettingsActive && !isMenuActive) {
         animationGear();
-        showBlurOnBody(blurOnBody);
+        showBlurOnBody();
         showSettings();
         disableTextSelection();
         changePageScrollingState();
@@ -35,7 +30,7 @@ function menuAndSettings() {
 
       if (isSettingsActive) {
         animationGear();
-        showBlurOnBody(blurOnBody);
+        showBlurOnBody();
         showSettings();
         disableTextSelection();
         changePageScrollingState();
@@ -50,5 +45,7 @@ function menuAndSettings() {
     }
   });
 }
+
+// * Exportando a função menuAndSettings
 
 export default menuAndSettings;
