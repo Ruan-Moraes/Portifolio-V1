@@ -74,18 +74,20 @@ function treatValueOfSelectedColor(selectedColorValue) {
   return colorHexadecimal[0];
 }
 
-function whatIsTheCurrentColor() {
-  // * Função necessita de apenas uma váriavel verdadeira, se não, não funcionará a trocar de cor do site. Por isso, foi necessário criar um TAG "div" com a classe "quaternary__color" nos arquivos HTML.
-
-  const quaternaryColor = document.querySelector('.quaternary__color')
+export function whatIsTheCurrentColor() {
+  const quaternaryColor = document.querySelector('.quaternary__color--hover')
     ? true
     : false;
-  const quinaryColor = document.querySelector('.quinary__color') ? true : false;
-  const senaryColor = document.querySelector('.senary__color') ? true : false;
-  const septenaryColor = document.querySelector('.septenary__color')
+  const quinaryColor = document.querySelector('.quinary__color--hover')
     ? true
     : false;
-  const octonaryColor = document.querySelector('.octonary__color')
+  const senaryColor = document.querySelector('.senary__color--hover')
+    ? true
+    : false;
+  const septenaryColor = document.querySelector('.septenary__color--hover')
+    ? true
+    : false;
+  const octonaryColor = document.querySelector('.octonary__color--hover')
     ? true
     : false;
 

@@ -32,10 +32,9 @@ function hideTheSelectionElement(selectionElementDOM) {
 }
 
 function selectTheParentElement(selectionElementDOM) {
+  console.log(selectionElementDOM.parentElement);
   const parentElementOfTheSelectionDOM = selectionElementDOM.parentElement;
   parentElementOfTheSelectionDOM.setAttribute('tabindex', '0');
-
-  // TODO - Adicionar a função de acessibilidade para o teclado
 
   return parentElementOfTheSelectionDOM;
 }
@@ -77,8 +76,6 @@ function AddShowOrHideEventInTheOptions(selectionElementDOM) {
   selectionElementDOM.parentElement.addEventListener('click', () => {
     selectionElementDOM.parentElement.children[1].classList.toggle('show');
   });
-
-  // TODO - Adicionar a função de acessibilidade para o teclado
 
   selectionElementDOM.parentElement.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
@@ -137,23 +134,23 @@ function addEventToCloseSelect() {
         selectOptions.classList.remove('show');
       }
     });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        hiddenSelectionsDOM.forEach((select) => {
-          const selectParent = select.parentElement;
-          const selectOptions = selectParent.children[1];
-
-          if (
-            selectOptions.classList.contains('show') &&
-            !selectParent.contains(event.target)
-          ) {
-            selectOptions.classList.remove('show');
-          }
-        });
-      }
-    });
   });
+
+  // document.addEventListener('keydown', (event) => {
+  //   if (event.key === 'Enter') {
+  //     hiddenSelectionsDOM.forEach((select) => {
+  //       const selectParent = select.parentElement;
+  //       const selectOptions = selectParent.children[1];
+
+  //       if (
+  //         selectOptions.classList.contains('show') &&
+  //         !selectParent.contains(event.target)
+  //       ) {
+  //         selectOptions.classList.remove('show');
+  //       }
+  //     });
+  //   }
+  // });
 }
 
 // * Exportando a função customSelect
