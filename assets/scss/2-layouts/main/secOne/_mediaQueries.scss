@@ -26,23 +26,6 @@
   @include mixins.xl2 {
     margin-top: 5.043125rem;
   }
-
-  .apresentation__content {
-    @include mixins.lg {
-      gap: 1.25rem;
-    }
-
-    @include mixins.xl2 {
-      gap: 1.5rem;
-    }
-
-    a {
-      @include mixins.lg {
-        width: 60%;
-        padding: 1rem 0;
-      }
-    }
-  }
 }
 
 .main__myHistory,
@@ -54,7 +37,24 @@
 
 // --------------------------------------------------------------------------- //
 
-.apresentation__code {
+.apresentation {
+  @include mixins.lg {
+    gap: 1.25rem;
+  }
+
+  @include mixins.xl2 {
+    gap: 1.5rem;
+  }
+
+  a {
+    @include mixins.lg {
+      width: 60%;
+      padding: 1rem 0;
+    }
+  }
+}
+
+.code {
   .code__lines {
     @include mixins.min-desktop {
       display: flex;
@@ -63,6 +63,45 @@
 
       span {
         color: variables.$gray;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.myHistory {
+  @include mixins.sm {
+    max-width: 48rem;
+  }
+
+  .myHistory__header,
+  .myHistory__body {
+    @include mixins.sm {
+      padding: 1.5rem;
+    }
+  }
+
+  .myHistory__title {
+    @include mixins.sm {
+      font-size: 1.5rem;
+    }
+  }
+
+  .myHistory__content {
+    .myHistory__section {
+      .myHistory__subtitle {
+        h3 {
+          @include mixins.sm {
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+
+    .myHistory__text {
+      @include mixins.sm {
+        font-size: 1rem;
       }
     }
   }

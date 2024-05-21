@@ -1,7 +1,6 @@
 @use '../../../1-base/variables';
 
 .projects__contents {
-  $self: '.projects';
   max-width: 64rem;
   width: 100%;
   padding: 1rem;
@@ -19,7 +18,7 @@
     align-items: center;
     gap: 1rem;
 
-    #{$self}__projectAccountant {
+    .projects__projectAccountant {
       width: max-content;
       padding: 0.75rem;
       align-self: flex-end;
@@ -32,8 +31,8 @@
       }
     }
 
-    #{$self}__projectsItems {
-      #{$self}__page {
+    .projects__projectsItems {
+      .projects__page {
         @keyframes fadeIn {
           0% {
             opacity: 0;
@@ -58,7 +57,7 @@
         animation: fadeOut variables.$transition-medium;
         animation-fill-mode: forwards;
 
-        &#{$self}__pageIsDisplayed {
+        &.projects__pageIsDisplayed {
           display: grid;
           grid-template-columns: 1fr;
           grid-template-rows: repeat(6, 1fr);
@@ -66,7 +65,7 @@
           animation: fadeIn variables.$transition-medium;
           animation-fill-mode: forwards;
 
-          #{$self}__card {
+          .projects__card {
             padding: 0.75rem;
             display: flex;
             flex-direction: column;
@@ -74,7 +73,7 @@
             border-radius: 1rem;
             border: 0.125rem solid variables.$tertiary-color;
 
-            #{$self}__cardHeader {
+            .projects__cardHeader {
               h3 {
                 font-size: 1.25rem;
                 font-weight: 700;
@@ -82,8 +81,8 @@
               }
             }
 
-            #{$self}__cardBody {
-              #{$self}__cardDescription {
+            .projects__cardBody {
+              .projects__cardDescription {
                 font-size: 0.85rem;
 
                 p {
@@ -94,7 +93,7 @@
               }
             }
 
-            #{$self}__cardFooter {
+            .projects__cardFooter {
               margin-top: auto;
               display: flex;
               justify-content: space-evenly;

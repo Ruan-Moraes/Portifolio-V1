@@ -6,7 +6,6 @@
   gap: 1.5rem;
 
   .services__service {
-    $self: '.service';
     padding: 1.5rem 1rem;
     display: flex;
     flex-direction: column;
@@ -17,20 +16,20 @@
     border: 0.125rem solid variables.$tertiary-color;
     box-shadow: variables.$shadow-medium;
 
-    #{$self}__header {
+    .service__header {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 0.75rem;
 
-      #{$self}__icon {
+      .service__icon {
         i {
           font-size: 3rem;
         }
       }
 
-      #{$self}__title {
+      .service__title {
         h3 {
           font-size: 1.75rem;
           text-align: center;
@@ -38,8 +37,8 @@
       }
     }
 
-    #{$self}__body {
-      #{$self}__description {
+    .service__body {
+      .service__description {
         p {
           font-size: 1rem;
           text-align: center;
@@ -47,10 +46,10 @@
       }
     }
 
-    #{$self}__footer {
+    .service__footer {
       height: 3rem;
       margin-top: auto;
-      #{$self}__action {
+      .service__action {
         height: 100%;
 
         a {

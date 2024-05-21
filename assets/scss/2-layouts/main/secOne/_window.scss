@@ -1,0 +1,164 @@
+@use '../../../1-base/variables';
+
+$primary-color: #ff5f5a;
+$secondary-color: #ffbe2e;
+$tertiary-color: #2aca44;
+$quaternary-color: #2a9bd9;
+$quinary-color: #b770cd;
+$senary-color: #d5b375;
+$septenary-color: #4a95a1;
+$octonary-color: #9ba2ae;
+$nonary-color: #db6a73;
+$denary-color: #98c379;
+$elevenary-color: #b2865c;
+
+.code,
+.myHistory {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 0.125rem;
+  border-radius: 1rem;
+  border: 0.125rem solid variables.$black;
+  background-color: variables.$codeAndSettings-backgroundColor;
+
+  .code__header,
+  .myHistory__header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 0.0625rem solid variables.$black;
+
+    .code__balls,
+    .myHistory__balls {
+      display: flex;
+      gap: 0.75rem;
+
+      > div {
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+      }
+
+      > div:nth-child(1) {
+        background: $primary-color;
+      }
+
+      > div:nth-child(2) {
+        background: $secondary-color;
+      }
+
+      > div:nth-child(3) {
+        background: $tertiary-color;
+      }
+    }
+  }
+
+  .code__body,
+  .myHistory__body {
+    padding: 0.75rem;
+    display: flex;
+    gap: 0.75rem;
+  }
+}
+
+.code {
+  .code__lines {
+    display: none;
+  }
+
+  .code__body {
+    .code__content {
+      .code__declaration {
+        color: $quinary-color;
+      }
+
+      .code__title {
+        display: inline;
+        font-size: 1rem;
+        color: $senary-color;
+      }
+
+      .code__assignment {
+        color: $septenary-color;
+      }
+
+      .code__keys {
+        color: $octonary-color;
+      }
+
+      .code__properties {
+        margin-left: 1.5rem;
+        color: $nonary-color;
+      }
+
+      .code__values {
+        color: $denary-color;
+
+        &--noString {
+          color: $elevenary-color;
+        }
+        &--block {
+          margin-left: 3rem;
+          display: block;
+          color: $denary-color;
+        }
+      }
+
+      .code__commas {
+        color: $octonary-color;
+      }
+
+      .code__brackets {
+        color: $octonary-color;
+        &:last-child {
+          margin-left: 1.5rem;
+        }
+      }
+
+      .code__valueArray {
+        margin-left: 3rem;
+        display: block;
+      }
+    }
+  }
+}
+
+.myHistory {
+  .myHistory__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .myHistory__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .myHistory__section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      .myHistory__subtitle {
+        h3 {
+          font-size: 1rem;
+          font-weight: 700;
+          color: $senary-color;
+        }
+      }
+    }
+
+    .myHistory__text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      text-align: justify;
+      color: $octonary-color;
+      text-indent: 2rem;
+    }
+  }
+}

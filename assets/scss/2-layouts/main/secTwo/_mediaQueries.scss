@@ -2,12 +2,10 @@
 @use '../../../3-modules/mixins';
 
 .projects__contents {
-  $self: '.projects';
-
   .projects__pagesContainer {
-    #{$self}__projectsItems {
-      #{$self}__page {
-        &#{$self}__pageIsDisplayed {
+    .projects__projectsItems {
+      .projects__page {
+        &.projects__pageIsDisplayed {
           @include mixins.sm {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, 1fr);
@@ -18,7 +16,7 @@
             grid-template-rows: repeat(2, 1fr);
           }
 
-          #{$self}__card {
+          .projects__card {
             @include mixins.mbs {
               padding: 1rem;
             }
@@ -28,7 +26,7 @@
               min-width: 0;
             }
 
-            #{$self}__cardHeader {
+            .projects__cardHeader {
               h3 {
                 @include mixins.md {
                   overflow: hidden;
@@ -39,8 +37,8 @@
               }
             }
 
-            #{$self}__cardBody {
-              #{$self}__cardDescription {
+            .projects__cardBody {
+              .projects__cardDescription {
                 p {
                   @include mixins.md {
                     text-align: left;
@@ -49,7 +47,7 @@
               }
             }
 
-            #{$self}__cardFooter {
+            .projects__cardFooter {
               a {
                 @include mixins.mbs {
                   padding: 0.75rem 1.25rem;
@@ -67,6 +65,8 @@
     }
   }
 }
+
+// --------------------------------------------------------------------------- //
 
 .error {
   h3 {
