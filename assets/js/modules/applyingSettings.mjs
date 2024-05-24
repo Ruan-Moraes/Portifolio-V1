@@ -7,23 +7,37 @@ import {
   disableTextSelection,
 } from './settings.mjs';
 
-function applyingSettings() {
+window.addEventListener('DOMContentLoaded', () => {
+  const settings = JSON.parse(localStorage.getItem('settings'));
+
+  if (!settings) {
+    return;
+  }
+
+  const selectedThemeValue = settings[0];
+  const selectedColorValue = settings[1];
+  const selectedLanguageValue = settings[2];
+
+  applyTheme(selectedThemeValue);
+  applyColor(selectedColorValue);
+  applyLanguage(selectedLanguageValue);
+});
+
+export default function applyingSettings() {
   const settingsApplyDOM = document.querySelector('#settingsApply');
 
   settingsApplyDOM.addEventListener('click', () => {
     const selectedOptions = document.querySelectorAll('.selectedItem');
 
-    const selectedTheme = selectedOptions[0];
-    const selectedColor = selectedOptions[1];
-    const selectedLanguage = selectedOptions[2];
+    const selectedTheme = selectedOptions[0].textContent;
+    const selectedColor = selectedOptions[1].textContent;
+    const selectedLanguage = selectedOptions[2].textContent;
 
-    const selectedThemeValue = selectedTheme.textContent;
-    const selectedColorValue = selectedColor.textContent;
-    const selectedLanguageValue = selectedLanguage.textContent;
+    savingToLocalStorage(selectedTheme, selectedColor, selectedLanguage);
 
-    applyTheme(selectedThemeValue);
-    applyColor(selectedColorValue);
-    applyLanguage(selectedLanguageValue);
+    applyTheme(selectedTheme);
+    applyColor(selectedColor);
+    applyLanguage(selectedLanguage);
 
     animationGear();
     showBlurOnBody();
@@ -31,6 +45,14 @@ function applyingSettings() {
     disableTextSelection();
     changePageScrollingState();
   });
+}
+
+function savingToLocalStorage(selectedTheme, selectedColor, selectedLanguage) {
+  const settings = [selectedTheme, selectedColor, selectedLanguage];
+
+  localStorage.setItem('settings', JSON.stringify(settings));
+
+  return JSON.parse(localStorage.getItem('settings'));
 }
 
 // * Lógica para mudar o tema do site
@@ -185,7 +207,3 @@ function changeColorsBackground(selectedColor, currentColor) {
 // * Lógica para mudar o idioma do site
 
 function applyLanguage(selectedLanguageValue) {} // TODO - Andamento
-
-// * Exportando a função applySettings
-
-export default applyingSettings;

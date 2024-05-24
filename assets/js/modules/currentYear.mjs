@@ -1,6 +1,6 @@
 'use strict';
 
-async function getTheCurrentYear() {
+export default async function getTheCurrentYear() {
   const currentYearDOM = document.querySelector('#currentYear');
 
   try {
@@ -19,5 +19,3 @@ async function getTheCurrentYear() {
     currentYearDOM.textContent = new Date().getFullYear();
   }
 }
-
-export default getTheCurrentYear;

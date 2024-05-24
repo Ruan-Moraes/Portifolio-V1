@@ -41,12 +41,13 @@
           </h1>
         </div>
         <div
+          id="menuButton"
           tabindex="0"
-          class="header__menu quaternary__backgroundColor--menuHover quaternary__backgroundColor--menuActive"
+          class="hamburgerButton quaternary__backgroundColor--menuHover quaternary__backgroundColor--menuActive"
         >
-          <div class="menu__lineOne"></div>
-          <div class="menu__lineTwo"></div>
-          <div class="menu__lineThree"></div>
+          <div class="hamburgerButton__lineOne"></div>
+          <div class="hamburgerButton__lineTwo"></div>
+          <div class="hamburgerButton__lineThree"></div>
         </div>
         <div class="header__links">
           <div class="header__navigation">
@@ -108,11 +109,7 @@
       <div class="blurOnMain"></div>
       <section class="main__apresentation">
         <div class="container">
-          <div
-            data-aos="fade-in"
-            data-aos-duration="500"
-            class="apresentation"
-          >
+          <div data-aos="fade-in" data-aos-duration="500" class="apresentation">
             <h2>
               Olá, sou um futuro
               <strong class="quaternary__color"
@@ -685,7 +682,15 @@
     <div class="settings__modal">
       <div class="settings__header">
         <h2>Configurações</h2>
-        <i class="fa-solid fa-xmark"></i>
+        <div
+          id="exitSettingsButton"
+          tabindex="0"
+          class="hamburgerButton quaternary__backgroundColor--menuHover quaternary__backgroundColor--menuActive"
+        >
+          <div class="hamburgerButton__lineOne lineOneIsActivated"></div>
+          <div class="hamburgerButton__lineTwo lineTwoIsActivated"></div>
+          <div class="hamburgerButton__lineThree lineThreeIsActivated"></div>
+        </div>
       </div>
       <div class="settings__body">
         <div>

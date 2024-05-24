@@ -1,6 +1,8 @@
 'use strict';
 
-function customSelect() {
+// TODO - RESOLVE PROBLEMA DO TEXTO QUE VOLTA PARA O PRIMEIRO ITEM SELECIONADO, MESMO APOS O ITEM SELECIONADO SER DIFERENTE NO LOCAL STORAGE
+
+export default function customSelect() {
   const selectsDOM = document.querySelectorAll('select');
 
   selectsDOM.forEach((selectionElementDOM) => {
@@ -135,24 +137,4 @@ function addEventToCloseSelect() {
       }
     });
   });
-
-  // document.addEventListener('keydown', (event) => {
-  //   if (event.key === 'Enter') {
-  //     hiddenSelectionsDOM.forEach((select) => {
-  //       const selectParent = select.parentElement;
-  //       const selectOptions = selectParent.children[1];
-
-  //       if (
-  //         selectOptions.classList.contains('show') &&
-  //         !selectParent.contains(event.target)
-  //       ) {
-  //         selectOptions.classList.remove('show');
-  //       }
-  //     });
-  //   }
-  // });
 }
-
-// * Exportando a função customSelect
-
-export default customSelect;

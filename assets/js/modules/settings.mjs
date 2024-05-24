@@ -3,14 +3,18 @@
 import { changePageScrollingState, showBlurOnBody } from './others.mjs';
 import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
 
-function settings() {
+export default function settings() {
   const gearDOM = document.querySelector('.container__gear');
-  const exitSettingsButtonDOM = document.querySelector(
-    '.settings__header > .fa-xmark'
-  );
+  const exitSettingsButtonDOM = document.querySelector('#exitSettingsButton');
   const blurOnBodyDOM = document.querySelector('.blurOnBody');
 
-  [gearDOM, exitSettingsButtonDOM, blurOnBodyDOM].forEach((elementDOM) => {
+  const elementsOfInteractions = [
+    gearDOM,
+    exitSettingsButtonDOM,
+    blurOnBodyDOM,
+  ];
+
+  elementsOfInteractions.forEach((elementDOM) => {
     elementDOM.addEventListener('click', () => {
       CheckIfMenuIsActive();
       animationGear();
@@ -71,7 +75,3 @@ export function disableTextSelection() {
       : (element.style.userSelect = 'none');
   });
 }
-
-// * Exportando a função settings
-
-export default settings;

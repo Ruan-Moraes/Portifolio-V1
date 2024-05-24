@@ -9,3 +9,11 @@
     display: none;
   }
 }
+
+.hamburgerButton {
+  &#menuButton {
+    @include mixins.xl2 {
+      display: none;
+    }
+  }
+}

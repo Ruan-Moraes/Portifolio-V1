@@ -1,6 +1,6 @@
 @use '../../1-base/variables';
 
-.header__menu {
+.hamburgerButton {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,30 +8,31 @@
   gap: 0.5rem;
   cursor: pointer;
 
-  .menu__lineOne,
-  .menu__lineTwo,
-  .menu__lineThree {
+  .hamburgerButton__lineOne,
+  .hamburgerButton__lineTwo,
+  .hamburgerButton__lineThree {
     height: 0.125rem;
     width: 2rem;
+    border-radius: 1rem;
     background-color: variables.$white;
     transition: transform variables.$transition-fast,
       opacity variables.$transition-fast,
       background-color variables.$transition-fast;
   }
 
-  .menu__lineOne {
+  .hamburgerButton__lineOne {
     &.lineOneIsActivated {
       transform: rotate(-45deg) translate(-0.5rem, 0.5rem);
     }
   }
 
-  .menu__lineTwo {
+  .hamburgerButton__lineTwo {
     &.lineTwoIsActivated {
       opacity: 0;
     }
   }
 
-  .menu__lineThree {
+  .hamburgerButton__lineThree {
     &.lineThreeIsActivated {
       transform: rotate(45deg) translate(-0.3125rem, -0.4375rem);
     }

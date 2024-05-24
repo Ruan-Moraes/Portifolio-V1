@@ -2,10 +2,10 @@
 
 import { changePageScrollingState } from './others.mjs';
 
-function menu() {
-  const menuDOM = document.querySelector('.header__menu');
+export default function menu() {
+  const hamburgerButton = document.querySelector('#menuButton');
 
-  menuDOM.addEventListener('keydown', (event) => {
+  hamburgerButton.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       animationMenu();
       activateMenu();
@@ -14,7 +14,7 @@ function menu() {
     }
   });
 
-  menuDOM.addEventListener('click', () => {
+  hamburgerButton.addEventListener('click', () => {
     animationMenu();
     activateMenu();
     showBlurMenu();
@@ -23,10 +23,12 @@ function menu() {
 }
 
 export function animationMenu() {
-  ['lineOne', 'lineTwo', 'lineThree'].forEach((lineClass) => {
-    const lineDOM = document.querySelector(`.menu__${lineClass}`);
+  const linesDOM = ['lineOne', 'lineTwo', 'lineThree'];
 
-    lineDOM.classList.toggle(`${lineClass}IsActivated`);
+  linesDOM.forEach((line) => {
+    const lineDOM = document.querySelector(`.hamburgerButton__${line}`);
+
+    lineDOM.classList.toggle(`${line}IsActivated`);
   });
 }
 
@@ -41,7 +43,3 @@ export function showBlurMenu() {
 
   blurOnMainDOM.classList.toggle('blurOnMainIsActivated');
 }
-
-// * Exportando a função menu
-
-export default menu;

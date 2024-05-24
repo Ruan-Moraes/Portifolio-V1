@@ -3,6 +3,11 @@
 .main__apresentation,
 .main__myHistory,
 .main__certificates {
+  margin-top: 3.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .container {
     @extend %container;
     padding-top: 1.5rem;

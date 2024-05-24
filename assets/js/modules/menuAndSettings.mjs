@@ -8,7 +8,7 @@ import {
 } from './settings.mjs';
 import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
 
-function menuAndSettings() {
+export default function menuAndSettings() {
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
       const isSettingsActive = document
@@ -45,7 +45,3 @@ function menuAndSettings() {
     }
   });
 }
-
-// * Exportando a função menuAndSettings
-
-export default menuAndSettings;

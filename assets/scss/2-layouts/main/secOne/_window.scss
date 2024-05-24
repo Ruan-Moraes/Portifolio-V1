@@ -21,6 +21,7 @@ $elevenary-color: #b2865c;
   border-radius: 1rem;
   border: 0.125rem solid variables.$black;
   background-color: variables.$codeAndSettings-backgroundColor;
+  box-shadow: variables.$shadow-medium;
 
   .code__header,
   .myHistory__header {
@@ -128,8 +129,11 @@ $elevenary-color: #b2865c;
 
 .myHistory {
   .myHistory__title {
-    font-size: 1.25rem;
-    font-weight: 700;
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-shadow: variables.$shadow-text;
+    }
   }
 
   .myHistory__content {

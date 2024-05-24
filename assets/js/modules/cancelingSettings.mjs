@@ -7,7 +7,7 @@ import {
   disableTextSelection,
 } from './settings.mjs';
 
-function cancelingSettings() {
+export default function cancelingSettings() {
   const settingsCancelDOM = document.querySelector('#settingsCancel');
 
   settingsCancelDOM.addEventListener('click', () => {
@@ -37,5 +37,3 @@ function resetSettings(settings) {
 
   // TODO - Resetar as configurações
 }
-
-export default cancelingSettings;

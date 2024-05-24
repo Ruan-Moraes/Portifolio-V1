@@ -1,20 +1,6 @@
 @use '../../../1-base/variables';
 @use '../../../3-modules/mixins';
 
-.main__apresentation .container {
-  @include mixins.lg {
-    flex-direction: row;
-    gap: 3.25rem;
-  }
-
-  @include mixins.xl2 {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-}
-
-// --------------------------------------------------------------------------- //
-
 .main__apresentation,
 .main__myHistory,
 .main__certificates {
@@ -37,13 +23,35 @@
 
 // --------------------------------------------------------------------------- //
 
+.main__apresentation .container {
+  @include mixins.lg {
+    flex-direction: row;
+    gap: 3.25rem;
+  }
+
+  @include mixins.xl2 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
 .apresentation {
   @include mixins.lg {
     gap: 1.25rem;
   }
-
   @include mixins.xl2 {
     gap: 1.5rem;
+  }
+
+  h2 {
+    @include mixins.lg {
+      font-size: 1.75rem;
+    }
+    @include mixins.xl2 {
+      font-size: 2rem;
+    }
   }
 
   a {
@@ -103,6 +111,24 @@
       @include mixins.sm {
         font-size: 1rem;
       }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.certificates {
+  .certificates__items {
+    @include mixins.sm {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: stretch;
+    }
+    @include mixins.lg {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include mixins.xl2 {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 }
