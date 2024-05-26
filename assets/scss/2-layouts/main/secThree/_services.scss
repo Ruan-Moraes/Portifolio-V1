@@ -1,11 +1,11 @@
 @use '../../../1-base/variables';
 
-.services__contents {
+.services {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 
-  .services__service {
+  .services__item {
     padding: 1.5rem 1rem;
     display: flex;
     flex-direction: column;
@@ -16,20 +16,20 @@
     border: 0.125rem solid variables.$tertiary-color;
     box-shadow: variables.$shadow-medium;
 
-    .service__header {
+    .services__header {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 0.75rem;
 
-      .service__icon {
+      .services__icon {
         i {
           font-size: 3rem;
         }
       }
 
-      .service__title {
+      .services__title {
         h3 {
           font-size: 1.75rem;
           text-align: center;
@@ -37,8 +37,8 @@
       }
     }
 
-    .service__body {
-      .service__description {
+    .services__body {
+      .services__description {
         p {
           font-size: 1rem;
           text-align: center;
@@ -46,26 +46,23 @@
       }
     }
 
-    .service__footer {
+    .services__footer {
       height: 3rem;
       margin-top: auto;
-      .service__action {
-        height: 100%;
 
-        a {
-          height: inherit;
-          padding: 0 1.25rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 0.85rem;
-          font-weight: 700;
-          text-align: center;
-          text-transform: uppercase;
-          border-radius: 0.5rem;
-          background-color: variables.$tertiary-color;
-          transition: background-color variables.$transition-fast;
-        }
+      a {
+        height: 100%;
+        padding: 0 1.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 0.5rem;
+        background-color: variables.$tertiary-color;
+        transition: background-color variables.$transition-fast;
       }
     }
   }

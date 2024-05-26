@@ -1,7 +1,7 @@
 @use '../../../1-base/variables';
 @use '../../../3-modules/mixins';
 
-.services__contents {
+.services {
   @include mixins.sm {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -13,7 +13,7 @@
     grid-template-rows: repeat(2, 1fr);
   }
 
-  .services__service {
+  .services__item {
     @include mixins.min-desktop {
       &:hover {
         box-shadow: variables.$shadow-dark;

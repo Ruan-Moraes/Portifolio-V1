@@ -1,6 +1,6 @@
 @use '../../1-base/variables';
 
-.footer__contactsDetails {
+.footer__contacts {
   width: 100%;
   padding: 1.25rem 0;
   display: flex;
@@ -20,7 +20,7 @@
     }
   }
 
-  .footer__contact {
+  .footer__myContacts {
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,13 +1,12 @@
 'use strict';
 
-import applyingSettings, {
-  whatIsTheCurrentColor,
-} from './modules/applyingSettings.mjs';
+import applyingSettings from './modules/applyingSettings.mjs';
 import currentYear from './modules/currentYear.mjs';
 import menu from './modules/menu.mjs';
 import settings from './modules/settings.mjs';
 import menuAndSettings from './modules/menuAndSettings.mjs';
 import customSelect from './modules/customSelect.mjs';
+import { whatIsTheCurrentColor } from './modules/others.mjs';
 
 // * Garante que o código só será executado após o carregamento do conteúdo da página
 
@@ -69,7 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
   })();
 
   function loadingProjects(isLoading, currentColor) {
-    const projectsContents = document.querySelector('.projects__contents');
+    const projectsContents = document.querySelector('.projects');
 
     if (!isLoading) {
       const loadingProjects = document.querySelector(
@@ -120,10 +119,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function insertTheProjectsCounter(ruanMoraesRepositories, currentColor) {
     const projectsCounter = document.querySelector('#projectAccountant');
-    projectsCounter.setAttribute('data-aos', 'fade-down');
-    projectsCounter.setAttribute('data-aos-duration', '250');
-
-    projectsCounter.innerHTML = `<p>Total de projetos: <strong class="${currentColor}__color">${ruanMoraesRepositories.length}</strong></p>`;
+    projectsCounter.classList.add(`${currentColor}__color`);
+    projectsCounter.innerHTML = `
+      ${ruanMoraesRepositories.length}
+    `;
   }
 
   function createPagesIndexes(totalPages) {
@@ -149,11 +148,9 @@ window.addEventListener('DOMContentLoaded', () => {
       page.setAttribute('role', 'button');
       page.classList.add('projects__paginationItem');
       page.classList.add(`${currentColor}__backgroundColor--lessLightHover`);
-      page.innerHTML = `
-      <p>
-        <span class="visually-hidden">Página ${i + 1}</span>
-        ${i + 1}
-      </p>`;
+      page.innerHTML = `<span class="visually-hidden">Página ${i + 1}</span> ${
+        i + 1
+      }`;
 
       page.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -255,27 +252,6 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsPages[0].classList.add('projects__pageIsDisplayed');
   }
 
-  function whichPageToDisplayAcessibility(page, currentColor) {
-    const projectsPages = document.querySelectorAll('.projects__page');
-    const projectsPagination = document.querySelectorAll(
-      '.projects__paginationItem'
-    );
-
-    for (let i = 0; i < projectsPagination.length; i++) {
-      projectsPagination[i].classList.remove(
-        `${currentColor}__backgroundColor--selected`
-      );
-      projectsPages[i].classList.remove('projects__pageIsDisplayed');
-
-      if (projectsPagination[i] === page) {
-        projectsPagination[i].classList.add(
-          `${currentColor}__backgroundColor--selected`
-        );
-        projectsPages[i].classList.add('projects__pageIsDisplayed');
-      }
-    }
-  }
-
   function whichPageToDisplay() {
     const projectsPages = document.querySelectorAll('.projects__page');
     const projectsPagination = document.querySelectorAll(
@@ -303,13 +279,34 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function whichPageToDisplayAcessibility(page, currentColor) {
+    const projectsPages = document.querySelectorAll('.projects__page');
+    const projectsPagination = document.querySelectorAll(
+      '.projects__paginationItem'
+    );
+
+    for (let i = 0; i < projectsPagination.length; i++) {
+      projectsPagination[i].classList.remove(
+        `${currentColor}__backgroundColor--selected`
+      );
+      projectsPages[i].classList.remove('projects__pageIsDisplayed');
+
+      if (projectsPagination[i] === page) {
+        projectsPagination[i].classList.add(
+          `${currentColor}__backgroundColor--selected`
+        );
+        projectsPages[i].classList.add('projects__pageIsDisplayed');
+      }
+    }
+  }
+
   function errorGitHubAPI(currentColor) {
-    const projectsContents = document.querySelector('.projects__contents');
+    const projects = document.querySelector('.projects');
 
     const errorMessage =
       '<h3>Ocorreu um problema ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
     const errorIcon = `<i class="fas fa-exclamation-triangle ${currentColor}__color"></i>`;
 
-    projectsContents.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
+    projects.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
   }
 });

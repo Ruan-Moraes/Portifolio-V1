@@ -23,7 +23,7 @@
 
 // --------------------------------------------------------------------------- //
 
-.footer__navigation {
+.footer__navigationLinks {
   @include mixins.md {
     height: 100%;
     width: 100%;
@@ -43,7 +43,7 @@
 
 // --------------------------------------------------------------------------- //
 
-.footer__contactsDetails {
+.footer__contacts {
   @include mixins.md {
     height: 100%;
     width: 100%;

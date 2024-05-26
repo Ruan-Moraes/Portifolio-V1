@@ -34,7 +34,6 @@ function hideTheSelectionElement(selectionElementDOM) {
 }
 
 function selectTheParentElement(selectionElementDOM) {
-  console.log(selectionElementDOM.parentElement);
   const parentElementOfTheSelectionDOM = selectionElementDOM.parentElement;
   parentElementOfTheSelectionDOM.setAttribute('tabindex', '0');
 

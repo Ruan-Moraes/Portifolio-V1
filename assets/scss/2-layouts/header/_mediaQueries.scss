@@ -74,7 +74,7 @@
       flex-direction: row;
     }
 
-    .header__contactTitle {
+    .header__contactsTitle {
       @include mixins.xl2 {
         display: none;
       }

@@ -7,13 +7,6 @@
   padding: 2rem 0;
   background-color: variables.$tertiary-color;
 
-  #myProjects {
-    position: absolute;
-    top: -10rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .container {
     @extend %container;
     display: flex;
@@ -22,4 +15,11 @@
     align-items: center;
     gap: 2rem;
   }
+}
+
+#myProjects {
+  position: absolute;
+  top: -10rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
