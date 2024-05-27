@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   display: none;
-  background: variables.$black-opacity;
+  background: variables.$black-opacity-06;
   backdrop-filter: variables.$blur;
 }
 
@@ -31,7 +31,7 @@
   margin-top: 4.05rem;
   border-right: 0.0625rem solid variables.$gray;
   transform: translateX(-100%);
-  transition: transform 0.5s ease;
+  transition: transform variables.$transition-medium;
   &.blurOnMainIsActivated {
     transform: translateX(0);
   }

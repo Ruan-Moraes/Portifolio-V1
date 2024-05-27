@@ -193,9 +193,178 @@ function changeTextToSelectedLanguage(selectedLanguage) {
 }
 
 function changeEachTextToEnglish() {
-  try {
-    // Index.html
+  // site vai hospedado no github pages, por isso o pathname é diferente
+  // verifique se a url é igual a do github pages
+  // https://ruan-moraes.github.io/Portifolio-V1/
 
+  console.log(window.location.href);
+
+  if (
+    window.location.href ===
+    'https://ruan-moraes.github.io/Portifolio-V1/myhistory.html'
+  ) {
+    changeMyHistoryText();
+  }
+
+  if (
+    window.location.href ===
+    'https://ruan-moraes.github.io/Portifolio-V1/certificates.html'
+  ) {
+    changeCertificatesText();
+  }
+
+  if (
+    window.location.href === 'https://ruan-moraes.github.io/Portifolio-V1/' ||
+    window.location.href ===
+      'https://ruan-moraes.github.io/Portifolio-V1/index.html' ||
+    window.location.href ===
+      'https://ruan-moraes.github.io/Portifolio-V1/index.html#myProjects'
+  ) {
+    changeTextIndex();
+  }
+
+  function changeMyHistoryText() {
+    changeHeaderText();
+    changeFooterNavigationLinksText();
+    changeFooterContactsText();
+    changeFooterCopyText();
+  }
+
+  function changeCertificatesText() {
+    changeHeaderText();
+    changeFooterNavigationLinksText();
+    changeFooterContactsText();
+    changeFooterCopyText();
+  }
+
+  function changeTextIndex() {
+    changeHeaderText();
+    changeFooterNavigationLinksText();
+    changeFooterContactsText();
+    changeFooterCopyText();
+
+    changeApresentationText();
+    changeAboutMeText();
+    changeProjectsText();
+    changeServicesText();
+
+    function changeApresentationText() {
+      document.querySelector('.apresentation > h2').innerHTML =
+        'Hi, I&lsquo;m a future <span class="quaternary__color">Full-Stack Developer</span>';
+      document.querySelector('.apresentation > p').innerHTML = `
+          Looking for my first opportunity as a developer <strong class="quaternary__color">full-stack</strong> or even as an <strong class="quaternary__color">intern</strong>, my focus is on specializing in <strong class="quaternary__color">web development</strong> and <strong class="quaternary__color">mobile</strong>, in addition to acquiring knowledge in <strong class="quaternary__color">cybersecurity</strong>.
+          `;
+      document.querySelector('.apresentation > a').textContent = 'Download CV';
+    }
+
+    function changeAboutMeText() {
+      document
+        .querySelectorAll('.aboutMe__lines > span > span')
+        .forEach((element) => {
+          element.textContent = 'Line';
+        });
+      document.querySelector(
+        '.aboutMe__content > div:nth-child(1) > h2'
+      ).textContent = 'myPerson';
+      document.querySelector(
+        '.aboutMe__content > p:nth-child(2) > span:nth-child(1)'
+      ).textContent = 'name:';
+      document.querySelector(
+        '.aboutMe__content > p:nth-child(3) > span:nth-child(1)'
+      ).textContent = 'yearOfBirth:';
+      document.querySelector(
+        '.aboutMe__content > p:nth-child(4) > span:nth-child(1)'
+      ).textContent = 'availableForWork:';
+      document.querySelector(
+        '.aboutMe__content > p:nth-child(5) > span:nth-child(1)'
+      ).textContent = 'technologies:';
+      document.querySelector(
+        '.aboutMe__content > p:nth-child(6) > span:nth-child(1)'
+      ).textContent = 'tools:';
+    }
+
+    function changeProjectsText() {
+      document.querySelector(
+        '.main__projects > .container > .sectionTitle > h2'
+      ).textContent = 'My Projects';
+      document.querySelector(
+        '.main__projects > .container > .projects > .projects__pagesContainer > div > p'
+      ).textContent = 'Total projects:';
+      setTimeout(() => {
+        document
+          .querySelectorAll(
+            '.main__projects > .container > .projects > .projects__pagination a span'
+          )
+          .forEach((element, index) => {
+            element.textContent = `Page ${index + 1}`;
+          });
+      }, 1100);
+    }
+
+    function changeServicesText() {
+      document.querySelector(
+        '.main__services > .container > .sectionTitle > h2'
+      ).textContent = 'My services';
+
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(1) > .services__header > .services__title > h3'
+      ).textContent = 'Web Development';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(1) > .services__body > .services__description p'
+      ).textContent =
+        'Development of responsive and optimized websites and web systems.';
+
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(2) > .services__header > .services__title > h3'
+      ).textContent = 'Mobile Development';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(2) > .services__body > .services__description p'
+      ).textContent =
+        'Development of mobile applications for Android and IOS using Flutter.';
+
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(3) > .services__header > .services__title > h3'
+      ).textContent = 'Cybersecurity';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(3) > .services__body > .services__description p'
+      ).textContent =
+        'Vulnerability analysis, intrusion testing and data protection.';
+
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(4) > .services__header > .services__title > h3'
+      ).textContent = 'API Development and Maintenance';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(4) > .services__body > .services__description p'
+      ).textContent =
+        'Development and maintenance of APIs for integration with other systems.';
+
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(5) > .services__header > .services__title > h3'
+      ).textContent = 'Database Management';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(5) > .services__body > .services__description p'
+      ).textContent =
+        'Development, maintenance and optimization of relational (SQL) and non-relational (NoSQL) databases.';
+
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(6) > .services__header > .services__title > h3'
+      ).textContent = 'Systems Maintenance';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(6) > .services__body > .services__description p'
+      ).textContent =
+        'Performing maintenance, refactoring / optimization, technology migration and error correction on various types of systems.';
+
+      document
+        .querySelectorAll(
+          '.main__services > .container > .services > .services__item > .services__footer > a'
+        )
+        .forEach((element) => {
+          element.textContent = 'Resquet Service';
+        });
+    }
+  }
+
+  function changeHeaderText() {
     document.querySelector('.header__title > h1 > a').textContent =
       '< Portfolio />';
     document.querySelector(
@@ -211,127 +380,12 @@ function changeEachTextToEnglish() {
       'More About Me';
     document.querySelector('.header__contactsTitle > h2').textContent =
       'My Contacts';
+  }
 
-    // ----------------------------
-
-    document.querySelector('.apresentation > h2').innerHTML =
-      'Hi, I&lsquo;m a future <span class="quaternary__color">Full-Stack Developer</span>';
-    document.querySelector('.apresentation > p').innerHTML = `
-        Looking for my first opportunity as a developer <strong class="quaternary__color">full-stack</strong> or even as an <strong class="quaternary__color">intern</strong>, my focus is on specializing in <strong class="quaternary__color">web development</strong> and <strong class="quaternary__color">mobile</strong>, in addition to acquiring knowledge in <strong class="quaternary__color">cybersecurity</strong>.
-        `;
-    document.querySelector('.apresentation > a').textContent = 'Download CV';
-
-    // ----------------------------
-
-    document
-      .querySelectorAll('.code__lines > span > span')
-      .forEach((element) => {
-        element.textContent = 'Line';
-      });
-    document.querySelector(
-      '.code__content > div:nth-child(1) > h2'
-    ).textContent = 'myPerson';
-    document.querySelector(
-      '.code__content > p:nth-child(2) > span:nth-child(1)'
-    ).textContent = 'name:';
-    document.querySelector(
-      '.code__content > p:nth-child(3) > span:nth-child(1)'
-    ).textContent = 'yearOfBirth:';
-    document.querySelector(
-      '.code__content > p:nth-child(4) > span:nth-child(1)'
-    ).textContent = 'availableForWork:';
-    document.querySelector(
-      '.code__content > p:nth-child(5) > span:nth-child(1)'
-    ).textContent = 'technologies:';
-    document.querySelector(
-      '.code__content > p:nth-child(6) > span:nth-child(1)'
-    ).textContent = 'tools:';
-
-    // ----------------------------
-
-    document.querySelector(
-      '.main__projects > .container > .sectionTitle > h2'
-    ).textContent = 'My Projects';
-    document.querySelector(
-      '.main__projects > .container > .projects > .projects__pagesContainer > div > p'
-    ).textContent = 'Total projects:';
-    setTimeout(() => {
-      document
-        .querySelectorAll(
-          '.main__projects > .container > .projects > .projects__pagination a span'
-        )
-        .forEach((element, index) => {
-          element.textContent = `Page ${index + 1}`;
-        });
-    }, 1100);
-
-    // ----------------------------
-
-    document.querySelector(
-      '.main__services > .container > .sectionTitle > h2'
-    ).textContent = 'My services';
-
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(1) > .services__header > .services__title > h3'
-    ).textContent = 'Web Development';
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(1) > .services__body > .services__description p'
-    ).textContent =
-      'Development of responsive and optimized websites and web systems.';
-
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(2) > .services__header > .services__title > h3'
-    ).textContent = 'Mobile Development';
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(2) > .services__body > .services__description p'
-    ).textContent =
-      'Development of mobile applications for Android and IOS using Flutter.';
-
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(3) > .services__header > .services__title > h3'
-    ).textContent = 'Cybersecurity';
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(3) > .services__body > .services__description p'
-    ).textContent =
-      'Vulnerability analysis, intrusion testing and data protection.';
-
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(4) > .services__header > .services__title > h3'
-    ).textContent = 'API Development and Maintenance';
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(4) > .services__body > .services__description p'
-    ).textContent =
-      'Development and maintenance of APIs for integration with other systems.';
-
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(5) > .services__header > .services__title > h3'
-    ).textContent = 'Database Management';
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(5) > .services__body > .services__description p'
-    ).textContent =
-      'Development, maintenance and optimization of relational (SQL) and non-relational (NoSQL) databases.';
-
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(6) > .services__header > .services__title > h3'
-    ).textContent = 'Systems Maintenance';
-    document.querySelector(
-      '.main__services > .container > .services > .services__item:nth-child(6) > .services__body > .services__description p'
-    ).textContent =
-      'Performing maintenance, refactoring / optimization, technology migration and error correction on various types of systems.';
-
-    document
-      .querySelectorAll(
-        '.main__services > .container > .services > .services__item > .services__footer > a'
-      )
-      .forEach((element) => {
-        element.textContent = 'Resquet Service';
-      });
-
-    // ----------------------------
-
+  function changeFooterNavigationLinksText() {
     document.querySelector(
       '.footer > .container > .footer__navigationLinks > .footer__title h2'
-    ).textContent = 'Navigation';
+    ).textContent = 'Navigation Links';
     document.querySelector(
       '.footer > .container > .footer__navigationLinks > .footer__links > a:nth-child(1)'
     ).textContent = 'History';
@@ -341,14 +395,18 @@ function changeEachTextToEnglish() {
     document.querySelector(
       '.footer > .container > .footer__navigationLinks > .footer__links > a:nth-child(3)'
     ).textContent = 'Projects';
+  }
 
+  function changeFooterContactsText() {
     document.querySelector(
       '.footer > .container > .footer__contacts > .footer__title h2'
     ).textContent = 'Contacts Information';
     document.querySelector(
-      '.footer > .container > .footer__contacts > .footer__myContacts:nth-child(3) > h3'
+      '.footer > .container > .footer__contacts > .footer__tel > h3'
     ).textContent = 'Telephone';
+  }
 
+  function changeFooterCopyText() {
     document.querySelector(
       '.footer > .container > .footer__copy > .footer__title h2'
     ).innerHTML = 'Ruan Moraes Santos Barbosa&lsquo;s portfolio';
@@ -358,8 +416,6 @@ function changeEachTextToEnglish() {
     document.querySelector(
       '.footer > .container > .footer__copy > div:nth-child(2) > p:nth-child(2) > span:nth-child(1)'
     ).textContent = 'Developed by';
-  } catch (error) {
-    console.error(error);
   }
 }
 

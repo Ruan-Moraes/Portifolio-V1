@@ -62,8 +62,8 @@
   }
 }
 
-.code {
-  .code__lines {
+.aboutMe {
+  .aboutMe__lines {
     @include mixins.min-desktop {
       display: flex;
       flex-direction: column;

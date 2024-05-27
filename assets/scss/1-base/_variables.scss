@@ -17,6 +17,7 @@ $mbs: 20.0625rem;
 $white: #fff;
 $black: #000;
 $gray: #ccc;
+
 $primary-color: #2d2e31;
 $secondary-color: #25262a;
 $tertiary-color: #1b1b1d;
@@ -25,6 +26,8 @@ $quinary-color: #ffbe2e;
 $senary-color: #2aca44;
 $septenary-color: #2e60f2;
 $octonary-color: #662ef2;
+
+// Todo: Outhors Colors
 
 // Colors less light
 
@@ -38,9 +41,10 @@ $octonary-color-less-light: color.adjust($octonary-color, $lightness: -15%);
 
 // Colors opacity
 
-$black-opacity: rgba($black, 0.6);
+$black-opacity-04: rgba($black, 0.4);
+$black-opacity-06: rgba($black, 0.6);
 
-// Outhors Colors
+// TODO: Outhors Colors
 
 $gear-color: #949494;
 $gear-background-color: #444444;
@@ -52,14 +56,14 @@ $blur: blur(0.5rem);
 
 // Shadows
 
-$shadow-medium: 1rem 1rem 2rem rgba(0, 0, 0, 0.4);
-$shadow-dark: 1.5rem 1.5rem 3rem rgba(0, 0, 0, 0.6);
+$shadow-medium: 1rem 1rem 2rem $black-opacity-04;
+$shadow-dark: 1.5rem 1.5rem 3rem $black-opacity-06;
 
 // Shadows Text
 
-$shadow-text: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.4);
+$shadow-text: 0.125rem 0.125rem 0.25rem $black-opacity-04;
 
 // Transitions
 
 $transition-fast: 0.3s;
-$transition-medium: 0.5s;
+$transition-medium: 0.6s;

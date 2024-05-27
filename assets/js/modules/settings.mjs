@@ -4,7 +4,7 @@ import { changePageScrollingState, showBlurOnBody } from './others.mjs';
 import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
 
 export default function settings() {
-  const gearDOM = document.querySelector('.container__gear');
+  const gearDOM = document.querySelector('#settingsButton');
   const exitSettingsButtonDOM = document.querySelector('#exitSettingsButton');
   const blurOnBodyDOM = document.querySelector('.blurOnBody');
 
@@ -51,7 +51,7 @@ function CheckIfMenuIsActive() {
 }
 
 export function animationGear() {
-  const gearDOM = document.querySelector('.container__gear > .fa-gear');
+  const gearDOM = document.querySelector('#settingsButton > .fa-gear');
 
   gearDOM.style.transform === 'rotate(360deg)'
     ? (gearDOM.style.transform = 'rotate(0deg)')
