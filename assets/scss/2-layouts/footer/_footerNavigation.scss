@@ -1,6 +1,7 @@
 @use '../../1-base/variables';
 
 .footer__navigationLinks {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -5,14 +5,14 @@
     display: block;
   }
 
-  @include mixins.xl2 {
+  @include mixins.xxl {
     display: none;
   }
 }
 
 .hamburgerButton {
   &#menuButton {
-    @include mixins.xl2 {
+    @include mixins.xxl {
       display: none;
     }
   }

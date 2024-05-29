@@ -2,7 +2,7 @@
 
 // Medias queries
 
-$xl2: 96rem;
+$xxl: 96rem;
 $xl: 80rem;
 $lg: 64rem;
 $md: 48rem;
@@ -11,6 +11,27 @@ $min-desktop: 31.25rem;
 $mbl: 26.5625rem;
 $mbm: 23.4375rem;
 $mbs: 20.0625rem;
+
+// Font Size
+
+$font-size-xxl: 3rem;
+$font-size-xl: 2rem;
+$font-size-lg: 1.75rem;
+$font-size-md: 1.5rem;
+$font-size-sm: 1.25rem;
+$font-size-xs: 1rem;
+$font-size-xxs: 0.85rem;
+
+// Spacing
+
+$spacing-xl: 2rem;
+$spacing-lg: 1.75rem;
+$spacing-md: 1.5rem;
+$spacing-sm: 1.25rem;
+$spacing-xs: 1rem;
+$spacing-xxs: 0.85rem;
+$spacing-xxxs: 0.5rem;
+$spacing-xxxxs: 0.25rem;
 
 // Colors
 
@@ -29,6 +50,10 @@ $octonary-color: #662ef2;
 
 // Todo: Outhors Colors
 
+$gear-color: #949494;
+$gear-background-color: #444444;
+$codeAndSettings-backgroundColor: #23272e;
+
 // Colors less light
 
 $tertiary-color-less-light: color.adjust($tertiary-color, $lightness: -2.5%);
@@ -43,12 +68,6 @@ $octonary-color-less-light: color.adjust($octonary-color, $lightness: -15%);
 
 $black-opacity-04: rgba($black, 0.4);
 $black-opacity-06: rgba($black, 0.6);
-
-// TODO: Outhors Colors
-
-$gear-color: #949494;
-$gear-background-color: #444444;
-$codeAndSettings-backgroundColor: #23272e;
 
 // Blur
 

@@ -10,7 +10,6 @@
       grid-template-areas:
         'navigation contacts'
         'copy copy';
-      gap: 1.5rem;
     }
 
     @include mixins.xl {
@@ -25,19 +24,8 @@
 
 .footer__navigationLinks {
   @include mixins.md {
-    height: 100%;
-    width: 100%;
-    padding: 1rem;
     grid-area: navigation;
-    justify-content: start;
-    border-radius: 1rem;
-    background-color: variables.$secondary-color;
-  }
-
-  @include mixins.xl {
-    justify-content: center;
-    border-radius: 0;
-    background-color: transparent;
+    padding: 1rem 0;
   }
 }
 
@@ -45,16 +33,21 @@
 
 .footer__contacts {
   @include mixins.md {
-    height: 100%;
-    width: 100%;
-    padding: 1rem;
     grid-area: contacts;
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.footer__navigationLinks,
+.footer__contacts {
+  @include mixins.md {
+    height: 100%;
     justify-content: start;
     border-radius: 1rem;
     border: none;
     background-color: variables.$secondary-color;
   }
-
   @include mixins.xl {
     justify-content: center;
     border-radius: 0;
@@ -66,17 +59,11 @@
 
 .footer__copy {
   @include mixins.md {
-    padding-top: 1rem;
     grid-area: copy;
-
-    h2 {
-      font-size: 1.25rem;
-    }
   }
-
   @include mixins.xl {
     height: 100%;
-    padding: 1rem;
+    padding: 0 1rem;
     gap: 0.5rem;
     border-right: 0.125rem solid variables.$primary-color;
     border-left: 0.125rem solid variables.$primary-color;

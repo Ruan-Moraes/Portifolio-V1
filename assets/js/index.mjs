@@ -41,31 +41,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // * Buscar meus projetos no GitHub atráves da API do GitHub e inserir no DOM
 
-  (async function fetchGitHubAPI() {
-    const currentColor = whatIsTheCurrentColor();
+  // (async function fetchGitHubAPI() {
+  //   const currentColor = whatIsTheCurrentColor();
 
-    try {
-      loadingProjects(true, currentColor);
+  //   try {
+  //     loadingProjects(true, currentColor);
 
-      const ruanMoraesRepositories = await fetch(
-        'https://api.github.com/users/ruan-moraes/repos?type=owner'
-      )
-        .then((response) => response.json())
-        .then((response) =>
-          response.filter((repository) => repository.has_pages === true)
-        );
+  //     const ruanMoraesRepositories = await fetch(
+  //       'https://api.github.com/users/ruan-moraes/repos?type=owner'
+  //     )
+  //       .then((response) => response.json())
+  //       .then((response) =>
+  //         response.filter((repository) => repository.has_pages === true)
+  //       );
 
-      setTimeout(() => {
-        insertProjectsDOM(ruanMoraesRepositories, currentColor);
-      }, 1 * 1000);
-    } catch (error) {
-      errorGitHubAPI(currentColor);
+  //     setTimeout(() => {
+  //       insertProjectsDOM(ruanMoraesRepositories, currentColor);
+  //     }, 1 * 1000);
+  //   } catch (error) {
+  //     errorGitHubAPI(currentColor);
 
-      console.error(
-        `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
-      );
-    }
-  })();
+  //     console.error(
+  //       `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
+  //     );
+  //   }
+  // })();
 
   function loadingProjects(isLoading, currentColor) {
     const projectsContents = document.querySelector('.projects');

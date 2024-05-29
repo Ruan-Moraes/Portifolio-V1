@@ -1,7 +1,7 @@
 @use '../1-base/variables';
 
-@mixin xl2 {
-  @media screen and (min-width: variables.$xl2) {
+@mixin xxl {
+  @media screen and (min-width: variables.$xxl) {
     @content;
   }
 }

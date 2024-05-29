@@ -17,7 +17,6 @@ $elevenary-color: #b2865c;
   width: 100%;
   display: flex;
   flex-direction: column;
-  letter-spacing: 0.125rem;
   border-radius: 1rem;
   border: 0.125rem solid variables.$black;
   background-color: variables.$codeAndSettings-backgroundColor;
@@ -82,7 +81,6 @@ $elevenary-color: #b2865c;
 
       .aboutMe__title {
         display: inline;
-        font-size: 1rem;
         color: $senary-color;
       }
 
@@ -157,7 +155,7 @@ $elevenary-color: #b2865c;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       text-align: justify;
       color: $octonary-color;
       text-indent: 2rem;

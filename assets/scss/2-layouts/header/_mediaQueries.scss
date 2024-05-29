@@ -3,7 +3,7 @@
 
 .header {
   .container {
-    @include mixins.xl2 {
+    @include mixins.xxl {
       padding: 1.5rem 0;
       justify-content: space-around;
     }
@@ -15,7 +15,7 @@
 .header__title {
   a {
     @include mixins.md {
-      font-size: 1.65rem;
+      font-size: 1.75rem;
     }
   }
 }
@@ -24,15 +24,13 @@
 
 .header__links {
   @include mixins.md {
-    margin-top: 4.05rem;
+    margin-top: 4.175rem;
   }
-
   @include mixins.lg {
     width: 50%;
     box-shadow: inset variables.$shadow-dark;
   }
-
-  @include mixins.xl2 {
+  @include mixins.xxl {
     height: auto;
     width: 51.5%;
     position: static;
@@ -46,47 +44,37 @@
   }
 
   .header__navigation {
-    @include mixins.xl2 {
+    @include mixins.xxl {
       margin: 0;
       display: block;
     }
 
-    .header__navigationTitle {
-      @include mixins.xl2 {
-        display: none;
-      }
-    }
-
     .header__navigationLinks {
-      @include mixins.xl2 {
+      @include mixins.xxl {
         flex-direction: row;
         gap: 1.5rem;
 
         a {
-          font-size: 1.2rem;
+          font-size: 1.25rem;
         }
       }
     }
   }
 
   .header__contacts {
-    @include mixins.xl2 {
+    @include mixins.xxl {
       flex-direction: row;
     }
 
     .header__contactsTitle {
-      @include mixins.xl2 {
-        display: none;
-      }
-
       h2 {
-        @include mixins.xl2 {
-          font-size: 1.65rem;
+        @include mixins.xxl {
+          font-size: 1.75rem;
         }
       }
     }
 
-    .header__contactsLinks {
+    .header__contactsIcons {
       .fa-linkedin,
       .fa-envelope,
       .fa-whatsapp,
@@ -94,10 +82,16 @@
         @include mixins.md {
           font-size: 1.75rem;
         }
+      }
+    }
+  }
 
-        @include mixins.xl2 {
-          font-size: 1.5rem;
-        }
+  .header__navigation,
+  .header__contacts {
+    .header__navigationTitle,
+    .header__contactsTitle {
+      @include mixins.xxl {
+        display: none;
       }
     }
   }

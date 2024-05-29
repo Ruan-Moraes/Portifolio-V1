@@ -468,14 +468,11 @@ function changeEachTextToEnglish() {
 
   function changeFooterCopyText() {
     document.querySelector(
-      '.footer > .container > .footer__copy > .footer__title h2'
-    ).innerHTML = 'Ruan Moraes Santos Barbosa&lsquo;s portfolio';
+      '.footer > .container > .footer__copy > .footer__title h2 span'
+    ).innerHTML = 'Portfolio Of';
     document.querySelector(
-      '.footer > .container > .footer__copy > div:nth-child(2) > p:nth-child(1) > span:nth-child(2)'
+      '.footer > .container > .footer__copy > div:nth-child(2) > p > span:nth-child(1)'
     ).textContent = 'All rights reserved';
-    document.querySelector(
-      '.footer > .container > .footer__copy > div:nth-child(2) > p:nth-child(2) > span:nth-child(1)'
-    ).textContent = 'Developed by';
   }
 }
 
