@@ -24,15 +24,17 @@
 
 // --------------------------------------------------------------------------- //
 
-.main__apresentation .container {
-  @include mixins.lg {
-    flex-direction: row;
-    gap: 2rem;
-  }
+.main__apresentation {
+  .container {
+    @include mixins.lg {
+      flex-direction: row;
+      gap: 2rem;
+    }
 
-  @include mixins.xxl {
-    padding-top: 0;
-    padding-bottom: 0;
+    @include mixins.xxl {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 }
 
@@ -40,9 +42,6 @@
 
 .apresentation {
   @include mixins.lg {
-    gap: 1.25rem;
-  }
-  @include mixins.xxl {
     gap: 1.5rem;
   }
 
@@ -82,13 +81,6 @@
 .myHistory {
   @include mixins.sm {
     max-width: 48rem;
-  }
-
-  .myHistory__header,
-  .myHistory__body {
-    @include mixins.sm {
-      padding: 1.5rem;
-    }
   }
 
   .myHistory__title {
