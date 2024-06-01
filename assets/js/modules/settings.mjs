@@ -5,12 +5,12 @@ import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
 
 export default function settings() {
   const gearDOM = document.querySelector('#settingsButton');
-  const exitSettingsButtonDOM = document.querySelector('#exitSettingsButton');
+  // const exitSettingsButtonDOM = document.querySelector('#exitSettingsButton');
   const blurOnBodyDOM = document.querySelector('.blurOnBody');
 
   const elementsOfInteractions = [
     gearDOM,
-    exitSettingsButtonDOM,
+    // exitSettingsButtonDOM,
     blurOnBodyDOM,
   ];
 
@@ -59,7 +59,7 @@ export function animationGear() {
 }
 
 export function showSettings() {
-  const settingsDOM = document.querySelector('.settings__modal');
+  const settingsDOM = document.querySelector('.settings');
 
   settingsDOM.classList.toggle('settingActivated');
 }

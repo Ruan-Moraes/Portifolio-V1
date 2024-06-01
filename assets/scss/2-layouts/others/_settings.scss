@@ -1,6 +1,6 @@
 @use '../../1-base/variables';
 
-.container__gear {
+.gearToSettings {
   height: 3rem;
   width: 3rem;
   position: fixed;
@@ -10,18 +10,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
   border-radius: 0.5rem;
-  background-color: variables.$gear-background-color;
+  background-color: variables.$gear-backgroundColor;
   cursor: pointer;
 
   i {
+    font-size: 2rem;
     color: variables.$gear-color;
-    transition: 1s ease;
+    transition: transform variables.$transition-medium;
   }
 }
 
-.settings__modal {
+.settings {
   max-width: 40rem;
   height: 32rem;
   width: 95%;
@@ -34,11 +34,10 @@
   opacity: 0;
   border-radius: 1rem;
   border: 0.125rem solid variables.$black;
-  background-color: variables.$codeAndSettings-backgroundColor;
+  background-color: variables.$window-backgroundColor;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity variables.$transition-medium;
   transform: translate(-50%, -35%);
-
   &.settingActivated {
     opacity: 1;
     pointer-events: all;
@@ -51,13 +50,8 @@
     align-items: center;
     border-bottom: 0.0625rem solid variables.$black;
 
-    i {
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 700;
       text-shadow: variables.$shadow-text;
     }
@@ -69,7 +63,7 @@
     flex-direction: column;
     gap: 1.5rem;
 
-    div {
+    .option {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -96,22 +90,25 @@
         left: 0;
         padding: 0.5rem 1rem;
         display: flex;
-        justify-content: center;
+        align-items: center;
         border-radius: 0.5rem;
         border: 0.125rem solid variables.$black;
         background-color: variables.$tertiary-color;
-        transition: background-color variables.$transition-fast;
+        transition: background-color variables.$transition-fast,
+          border-radius variables.$transition-fast;
         &:hover {
           background-color: variables.$tertiary-color-less-light;
         }
 
         &:after {
+          content: '';
           position: absolute;
           top: 1.25rem;
           right: 1rem;
           border: 0.5rem solid transparent;
-          content: '';
           border-color: variables.$white transparent transparent transparent;
+          transition: top variables.$transition-fast,
+            border-color variables.$transition-fast;
         }
       }
 
@@ -126,11 +123,10 @@
         background-color: variables.$tertiary-color;
         border-bottom-right-radius: 0.5rem;
         border-bottom-left-radius: 0.5rem;
-
         &.show {
           display: block;
 
-          & + div {
+          + .selectedItem {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
 
@@ -142,22 +138,18 @@
         }
 
         li {
-          padding: 12px 0;
-          text-indent: 1rem;
+          padding: 0.75rem 1rem;
           border: 0.125rem solid variables.$black;
           &:hover {
             background-color: variables.$tertiary-color-less-light;
           }
-
           &:last-child {
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
           }
-
           &:nth-child(odd) {
             border-top: none;
           }
-
           &:nth-child(4) {
             border-top: none;
           }
@@ -177,27 +169,19 @@
       display: flex;
 
       button {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.85rem;
+        padding: 0.75rem 1.5rem;
         font-weight: 700;
         text-transform: uppercase;
         color: variables.$white;
-        border: none;
         border: 0.125rem solid variables.$black;
         background-color: variables.$tertiary-color;
-        cursor: pointer;
         transition: background-color variables.$transition-fast;
-
-        &:hover {
-          background-color: variables.$quaternary-color;
-        }
-
+        cursor: pointer;
         &:first-child {
           border-right-width: 0.03125rem;
           border-top-left-radius: 0.5rem;
           border-bottom-left-radius: 0.5rem;
         }
-
         &:last-child {
           border-left-width: 0.03125rem;
           border-top-right-radius: 0.5rem;

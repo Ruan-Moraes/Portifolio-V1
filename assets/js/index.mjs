@@ -41,31 +41,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // * Buscar meus projetos no GitHub atráves da API do GitHub e inserir no DOM
 
-  // (async function fetchGitHubAPI() {
-  //   const currentColor = whatIsTheCurrentColor();
+  (async function fetchGitHubAPI() {
+    const currentColor = whatIsTheCurrentColor();
 
-  //   try {
-  //     loadingProjects(true, currentColor);
+    try {
+      loadingProjects(true, currentColor);
 
-  //     const ruanMoraesRepositories = await fetch(
-  //       'https://api.github.com/users/ruan-moraes/repos?type=owner'
-  //     )
-  //       .then((response) => response.json())
-  //       .then((response) =>
-  //         response.filter((repository) => repository.has_pages === true)
-  //       );
+      const ruanMoraesRepositories = await fetch(
+        'https://api.github.com/users/ruan-moraes/repos?type=owner'
+      )
+        .then((response) => response.json())
+        .then((response) =>
+          response.filter((repository) => repository.has_pages === true)
+        );
 
-  //     setTimeout(() => {
-  //       insertProjectsDOM(ruanMoraesRepositories, currentColor);
-  //     }, 1 * 1000);
-  //   } catch (error) {
-  //     errorGitHubAPI(currentColor);
+      setTimeout(() => {
+        insertProjectsDOM(ruanMoraesRepositories, currentColor);
+      }, 1 * 1000);
+    } catch (error) {
+      errorGitHubAPI(currentColor);
 
-  //     console.error(
-  //       `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
-  //     );
-  //   }
-  // })();
+      console.error(
+        `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
+      );
+    }
+  })();
 
   function loadingProjects(isLoading, currentColor) {
     const projectsContents = document.querySelector('.projects');
@@ -213,7 +213,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <i class="fab fa-github"></i>
             <span>GitHub</span>
           </a>
-          <div class="separator--page"></div>
+          <div class="separator"></div>
           <a href="${projectUrl}" target="_blank" rel="noopener noreferrer" class="${currentColor}__backgroundColor--hover">
             <i class="fas fa-external-link-alt"></i>
             <span>Deploy</span>

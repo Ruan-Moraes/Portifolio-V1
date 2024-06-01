@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 
   .certificates__items {
     display: flex;
@@ -15,16 +15,15 @@
     gap: 1.5rem;
 
     .certificates__item {
+      padding: 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       gap: 1rem;
-      padding: 1rem;
       font-size: 0.85rem;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
       border: 0.125rem solid variables.$tertiary-color;
-      box-shadow: variables.$shadow-medium;
       background-color: variables.$secondary-color;
+      box-shadow: variables.$shadow-medium;
 
       .certificates__itemHeader {
         h3 {
@@ -70,8 +69,9 @@
           }
         }
       }
+
       .certificates__itemFooter {
-        padding: 1rem 0 0 0;
+        padding-top: 1rem;
         display: flex;
         justify-content: center;
         border-top: 0.125rem solid variables.$tertiary-color;

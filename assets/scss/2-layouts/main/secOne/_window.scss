@@ -19,7 +19,7 @@ $elevenary-color: #b2865c;
   flex-direction: column;
   border-radius: 1rem;
   border: 0.125rem solid variables.$black;
-  background-color: variables.$codeAndSettings-backgroundColor;
+  background-color: variables.$window-backgroundColor;
   box-shadow: variables.$shadow-medium;
 
   .aboutMe__header,
@@ -30,30 +30,6 @@ $elevenary-color: #b2865c;
     align-items: center;
     gap: 1rem;
     border-bottom: 0.0625rem solid variables.$black;
-
-    .aboutMe__balls,
-    .myHistory__balls {
-      display: flex;
-      gap: 0.75rem;
-
-      > div {
-        height: 1.5rem;
-        width: 1.5rem;
-        border-radius: 50%;
-      }
-
-      > div:nth-child(1) {
-        background: $primary-color;
-      }
-
-      > div:nth-child(2) {
-        background: $secondary-color;
-      }
-
-      > div:nth-child(3) {
-        background: $tertiary-color;
-      }
-    }
   }
 
   .aboutMe__body,

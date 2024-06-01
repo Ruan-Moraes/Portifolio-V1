@@ -17,3 +17,13 @@
     }
   }
 }
+
+.settings {
+  .settings__header {
+    h2 {
+      @include mixins.sm {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

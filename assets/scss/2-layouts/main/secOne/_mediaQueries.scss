@@ -3,104 +3,55 @@
 
 .main__apresentation {
   @include mixins.lg {
-    margin: 15.75rem 0 11.75rem 0;
+    margin: 16.75rem 0 12.75rem 0;
   }
-
   @include mixins.xxl {
-    margin: 18.743125rem 0 13.75rem 0;
-  }
-}
-
-.main__myHistory,
-.main__certificates {
-  @include mixins.lg {
-    margin: 6.05rem 0 2.05rem 0;
+    margin: 18.75rem 0 13.75rem 0;
   }
 
-  @include mixins.xxl {
-    margin: 7.043125rem 0 2.05rem 0;
-  }
-}
-
-// --------------------------------------------------------------------------- //
-
-.main__apresentation {
   .container {
     @include mixins.lg {
       flex-direction: row;
       gap: 2rem;
     }
-
     @include mixins.xxl {
       padding-top: 0;
       padding-bottom: 0;
     }
-  }
-}
 
-// --------------------------------------------------------------------------- //
-
-.apresentation {
-  @include mixins.lg {
-    gap: 1.5rem;
-  }
-
-  h2 {
-    @include mixins.lg {
-      font-size: 1.75rem;
-    }
-    @include mixins.xxl {
-      font-size: 2rem;
-    }
-  }
-
-  a {
-    @include mixins.lg {
-      width: 60%;
-      padding: 1rem 0;
-    }
-  }
-}
-
-.aboutMe {
-  .aboutMe__lines {
-    @include mixins.min-desktop {
-      display: flex;
-      flex-direction: column;
-      text-align: right;
-
-      span {
-        color: variables.$gray;
+    .apresentation {
+      @include mixins.lg {
+        gap: 1.5rem;
       }
-    }
-  }
-}
 
-// --------------------------------------------------------------------------- //
+      h2 {
+        @include mixins.lg {
+          font-size: 1.75rem;
+        }
+        @include mixins.xxl {
+          font-size: 2rem;
+        }
+      }
 
-.myHistory {
-  @include mixins.sm {
-    max-width: 48rem;
-  }
-
-  .myHistory__title {
-    @include mixins.sm {
-      font-size: 1.5rem;
-    }
-  }
-
-  .myHistory__section {
-    .myHistory__subTitle {
-      h3 {
-        @include mixins.sm {
-          font-size: 1.25rem;
+      a {
+        @include mixins.lg {
+          width: 60%;
+          padding: 1rem 0;
         }
       }
     }
 
-    .myHistory__text {
-      @include mixins.sm {
-        font-size: 1rem;
+    .aboutMe {
+      .aboutMe__lines {
+        @include mixins.min-desktop {
+          display: flex;
+          flex-direction: column;
+          text-align: right;
+
+          span {
+            color: variables.$gray;
+          }
+        }
       }
     }
   }
@@ -108,18 +59,79 @@
 
 // --------------------------------------------------------------------------- //
 
-.certificates {
-  .certificates__items {
+.main__myHistory,
+.main__certificates {
+  @include mixins.lg {
+    margin-top: 4.1rem;
+  }
+  @include mixins.xxl {
+    margin-top: 5.1rem;
+  }
+
+  .container {
     @include mixins.sm {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      align-items: stretch;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
     }
-    @include mixins.lg {
-      grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.main__myHistory {
+  .container {
+    .myHistory {
+      @include mixins.sm {
+        max-width: 48rem;
+      }
+
+      .myHistory__title {
+        @include mixins.sm {
+          font-size: 1.5rem;
+        }
+      }
+
+      .myHistory__section {
+        .myHistory__subTitle {
+          h3 {
+            @include mixins.sm {
+              font-size: 1.25rem;
+            }
+          }
+        }
+
+        .myHistory__text {
+          @include mixins.sm {
+            font-size: 1rem;
+          }
+        }
+      }
     }
-    @include mixins.xxl {
-      grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.main__certificates {
+  .container {
+    .certificates {
+      @include mixins.min-desktop {
+        gap: 1.5rem;
+      }
+
+      .certificates__items {
+        @include mixins.sm {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          align-items: stretch;
+        }
+        @include mixins.lg {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @include mixins.xxl {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
     }
   }
 }

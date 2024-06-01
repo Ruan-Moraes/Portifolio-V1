@@ -1,14 +1,9 @@
 @use '../../1-base/variables';
 
 .separator {
-  width: 0.0625rem;
+  height: 100%;
+  width: 0.125rem;
   display: block;
-  background-color: variables.$white;
-
-  &--page {
-    height: 100%;
-    width: 0.0625rem;
-    display: block;
-    background-color: variables.$white;
-  }
+  border-radius: 1rem;
+  background-color: variables.$tertiary-color;
 }

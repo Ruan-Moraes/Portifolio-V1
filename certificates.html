@@ -60,7 +60,7 @@
               <a href="certificates.html" class="quaternary__color--hover"
                 >Certificados</a
               >
-              <a href="#myProjects" class="quaternary__color--hover"
+              <a href="index.html#myProjects" class="quaternary__color--hover"
                 >Projetos</a
               >
             </div>
@@ -68,7 +68,6 @@
           <div class="header__contacts">
             <div class="header__contactsTitle">
               <h2>Contatos</h2>
-              <div class="separator"></div>
             </div>
             <div class="header__contactsIcons">
               <a
@@ -356,7 +355,9 @@
             <a href="certificates.html" class="quaternary__color--hover"
               >Certificados</a
             >
-            <a href="#myProjects" class="quaternary__color--hover">Projetos</a>
+            <a href="index.html#myProjects" class="quaternary__color--hover"
+              >Projetos</a
+            >
           </div>
         </div>
         <div class="footer__contacts">
@@ -406,31 +407,19 @@
         </div>
       </div>
     </footer>
-    <div
-      id="settingsButton"
-      tabindex="0"
-      data-aos="fade-up-left"
-      data-aos-duration="500"
-      data-aos-offset="0"
-      class="container__gear"
-    >
-      <i class="fa-solid fa-gear"></i>
-    </div>
-    <div class="settings__modal">
+    <div class="settings">
       <div class="settings__header">
-        <h2>Configurações</h2>
-        <div
-          id="exitSettingsButton"
-          tabindex="0"
-          class="hamburgerButton quaternary__backgroundColor--menuHover quaternary__backgroundColor--menuActive"
-        >
-          <div class="hamburgerButton__lineOne lineOneIsActivated"></div>
-          <div class="hamburgerButton__lineTwo lineTwoIsActivated"></div>
-          <div class="hamburgerButton__lineThree lineThreeIsActivated"></div>
+        <div class="settings__balls">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <h2>Configurações</h2>
         </div>
       </div>
       <div class="settings__body">
-        <div>
+        <div class="option">
           <h3>Alterar Tema - Andamento</h3>
           <div class="elementOfSelections">
             <select>
@@ -440,7 +429,7 @@
             </select>
           </div>
         </div>
-        <div>
+        <div class="option">
           <h3>Alterar Cores</h3>
           <div class="elementOfSelections">
             <select>
@@ -452,7 +441,7 @@
             </select>
           </div>
         </div>
-        <div>
+        <div class="option">
           <h3>Idioma - Andamento</h3>
           <div class="elementOfSelections">
             <select>
@@ -464,10 +453,27 @@
       </div>
       <div class="settings__footer">
         <div>
-          <button id="settingsCancel">Cancelar</button>
-          <button id="settingsApply">Aplicar</button>
+          <button
+            id="settingsCancel"
+            class="quaternary__backgroundColor--hover"
+          >
+            Cancelar
+          </button>
+          <button id="settingsApply" class="quaternary__backgroundColor--hover">
+            Aplicar
+          </button>
         </div>
       </div>
+    </div>
+    <div
+      id="settingsButton"
+      tabindex="0"
+      data-aos="fade-up-left"
+      data-aos-duration="500"
+      data-aos-offset="0"
+      class="gearToSettings"
+    >
+      <i class="fa-solid fa-gear"></i>
     </div>
   </body>
 </html>

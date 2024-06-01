@@ -24,8 +24,8 @@
 
 .footer__navigationLinks {
   @include mixins.md {
-    grid-area: navigation;
     padding: 1rem 0;
+    grid-area: navigation;
   }
 }
 

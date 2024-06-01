@@ -14,7 +14,7 @@
 
 .header__title {
   a {
-    @include mixins.md {
+    @include mixins.lg {
       font-size: 1.75rem;
     }
   }
@@ -32,7 +32,7 @@
   }
   @include mixins.xxl {
     height: auto;
-    width: 51.5%;
+    width: 50.75%;
     position: static;
     margin: 0;
     padding: 0;
@@ -52,7 +52,6 @@
     .header__navigationLinks {
       @include mixins.xxl {
         flex-direction: row;
-        gap: 1.5rem;
 
         a {
           font-size: 1.25rem;
