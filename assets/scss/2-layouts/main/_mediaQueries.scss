@@ -1,7 +1,0 @@
-@use '../../3-modules/mixins';
-
-.main {
-  @include mixins.lg {
-    margin-top: 0;
-  }
-}

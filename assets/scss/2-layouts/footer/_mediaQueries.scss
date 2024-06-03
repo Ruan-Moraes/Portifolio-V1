@@ -11,29 +11,11 @@
         'navigation contacts'
         'copy copy';
     }
-
     @include mixins.xl {
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(1, 1fr);
       grid-template-areas: 'navigation copy contacts';
     }
-  }
-}
-
-// --------------------------------------------------------------------------- //
-
-.footer__navigationLinks {
-  @include mixins.md {
-    padding: 1rem 0;
-    grid-area: navigation;
-  }
-}
-
-// --------------------------------------------------------------------------- //
-
-.footer__contacts {
-  @include mixins.md {
-    grid-area: contacts;
   }
 }
 
@@ -52,6 +34,23 @@
     justify-content: center;
     border-radius: 0;
     background-color: transparent;
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.footer__navigationLinks {
+  @include mixins.md {
+    padding: 1rem 0;
+    grid-area: navigation;
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
+.footer__contacts {
+  @include mixins.md {
+    grid-area: contacts;
   }
 }
 

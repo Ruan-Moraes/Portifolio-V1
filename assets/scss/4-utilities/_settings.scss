@@ -1,4 +1,4 @@
-@use '../../1-base/variables';
+@use '../1-base/variables';
 
 .gearToSettings {
   height: 3rem;
@@ -118,13 +118,17 @@
         right: 0;
         left: 0;
         z-index: 1000;
-        display: none;
+        display: block;
+        opacity: 0;
         overflow: hidden;
         background-color: variables.$tertiary-color;
+        pointer-events: none;
+        transition: opacity variables.$transition-fast;
         border-bottom-right-radius: 0.5rem;
         border-bottom-left-radius: 0.5rem;
         &.show {
-          display: block;
+          opacity: 1;
+          pointer-events: all;
 
           + .selectedItem {
             border-bottom-left-radius: 0;
@@ -175,8 +179,8 @@
         color: variables.$white;
         border: 0.125rem solid variables.$black;
         background-color: variables.$tertiary-color;
-        transition: background-color variables.$transition-fast;
         cursor: pointer;
+        transition: background-color variables.$transition-fast;
         &:first-child {
           border-right-width: 0.03125rem;
           border-top-left-radius: 0.5rem;

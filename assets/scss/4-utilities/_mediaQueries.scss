@@ -1,14 +1,15 @@
-@use '../../3-modules/mixins';
+@use '../3-modules/mixins';
 
 .blurOnMain {
   @include mixins.lg {
     display: block;
   }
-
   @include mixins.xxl {
     display: none;
   }
 }
+
+// --------------------------------------------------------------------------- //
 
 .hamburgerButton {
   &#menuButton {
@@ -17,6 +18,8 @@
     }
   }
 }
+
+// --------------------------------------------------------------------------- //
 
 .settings {
   .settings__header {
