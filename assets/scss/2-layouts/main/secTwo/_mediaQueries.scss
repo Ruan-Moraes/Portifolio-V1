@@ -55,6 +55,18 @@
             }
 
             .projects__cardFooter {
+              &.noDeployed {
+                a {
+                  @include mixins.mbs {
+                    padding: 0.75rem 1.25rem;
+                  }
+                  @include mixins.sm {
+                    padding: 0.5rem 1rem;
+                    font-size: 0.85rem;
+                  }
+                }
+              }
+
               a {
                 @include mixins.mbs {
                   padding: 0.75rem 1.25rem;

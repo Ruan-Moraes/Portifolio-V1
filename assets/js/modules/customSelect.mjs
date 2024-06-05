@@ -1,6 +1,6 @@
 'use strict';
 
-// TODO - RESOLVE PROBLEMA DO TEXTO QUE VOLTA PARA O PRIMEIRO ITEM SELECIONADO, MESMO APOS O ITEM SELECIONADO SER DIFERENTE NO LOCAL STORAGE
+import { getSelectedOptionLocalStorage } from './others.mjs';
 
 export default function customSelect() {
   const selectsDOM = document.querySelectorAll('select');
@@ -14,16 +14,21 @@ export default function customSelect() {
       parentElementOfTheSelectionDOM
     );
 
-    addOptions(listOfOptionsDOM, selectionElementDOM);
-    AddShowOrHideEventInTheOptions(selectionElementDOM);
-
-    showFirstSelectedOption(
-      selectionElementDOM,
-      parentElementOfTheSelectionDOM
-    );
-
-    addOptionSelectionEvent(listOfOptionsDOM);
+    addOptions(selectionElementDOM, listOfOptionsDOM);
+    addShowOrHideEventInOptions(parentElementOfTheSelectionDOM);
   });
+
+  const selectedOptions = getSelectedOptionLocalStorage();
+
+  if (selectedOptions) {
+    showSelectedOption(selectsDOM, selectedOptions);
+  }
+
+  if (!selectedOptions) {
+    showDefaultOption(selectsDOM);
+  }
+
+  changeSelectionOption();
 
   addColorsToTheOptions();
   addEventToCloseSelect();
@@ -34,63 +39,67 @@ function hideTheSelectionElement(selectionElementDOM) {
 }
 
 function selectTheParentElement(selectionElementDOM) {
-  const parentElementOfTheSelectionDOM = selectionElementDOM.parentElement;
-  parentElementOfTheSelectionDOM.setAttribute('tabindex', '0');
-
-  return parentElementOfTheSelectionDOM;
+  return selectionElementDOM.parentElement;
 }
 
 function createListOfOptions(parentElementOfTheSelectionDOM) {
-  const listOfOptionDOM = document.createElement('ul');
-  listOfOptionDOM.classList.add('listOfOptions');
+  const listOfOptionsDOM = document.createElement('ul');
+  listOfOptionsDOM.classList.add('listOfOptions');
 
-  parentElementOfTheSelectionDOM.appendChild(listOfOptionDOM);
+  parentElementOfTheSelectionDOM.appendChild(listOfOptionsDOM);
 
-  return listOfOptionDOM;
+  return listOfOptionsDOM;
 }
 
-function showFirstSelectedOption(
-  selectionElementDOM,
-  parentElementOfTheSelectionDOM
-) {
-  const firstOptionSelectedDOM = document.createElement('div');
-  firstOptionSelectedDOM.classList.add('selectedItem');
-  firstOptionSelectedDOM.textContent =
-    selectionElementDOM.children[0].textContent;
-
-  parentElementOfTheSelectionDOM.appendChild(firstOptionSelectedDOM);
-}
-
-function addOptions(listOfOptionsDOM, selectionElementDOM) {
-  const totalNumberOfOptions = selectionElementDOM.children.length;
-
-  for (let i = 0; i < totalNumberOfOptions; i++) {
+function addOptions(selectionElementDOM, listOfOptionsDOM) {
+  Array.from(selectionElementDOM.children).forEach((option) => {
     const optionItemDOM = document.createElement('li');
-    optionItemDOM.textContent = selectionElementDOM.children[i].textContent;
     optionItemDOM.setAttribute('tabindex', '0');
+    optionItemDOM.textContent = option.textContent;
 
     listOfOptionsDOM.appendChild(optionItemDOM);
-  }
+  });
 }
 
-function AddShowOrHideEventInTheOptions(selectionElementDOM) {
-  selectionElementDOM.parentElement.addEventListener('click', () => {
-    selectionElementDOM.parentElement.children[1].classList.toggle('show');
+function addShowOrHideEventInOptions(parentElementOfTheSelectionDOM) {
+  parentElementOfTheSelectionDOM.addEventListener('click', () => {
+    parentElementOfTheSelectionDOM.children[1].classList.toggle('show');
   });
 
-  selectionElementDOM.parentElement.addEventListener('keydown', (event) => {
+  parentElementOfTheSelectionDOM.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-      selectionElementDOM.parentElement.children[1].classList.toggle('show');
+      parentElementOfTheSelectionDOM.children[1].classList.toggle('show');
     }
   });
 }
 
-function addOptionSelectionEvent() {
+function showSelectedOption(selectsDOM, selectedOptions) {
+  for (let i = 0; i < selectsDOM.length; i++) {
+    const optionSelectedDOM = document.createElement('div');
+    optionSelectedDOM.classList.add('selectedItem');
+    optionSelectedDOM.textContent = selectedOptions[i];
+
+    selectsDOM[i].parentElement.appendChild(optionSelectedDOM);
+  }
+}
+
+function showDefaultOption(selectsDOM) {
+  for (let i = 0; i < selectsDOM.length; i++) {
+    const optionSelectedDOM = document.createElement('div');
+    optionSelectedDOM.classList.add('selectedItem');
+    optionSelectedDOM.textContent = selectsDOM[i].children[0].textContent;
+
+    selectsDOM[i].parentElement.appendChild(optionSelectedDOM);
+  }
+}
+
+function changeSelectionOption() {
   const optionsDOM = document.querySelectorAll('.listOfOptions > li');
 
   optionsDOM.forEach((option) => {
+    const selectedItem = option.parentElement.parentElement.children[2];
+
     option.addEventListener('click', () => {
-      const selectedItem = option.parentElement.parentElement.children[2];
       const selectedOption = option.textContent;
 
       selectedItem.textContent = selectedOption;
@@ -98,9 +107,10 @@ function addOptionSelectionEvent() {
   });
 
   optionsDOM.forEach((option) => {
+    const selectedItem = option.parentElement.parentElement.children[2];
+
     option.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
-        const selectedItem = option.parentElement.parentElement.children[2];
         const selectedOption = option.textContent;
 
         selectedItem.textContent = selectedOption;
@@ -108,6 +118,8 @@ function addOptionSelectionEvent() {
     });
   });
 }
+
+// TODO: REFATORA ESSAS DUAS FUNÇÕES ABAIXO
 
 function addColorsToTheOptions() {
   const optionsDOM = document.querySelectorAll('.listOfOptions > li');

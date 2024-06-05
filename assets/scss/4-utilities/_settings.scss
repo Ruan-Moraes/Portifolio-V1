@@ -99,7 +99,6 @@
         &:hover {
           background-color: variables.$tertiary-color-less-light;
         }
-
         &:after {
           content: '';
           position: absolute;
@@ -133,9 +132,8 @@
           + .selectedItem {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
-
             &:after {
-              top: 0.8rem;
+              top: 0.65rem;
               border-color: transparent transparent variables.$white transparent;
             }
           }

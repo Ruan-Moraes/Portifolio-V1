@@ -1,6 +1,11 @@
 'use strict';
 
-import { changePageScrollingState, showBlurOnBody } from './others.mjs';
+import {
+  changePageScrollingState,
+  showBlurOnBody,
+  getSelectedOptionLocalStorage,
+  setSelectedOptionLocalStorage,
+} from './others.mjs';
 import {
   animationGear,
   showSettings,
@@ -9,15 +14,15 @@ import {
 import { whatIsTheCurrentColor } from './others.mjs';
 
 window.addEventListener('DOMContentLoaded', () => {
-  const settings = JSON.parse(localStorage.getItem('settings'));
+  const selectedOptions = getSelectedOptionLocalStorage();
 
-  if (!settings) {
+  if (!selectedOptions) {
     return;
   }
 
-  const selectedThemeValue = settings[0];
-  const selectedColorValue = settings[1];
-  const selectedLanguageValue = settings[2];
+  const selectedThemeValue = selectedOptions[0];
+  const selectedColorValue = selectedOptions[1];
+  const selectedLanguageValue = selectedOptions[2];
 
   applyTheme(selectedThemeValue);
   applyColor(selectedColorValue);
@@ -34,11 +39,15 @@ export default function applyingSettings() {
     const selectedColor = selectedOptions[1].textContent;
     const selectedLanguage = selectedOptions[2].textContent;
 
-    savingToLocalStorage(selectedTheme, selectedColor, selectedLanguage);
-
     applyTheme(selectedTheme);
     applyColor(selectedColor);
     applyLanguage(selectedLanguage);
+
+    setSelectedOptionLocalStorage(
+      selectedTheme,
+      selectedColor,
+      selectedLanguage
+    );
 
     animationGear();
     showBlurOnBody();
@@ -46,14 +55,6 @@ export default function applyingSettings() {
     disableTextSelection();
     changePageScrollingState();
   });
-}
-
-function savingToLocalStorage(selectedTheme, selectedColor, selectedLanguage) {
-  const settings = [selectedTheme, selectedColor, selectedLanguage];
-
-  localStorage.setItem('settings', JSON.stringify(settings));
-
-  return JSON.parse(localStorage.getItem('settings'));
 }
 
 // * Lógica para mudar o tema do site

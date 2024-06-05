@@ -1,6 +1,7 @@
 'use strict';
 
 import applyingSettings from './modules/applyingSettings.mjs';
+import cancelingSettings from './modules/cancelingSettings.mjs';
 import currentYear from './modules/currentYear.mjs';
 import menu from './modules/menu.mjs';
 import settings from './modules/settings.mjs';
@@ -13,6 +14,10 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Capturar as configurações do usuário e aplicar no site
 
   applyingSettings();
+
+  // * Cancelar as configurações e voltar ao estado anterior
+
+  cancelingSettings();
 
   // * Inicializar a biblioteca AOS
 
@@ -30,7 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   settings();
 
-  // * Lógica para fechar o menu e as configurações ao pressionar a tecla ESC
+  // * Toda a lógica do menu e das configurações quando o usuário pressionar a tecla "Esc"
 
   menuAndSettings();
 

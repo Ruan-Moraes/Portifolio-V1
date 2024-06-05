@@ -15,6 +15,21 @@ export function showBlurOnBody() {
   blurOnBodyDOM.classList.toggle('blurOnBodyIsActivated');
 }
 
+export function setSelectedOptionLocalStorage(
+  selectedTheme,
+  selectedColor,
+  selectedLanguage
+) {
+  localStorage.setItem(
+    'settings',
+    JSON.stringify([selectedTheme, selectedColor, selectedLanguage])
+  );
+}
+
+export function getSelectedOptionLocalStorage() {
+  return JSON.parse(localStorage.getItem('settings'));
+}
+
 export function whatIsTheCurrentColor() {
   const quaternaryColor = document.querySelector('.quaternary__color--hover')
     ? true

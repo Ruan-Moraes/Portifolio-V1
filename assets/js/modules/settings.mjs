@@ -4,36 +4,34 @@ import { changePageScrollingState, showBlurOnBody } from './others.mjs';
 import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
 
 export default function settings() {
-  const gearDOM = document.querySelector('#settingsButton');
-  // const exitSettingsButtonDOM = document.querySelector('#exitSettingsButton');
+  const settingsButton = document.querySelector('#settingsButton');
   const blurOnBodyDOM = document.querySelector('.blurOnBody');
 
-  const elementsOfInteractions = [
-    gearDOM,
-    // exitSettingsButtonDOM,
-    blurOnBodyDOM,
-  ];
+  settingsButton.addEventListener('click', () => {
+    animationGear();
+    showBlurOnBody();
+    showSettings();
+    disableTextSelection();
+    changePageScrollingState();
+  });
 
-  elementsOfInteractions.forEach((elementDOM) => {
-    elementDOM.addEventListener('click', () => {
-      CheckIfMenuIsActive();
+  settingsButton.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
       animationGear();
       showBlurOnBody();
       showSettings();
       disableTextSelection();
       changePageScrollingState();
-    });
+    }
+  });
 
-    elementDOM.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        CheckIfMenuIsActive();
-        animationGear();
-        showBlurOnBody();
-        showSettings();
-        disableTextSelection();
-        changePageScrollingState();
-      }
-    });
+  blurOnBodyDOM.addEventListener('click', () => {
+    CheckIfMenuIsActive();
+    animationGear();
+    showBlurOnBody();
+    showSettings();
+    disableTextSelection();
+    changePageScrollingState();
   });
 }
 

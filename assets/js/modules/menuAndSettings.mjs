@@ -1,24 +1,26 @@
 'use strict';
 
-import { changePageScrollingState, showBlurOnBody } from './others.mjs';
+import { resetSettings } from './cancelingSettings.mjs';
 import {
   animationGear,
   showSettings,
   disableTextSelection,
 } from './settings.mjs';
 import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
+import { changePageScrollingState, showBlurOnBody } from './others.mjs';
 
 export default function menuAndSettings() {
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
       const isSettingsActive = document
-        .querySelector('.settings__modal')
+        .querySelector('.settings')
         .classList.contains('settingActivated');
       const isMenuActive = document
         .querySelector('.header__links')
         .classList.contains('menuIsActivated');
 
       if (!isSettingsActive && !isMenuActive) {
+        resetSettings();
         animationGear();
         showBlurOnBody();
         showSettings();
@@ -29,6 +31,7 @@ export default function menuAndSettings() {
       }
 
       if (isSettingsActive) {
+        resetSettings();
         animationGear();
         showBlurOnBody();
         showSettings();

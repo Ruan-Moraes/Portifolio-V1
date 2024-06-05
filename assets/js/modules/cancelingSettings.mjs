@@ -1,6 +1,10 @@
 'use strict';
 
-import { changePageScrollingState, showBlurOnBody } from './others.mjs';
+import {
+  changePageScrollingState,
+  showBlurOnBody,
+  getSelectedOptionLocalStorage,
+} from './others.mjs';
 import {
   animationGear,
   showSettings,
@@ -9,31 +13,46 @@ import {
 
 export default function cancelingSettings() {
   const settingsCancelDOM = document.querySelector('#settingsCancel');
+  const closeSettingsXmarkDOM = document.querySelector('#closeSettingsXmark');
+  const closeSettingsLineDOM = document.querySelector('#closeSettingsLine');
 
-  settingsCancelDOM.addEventListener('click', () => {
-    getTheSettings();
-    animationGear();
-    showBlurOnBody();
-    showSettings();
-    disableTextSelection();
-    changePageScrollingState();
+  const elementsCancel = [
+    settingsCancelDOM,
+    closeSettingsXmarkDOM,
+    closeSettingsLineDOM,
+  ];
+
+  elementsCancel.forEach((element) => {
+    element.addEventListener('click', () => {
+      resetSettings();
+      animationGear();
+      showBlurOnBody();
+      showSettings();
+      disableTextSelection();
+      changePageScrollingState();
+    });
+
+    element.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        resetSettings();
+        animationGear();
+        showBlurOnBody();
+        showSettings();
+        disableTextSelection();
+        changePageScrollingState();
+      }
+    });
   });
 }
 
-function getTheSettings() {
+export function resetSettings() {
+  const selectedOptions = getSelectedOptionLocalStorage();
+
   const selectedItems = document.querySelectorAll('.selectedItem');
 
-  const settings = {
-    theme: selectedItems[0].textContent,
-    color: selectedItems[1].textContent,
-    language: selectedItems[2].textContent,
-  };
-
-  resetSettings(settings);
-}
-
-function resetSettings(settings) {
-  const selectedItems = document.querySelectorAll('.selectedItem');
-
-  // TODO - Resetar as configurações
+  setTimeout(() => {
+    selectedItems[0].textContent = selectedOptions[0];
+    selectedItems[1].textContent = selectedOptions[1];
+    selectedItems[2].textContent = selectedOptions[2];
+  }, 600);
 }
