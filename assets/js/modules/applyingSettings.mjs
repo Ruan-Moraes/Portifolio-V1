@@ -85,11 +85,9 @@ function whatIsTheHexadecimalColorInTheTable(selectedColorValue) {
     '#2E60F2': 'septenary',
     '#662EF2': 'octonary',
   };
-
   const colorHexadecimal = treatValueOfSelectedColor(selectedColorValue);
-  const colorName = colorTable[colorHexadecimal];
 
-  return colorName;
+  return colorTable[colorHexadecimal];
 }
 
 function treatValueOfSelectedColor(selectedColorValue) {

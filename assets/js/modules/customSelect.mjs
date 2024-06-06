@@ -119,16 +119,15 @@ function changeSelectionOption() {
   });
 }
 
-// TODO: REFATORA ESSAS DUAS FUNÇÕES ABAIXO
-
 function addColorsToTheOptions() {
   const optionsDOM = document.querySelectorAll('.listOfOptions > li');
 
   optionsDOM.forEach((option) => {
-    const optionText = option.textContent;
-    const optionColor = optionText.match(/#[0-9A-Fa-f]{6}/g);
+    const optionColor = option.textContent.match(/#[0-9A-Fa-f]{6}/g);
 
-    option.style.color = optionColor;
+    if (optionColor) {
+      option.style.color = optionColor;
+    }
   });
 }
 
@@ -136,16 +135,15 @@ function addEventToCloseSelect() {
   const hiddenSelectionsDOM = document.querySelectorAll('.selectHidden');
 
   document.addEventListener('click', (event) => {
-    hiddenSelectionsDOM.forEach((select) => {
-      const selectParent = select.parentElement;
-      const selectOptions = selectParent.children[1];
+    for (let i = 0; i < hiddenSelectionsDOM.length; i++) {
+      const selectParent = hiddenSelectionsDOM[i].parentElement;
+      const selectOptions = document.querySelectorAll('ul.listOfOptions');
 
-      if (
-        selectOptions.classList.contains('show') &&
-        !selectParent.contains(event.target)
-      ) {
-        selectOptions.classList.remove('show');
+      if (!selectParent.contains(event.target)) {
+        selectOptions[i].classList.remove('show');
+      } else {
+        selectOptions[i].classList.add('show');
       }
-    });
+    }
   });
 }
