@@ -135,15 +135,16 @@ function addEventToCloseSelect() {
   const hiddenSelectionsDOM = document.querySelectorAll('.selectHidden');
 
   document.addEventListener('click', (event) => {
-    for (let i = 0; i < hiddenSelectionsDOM.length; i++) {
-      const selectParent = hiddenSelectionsDOM[i].parentElement;
-      const selectOptions = document.querySelectorAll('ul.listOfOptions');
+    hiddenSelectionsDOM.forEach((select) => {
+      const selectParent = select.parentElement;
+      const selectOptions = selectParent.children[1];
 
-      if (!selectParent.contains(event.target)) {
-        selectOptions[i].classList.remove('show');
-      } else {
-        selectOptions[i].classList.add('show');
+      if (
+        selectOptions.classList.contains('show') &&
+        !selectParent.contains(event.target)
+      ) {
+        selectOptions.classList.remove('show');
       }
-    }
+    });
   });
 }

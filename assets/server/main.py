@@ -19,20 +19,16 @@ def translate_text():
 
     source = data.get('source')
     target = data.get('target')
-    text = data.get('text')
+    elementsText = data.get('elementsText')
 
     languages = translate.load_installed_languages()
-
     source_lang = next((lang for lang in languages if lang.code == source), None)
     target_lang = next((lang for lang in languages if lang.code == target), None)
 
     translation = source_lang.get_translation(target_lang)
-    translated_text = translation.translate(text)
 
-    print(f"Translated text: {translated_text}")
-
-    return jsonify({'translated': translated_text})
+    return jsonify({'translated': [translation.translate(text) for text in elementsText]})
 
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(port=5005)

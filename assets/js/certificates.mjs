@@ -42,34 +42,4 @@ window.addEventListener('DOMContentLoaded', () => {
   // * Lógica para os selects customizados
 
   customSelect();
-
-  // * Tradução dos certificados
-
-  const elements = document.querySelectorAll('[data-translate]');
-  const elementsText = Array.from(elements).map(
-    (element) => element.textContent
-  );
-
-  const translation = translateText('en', 'pt', elementsText);
-
-  elements.forEach((element, index) => {
-    element.textContent = translation[index];
-  });
 });
-
-async function translateText(source, target, text) {
-  console.log(text);
-  try {
-    const response = await fetch('http://localhost:5000/translate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ source, target, text }),
-    });
-
-    return await console.log(response.json());
-  } catch (error) {
-    console.log(`Ocorreu um erro ao traduzir os elementos: ${error}`);
-  }
-}

@@ -46,5 +46,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // * Buscar meus projetos no GitHub atráves da API do GitHub e inserir no DOM
 
-  // fetchGitHubAPI();
+  fetchGitHubAPI();
 });

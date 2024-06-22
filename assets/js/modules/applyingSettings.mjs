@@ -216,84 +216,22 @@ function changeEachTextToEnglish() {
   //   changeTextIndex();
   // }
 
-  if (window.location.href === 'http://127.0.0.1:5500/myhistory.html') {
-    changeMyHistoryText();
-  }
-
-  if (window.location.href === 'http://127.0.0.1:5500/certificates.html') {
-    changeCertificatesText();
-  }
-
   if (
-    window.location.href === 'http://127.0.0.1:5500/' ||
-    window.location.href === 'http://127.0.0.1:5500/index.html' ||
-    window.location.href === 'http://127.0.0.1:5500/index.html#myProjects'
+    window.location.href === 'http://127.0.0.1:5501/' ||
+    window.location.href === 'http://127.0.0.1:5501/index.html' ||
+    window.location.href === 'http://127.0.0.1:5501/index.html#myProjects'
   ) {
     changeTextIndex();
   }
 
-  function changeMyHistoryText() {
-    changeHeaderText();
-    changeFooterNavigationLinksText();
-    changeFooterContactsText();
-    changeFooterCopyText();
-
-    changeTitleTextOfMyHistory();
-    changeSubTitleText();
-    changeContentText();
-
-    function changeTitleTextOfMyHistory() {
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__header > .myHistory__title > h2'
-      ).textContent = 'My History';
-    }
-
-    function changeSubTitleText() {
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__subTitle > h3'
-      ).textContent = 'First Contact with Technology';
-
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__subTitle > h3'
-      ).textContent = 'First Steps';
-
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__subTitle > h3'
-      ).textContent =
-        'Buying my First Computer and an Interest in Programming ';
-    }
-
-    function changeContentText() {
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__text > p'
-      ).innerHTML =
-        'My journey into technology began when I was 8 years old. At that time, my father had a computer that he used for work, but occasionally I could play on the computer. I really enjoyed watching Minecraft videos on YouTube. I loved watching VenonExtreme, Monark, TrazeCraft, and other Minecraft YouTubers. That&lsquo;s when I started getting interested in games, and through games, I started getting interested in computers.';
-
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(1)'
-      ).innerHTML =
-        'When I was 9 to 10 years old, my parents had the misfortune of buying a Positivo computer (Intel Celeron 1007u, 2GB RAM, 320GB HD) with Windows 8 pre-installed. The performance was so bad that it took 30 seconds to a minute just to open Google Chrome. That&lsquo;s when I started looking for ways to improve my computer. I tried everything: I downloaded cleaning programs, defragmented the disk, made changes to Windows regedit and even tried downloading a virtual video card (yes, I did), but obviously nothing worked. Over time, I learned more and more about computers. ';
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(2)'
-      ).innerHTML =
-        'At the end of my 11 years, I had my first contact with programming in a Python course by Gustavo Guanabara that I saw on YouTube. I took a few classes and learned the basics of Python, but as the IDEs were too heavy for my computer, I couldn&lsquo;t continue with the course. That&lsquo;s when I started wanting to have a better computer and be able to program without any problems. It was around this time that I started to like hardware, because I had a friend who also liked computers, and he taught me a lot about hardware, and that&lsquo;s when I started to like hardware.';
-
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(1)'
-      ).innerHTML =
-        'As time passed and I kept learning more about computers, I began to format computers for friends and family, thus gaining experience. However, it wasn&lsquo;t until 2022, pooling all my savings and with the help of my father, that I managed to buy my first computer, a computer I assembled myself, featuring a Xeon E5-2650v2, 16GB of RAM, and a GTX 1660TI. It was a huge joy for me because I not only bought a computer but also assembled it. It was a real sense of accomplishment. I spent a lot of time gaming on this computer, and it was during this period that I started to regain interest in programming.';
-      document.querySelector(
-        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(2)'
-      ).innerHTML =
-        'I have to confess that the salary for programming is very attractive and the possibility of working from home is very good - these factors attracted me to the technology market. I started studying with these aspects in mind, but over time I became more and more interested in programming. Today, I always like to learn something new. I intend to be a somewhat generalist professional, but my main focus is working with web development (Front-End and Back-End) and mobile.';
-    }
+  if (window.location.href === 'http://127.0.0.1:5501/pages/myhistory.html') {
+    changeMyHistoryText();
   }
 
-  function changeCertificatesText() {
-    changeHeaderText();
-    changeFooterNavigationLinksText();
-    changeFooterContactsText();
-    changeFooterCopyText();
+  if (
+    window.location.href === 'http://127.0.0.1:5501/pages/certificates.html'
+  ) {
+    changeCertificatesText();
   }
 
   function changeTextIndex() {
@@ -423,6 +361,71 @@ function changeEachTextToEnglish() {
     }
   }
 
+  function changeMyHistoryText() {
+    changeHeaderText();
+    changeFooterNavigationLinksText();
+    changeFooterContactsText();
+    changeFooterCopyText();
+
+    changeTitleTextOfMyHistory();
+    changeSubTitleText();
+    changeContentText();
+
+    function changeTitleTextOfMyHistory() {
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__header > .myHistory__title > h2'
+      ).textContent = 'My History';
+    }
+
+    function changeSubTitleText() {
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__subTitle > h3'
+      ).textContent = 'First Contact with Technology';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__subTitle > h3'
+      ).textContent = 'First Steps';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__subTitle > h3'
+      ).textContent =
+        'Buying my First Computer and an Interest in Programming ';
+    }
+
+    function changeContentText() {
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__text > p'
+      ).innerHTML =
+        'My journey into technology began when I was 8 years old. At that time, my father had a computer that he used for work, but occasionally I could play on the computer. I really enjoyed watching Minecraft videos on YouTube. I loved watching VenonExtreme, Monark, TrazeCraft, and other Minecraft YouTubers. That&lsquo;s when I started getting interested in games, and through games, I started getting interested in computers.';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(1)'
+      ).innerHTML =
+        'When I was 9 to 10 years old, my parents had the misfortune of buying a Positivo computer (Intel Celeron 1007u, 2GB RAM, 320GB HD) with Windows 8 pre-installed. The performance was so bad that it took 30 seconds to a minute just to open Google Chrome. That&lsquo;s when I started looking for ways to improve my computer. I tried everything: I downloaded cleaning programs, defragmented the disk, made changes to Windows regedit and even tried downloading a virtual video card (yes, I did), but obviously nothing worked. Over time, I learned more and more about computers. ';
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(2)'
+      ).innerHTML =
+        'At the end of my 11 years, I had my first contact with programming in a Python course by Gustavo Guanabara that I saw on YouTube. I took a few classes and learned the basics of Python, but as the IDEs were too heavy for my computer, I couldn&lsquo;t continue with the course. That&lsquo;s when I started wanting to have a better computer and be able to program without any problems. It was around this time that I started to like hardware, because I had a friend who also liked computers, and he taught me a lot about hardware, and that&lsquo;s when I started to like hardware.';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(1)'
+      ).innerHTML =
+        'As time passed and I kept learning more about computers, I began to format computers for friends and family, thus gaining experience. However, it wasn&lsquo;t until 2022, pooling all my savings and with the help of my father, that I managed to buy my first computer, a computer I assembled myself, featuring a Xeon E5-2650v2, 16GB of RAM, and a GTX 1660TI. It was a huge joy for me because I not only bought a computer but also assembled it. It was a real sense of accomplishment. I spent a lot of time gaming on this computer, and it was during this period that I started to regain interest in programming.';
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(2)'
+      ).innerHTML =
+        'I have to confess that the salary for programming is very attractive and the possibility of working from home is very good - these factors attracted me to the technology market. I started studying with these aspects in mind, but over time I became more and more interested in programming. Today, I always like to learn something new. I intend to be a somewhat generalist professional, but my main focus is working with web development (Front-End and Back-End) and mobile.';
+    }
+  }
+
+  function changeCertificatesText() {
+    changeHeaderText();
+    changeFooterNavigationLinksText();
+    changeFooterContactsText();
+    changeFooterCopyText();
+    translateText('pt', 'en');
+  }
+
   function changeHeaderText() {
     document.querySelector('.header__title > h1 > a').textContent =
       '< Portfolio />';
@@ -472,6 +475,35 @@ function changeEachTextToEnglish() {
     document.querySelector(
       '.footer > .container > .footer__copy > div:nth-child(2) > p > span:nth-child(1)'
     ).textContent = 'All rights reserved';
+  }
+
+  async function translateText(source, target) {
+    const elements = document.querySelectorAll('[data-translate]');
+    const elementsText = Array.from(elements).map(
+      (element) => element.textContent
+    );
+
+    try {
+      const response = await fetch('http://localhost:5005/translate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ source, target, elementsText }),
+      }).then((response) => response.json());
+
+      const translatedText = textTreatment(response.translated);
+
+      elements.forEach((element, index) => {
+        element.textContent = translatedText[index];
+      });
+    } catch (error) {
+      console.log(`Ocorreu um erro ao traduzir os elementos: ${error}`);
+    }
+  }
+
+  function textTreatment(text) {
+    return text.map((text) => text.replace(/\n|\t|\nof/g, ' ').trim());
   }
 }
 
