@@ -246,11 +246,39 @@ function changeEachTextToEnglish() {
     changeServicesText();
 
     function changeApresentationText() {
-      document.querySelector('.apresentation > h2').innerHTML =
-        'Hi, I&lsquo;m a future <span class="quaternary__color">Full-Stack Developer</span>';
-      document.querySelector('.apresentation > p').innerHTML = `
-          Looking for my first opportunity as a developer <strong class="quaternary__color">full-stack</strong> or even as an <strong class="quaternary__color">intern</strong>, my focus is on specializing in <strong class="quaternary__color">web development</strong> and <strong class="quaternary__color">mobile</strong>, in addition to acquiring knowledge in <strong class="quaternary__color">cybersecurity</strong>.
-          `;
+      document.querySelector('.apresentation > h2 > span').textContent =
+        'Hi, I am a future';
+      document.querySelector('.apresentation > h2 > strong').textContent =
+        'Full-Stack Developer';
+
+      document.querySelector(
+        '.apresentation > p > span:nth-child(1)'
+      ).textContent = 'Looking for my first opportunity as a';
+      document.querySelector(
+        '.apresentation > p > span:nth-child(3)'
+      ).textContent = 'or even as an ';
+      document.querySelector(
+        '.apresentation > p > strong:nth-child(4)'
+      ).textContent = 'intern,';
+      document.querySelector(
+        '.apresentation > p > span:nth-child(5)'
+      ).textContent = 'my focus is on specializing in';
+      document.querySelector(
+        '.apresentation > p > strong:nth-child(6)'
+      ).textContent = 'web';
+      document.querySelector(
+        '.apresentation > p > span:nth-child(7)'
+      ).textContent = 'and ';
+      document.querySelector(
+        '.apresentation > p > strong:nth-child(8)'
+      ).textContent = 'mobile development,';
+      document.querySelector(
+        '.apresentation > p > span:nth-child(9)'
+      ).textContent = ' as well as acquiring knowledge in';
+      document.querySelector(
+        '.apresentation > p > strong:nth-child(10)'
+      ).textContent = 'cybersecurity.';
+
       document.querySelector('.apresentation > a').textContent = 'Download CV';
     }
 
@@ -284,6 +312,7 @@ function changeEachTextToEnglish() {
       document.querySelector(
         '.main__projects > .container > .sectionTitle > h2'
       ).textContent = 'My Projects';
+
       document.querySelector(
         '.main__projects > .container > .projects > .projects__pagesContainer > div > p'
       ).textContent = 'Total projects:';
@@ -296,6 +325,16 @@ function changeEachTextToEnglish() {
             element.textContent = `Page ${index + 1}`;
           });
       }, 1100);
+
+      const loadingProjects = document.querySelector(
+        '.main__projects > .container > .projects > .projects__loadingProjects'
+      );
+
+      if (loadingProjects) {
+        setTimeout(() => {
+          loadingProjects.innerHTML = `<p>Loading Projects...</p>`;
+        }, 0);
+      }
     }
 
     function changeServicesText() {
@@ -479,18 +518,21 @@ function changeEachTextToEnglish() {
 
   async function translateText(source, target) {
     const elements = document.querySelectorAll('[data-translate]');
-    const elementsText = Array.from(elements).map(
-      (element) => element.textContent
+    const elementsText = Array.from(elements).map((element) =>
+      element.textContent.trim()
     );
 
     try {
-      const response = await fetch('http://localhost:5005/translate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ source, target, elementsText }),
-      }).then((response) => response.json());
+      const response = await fetch(
+        'https://api-translate-d8kqk50pk-ruan-moraes-projects.vercel.app/translate',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ source, target, elementsText }),
+        }
+      ).then((response) => response.json());
 
       const translatedText = textTreatment(response.translated);
 
@@ -498,7 +540,9 @@ function changeEachTextToEnglish() {
         element.textContent = translatedText[index];
       });
     } catch (error) {
-      console.log(`Ocorreu um erro ao traduzir os elementos: ${error}`);
+      console.error(
+        `Ocorreu um erro ao traduzir os elementos: ${error.message}`
+      );
     }
   }
 

@@ -3,6 +3,7 @@
 .main__services {
   width: 100%;
   padding: 2rem 0;
+  position: relative;
 
   .container {
     @extend %container;
@@ -12,4 +13,11 @@
     align-items: center;
     gap: 2rem;
   }
+}
+
+#myServices {
+  position: absolute;
+  top: -10rem;
+  left: 50%;
+  transform: translateX(-50%);
 }

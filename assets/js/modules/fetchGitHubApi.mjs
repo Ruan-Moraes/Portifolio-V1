@@ -6,13 +6,13 @@ export default async function fetchGitHubAPI() {
   const currentColor = whatIsTheCurrentColor();
 
   try {
-    loadingProjects(true, currentColor);
-
     const numberRandom = Math.floor(Math.random() * 2000);
+
+    loadingProjects(true);
 
     const repositoriesAddedManually = ['Accounts'];
     const Repositories = await fetch(
-      'https://api.github.com/users/ruan-moraes/repos?type=owner'
+      'https://api.github.com/users/ruan-moraes/repos?type=owner&per_page=64'
     )
       .then((response) => response.json())
       .then((response) =>
@@ -36,7 +36,7 @@ export default async function fetchGitHubAPI() {
   }
 }
 
-function loadingProjects(isLoading, currentColor) {
+function loadingProjects(isLoading) {
   const projectsContents = document.querySelector('.projects');
 
   if (!isLoading) {
@@ -50,7 +50,6 @@ function loadingProjects(isLoading, currentColor) {
 
   const loadingProjects = document.createElement('div');
   loadingProjects.classList.add('projects__loadingProjects');
-  loadingProjects.classList.add(`${currentColor}__color`);
   loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
 
   projectsContents.appendChild(loadingProjects);
