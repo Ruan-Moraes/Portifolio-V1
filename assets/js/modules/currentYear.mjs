@@ -5,7 +5,7 @@ export default async function getTheCurrentYear() {
 
   try {
     const currentYearJson = await fetch(
-      'http://worldtimeapi.org/api/timezone/America/Sao_Paulo'
+      'https://worldtimeapi.org/api/timezone/America/Sao_Paulo'
     )
       .then((response) => response.json())
       .then((date) => date.datetime.slice(0, 4));

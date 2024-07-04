@@ -10,7 +10,7 @@ export default async function fetchGitHubAPI() {
 
     loadingProjects(true);
 
-    const repositoriesAddedManually = ['Accounts'];
+    const repositoriesAddedManually = ['Accounts', 'Translate-API'];
     const Repositories = await fetch(
       'https://api.github.com/users/ruan-moraes/repos?type=owner&per_page=64'
     )

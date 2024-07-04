@@ -192,44 +192,34 @@ function changeTextToSelectedLanguage(selectedLanguage) {
 }
 
 function changeEachTextToEnglish() {
-  // if (
-  //   window.location.href ===
-  //   'https://ruan-moraes.github.io/Portifolio-V1/myhistory.html'
-  // ) {
-  //   changeMyHistoryText();
-  // }
-
-  // if (
-  //   window.location.href ===
-  //   'https://ruan-moraes.github.io/Portifolio-V1/certificates.html'
-  // ) {
-  //   changeCertificatesText();
-  // }
-
-  // if (
-  //   window.location.href === 'https://ruan-moraes.github.io/Portifolio-V1/' ||
-  //   window.location.href ===
-  //     'https://ruan-moraes.github.io/Portifolio-V1/index.html' ||
-  //   window.location.href ===
-  //     'https://ruan-moraes.github.io/Portifolio-V1/index.html#myProjects'
-  // ) {
-  //   changeTextIndex();
-  // }
-
   if (
     window.location.href === 'http://127.0.0.1:5501/' ||
     window.location.href === 'http://127.0.0.1:5501/index.html' ||
-    window.location.href === 'http://127.0.0.1:5501/index.html#myProjects'
+    window.location.href === 'http://127.0.0.1:5501/index.html#myProjects' ||
+    window.location.href ===
+      'http://https://ruan-moraes.github.io/Portifolio-V1/' ||
+    window.location.href ===
+      'http://https://ruan-moraes.github.io/Portifolio-V1/index.html' ||
+    window.location.href ===
+      'http://https://ruan-moraes.github.io/Portifolio-V1/index.html#myProjects' ||
+    window.location.href ===
+      'http://https://ruan-moraes.github.io/Portifolio-V1/index.html#myServices'
   ) {
     changeTextIndex();
   }
 
-  if (window.location.href === 'http://127.0.0.1:5501/pages/myhistory.html') {
+  if (
+    window.location.href === 'http://127.0.0.1:5501/pages/myhistory.html' ||
+    window.location.href ===
+      'http://https://ruan-moraes.github.io/Portifolio-V1/myhistory.html'
+  ) {
     changeMyHistoryText();
   }
 
   if (
-    window.location.href === 'http://127.0.0.1:5501/pages/certificates.html'
+    window.location.href === 'http://127.0.0.1:5501/pages/certificates.html' ||
+    window.location.href ===
+      'https://ruan-moraes.github.io/Portifolio-V1/certificates.html'
   ) {
     changeCertificatesText();
   }
@@ -349,6 +339,10 @@ function changeEachTextToEnglish() {
         '.main__services > .container > .services > .services__item:nth-child(1) > .services__body > .services__description p'
       ).textContent =
         'Development of responsive and optimized websites and web systems.';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(1) > .services__footer a'
+      ).href =
+        "https://wa.me/5531993112958?text=Hello%2C%20I'm%20interested%20in%20Web%20Development%20services%20and%20would%20like%20to%20know%20if%20you%20do%20this%20type%20of%20work.%20If%20so%2C%20would%20you%20be%20available%20to%20start%20and%20what%20would%20be%20the%20estimated%20time%3F";
 
       document.querySelector(
         '.main__services > .container > .services > .services__item:nth-child(2) > .services__header > .services__title > h3'
@@ -357,6 +351,10 @@ function changeEachTextToEnglish() {
         '.main__services > .container > .services > .services__item:nth-child(2) > .services__body > .services__description p'
       ).textContent =
         'Development of mobile applications for Android and IOS using Flutter.';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(2) > .services__footer a'
+      ).href =
+        "https://wa.me/5531993112958?text=Hello%2C%20I'm%20looking%20for%20Mobile%20Development%20services%20and%20would%20like%20to%20know%20if%20you%20do%20this%20type%20of%20work.%20If%20so%2C%20would%20you%20be%20available%20to%20start%20and%20what%20would%20be%20the%20estimated%20time%3F";
 
       document.querySelector(
         '.main__services > .container > .services > .services__item:nth-child(3) > .services__header > .services__title > h3'
@@ -365,6 +363,10 @@ function changeEachTextToEnglish() {
         '.main__services > .container > .services > .services__item:nth-child(3) > .services__body > .services__description p'
       ).textContent =
         'Vulnerability analysis, intrusion testing and data protection.';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(3) > .services__footer a'
+      ).href =
+        'https://wa.me/5531993112958?text=Hello%2C%20I%20am%20interested%20in%20Cybersecurity%20services%20and%20would%20like%20to%20know%20if%20you%20offer%20this%20type%20of%20work.%20If%20so%2C%20could%20you%20provide%20me%20with%20more%20information%20about%20your%20services%20and%20what%20approach%20you%20would%20use%20in%20my%20case%3F';
 
       document.querySelector(
         '.main__services > .container > .services > .services__item:nth-child(4) > .services__header > .services__title > h3'
@@ -373,6 +375,10 @@ function changeEachTextToEnglish() {
         '.main__services > .container > .services > .services__item:nth-child(4) > .services__body > .services__description p'
       ).textContent =
         'Development and maintenance of APIs for integration with other systems.';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(4) > .services__footer a'
+      ).href =
+        'https://wa.me/5531993112958?text=Hello%2C%20I%20am%20interested%20in%20API%20Development%20and%20Maintenance%20services%20and%20would%20like%20to%20know%20if%20you%20offer%20this%20type%20of%20work.%20If%20so%2C%20could%20you%20provide%20me%20with%20more%20information%20about%20your%20services%20and%20what%20approach%20you%20would%20use%20in%20my%20case%3F';
 
       document.querySelector(
         '.main__services > .container > .services > .services__item:nth-child(5) > .services__header > .services__title > h3'
@@ -381,6 +387,10 @@ function changeEachTextToEnglish() {
         '.main__services > .container > .services > .services__item:nth-child(5) > .services__body > .services__description p'
       ).textContent =
         'Development, maintenance and optimization of relational (SQL) and non-relational (NoSQL) databases.';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(5) > .services__footer a'
+      ).href =
+        "https://wa.me/5531993112958?text=Hi%2C%20I'm%20interested%20in%20Relational%20and%20Non-Relational%20Database%20Development%20and%20Maintenance%20services.%20Could%20you%20provide%20me%20with%20more%20information%20about%20the%20services%20you%20offer%20in%20this%20area%3F";
 
       document.querySelector(
         '.main__services > .container > .services > .services__item:nth-child(6) > .services__header > .services__title > h3'
@@ -389,6 +399,10 @@ function changeEachTextToEnglish() {
         '.main__services > .container > .services > .services__item:nth-child(6) > .services__body > .services__description p'
       ).textContent =
         'Performing maintenance, refactoring / optimization, technology migration and error correction on various types of systems.';
+      document.querySelector(
+        '.main__services > .container > .services > .services__item:nth-child(6) > .services__footer a'
+      ).href =
+        "https://wa.me/5531993112958?text=Hello%2C%20I'm%20interested%20in%20the%20service%20of%20Web%20and%20Mobile%20Systems%20Maintenance%2C%20Bug%20Fixing%20and%20Updates.%20Could%20you%20give%20me%20more%20information%20about%20how%20you%20handle%20these%20tasks%20and%20what%20the%20work%20process%20is%3F";
 
       document
         .querySelectorAll(
@@ -413,7 +427,7 @@ function changeEachTextToEnglish() {
     function changeTitleTextOfMyHistory() {
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__header > .myHistory__title > h2'
-      ).textContent = 'My History';
+      ).textContent = 'A Little About Me';
     }
 
     function changeSubTitleText() {
@@ -435,25 +449,25 @@ function changeEachTextToEnglish() {
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__text > p'
       ).innerHTML =
-        'My journey into technology began when I was 8 years old. At that time, my father had a computer that he used for work, but occasionally I could play on the computer. I really enjoyed watching Minecraft videos on YouTube. I loved watching VenonExtreme, Monark, TrazeCraft, and other Minecraft YouTubers. That&lsquo;s when I started getting interested in games, and through games, I started getting interested in computers.';
+        'It could be said that my journey with technology began at the age of 8 to 9, at that time my father had a computer which he used for work, but from time to time I could the computer to watch videos. I really liked watching Minecraft videos on YouTube. I really liked watching VenonExtreme, Monark and so on. It was around this time that a small passion was born, not for computers, but forgames.';
 
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(1)'
       ).innerHTML =
-        'When I was 9 to 10 years old, my parents had the misfortune of buying a Positivo computer (Intel Celeron 1007u, 2GB RAM, 320GB HD) with Windows 8 pre-installed. The performance was so bad that it took 30 seconds to a minute just to open Google Chrome. That&lsquo;s when I started looking for ways to improve my computer. I tried everything: I downloaded cleaning programs, defragmented the disk, made changes to Windows regedit and even tried downloading a virtual video card (yes, I did), but obviously nothing worked. Over time, I learned more and more about computers. ';
+        "When I was 10 years old, my parents fell for a sales assistant at casas bahia and bought me a big positivo with an Intel Celeron 1007u processor, 2GB of RAM and a 320GB hard drive. The computer came with Windows 8 pre-installed, and the performance was so bad that it took 15 to 45 seconds just to open Google Chrome. That's when I started looking for ways to improve the computer. I tried everything: I downloaded cleaning programs, defragmented the disk, made changes to Windows regedit and even tried downloading a virtual video card (yes, I did), but obviously nothing worked. Over time, in all this stress, I ended up learning a lot about computers, and that's when I started to like computers.";
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(2)'
       ).innerHTML =
-        'At the end of my 11 years, I had my first contact with programming in a Python course by Gustavo Guanabara that I saw on YouTube. I took a few classes and learned the basics of Python, but as the IDEs were too heavy for my computer, I couldn&lsquo;t continue with the course. That&lsquo;s when I started wanting to have a better computer and be able to program without any problems. It was around this time that I started to like hardware, because I had a friend who also liked computers, and he taught me a lot about hardware, and that&lsquo;s when I started to like hardware.';
+        "When I was about 12 years old, I had my first contact with programming in a Python course by Gustavo Guanabara (very brave) that I saw on YouTube. I took a few classes and learned the basics of Python, but as the IDEs were too heavy for my computer, I couldn't continue with the course. After that, I became a bit disinterested in programming, or rather, technology in general. However, there was a friend in my class who liked computers, and it was he who taught me a lot about hardware, and that's when I started to like hardware. So I started following hardware channels on YouTube, MW Informática, Adrenaline and so on.";
 
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(1)'
       ).innerHTML =
-        'As time passed and I kept learning more about computers, I began to format computers for friends and family, thus gaining experience. However, it wasn&lsquo;t until 2022, pooling all my savings and with the help of my father, that I managed to buy my first computer, a computer I assembled myself, featuring a Xeon E5-2650v2, 16GB of RAM, and a GTX 1660TI. It was a huge joy for me because I not only bought a computer but also assembled it. It was a real sense of accomplishment. I spent a lot of time gaming on this computer, and it was during this period that I started to regain interest in programming.';
+        "As time went by and I learned more and more about computers, I started formatting friends' and family members' computers, which gave me a lot of experience. It was around this time that the famous Xeons started appearing on the second-hand market, and I became very interested in these processors, as they were very cheap and had very good performance. That's when I started saving money to buy a computer, and halfway through high school, with my father's help, I bought my first computer, a computer I built myself, with a Xeon E5-2650v2, 16GB of RAM and a GTX 1660TI. I was so happy that I didn't go to class for almost a week and my mother found out and it almost went wrong.";
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(2)'
       ).innerHTML =
-        'I have to confess that the salary for programming is very attractive and the possibility of working from home is very good - these factors attracted me to the technology market. I started studying with these aspects in mind, but over time I became more and more interested in programming. Today, I always like to learn something new. I intend to be a somewhat generalist professional, but my main focus is working with web development (Front-End and Back-End) and mobile.';
+        "I spent the rest of 2022 playing, but as I was a bearded 18-year-old, I started to think about what I wanted out of life. That's when I started looking for areas I could work in and I found out about programming. I confess that I got into it because of the hype about high salaries and home office, but over time I really enjoyed coding, and it became one of my hobbies.";
     }
   }
 
@@ -523,16 +537,13 @@ function changeEachTextToEnglish() {
     );
 
     try {
-      const response = await fetch(
-        'https://api-translate-d8kqk50pk-ruan-moraes-projects.vercel.app/translate',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ source, target, elementsText }),
-        }
-      ).then((response) => response.json());
+      const response = await fetch('http://localhost:8080/translate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ source, target, elementsText }),
+      }).then((response) => response.json());
 
       const translatedText = textTreatment(response.translated);
 
