@@ -8,6 +8,7 @@ export default function settings() {
   const blurOnBodyDOM = document.querySelector('.blurOnBody');
 
   settingsButton.addEventListener('click', () => {
+    CheckIfMenuIsActive();
     animationGear();
     showBlurOnBody();
     showSettings();
@@ -17,6 +18,7 @@ export default function settings() {
 
   settingsButton.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
+      CheckIfMenuIsActive();
       animationGear();
       showBlurOnBody();
       showSettings();

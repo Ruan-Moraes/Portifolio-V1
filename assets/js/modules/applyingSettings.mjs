@@ -17,6 +17,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const selectedOptions = getSelectedOptionLocalStorage();
 
   if (!selectedOptions) {
+    applyLanguage(window.navigator.language);
+
     return;
   }
 
@@ -169,14 +171,21 @@ function changeColorsBackground(selectedColor, currentColor) {
 // * Lógica para mudar o idioma do site
 
 function applyLanguage(selectedLanguageValue) {
-  const languageTable = {
-    Português: 'pt-BR',
-    Inglês: 'en-US',
-  };
+  if (selectedLanguageValue === 'pt-BR') {
+    changeTextToSelectedLanguage(selectedLanguageValue);
 
-  const selectedLanguage = languageTable[selectedLanguageValue];
+    return;
+  }
 
-  changeTextToSelectedLanguage(selectedLanguage);
+  if (selectedLanguageValue === 'en-US') {
+    changeTextToSelectedLanguage(selectedLanguageValue);
+
+    return;
+  }
+
+  changeTextToSelectedLanguage(
+    selectedLanguageValue === 'Português' ? 'pt-BR' : 'en-US'
+  );
 }
 
 function changeTextToSelectedLanguage(selectedLanguage) {
@@ -433,30 +442,30 @@ function changeEachTextToEnglish() {
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__text > p'
       ).innerHTML =
-        'It could be said that my journey with technology began at the age of 8 to 9, at that time my father had a computer which he used for work, but from time to time I could the computer to watch videos. I really liked watching Minecraft videos on YouTube. I really liked watching VenonExtreme, Monark and so on. It was around this time that a small passion was born, not for computers, but forgames.';
+        'You could say that my journey with technology began when I was 8 to 9 years old. At that time, my father had a computer that he used for work, but every now and then I could touch it to watch videos. I really liked watching Minecraft videos on YouTube. I watched videos of VenomExtreme, Monark and so on. It was around this time that a small passion was born in me, not for computers, but for games';
 
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(1)'
       ).innerHTML =
-        "When I was 10 years old, my parents fell for a sales assistant at casas bahia and bought me a big positivo with an Intel Celeron 1007u processor, 2GB of RAM and a 320GB hard drive. The computer came with Windows 8 pre-installed, and the performance was so bad that it took 15 to 45 seconds just to open Google Chrome. That's when I started looking for ways to improve the computer. I tried everything: I downloaded cleaning programs, defragmented the disk, made changes to Windows regedit and even tried downloading a virtual video card (yes, I did), but obviously nothing worked. Over time, in all this stress, I ended up learning a lot about computers, and that's when I started to like computers.";
+        "When I was 10 years old, my parents got a computer, with an Intel Celeron 1007u processor, 2GB of RAM and a 320GB HD. The computer came with Windows 8 pre-installed, and the performance was so poor that it took about 15 to 45 seconds just to open Google Chrome. That's when I started my search for ways to improve the computer. I tried everything... I downloaded cleaning programs, defragmented the disk, made changes to Windows regedit and even tried downloading a virtual video card (yes, I downloaded it), but obviously nothing fixed what was unfixable. Over time, under a lot of stress, I ended up learning a lot about computers, and that's when I started to like computers.";
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(2)'
       ).innerHTML =
-        "When I was about 12 years old, I had my first contact with programming in a Python course by Gustavo Guanabara (very brave) that I saw on YouTube. I took a few classes and learned the basics of Python, but as the IDEs were too heavy for my computer, I couldn't continue with the course. After that, I became a bit disinterested in programming, or rather, technology in general. However, there was a friend in my class who liked computers, and it was he who taught me a lot about hardware, and that's when I started to like hardware. So I started following hardware channels on YouTube, MW Informática, Adrenaline and so on.";
+        "When I was about 12 years old, I had my first contact with programming in a Python course by Gustavo Guanabara that I saw on YouTube. I took a few classes and learned the basics of Python, but as the IDEs were too heavy for my computer, I couldn't continue with the course. After that, I became a bit disinterested in programming, or rather, technology in general. However, in my class I had a colleague and then friend who was really into games, hardware, computers and so on, and talking to him, I became more and more interested in hardware, and that's when I started researching more and ended up discovering Various channels that talked about the subject, such as: MW Informática, Adrenaline, ChipArt and so on.";
 
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(1)'
       ).innerHTML =
-        "As time went by and I learned more and more about computers, I started formatting friends' and family members' computers, which gave me a lot of experience. It was around this time that the famous Xeons started appearing on the second-hand market, and I became very interested in these processors, as they were very cheap and had very good performance. That's when I started saving money to buy a computer, and halfway through high school, with my father's help, I bought my first computer, a computer I built myself, with a Xeon E5-2650v2, 16GB of RAM and a GTX 1660TI. I was so happy that I didn't go to class for almost a week and my mother found out and it almost went wrong.";
+        "As time went by, I learned more and more about computers, I started formatting friends' and family members' computers, and with that I gained experience. Around the time of the pandemic, the famous Xeons started appearing on the second-hand market and I became very interested in these processors, as they were very cheap and had very good performance. That's when I started saving money to buy a computer, and halfway through my third year of high school, with the help of my father, I bought my first computer, a computer I built myself, with a Xeon E5-2650v2, 16GB of RAM and a GTX 1660TI.";
       document.querySelector(
         '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(2)'
       ).innerHTML =
-        "I spent the rest of 2022 playing, but as I was a bearded 18-year-old, I started to think about what I wanted out of life. That's when I started looking for areas I could work in and I found out about programming. I confess that I got into it because of the hype about high salaries and home office, but over time I really enjoyed coding, and it became one of my hobbies.";
+        "I spent the rest of 2022 playing, but as I was a bearded 18-year-old, I started to think about what I wanted out of life. That's when I started looking into areas I could work in and I learned about programming. I confess that I got into it because of the hype about high salaries and home offices, but over time I really enjoyed coding and it became one of my hobbies. Programming isn't the coolest thing I like to do, but it's something I can do for most of my life (maybe even all my life) without complaining.";
     }
   }
 
   function changeCertificatesText() {
-    translateText('pt', 'en');
+    // translateText('pt', 'en');
   }
 
   function changeHeaderText() {
@@ -531,9 +540,7 @@ function changeEachTextToEnglish() {
         element.textContent = translatedText[index];
       });
     } catch (error) {
-      console.error(
-        `Ocorreu um erro ao traduzir os elementos: ${error.message}`
-      );
+      console.log(error);
     }
   }
 
@@ -753,6 +760,60 @@ function changeEachTextToPortuguese() {
         });
     }
   }
+
+  function changeMyHistoryText() {
+    changeTitleTextOfMyHistory();
+    changeSubTitleText();
+    changeContentText();
+
+    function changeTitleTextOfMyHistory() {
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__header > .myHistory__title > h2'
+      ).textContent = 'Um Pouco Sobre Mim';
+    }
+
+    function changeSubTitleText() {
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__subTitle > h3'
+      ).textContent = 'Primeiro Contato com a Tecnologia';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__subTitle > h3'
+      ).textContent = 'Primeiros Passos';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__subTitle > h3'
+      ).textContent =
+        'Comprando meu Primeiro Computador e o Interesse por Programação';
+    }
+
+    function changeContentText() {
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(1) > .myHistory__text > p'
+      ).innerHTML =
+        'Pode-se dizer que minha jornada com a tecnologia começou com 8 a 9 anos, naquela época, meu pai tinha um computador que usava para o trabalho, mas de vez em quando eu podia mexer no computador para ver vídeos. Eu gostava muito de ver vídeos de Minecraft no YouTube. Eu assistia vídeos do VenomExtreme, Monark e etc. Foi mais ou menos nessa época que nasceu em mim uma pequena paixão não por computadores, mas por jogos.';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(1)'
+      ).innerHTML =
+        'Com meus 10 anos, meus pais caíram no conto de um atendente e compraram um Positivo tunadão, com um processador Intel Celeron 1007u, 2GB de RAM e um HD de 320GB. O computador vinha com o Windows 8 pré-instalado, e o desempenho era tão ruim que levava uns 15 a 45 segundos apenas para abrir o Google Chrome. Foi aí que iniciei minha busca por formas de melhorar o computador. Tentei de tudo... baixei programas de limpeza, desfragmentei o disco, fiz alterações no regedit do Windows e até mesmo experimentei baixar uma placa de vídeo virtual (sim, baixei), mas obviamente nada consertava o que era inconsertável. Com o tempo, passando muito estresse, eu acabei aprendendo muita coisa sobre computadores, e foi aí que eu comecei a gostar de computadores.';
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(2) > .myHistory__text > p:nth-child(2)'
+      ).innerHTML =
+        'Mais ou menos, com meus 12 anos, eu tive meu primeiro contato com programação em um curso de Python, do Gustavo Guanabara (muito brabo) que eu vi no YouTube. Fiz algumas aulas e aprendi o básico de Python, mas como as IDEs eram muito pesadas para o meu computador, eu não conseguia continuar com o curso. Depois disso, fiquei meio desinteressado com programação, ou melhor, com tecnologia em geral. Porém, na minha sala tinha um colega e depois amigo que gostava bastante de jogos, hardwares, computadores e etc, e conversando com ele, eu fui me interessando cada vez mais sobre hardware, e foi aí que eu comecei a pesquisar mais sobre e acabei descobrindo diversos canais que falavam sobre o assunto, como: MW Informática, Adrenaline, ChipArt e etc.';
+
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(1)'
+      ).innerHTML =
+        'Passando o tempo, eu fui aprendendo cada vez mais sobre computadores, comecei a formatar computadores de amigos e familiares, com isso fui adquirindo experiência. Mais ou menos na época da pandemia, os famosos Xeons começaram a aparecer no mercado de usados e eu fiquei muito interessado nesses processadores, pois eles eram muito baratos e tinham um desempenho muito bom. Foi aí que eu comecei a juntar dinheiro para comprar um computador, e na metade do terceiro ano do ensino médio, com a ajuda do meu pai, eu comprei meu primeiro computador, um computador que eu mesmo montei, com um Xeon E5-2650v2, 16GB de RAM e uma GTX 1660TI.';
+      document.querySelector(
+        '.main__myHistory > .container > .myHistory > .myHistory__body > .myHistory__section:nth-child(3) > .myHistory__text > p:nth-child(2)'
+      ).innerHTML =
+        'Passei o resto do ano de 2022 jogando, mas como estava barbado com 18 anos, eu comecei a pensar o que eu queria da vida. Aí que comecei a buscar sobre áreas que poderia trabalhar e conheci a área de programação. Confesso que entrei pelo hype de altos salários e home office, mas com o tempo fui gostando de codar mesmo, e isso se transformou em um dos meus hobbies. Programar não é a coisa mais legal que gosto de fazer, mas é algo que posso levar por boa parte da minha vida (talvez até por toda vida) sem reclamar.';
+    }
+  }
+
+  function changeCertificatesText() {}
 
   function changeHeaderText() {
     document.querySelector('.header__title > h1 > a').textContent =
