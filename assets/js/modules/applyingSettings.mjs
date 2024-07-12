@@ -464,8 +464,9 @@ function changeEachTextToEnglish() {
     }
   }
 
-  function changeCertificatesText() {
-    // translateText('pt', 'en');
+  async function changeCertificatesText() {
+    const allTranslations = await translateText('PT', 'EN');
+    console.log(await allTranslations);
   }
 
   function changeHeaderText() {
@@ -520,32 +521,93 @@ function changeEachTextToEnglish() {
   }
 
   async function translateText(source, target) {
-    const elements = document.querySelectorAll('[data-translate]');
-    const elementsText = Array.from(elements).map((element) =>
+    const staticElements = document.querySelectorAll('[data-translate-static]');
+    const staticElementsDates = document.querySelectorAll(
+      '[data-translate-static-date]'
+    );
+
+    translateElementsStatic(staticElements, staticElementsDates);
+
+    const dynamicElements = document.querySelectorAll('[data-translate]');
+    const dynamicElementsTexts = Array.from(dynamicElements).map((element) =>
       element.textContent.trim()
     );
 
     try {
-      const response = await fetch('http://localhost:8080/translate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ source, target, elementsText }),
-      }).then((response) => response.json());
+      // const response = await fetch('http://localhost:8080/translate', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ source, target, dynamicElementsTexts }),
+      // }).then((response) => response.json());
 
-      const translatedText = await textTreatment(response.translated);
+      const key = '';
+      const endpoint = 'https://api-free.deepl.com/v2/translate';
 
-      elements.forEach((element, index) => {
+      const response = await fetch(
+        `${endpoint}?auth_key=${key}&text=${dynamicElementsTexts}&source_lang=${source}&target_lang=${target}`
+      ).then((response) => response.json());
+
+      const translatedText = await textTreatment(response.translations[0].text);
+
+      dynamicElements.forEach((element, index) => {
         element.textContent = translatedText[index];
       });
+
+      const allStaticTextTranslations = [
+        staticElements[0].innerText, // 'My Certificates'
+        staticElements[1].innerText, // 'Topics Covered'
+        staticElements[2].innerText, // 'Conclusion:'
+        staticElementsDates[0].innerText, // 'months'
+        staticElements[3].innerText, // 'Duration:'
+        staticElementsDates[1].innerText, // 'hours'
+        staticElements[4].innerText, // 'View Certificate
+      ];
+      const allDynamicTextTranslations = [...translatedText];
+
+      return { allDynamicTextTranslations, allStaticTextTranslations };
     } catch (error) {
       console.log(error);
     }
   }
 
+  function translateElementsStatic(staticElements, staticElementsDates) {
+    staticElements[0].innerText = 'My Certificates';
+    staticElements[1].innerText = 'Topics Covered';
+    staticElements[2].innerText = 'Conclusion:';
+    staticElements[3].innerText = 'Duration:';
+    staticElements[4].innerText = 'View Certificate';
+
+    const monthTranslations = {
+      'Janeiro de': 'January',
+      'Fevereiro de': 'February',
+      'Março de': 'March',
+      'Abril de': 'April',
+      'Maio de': 'May',
+      'Junho de': 'June',
+      'Julho de': 'July',
+      'Agosto de': 'August',
+      'Setembro de': 'September',
+      'Outubro de': 'October',
+      'Novembro de': 'November',
+      'Dezembro de': 'December',
+    };
+
+    staticElementsDates[0].textContent =
+      monthTranslations[staticElementsDates[0].textContent] ||
+      staticElementsDates[0].textContent;
+    staticElementsDates[1].textContent = 'hours';
+  }
+
   async function textTreatment(text) {
-    return await text.map((text) => text.replace(/\n|\t|\nof/g, ' ').trim());
+    const textArray = text.split(',');
+
+    console.log(textArray);
+
+    return await textArray.map((text) =>
+      text.replace(/\n|\t|\nof/g, ' ').trim()
+    );
   }
 }
 
