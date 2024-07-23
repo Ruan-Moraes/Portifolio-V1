@@ -7,7 +7,7 @@ import menu from './modules/menu.mjs';
 import settings from './modules/settings.mjs';
 import menuAndSettings from './modules/menuAndSettings.mjs';
 import customSelect from './modules/customSelect.mjs';
-import fetchGitHubAPI from './modules/fetchGitHubApi.mjs';
+import fetchGitHubAPI from './modules/fetchGitHubAPI.mjs';
 
 // * Garante que o código só será executado após o carregamento do conteúdo da página
 

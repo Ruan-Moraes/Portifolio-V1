@@ -3,7 +3,7 @@
 import {
   changePageScrollingState,
   showBlurOnBody,
-  getSelectedOptionLocalStorage,
+  getValuesInLocalStorage,
 } from './others.mjs';
 import {
   animationGear,
@@ -46,7 +46,7 @@ export default function cancelingSettings() {
 }
 
 export function resetSettings() {
-  const selectedOptions = getSelectedOptionLocalStorage();
+  const selectedOptions = getValuesInLocalStorage('settings');
 
   const selectedItems = document.querySelectorAll('.selectedItem');
 

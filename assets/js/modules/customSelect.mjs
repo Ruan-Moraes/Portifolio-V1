@@ -1,6 +1,6 @@
 'use strict';
 
-import { getSelectedOptionLocalStorage } from './others.mjs';
+import { getValuesInLocalStorage } from './others.mjs';
 
 export default function customSelect() {
   const selectsDOM = document.querySelectorAll('select');
@@ -18,13 +18,11 @@ export default function customSelect() {
     addShowOrHideEventInOptions(parentElementOfTheSelectionDOM);
   });
 
-  const selectedOptions = getSelectedOptionLocalStorage();
+  const selectedOptions = getValuesInLocalStorage('settings');
 
   if (selectedOptions) {
     showSelectedOption(selectsDOM, selectedOptions);
-  }
-
-  if (!selectedOptions) {
+  } else {
     showDefaultOption(selectsDOM);
   }
 

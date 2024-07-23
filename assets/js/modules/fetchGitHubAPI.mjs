@@ -1,38 +1,25 @@
 'use strict';
 
-import { whatIsTheCurrentColor } from './others.mjs';
+import {
+  whatIsTheCurrentColor,
+  setValuesInLocalStorage,
+  getValuesInLocalStorage,
+} from './others.mjs';
 
 export default async function fetchGitHubAPI() {
   const currentColor = whatIsTheCurrentColor();
 
   try {
-    const numberRandom = Math.floor(Math.random() * 2000);
-
     loadingProjects(true);
 
-    const repositoriesAddedManually = ['Accounts', 'Translate-API'];
-    const Repositories = await fetch(
-      'https://api.github.com/users/ruan-moraes/repos?type=owner&per_page=64'
-    )
-      .then((response) => response.json())
-      .then((response) =>
-        response.filter(
-          (repository) =>
-            repository.has_pages === true ||
-            repositoriesAddedManually.includes(repository.name)
-        )
-      )
-      .then((response) => response.sort(() => Math.random() - 0.5));
+    const repositories = getValuesInLocalStorage('repositories')
+      ? getValuesInLocalStorage('repositories')[0]
+      : await requestAPI();
+    setValuesInLocalStorage('repositories', repositories);
 
-    setTimeout(() => {
-      insertProjectsDOM(Repositories, currentColor);
-    }, 1 * numberRandom);
+    insertProjectsDOM(repositories, currentColor);
   } catch (error) {
-    errorGitHubAPI(currentColor);
-
-    console.error(
-      `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
-    );
+    errorGitHubAPI(currentColor, error);
   }
 }
 
@@ -55,38 +42,59 @@ function loadingProjects(isLoading) {
   projectsContents.appendChild(loadingProjects);
 }
 
-function insertProjectsDOM(Repositories, currentColor) {
-  const totalProjectsPerPage = 6;
-  const totalPages = calculateTheTotalNumberOfPages(
-    totalProjectsPerPage,
-    Repositories
-  );
+async function requestAPI() {
+  const repositoriesAddedManually = ['Accounts', 'Translate-API'];
 
-  insertTheProjectsCounter(Repositories, currentColor);
-  createPagesIndexes(totalPages);
-  createPagination(totalPages, currentColor);
-
-  const projectsGroups = separateProjectsIntoGroups(
-    totalProjectsPerPage,
-    totalPages,
-    Repositories
-  );
-
-  loadingProjects(false);
-
-  insertProjects(projectsGroups, currentColor);
-  whichPageToDisplay();
+  return await fetch(
+    'https://api.github.com/users/ruan-moraes/repos?type=owner&per_page=64'
+  )
+    .then((response) => response.json())
+    .then((response) =>
+      response.filter(
+        (repository) =>
+          repository.has_pages === true ||
+          repositoriesAddedManually.includes(repository.name)
+      )
+    )
+    .then((response) => response.sort(() => Math.random() - 0.5));
 }
 
-function calculateTheTotalNumberOfPages(totalProjectsPerPage, Repositories) {
-  return Math.ceil(Repositories.length / totalProjectsPerPage);
+function insertProjectsDOM(repositories, currentColor) {
+  const numberRandom = Math.floor(Math.random() * 2000);
+
+  setTimeout(() => {
+    const totalProjectsPerPage = 6;
+    const totalPages = calculateTheTotalNumberOfPages(
+      totalProjectsPerPage,
+      repositories
+    );
+
+    insertTheProjectsCounter(repositories, currentColor);
+    createPagesIndexes(totalPages);
+    createPagination(totalPages, currentColor);
+
+    const projectsGroups = separateProjectsIntoGroups(
+      totalProjectsPerPage,
+      totalPages,
+      repositories
+    );
+
+    loadingProjects(false);
+
+    insertProjects(projectsGroups, currentColor);
+    whichPageToDisplay();
+  }, 1 * numberRandom);
 }
 
-function insertTheProjectsCounter(Repositories, currentColor) {
+function calculateTheTotalNumberOfPages(totalProjectsPerPage, repositories) {
+  return Math.ceil(repositories.length / totalProjectsPerPage);
+}
+
+function insertTheProjectsCounter(repositories, currentColor) {
   const projectsCounter = document.querySelector('#projectAccountant');
   projectsCounter.classList.add(`${currentColor}__color`);
   projectsCounter.innerHTML = `
-      ${Repositories.length}
+      ${repositories.length}
     `;
 }
 
@@ -130,12 +138,12 @@ function createPagination(totalPages, currentColor) {
 function separateProjectsIntoGroups(
   totalProjectsPerPage,
   totalPages,
-  Repositories
+  repositories
 ) {
   const projectsGroups = [];
 
   for (let i = 0; i < totalPages; i++) {
-    const listOfProjects = Repositories.splice(0, totalProjectsPerPage);
+    const listOfProjects = repositories.splice(0, totalProjectsPerPage);
 
     projectsGroups.push(listOfProjects);
   }
@@ -169,7 +177,7 @@ function insertProjects(projectsGroups, currentColor) {
         </div>
         <div class="projects__cardBody">
           <div class="projects__cardDescription">
-            <p>${project.description}</p>
+            <p data-translate>${project.description}</p>
           </div>
         </div> 
         <div class="projects__cardFooter">
@@ -193,7 +201,7 @@ function insertProjects(projectsGroups, currentColor) {
         </div>
         <div class="projects__cardBody">
           <div class="projects__cardDescription">
-            <p>${project.description}</p>
+            <p data-translate>${project.description}</p>
           </div>
         </div> 
         <div class="projects__cardFooter noDeployed">
@@ -285,11 +293,14 @@ function whichPageToDisplayAcessibility(page, currentColor) {
 }
 
 function errorGitHubAPI(currentColor) {
-  const projects = document.querySelector('.projects');
+  console.error(
+    `Ocorreu um erro ao tentar carregar projetos do GitHub! Por favor, tente mais tarde. ERROR: ${error}`
+  );
 
   const errorMessage =
     '<h3>Ocorreu um problema ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
   const errorIcon = `<i class="fas fa-exclamation-triangle ${currentColor}__color"></i>`;
 
+  const projects = document.querySelector('.projects');
   projects.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
 }

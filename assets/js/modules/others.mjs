@@ -15,19 +15,31 @@ export function showBlurOnBody() {
   blurOnBodyDOM.classList.toggle('blurOnBodyIsActivated');
 }
 
-export function setSelectedOptionLocalStorage(
-  selectedTheme,
-  selectedColor,
-  selectedLanguage
-) {
-  localStorage.setItem(
-    'settings',
-    JSON.stringify([selectedTheme, selectedColor, selectedLanguage])
+export function processingTranslationTexts() {
+  const dynamicElements = document.querySelectorAll('[data-translate]');
+
+  return Array.from(dynamicElements).map((element) =>
+    // Faça um tratamento no texto para remover espaços em branco seguidos e espaços em branco no início e no final e substitui virgula por '-';
+
+    element.textContent
+      .replace(/\s{2,}/g, ' ')
+      .trim()
+      .replace(/,/g, ' -')
   );
 }
 
-export function getSelectedOptionLocalStorage() {
-  return JSON.parse(localStorage.getItem('settings'));
+export function saveTextsInPortuguese(itemName) {
+  const dynamicElementsTexts = processingTranslationTexts();
+
+  setValuesInLocalStorage(itemName, ...dynamicElementsTexts);
+}
+
+export function setValuesInLocalStorage(itemName, ...data) {
+  localStorage.setItem(itemName, JSON.stringify([...data]));
+}
+
+export function getValuesInLocalStorage(itemName) {
+  return JSON.parse(localStorage.getItem(itemName));
 }
 
 export function whatIsTheCurrentColor() {
