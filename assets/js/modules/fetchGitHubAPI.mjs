@@ -3,7 +3,7 @@
 import {
   whatIsTheCurrentColor,
   setValuesInLocalStorage,
-  getValuesInLocalStorage,
+  getValuesLocalStorage,
 } from './others.mjs';
 
 export default async function fetchGitHubAPI() {
@@ -12,10 +12,10 @@ export default async function fetchGitHubAPI() {
   try {
     loadingProjects(true);
 
-    const repositories = getValuesInLocalStorage('repositories')
-      ? getValuesInLocalStorage('repositories')[0]
+    const repositories = getValuesLocalStorage('repositories')
+      ? getValuesLocalStorage('repositories')
       : await requestAPI();
-    setValuesInLocalStorage('repositories', repositories);
+    setValuesInLocalStorage('repositories', ...repositories);
 
     insertProjectsDOM(repositories, currentColor);
   } catch (error) {
@@ -24,22 +24,22 @@ export default async function fetchGitHubAPI() {
 }
 
 function loadingProjects(isLoading) {
-  const projectsContents = document.querySelector('.projects');
+  const projectsContentsDOM = document.querySelector('.projects');
 
   if (!isLoading) {
-    const loadingProjects = document.querySelector(
+    const loadingProjectsDOM = document.querySelector(
       '.projects__loadingProjects'
     );
-    loadingProjects.remove();
+    loadingProjectsDOM.remove();
 
     return;
   }
 
-  const loadingProjects = document.createElement('div');
-  loadingProjects.classList.add('projects__loadingProjects');
-  loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
+  const loadingProjectsDOM = document.createElement('div');
+  loadingProjectsDOM.classList.add('projects__loadingProjects');
+  loadingProjectsDOM.innerHTML = `<p>Carregando Projetos...</p>`;
 
-  projectsContents.appendChild(loadingProjects);
+  projectsContentsDOM.appendChild(loadingProjectsDOM);
 }
 
 async function requestAPI() {
@@ -56,7 +56,17 @@ async function requestAPI() {
           repositoriesAddedManually.includes(repository.name)
       )
     )
-    .then((response) => response.sort(() => Math.random() - 0.5));
+    .then((response) => response.sort(() => Math.random() - 0.5))
+    .then((response) => {
+      return response.map((repository) => {
+        return {
+          name: repository.name,
+          description: repository.description,
+          has_pages: repository.has_pages,
+          html_url: repository.html_url,
+        };
+      });
+    });
 }
 
 function insertProjectsDOM(repositories, currentColor) {
@@ -64,12 +74,12 @@ function insertProjectsDOM(repositories, currentColor) {
 
   setTimeout(() => {
     const totalProjectsPerPage = 6;
-    const totalPages = calculateTheTotalNumberOfPages(
+    const totalPages = calculateTotalNumberPages(
       totalProjectsPerPage,
       repositories
     );
 
-    insertTheProjectsCounter(repositories, currentColor);
+    insertProjectsCounter(repositories, currentColor);
     createPagesIndexes(totalPages);
     createPagination(totalPages, currentColor);
 
@@ -86,52 +96,52 @@ function insertProjectsDOM(repositories, currentColor) {
   }, 1 * numberRandom);
 }
 
-function calculateTheTotalNumberOfPages(totalProjectsPerPage, repositories) {
+function calculateTotalNumberPages(totalProjectsPerPage, repositories) {
   return Math.ceil(repositories.length / totalProjectsPerPage);
 }
 
-function insertTheProjectsCounter(repositories, currentColor) {
-  const projectsCounter = document.querySelector('#projectAccountant');
-  projectsCounter.classList.add(`${currentColor}__color`);
-  projectsCounter.innerHTML = `
+function insertProjectsCounter(repositories, currentColor) {
+  const projectsCounterDOM = document.querySelector('#projectAccountant');
+  projectsCounterDOM.classList.add(`${currentColor}__color`);
+  projectsCounterDOM.innerHTML = `
       ${repositories.length}
     `;
 }
 
 function createPagesIndexes(totalPages) {
   for (let i = 0; i < totalPages; i++) {
-    const projectsItems = document.querySelector('.projects__projectsItems');
+    const projectsItemsDOM = document.querySelector('.projects__projectsItems');
 
-    const page = document.createElement('div');
-    page.classList.add('projects__page');
-    page.setAttribute('id', `projectsPage${i + 1}`);
-    page.setAttribute('data-aos', 'fade-up');
-    page.setAttribute('data-aos-duration', '250');
+    const pageDOM = document.createElement('div');
+    pageDOM.classList.add('projects__page');
+    pageDOM.setAttribute('id', `projectsPage${i + 1}`);
+    pageDOM.setAttribute('data-aos', 'fade-up');
+    pageDOM.setAttribute('data-aos-duration', '250');
 
-    projectsItems.appendChild(page);
+    projectsItemsDOM.appendChild(pageDOM);
   }
 }
 
 function createPagination(totalPages, currentColor) {
-  const projectsPagination = document.querySelector('.projects__pagination');
+  const projectsPaginationDOM = document.querySelector('.projects__pagination');
 
   for (let i = 0; i < totalPages; i++) {
-    const page = document.createElement('a');
-    page.setAttribute('href', '#myProjects');
-    page.setAttribute('role', 'button');
-    page.classList.add('projects__paginationItem');
-    page.classList.add(`${currentColor}__backgroundColor--lessLightHover`);
-    page.innerHTML = `<span class="visually-hidden">Página ${i + 1}</span> ${
+    const pageDOM = document.createElement('a');
+    pageDOM.setAttribute('href', '#myProjects');
+    pageDOM.setAttribute('role', 'button');
+    pageDOM.classList.add('projects__paginationItem');
+    pageDOM.classList.add(`${currentColor}__backgroundColor--lessLightHover`);
+    pageDOM.innerHTML = `<span class="visually-hidden">Página ${i + 1}</span> ${
       i + 1
     }`;
 
-    page.addEventListener('keydown', (event) => {
+    pageDOM.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
-        whichPageToDisplayAcessibility(page, currentColor);
+        whichPageToDisplayAcessibility(pageDOM, currentColor);
       }
     });
 
-    projectsPagination.appendChild(page);
+    projectsPaginationDOM.appendChild(pageDOM);
   }
 }
 
@@ -152,26 +162,26 @@ function separateProjectsIntoGroups(
 }
 
 function insertProjects(projectsGroups, currentColor) {
-  const projectsPages = document.querySelectorAll('.projects__page');
+  const projectsPagesDOM = document.querySelectorAll('.projects__page');
 
   for (let i = 0; i < projectsGroups.length; i++) {
-    const projectsPage = projectsPages[i];
+    const projectsPage = projectsPagesDOM[i];
     const projectsGroup = projectsGroups[i];
 
-    for (let i = 0; i < projectsGroup.length; i++) {
-      const project = projectsGroup[i];
-
+    for (let j = 0; j < projectsGroup.length; j++) {
+      const project = projectsGroup[j];
       const projectUrl = `https://ruan-moraes.github.io/${project.name}`;
+
       processingRepositoryData(project);
 
-      const projectElement = document.createElement('div');
-      projectElement.classList.add('projects__card');
-      projectElement.setAttribute('data-aos', 'fade-in');
-      projectElement.setAttribute('data-aos-delay', `${50 * i}`);
-      projectElement.setAttribute('data-aos-duration', `${350 + 150 * i}`);
+      const projectElementDOM = document.createElement('div');
+      projectElementDOM.classList.add('projects__card');
+      projectElementDOM.setAttribute('data-aos', 'fade-in');
+      projectElementDOM.setAttribute('data-aos-delay', `${50 * j}`);
+      projectElementDOM.setAttribute('data-aos-duration', `${350 + 150 * j}`);
 
       if (project.has_pages === true) {
-        projectElement.innerHTML = `
+        projectElementDOM.innerHTML = `
         <div class="projects__cardHeader">
           <h3>${project.name}</h3>
         </div>
@@ -192,10 +202,8 @@ function insertProjects(projectsGroups, currentColor) {
           </a>
         </div>
         `;
-      }
-
-      if (project.has_pages === false) {
-        projectElement.innerHTML = `
+      } else {
+        projectElementDOM.innerHTML = `
         <div class="projects__cardHeader">
           <h3>${project.name}</h3>
         </div>
@@ -213,7 +221,7 @@ function insertProjects(projectsGroups, currentColor) {
         `;
       }
 
-      projectsPage.appendChild(projectElement);
+      projectsPage.appendChild(projectElementDOM);
     }
   }
 
@@ -233,38 +241,38 @@ function processingRepositoryData(project) {
 }
 
 function disablePagesDisplays(currentColor) {
-  const projectsPages = document.querySelectorAll('.projects__page');
-  const projectsPagination = document.querySelectorAll(
+  const projectsPagesDOM = document.querySelectorAll('.projects__page');
+  const projectsPaginationDOM = document.querySelectorAll(
     '.projects__paginationItem'
   );
 
-  projectsPagination[0].classList.add(
+  projectsPaginationDOM[0].classList.add(
     `${currentColor}__backgroundColor--selected`
   );
-  projectsPages[0].classList.add('projects__pageIsDisplayed');
+  projectsPagesDOM[0].classList.add('projects__pageIsDisplayed');
 }
 
 function whichPageToDisplay() {
-  const projectsPages = document.querySelectorAll('.projects__page');
-  const projectsPagination = document.querySelectorAll(
+  const projectsPagesDOM = document.querySelectorAll('.projects__page');
+  const projectsPaginationDOM = document.querySelectorAll(
     '.projects__paginationItem'
   );
 
-  for (let i = 0; i < projectsPagination.length; i++) {
-    projectsPagination[i].addEventListener('click', () => {
+  for (let i = 0; i < projectsPaginationDOM.length; i++) {
+    projectsPaginationDOM[i].addEventListener('click', () => {
       const currentColor = whatIsTheCurrentColor();
 
-      for (let i = 0; i < projectsPages.length; i++) {
-        projectsPagination[i].classList.remove(
+      for (let i = 0; i < projectsPagesDOM.length; i++) {
+        projectsPaginationDOM[i].classList.remove(
           `${currentColor}__backgroundColor--selected`
         );
-        projectsPages[i].classList.remove('projects__pageIsDisplayed');
+        projectsPagesDOM[i].classList.remove('projects__pageIsDisplayed');
       }
 
-      projectsPagination[i].classList.add(
+      projectsPaginationDOM[i].classList.add(
         `${currentColor}__backgroundColor--selected`
       );
-      projectsPages[i].classList.add('projects__pageIsDisplayed');
+      projectsPagesDOM[i].classList.add('projects__pageIsDisplayed');
 
       AOS.refresh();
     });
@@ -272,22 +280,22 @@ function whichPageToDisplay() {
 }
 
 function whichPageToDisplayAcessibility(page, currentColor) {
-  const projectsPages = document.querySelectorAll('.projects__page');
-  const projectsPagination = document.querySelectorAll(
+  const projectsPagesDOM = document.querySelectorAll('.projects__page');
+  const projectsPaginationDOM = document.querySelectorAll(
     '.projects__paginationItem'
   );
 
-  for (let i = 0; i < projectsPagination.length; i++) {
-    projectsPagination[i].classList.remove(
+  for (let i = 0; i < projectsPaginationDOM.length; i++) {
+    projectsPaginationDOM[i].classList.remove(
       `${currentColor}__backgroundColor--selected`
     );
-    projectsPages[i].classList.remove('projects__pageIsDisplayed');
+    projectsPagesDOM[i].classList.remove('projects__pageIsDisplayed');
 
-    if (projectsPagination[i] === page) {
-      projectsPagination[i].classList.add(
+    if (projectsPaginationDOM[i] === page) {
+      projectsPaginationDOM[i].classList.add(
         `${currentColor}__backgroundColor--selected`
       );
-      projectsPages[i].classList.add('projects__pageIsDisplayed');
+      projectsPagesDOM[i].classList.add('projects__pageIsDisplayed');
     }
   }
 }
@@ -301,6 +309,6 @@ function errorGitHubAPI(currentColor) {
     '<h3>Ocorreu um problema ao tentar carregar projetos do GitHub! Por favor, tente mais tarde.</h3>';
   const errorIcon = `<i class="fas fa-exclamation-triangle ${currentColor}__color"></i>`;
 
-  const projects = document.querySelector('.projects');
-  projects.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
+  const projectsDOM = document.querySelector('.projects');
+  projectsDOM.innerHTML = `<div class="error">${errorIcon} ${errorMessage}</div>`;
 }

@@ -4,10 +4,10 @@ import { changePageScrollingState, showBlurOnBody } from './others.mjs';
 import { animationMenu, activateMenu, showBlurMenu } from './menu.mjs';
 
 export default function settings() {
-  const settingsButton = document.querySelector('#settingsButton');
+  const settingsButtonDOM = document.querySelector('#settingsButton');
   const blurOnBodyDOM = document.querySelector('.blurOnBody');
 
-  settingsButton.addEventListener('click', () => {
+  settingsButtonDOM.addEventListener('click', () => {
     CheckIfMenuIsActive();
     animationGear();
     showBlurOnBody();
@@ -16,7 +16,7 @@ export default function settings() {
     changePageScrollingState();
   });
 
-  settingsButton.addEventListener('keydown', (event) => {
+  settingsButtonDOM.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       CheckIfMenuIsActive();
       animationGear();
@@ -38,11 +38,11 @@ export default function settings() {
 }
 
 function CheckIfMenuIsActive() {
-  const IsMenuActive = document
+  const IsMenuActiveDOM = document
     .querySelector('.header__links')
     .classList.contains('menuIsActivated');
 
-  if (IsMenuActive) {
+  if (IsMenuActiveDOM) {
     animationMenu();
     activateMenu();
     showBlurMenu();

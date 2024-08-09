@@ -1,6 +1,6 @@
 'use strict';
 
-import { getValuesInLocalStorage } from './others.mjs';
+import { getValuesLocalStorage } from './others.mjs';
 
 export default function customSelect() {
   const selectsDOM = document.querySelectorAll('select');
@@ -18,7 +18,7 @@ export default function customSelect() {
     addShowOrHideEventInOptions(parentElementOfTheSelectionDOM);
   });
 
-  const selectedOptions = getValuesInLocalStorage('settings');
+  const selectedOptions = getValuesLocalStorage('settings');
 
   if (selectedOptions) {
     showSelectedOption(selectsDOM, selectedOptions);
@@ -95,23 +95,23 @@ function changeSelectionOption() {
   const optionsDOM = document.querySelectorAll('.listOfOptions > li');
 
   optionsDOM.forEach((option) => {
-    const selectedItem = option.parentElement.parentElement.children[2];
+    const selectedItemDOM = option.parentElement.parentElement.children[2];
 
     option.addEventListener('click', () => {
       const selectedOption = option.textContent;
 
-      selectedItem.textContent = selectedOption;
+      selectedItemDOM.textContent = selectedOption;
     });
   });
 
   optionsDOM.forEach((option) => {
-    const selectedItem = option.parentElement.parentElement.children[2];
+    const selectedItemDOM = option.parentElement.parentElement.children[2];
 
     option.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         const selectedOption = option.textContent;
 
-        selectedItem.textContent = selectedOption;
+        selectedItemDOM.textContent = selectedOption;
       }
     });
   });
@@ -134,14 +134,14 @@ function addEventToCloseSelect() {
 
   document.addEventListener('click', (event) => {
     hiddenSelectionsDOM.forEach((select) => {
-      const selectParent = select.parentElement;
-      const selectOptions = selectParent.children[1];
+      const selectParentDOM = select.parentElement;
+      const selectOptionsDOM = selectParentDOM.children[1];
 
       if (
-        selectOptions.classList.contains('show') &&
-        !selectParent.contains(event.target)
+        selectOptionsDOM.classList.contains('show') &&
+        !selectParentDOM.contains(event.target)
       ) {
-        selectOptions.classList.remove('show');
+        selectOptionsDOM.classList.remove('show');
       }
     });
   });

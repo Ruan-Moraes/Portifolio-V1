@@ -3,9 +3,9 @@
 import { changePageScrollingState } from './others.mjs';
 
 export default function menu() {
-  const hamburgerButton = document.querySelector('#menuButton');
+  const hamburgerButtonDOM = document.querySelector('#menuButton');
 
-  hamburgerButton.addEventListener('keydown', (event) => {
+  hamburgerButtonDOM.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       animationMenu();
       activateMenu();
@@ -14,7 +14,7 @@ export default function menu() {
     }
   });
 
-  hamburgerButton.addEventListener('click', () => {
+  hamburgerButtonDOM.addEventListener('click', () => {
     animationMenu();
     activateMenu();
     showBlurMenu();

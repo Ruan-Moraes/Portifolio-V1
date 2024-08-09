@@ -15,21 +15,28 @@ export function showBlurOnBody() {
   blurOnBodyDOM.classList.toggle('blurOnBodyIsActivated');
 }
 
-export function processingTranslationTexts() {
-  const dynamicElements = document.querySelectorAll('[data-translate]');
+export function processingTranslationTexts(formatToOriginalText = false) {
+  const dynamicElementsDOM = document.querySelectorAll('[data-translate]');
 
-  return Array.from(dynamicElements).map((element) =>
-    // Faça um tratamento no texto para remover espaços em branco seguidos e espaços em branco no início e no final e substitui virgula por '-';
+  if (formatToOriginalText) {
+    return Array.from(dynamicElementsDOM).map((element) =>
+      element.textContent
+        .replace(/\s{2,}/g, ' ')
+        .trim()
+        .replace(/ \|/g, ',')
+    );
+  }
 
+  return Array.from(dynamicElementsDOM).map((element) =>
     element.textContent
       .replace(/\s{2,}/g, ' ')
       .trim()
-      .replace(/,/g, ' -')
+      .replace(/,/g, ' |')
   );
 }
 
-export function saveTextsInPortuguese(itemName) {
-  const dynamicElementsTexts = processingTranslationTexts();
+export function saveTextsInPortugueseInLocalStorage(itemName) {
+  const dynamicElementsTexts = processingTranslationTexts(true);
 
   setValuesInLocalStorage(itemName, ...dynamicElementsTexts);
 }
@@ -38,7 +45,7 @@ export function setValuesInLocalStorage(itemName, ...data) {
   localStorage.setItem(itemName, JSON.stringify([...data]));
 }
 
-export function getValuesInLocalStorage(itemName) {
+export function getValuesLocalStorage(itemName) {
   return JSON.parse(localStorage.getItem(itemName));
 }
 

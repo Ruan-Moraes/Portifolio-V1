@@ -2,15 +2,18 @@
 
 import translateDynamicTexts from '../../translateAPI.mjs';
 import {
-  saveTextsInPortuguese,
+  saveTextsInPortugueseInLocalStorage,
   setValuesInLocalStorage,
 } from '../../others.mjs';
 
 export default async function changeEachTextToEnglish() {
+  document.querySelector('html').setAttribute('lang', 'en-US');
+
   await changeHeaderText();
   await changeFooterNavigationLinksText();
   await changeFooterContactsText();
   await changeFooterCopyText();
+  await changeSettingsText();
 
   await changeIndexText();
   await changeMyHistoryText();
@@ -67,10 +70,55 @@ export default async function changeEachTextToEnglish() {
     ).textContent = 'All rights reserved';
   }
 
+  function changeSettingsText() {
+    document.querySelector(
+      '.settings > .settings__header > div:nth-child(2) > h2'
+    ).textContent = 'Settings';
+
+    document.querySelector(
+      '.settings > .settings__body > div:nth-child(1) > h3'
+    ).textContent = 'Change Theme - Progress';
+
+    setTimeout(() => {
+      document.querySelector(
+        '.settings > .settings__body > div:nth-child(1) > .elementOfSelections > .listOfOptions > li:nth-child(1)'
+      ).textContent = 'System Theme';
+    }, 2000);
+
+    // document.querySelector(
+    //   '.settings > .settings__body > div:nth-child(1) > .elementOfSelections > ul > li:nth-child(2)'
+    // ).textContent = 'Dark Theme';
+    // document.querySelector(
+    //   '.settings > .settings__body > div:nth-child(1) > .elementOfSelections > ul > li:nth-child(3)'
+    // ).textContent = 'Light Theme';
+
+    // document.querySelector(
+    //   '.settings > .settings__body > div:nth-child(2) > h3'
+    // ).textContent = 'Change Colors';
+
+    // document.querySelector(
+    //   '.settings > .settings__body > div:nth-child(3) > h3'
+    // ).textContent = 'Change The Language';
+    // document.querySelector(
+    //   '.settings > .settings__body > div:nth-child(3) > .elementOfSelections > ul > li:nth-child(1)'
+    // ).textContent = 'Default Language';
+    // document.querySelector(
+    //   '.settings > .settings__body > div:nth-child(3) > .elementOfSelections > ul > li:nth-child(2)'
+    // ).textContent = 'Portuguese';
+    // document.querySelector(
+    //   '.settings > .settings__body > div:nth-child(3) > .elementOfSelections > ul > li:nth-child(3)'
+    // ).textContent = 'English';
+  }
+
   // * Funções para mudar o texto de cada página para inglês
 
   async function changeIndexText() {
-    if (!window.location.pathname.includes('/index.html')) return;
+    if (
+      !window.location.pathname.includes('/index.html') ||
+      !window.location.pathname.includes('/')
+    ) {
+      return;
+    }
 
     await changeApresentationText();
     await changeAboutMeText();
@@ -146,37 +194,6 @@ export default async function changeEachTextToEnglish() {
     async function changeProjectsText() {
       translateStaticTexts();
 
-      const allTranslations = JSON.parse(
-        localStorage.getItem('translationsProjectsInEnglish')
-      )
-        ? JSON.parse(localStorage.getItem('translationsProjectsInEnglish'))
-        : undefined;
-
-      console.log(allTranslations);
-
-      saveTextsInPortuguese('translationsProjectsInPortuguese');
-
-      if (allTranslations) {
-        console.log('entrou');
-
-        console.log(document.querySelectorAll('[data-translate]'));
-
-        Array.from(document.querySelectorAll('[data-translate]')).forEach(
-          (element, index) => {
-            console.log(element.textContent);
-
-            return (element.textContent = allTranslations[index]);
-          }
-        );
-
-        return;
-      }
-
-      await setValuesInLocalStorage(
-        'translationsProjectsInEnglish',
-        ...(await translateDynamicTexts('PT', 'EN'))
-      );
-
       async function translateStaticTexts() {
         document.querySelector(
           '.main__projects > .container > .sectionTitle > h2'
@@ -195,16 +212,41 @@ export default async function changeEachTextToEnglish() {
             });
         }, 1100);
 
-        const loadingProjects = document.querySelector(
+        const loadingProjectsDOM = document.querySelector(
           '.main__projects > .container > .projects > .projects__loadingProjects'
         );
 
-        if (loadingProjects) {
+        if (loadingProjectsDOM) {
           await setTimeout(() => {
             loadingProjects.innerHTML = `<p>Loading Projects...</p>`;
           }, 0);
         }
       }
+
+      if (localStorage.getItem('translationsProjectsInEnglish')) {
+        const allTranslations = JSON.parse(
+          localStorage.getItem('translationsProjectsInEnglish')
+        );
+
+        const intervalId = setInterval(() => {
+          if (document.querySelectorAll('[data-translate]').length !== 0) {
+            Array.from(document.querySelectorAll('[data-translate]')).map(
+              (element, index) => (element.textContent = allTranslations[index])
+            );
+
+            clearInterval(intervalId);
+          }
+        }, 1000);
+
+        return;
+      }
+
+      saveTextsInPortugueseInLocalStorage('translationsProjectsInPortuguese');
+
+      await setValuesInLocalStorage(
+        'translationsProjectsInEnglish',
+        ...(await translateDynamicTexts('PT', 'EN'))
+      );
     }
 
     function changeServicesText() {
@@ -295,7 +337,7 @@ export default async function changeEachTextToEnglish() {
   }
 
   async function changeMyHistoryText() {
-    if (!window.location.pathname.includes('/myhistory.html')) return;
+    if (!window.location.pathname.includes('pages/myhistory.html')) return;
 
     await changeTitleTextOfMyHistory();
     await changeSubTitleText();
@@ -349,30 +391,9 @@ export default async function changeEachTextToEnglish() {
   }
 
   async function changeCertificatesText() {
-    if (!window.location.pathname.includes('/certificates.html')) return;
+    if (!window.location.pathname.includes('pages/certificates.html')) return;
 
     translateStaticTexts();
-
-    const allTranslations = JSON.parse(
-      localStorage.getItem('translationsCertificatesInEnglish')
-    )
-      ? JSON.parse(localStorage.getItem('translationsCertificatesInEnglish'))
-      : undefined;
-
-    saveTextsInPortuguese('translationsCertificatesInPortuguese');
-
-    if (allTranslations) {
-      Array.from(document.querySelectorAll('[data-translate]')).forEach(
-        (element, index) => (element.textContent = allTranslations[index])
-      );
-
-      return;
-    }
-
-    await setValuesInLocalStorage(
-      'translationsCertificatesInEnglish',
-      ...(await translateDynamicTexts('PT', 'EN'))
-    );
 
     async function translateStaticTexts() {
       document.querySelector('[data-translate-title]').innerText =
@@ -381,7 +402,7 @@ export default async function changeEachTextToEnglish() {
       await Array.from(
         document.querySelectorAll('[data-translate-topicsCovered]')
       ).forEach((element) => {
-        element.innerText = 'Topics Covered';
+        element.innerText = 'Topics Covered:';
       });
 
       await Array.from(
@@ -429,5 +450,24 @@ export default async function changeEachTextToEnglish() {
         element.textContent = 'View Certificate';
       });
     }
+
+    if (localStorage.getItem('translationsCertificatesInEnglish')) {
+      const allTranslations = JSON.parse(
+        localStorage.getItem('translationsCertificatesInEnglish')
+      );
+
+      Array.from(document.querySelectorAll('[data-translate]')).map(
+        (element, index) => (element.textContent = allTranslations[index])
+      );
+
+      return;
+    }
+
+    saveTextsInPortugueseInLocalStorage('translationsCertificatesInPortuguese');
+
+    await setValuesInLocalStorage(
+      'translationsCertificatesInEnglish',
+      ...(await translateDynamicTexts('PT', 'EN'))
+    );
   }
 }

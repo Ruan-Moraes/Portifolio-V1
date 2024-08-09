@@ -3,7 +3,7 @@
 import {
   changePageScrollingState,
   showBlurOnBody,
-  getValuesInLocalStorage,
+  getValuesLocalStorage,
   setValuesInLocalStorage,
 } from './others.mjs';
 import {
@@ -16,7 +16,7 @@ import changeEachTextToEnglish from './translates/EN-US/changeEachTextToEnglish.
 import changeEachTextToPortuguese from './translates/PT-BR/changeEachTextToPortuguese.mjs';
 
 window.addEventListener('DOMContentLoaded', () => {
-  const selectedOptions = getValuesInLocalStorage('settings');
+  const selectedOptions = getValuesLocalStorage('settings');
 
   if (!selectedOptions) {
     applyLanguage(window.navigator.language);
@@ -171,32 +171,28 @@ function applyColor(selectedColorValue) {
 // * Lógica para mudar o idioma do site
 
 function applyLanguage(selectedLanguageValue) {
-  if (selectedLanguageValue === 'pt-BR') {
-    changeTextToSelectedLanguage(selectedLanguageValue);
+  if (document.querySelector('html').lang === selectedLanguageValue) {
+    return;
+  }
+
+  if (
+    selectedLanguageValue === 'pt-BR' ||
+    selectedLanguageValue === 'Português' ||
+    selectedLanguageValue === 'Portuguese'
+  ) {
+    changeEachTextToPortuguese();
 
     return;
   }
 
-  if (selectedLanguageValue === 'en-US') {
-    changeTextToSelectedLanguage(selectedLanguageValue);
+  if (
+    selectedLanguageValue === 'en-US' ||
+    selectedLanguageValue === 'Inglês' ||
+    selectedLanguageValue === 'English'
+  ) {
+    changeEachTextToEnglish();
 
     return;
-  }
-
-  changeTextToSelectedLanguage(
-    selectedLanguageValue === 'Português' ? 'pt-BR' : 'en-US'
-  );
-
-  function changeTextToSelectedLanguage(selectedLanguage) {
-    document.querySelector('html').setAttribute('lang', selectedLanguage);
-
-    if (selectedLanguage === 'en-US') {
-      changeEachTextToEnglish();
-    }
-
-    if (selectedLanguage === 'pt-BR') {
-      changeEachTextToPortuguese();
-    }
   }
 }
 

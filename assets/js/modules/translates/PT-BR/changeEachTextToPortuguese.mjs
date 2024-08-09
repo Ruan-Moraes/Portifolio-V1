@@ -1,22 +1,17 @@
 'use strict';
 
 export default async function changeEachTextToPortuguese() {
+  document.querySelector('html').setAttribute('lang', 'pt-BR');
+
   await changeHeaderText();
   await changeFooterNavigationLinksText();
   await changeFooterContactsText();
   await changeFooterCopyText();
+  await changeSettingsText();
 
-  try {
-    await changeTextIndex();
-  } catch (error) {}
-
-  try {
-    await changeMyHistoryText();
-  } catch (error) {}
-
-  try {
-    await changeCertificatesText();
-  } catch (error) {}
+  await changeTextIndex();
+  await changeMyHistoryText();
+  await changeCertificatesText();
 
   function changeHeaderText() {
     document.querySelector('.header__title > h1 > a').textContent =
@@ -69,9 +64,52 @@ export default async function changeEachTextToPortuguese() {
     ).textContent = 'Todos os direitos reservados';
   }
 
+  function changeSettingsText() {
+    document.querySelector(
+      '.settings > .settings__header > div:nth-child(2) > h2'
+    ).textContent = 'Configurações';
+
+    document.querySelector(
+      '.settings > .settings__body div:nth-child(1) > h3'
+    ).textContent = 'Alterar Tema - Andamento';
+    document.querySelector(
+      '.settings > .settings__body div:nth-child(1) > .elementOfSelections > ul > li:nth-child(1)'
+    ).textContent = 'Tema do Sistema';
+    document.querySelector(
+      '.settings > .settings__body div:nth-child(1) > .elementOfSelections > ul > li:nth-child(2)'
+    ).textContent = 'Tema Escuro';
+    document.querySelector(
+      '.settings > .settings__body div:nth-child(1) > .elementOfSelections > ul > li:nth-child(3)'
+    ).textContent = 'Tema Claro';
+
+    document.querySelector(
+      '.settings > .settings__body div:nth-child(2) > h3'
+    ).textContent = 'Alterar Cores';
+
+    document.querySelector(
+      '.settings > .settings__body > div:nth-child(3) > h3'
+    ).textContent = 'Alterar Idioma';
+    document.querySelector(
+      '.settings > .settings__body > div:nth-child(3) > .elementOfSelections > ul > li:nth-child(1)'
+    ).textContent = 'Idioma Padrão';
+    document.querySelector(
+      '.settings > .settings__body > div:nth-child(3) > .elementOfSelections > ul > li:nth-child(2)'
+    ).textContent = 'Português';
+    document.querySelector(
+      '.settings > .settings__body > div:nth-child(3) > .elementOfSelections > ul > li:nth-child(3)'
+    ).textContent = 'Inglês';
+  }
+
   // * Função para mudar o texto para cada página
 
   async function changeTextIndex() {
+    if (
+      !window.location.pathname.includes('/index.html') ||
+      !window.location.pathname.includes('/')
+    ) {
+      return;
+    }
+
     await changeApresentationText();
     await changeAboutMeText();
     await changeProjectsText();
@@ -144,31 +182,54 @@ export default async function changeEachTextToPortuguese() {
     }
 
     function changeProjectsText() {
-      document.querySelector(
-        '.main__projects > .container > .sectionTitle > h2'
-      ).textContent = 'Meus Projetos';
+      translateStaticTexts();
 
-      document.querySelector(
-        '.main__projects > .container > .projects > .projects__pagesContainer > div > p'
-      ).textContent = 'Total de projetos:';
-      setTimeout(() => {
-        document
-          .querySelectorAll(
-            '.main__projects > .container > .projects > .projects__pagination a span'
-          )
-          .forEach((element, index) => {
-            element.textContent = `Página ${index + 1}`;
-          });
-      }, 1100);
+      async function translateStaticTexts() {
+        document.querySelector(
+          '.main__projects > .container > .sectionTitle > h2'
+        ).textContent = 'Meus Projetos';
 
-      const loadingProjects = document.querySelector(
-        '.main__projects > .container > .projects > .projects__loadingProjects'
-      );
+        document.querySelector(
+          '.main__projects > .container > .projects > .projects__pagesContainer > div > p'
+        ).textContent = 'Total de projetos:';
 
-      if (loadingProjects) {
         setTimeout(() => {
-          loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
-        }, 0);
+          document
+            .querySelectorAll(
+              '.main__projects > .container > .projects > .projects__pagination a span'
+            )
+            .forEach((element, index) => {
+              element.textContent = `Página ${index + 1}`;
+            });
+        }, 1100);
+
+        const loadingProjects = document.querySelector(
+          '.main__projects > .container > .projects > .projects__loadingProjects'
+        );
+
+        if (loadingProjects) {
+          setTimeout(() => {
+            loadingProjects.innerHTML = `<p>Carregando Projetos...</p>`;
+          }, 0);
+        }
+      }
+
+      if (localStorage.getItem('translationsProjectsInPortuguese')) {
+        const allTranslations = JSON.parse(
+          localStorage.getItem('translationsProjectsInPortuguese')
+        );
+
+        const intervalId = setInterval(() => {
+          if (document.querySelectorAll('[data-translate]').length !== 0) {
+            Array.from(document.querySelectorAll('[data-translate]')).map(
+              (element, index) => (element.textContent = allTranslations[index])
+            );
+
+            clearInterval(intervalId);
+          }
+        }, 1000);
+
+        return;
       }
     }
 
@@ -260,6 +321,8 @@ export default async function changeEachTextToPortuguese() {
   }
 
   async function changeMyHistoryText() {
+    if (!window.location.pathname.includes('pages/myhistory.html')) return;
+
     await changeTitleTextOfMyHistory();
     await changeSubTitleText();
     await changeContentText();
@@ -311,5 +374,79 @@ export default async function changeEachTextToPortuguese() {
     }
   }
 
-  async function changeCertificatesText() {}
+  async function changeCertificatesText() {
+    if (!window.location.pathname.includes('pages/certificates.html')) return;
+
+    translateStaticTexts();
+
+    async function translateStaticTexts() {
+      document.querySelector('[data-translate-title]').innerText =
+        'Meus Certificados';
+
+      await Array.from(
+        document.querySelectorAll('[data-translate-topicsCovered]')
+      ).forEach((element) => {
+        element.innerText = 'Temas Abordados:';
+      });
+
+      await Array.from(
+        document.querySelectorAll('[data-translate-conclusion]')
+      ).forEach((element) => {
+        element.innerText = 'Conclusão:';
+      });
+
+      const monthTranslations = {
+        January: 'Janeiro de',
+        February: 'Fevereiro de',
+        March: 'Março de',
+        April: 'Abril de',
+        May: 'Maio de',
+        June: 'Junho de',
+        July: 'Julho de',
+        August: 'Agosto de',
+        September: 'Setembro de',
+        October: 'Outubro de',
+        November: 'Novembro de',
+        December: 'Dezembro de',
+      };
+
+      await Array.from(
+        document.querySelectorAll('[data-translate-monthOfConclusion]')
+      ).forEach((element) => {
+        if (monthTranslations[element.textContent] === undefined) return;
+
+        element.textContent = monthTranslations[element.textContent];
+      });
+
+      await Array.from(
+        document.querySelectorAll('[data-translate-duration]')
+      ).forEach((element) => {
+        element.textContent = 'Duração:';
+      });
+
+      await Array.from(
+        document.querySelectorAll('[data-translate-hours]')
+      ).forEach((element) => {
+        element.textContent = 'Horas';
+      });
+
+      await Array.from(
+        document.querySelectorAll('[data-translate-viewCertificate]')
+      ).forEach((element) => {
+        element.textContent = 'Visualizar Certificado';
+      });
+    }
+
+    if (localStorage.getItem('translationsCertificatesInPortuguese')) {
+      const allTranslations = JSON.parse(
+        localStorage.getItem('translationsCertificatesInPortuguese')
+      );
+
+      Array.from(document.querySelectorAll('[data-translate]')).map(
+        (element, index) => (element.textContent = allTranslations[index])
+      );
+
+      return;
+    }
+  }
 }

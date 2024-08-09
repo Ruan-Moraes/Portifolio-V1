@@ -12,14 +12,14 @@ import { changePageScrollingState, showBlurOnBody } from './others.mjs';
 export default function menuAndSettings() {
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
-      const isSettingsActive = document
+      const isSettingsActiveDOM = document
         .querySelector('.settings')
         .classList.contains('settingActivated');
-      const isMenuActive = document
+      const isMenuActiveDOM = document
         .querySelector('.header__links')
         .classList.contains('menuIsActivated');
 
-      if (!isSettingsActive && !isMenuActive) {
+      if (!isSettingsActiveDOM && !isMenuActiveDOM) {
         resetSettings();
         animationGear();
         showBlurOnBody();
@@ -30,7 +30,7 @@ export default function menuAndSettings() {
         return;
       }
 
-      if (isSettingsActive) {
+      if (isSettingsActiveDOM) {
         resetSettings();
         animationGear();
         showBlurOnBody();
@@ -39,7 +39,7 @@ export default function menuAndSettings() {
         changePageScrollingState();
       }
 
-      if (isMenuActive) {
+      if (isMenuActiveDOM) {
         animationMenu();
         activateMenu();
         showBlurMenu();

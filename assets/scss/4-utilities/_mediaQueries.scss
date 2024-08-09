@@ -21,6 +21,18 @@
 
 // --------------------------------------------------------------------------- //
 
+.settings__balls {
+  .fa-xmark,
+  .fa-up-right-from-square {
+    @include mixins.min-desktop {
+      margin-left: 0.125rem;
+      margin-bottom: 0.125rem;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------- //
+
 .settings {
   .settings__header {
     h2 {
